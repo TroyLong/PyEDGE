@@ -1,0 +1,2 @@
+# Don't include the venv. It really isn't efficient to move that across the web.
+bioenv/
