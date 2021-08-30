@@ -3,12 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numpy.lib.function_base import disp
 
-# This just makes it easier to push an image to display
-def showImage(image,title="OpenCV",timeOut=3000):
-    cv.namedWindow(title,cv.WINDOW_NORMAL)
-    cv.imshow(title,image)
-    cv.waitKey(timeOut)
-    cv.destroyAllWindows()
+
 
 #This is really inefficient, but is easy for visualization
 #Image for final display
@@ -45,8 +40,6 @@ displayImage[1].append(cv.cvtColor(sure_bg,cv.COLOR_BGR2RGB))
 dist_transform = cv.distanceTransform(opening,cv.DIST_L2,maskSize=5,dstType=cv.CV_8U)
 #This will not display correctly
 displayImage[1].append(cv.cvtColor(dist_transform,cv.COLOR_BGR2RGB))
-#This will save the file correctly though
-cv.imwrite("distance.png",dist_transform)
 
 ret, sure_fg = cv.threshold(dist_transform,0.7*dist_transform.max(),255,0)
 displayImage[1].append(cv.cvtColor(sure_fg,cv.COLOR_BGR2RGB))
