@@ -27,6 +27,8 @@ gradient = rank.gradient(denoised, disk(2))
 # process the watershed
 labels = watershed(gradient, markers)
 
+print(len(labels))
+
 # display results
 fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(8, 8),
                          sharex=True, sharey=True)
