@@ -10,7 +10,7 @@ from numpy.lib.function_base import disp
 displayImage = [[],[],[]]
 
 #opens the image file
-image = cv.imread("twocircles.png")
+image = cv.imread("onecircle.png")
 displayImage[0].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 
 #converts the image to grayscale
