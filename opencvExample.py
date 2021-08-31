@@ -7,7 +7,7 @@ from numpy.lib.function_base import disp
 
 #This is really inefficient, but is easy for visualization
 #Image for final display
-displayImage = [[],[]]
+displayImage = [[],[],[]]
 
 #opens the image file
 image = cv.imread("twocircles.png")
@@ -57,15 +57,31 @@ markers[unknown==255] = 0
 
 #Now we watershed
 markers = cv.watershed(image,markers)
-image[markers==-1]=[0,0,255]
-displayImage[1].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
+segmentation = image.copy()
+segmentation[markers==-1]=[0,0,255]
+displayImage[1].append(cv.cvtColor(segmentation,cv.COLOR_BGR2RGB))
+
+ret, segThresh = cv.threshold(gray,100,255,cv.THRESH_BINARY)
+segContours,_ = cv.findContours(segThresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+segFilled = segThresh.copy()
+cv.drawContours(segFilled,segContours, -1, (255,255,255), thickness = cv.FILLED)
+displayImage[2].append(cv.cvtColor(segFilled,cv.COLOR_BGR2RGB))
+
+for c in segContours:
+    moment = cv.moments(c)
+    # calculate x,y coordinate of center
+    cX = int(moment["m10"] / moment["m00"])
+    cY = int(moment["m01"] / moment["m00"])
+    cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
+displayImage[2].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 
 
 #This took longer than reasonable to put together, but it shows all the
 #Images added to the displayImage list
-imageLabels = ["Original","Gray","Thresholded","Filled",
-                "Sure Background","Distance Transform","Sure Foreground","Segmented Image"]
-fig, axes = plt.subplots(nrows=2, ncols=4, figsize=(8, 8),
+imageLabels = ["Original","Gray","Thresholded","Filled Contour",
+                "Sure Background","Distance Transform","Sure Foreground","Segmented Image",
+                "Segmented Contour","Centroids"]
+fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(8, 8),
                          sharex=True, sharey=True)
 ax = axes.ravel()
 counter = 0
