@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 from numpy.lib.function_base import disp
 
 
@@ -10,7 +11,11 @@ from numpy.lib.function_base import disp
 displayImage = [[],[],[]]
 
 #opens the image file
-image = cv.imread("onecircle.png")
+imageDir = "SampleImages/"
+imageName = "lowresshapes.png"
+imagePath = os.path.join(imageDir,imageName)
+print("Loading %s."%(imagePath))
+image = cv.imread(imagePath)
 displayImage[0].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 
 #converts the image to grayscale
@@ -61,12 +66,27 @@ segmentation = image.copy()
 segmentation[markers==-1]=[0,0,255]
 displayImage[1].append(cv.cvtColor(segmentation,cv.COLOR_BGR2RGB))
 
+#This finds the new contours
 ret, segThresh = cv.threshold(gray,100,255,cv.THRESH_BINARY)
 segContours,_ = cv.findContours(segThresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
 segFilled = segThresh.copy()
 cv.drawContours(segFilled,segContours, -1, (255,255,255), thickness = cv.FILLED)
 displayImage[2].append(cv.cvtColor(segFilled,cv.COLOR_BGR2RGB))
 
+#Grabs all verticies for the shape
+verticies = list()
+for cnt in range(len(segContours)):
+    polyEpsilon = 0.1*cv.arcLength(segContours[cnt],True)
+    polyApprox = cv.approxPolyDP(segContours[cnt],polyEpsilon,True)
+    verticies.extend(polyApprox)
+    print("The shape has %d vertices."%(len(polyApprox)))
+
+#Adds the verticies to the original image for viewing
+for vert in verticies:
+    vert = vert[0]
+    image[vert[1],vert[0]] = (255,0,0)
+
+#This finds the center of mass
 for c in segContours:
     moment = cv.moments(c)
     # calculate x,y coordinate of center
@@ -80,14 +100,14 @@ displayImage[2].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 #Images added to the displayImage list
 imageLabels = ["Original","Gray","Thresholded","Filled Contour",
                 "Sure Background","Distance Transform","Sure Foreground","Segmented Image",
-                "Segmented Contour","Centroids"]
+                "Segmented Contours","Centroids and Vertices"]
 fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(8, 8),
                          sharex=True, sharey=True)
 ax = axes.ravel()
 counter = 0
 for i in range(len(displayImage)):
     for j in range(len(displayImage[i])):
-        ax[counter].imshow(displayImage[i][j])
+        ax[counter].imshow((displayImage[i][j]).astype(np.uint8))
         ax[counter].set_title(imageLabels[counter])
         counter+=1
 for a in ax:
