@@ -5,6 +5,15 @@ import os
 from numpy.lib.function_base import disp
 
 
+def removeLargeContours(image,contours):
+    largest = max(contours,key=cv.contourArea)
+    areaOfLargest = cv.contourArea(largest)
+    mask = np.zeros(image.shape[:2], dtype="uint8")
+    for contour in contours:
+        if cv.contourArea(contour) > (areaOfLargest/4):
+            cv.drawContours(mask,[contour],-1,255,-1)
+    image = cv.bitwise_not(image,image,mask=mask)
+
 
 #This is really inefficient, but is easy for visualization
 #Image for final display
@@ -12,23 +21,27 @@ displayImage = [[],[],[]]
 
 #opens the image file
 imageDir = "SampleImages/"
-imageName = "lowresshapes.png"
+imageName = "cell.png"
 imagePath = os.path.join(imageDir,imageName)
 print("Loading %s."%(imagePath))
 image = cv.imread(imagePath)
 displayImage[0].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 
 #converts the image to grayscale
+image = cv.bilateralFilter(image, 8, 175, 175)
 gray = cv.cvtColor(image,cv.COLOR_RGB2GRAY)
-displayImage[0].append(cv.cvtColor(gray,cv.COLOR_BGR2RGB))
+displayImage[0].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 
 #uses a threshold value to set boundaries for contours
-ret, thresh = cv.threshold(gray,100,255,cv.THRESH_BINARY)
+ret, thresh = cv.threshold(gray,50,255,cv.THRESH_BINARY_INV)
 displayImage[0].append(cv.cvtColor(thresh,cv.COLOR_BGR2RGB))
 
 #creates contours around the rings, and fills in with white.
 #this may need to be changed as images get "dirtier"
-contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
+removeLargeContours(thresh,contours)
+contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
+
 filled = thresh.copy()
 cv.drawContours(filled,contours, -1, (255,255,255), thickness = cv.FILLED)
 displayImage[0].append(cv.cvtColor(filled,cv.COLOR_BGR2RGB))
@@ -46,7 +59,7 @@ dist_transform = cv.distanceTransform(opening,cv.DIST_L2,maskSize=5,dstType=cv.C
 #This will not display correctly
 displayImage[1].append(cv.cvtColor(dist_transform,cv.COLOR_BGR2RGB))
 
-ret, sure_fg = cv.threshold(dist_transform,0.7*dist_transform.max(),255,0)
+ret, sure_fg = cv.threshold(dist_transform,0.01*dist_transform.max(),255,0)
 displayImage[1].append(cv.cvtColor(sure_fg,cv.COLOR_BGR2RGB))
 
 #Finding unknown region
@@ -62,37 +75,52 @@ markers[unknown==255] = 0
 
 #Now we watershed
 markers = cv.watershed(image,markers)
-segmentation = image.copy()
-segmentation[markers==-1]=[0,0,255]
+#segmentation = image.copy()
+#segmentation[markers==-1]=[0,0,255]
+segmentation = np.zeros_like(image)
+segmentation[markers==-1]=[255,255,255]
 displayImage[1].append(cv.cvtColor(segmentation,cv.COLOR_BGR2RGB))
 
-#This finds the new contours
-ret, segThresh = cv.threshold(gray,100,255,cv.THRESH_BINARY)
-segContours,_ = cv.findContours(segThresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
-segFilled = segThresh.copy()
-cv.drawContours(segFilled,segContours, -1, (255,255,255), thickness = cv.FILLED)
-displayImage[2].append(cv.cvtColor(segFilled,cv.COLOR_BGR2RGB))
+gray = cv.cvtColor(segmentation,cv.COLOR_RGB2GRAY)
+ret, thresh = cv.threshold(gray,50,255,cv.THRESH_BINARY_INV)
+
+#creates contours around the rings, and fills in with white.
+#this may need to be changed as images get "dirtier"
+contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
+removeLargeContours(thresh,contours)
+contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
+
+filled = thresh.copy()
+cv.drawContours(filled,contours, -1, (255,0,255), thickness = cv.FILLED)
+displayImage[2].append(cv.cvtColor(filled,cv.COLOR_BGR2RGB))
 
 #Grabs all verticies for the shape
 verticies = list()
-for cnt in range(len(segContours)):
-    polyEpsilon = 0.1*cv.arcLength(segContours[cnt],True)
-    polyApprox = cv.approxPolyDP(segContours[cnt],polyEpsilon,True)
+for cnt in range(len(contours)):
+    polyEpsilon = 0.05*cv.arcLength(contours[cnt],True)
+    polyApprox = cv.approxPolyDP(contours[cnt],polyEpsilon,True)
     verticies.extend(polyApprox)
-    print("The shape has %d vertices."%(len(polyApprox)))
+    cv.polylines(image,[polyApprox],True,(0,255,255))
+
 
 #Adds the verticies to the original image for viewing
 for vert in verticies:
     vert = vert[0]
-    image[vert[1],vert[0]] = (255,0,0)
+    cv.circle(image, (vert[0],vert[1]), 2, (255, 0, 0), -1)
+
 
 #This finds the center of mass
-for c in segContours:
+for c in contours:
     moment = cv.moments(c)
     # calculate x,y coordinate of center
-    cX = int(moment["m10"] / moment["m00"])
-    cY = int(moment["m01"] / moment["m00"])
-    cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
+    cX = 0
+    cY = 0
+    try:
+        cX = int(moment["m10"] / moment["m00"])
+        cY = int(moment["m01"] / moment["m00"])
+    except ZeroDivisionError:
+        pass
+    cv.circle(image, (cX, cY), 2, (0, 0, 255), -1)
 displayImage[2].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 
 
@@ -100,7 +128,7 @@ displayImage[2].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 #Images added to the displayImage list
 imageLabels = ["Original","Gray","Thresholded","Filled Contour",
                 "Sure Background","Distance Transform","Sure Foreground","Segmented Image",
-                "Segmented Contours","Centroids and Vertices"]
+                "Segmented Contours","Centroids and Vertices",]
 fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(8, 8),
                          sharex=True, sharey=True)
 ax = axes.ravel()
