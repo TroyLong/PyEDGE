@@ -4,33 +4,50 @@ import matplotlib.pyplot as plt
 import os
 from numpy.lib.function_base import disp
 
-def removeLargeContours(image,contours,threshold=4):
+def removeLargeContours(image,contours,thresholdHi=4):
     largest = max(contours,key=cv.contourArea)
     areaOfLargest = cv.contourArea(largest)
     mask = np.zeros(image.shape[:2], dtype="uint8")
     for contour in contours:
-        if cv.contourArea(contour) > (areaOfLargest/threshold):
+        area = cv.contourArea(contour)
+        if (area > (areaOfLargest/thresholdHi)):
+            if thresholdHi != -1:
+                cv.drawContours(mask,[contour], -1, 255, thickness = cv.FILLED)
+        else:
+            print(area)
+    image = cv.bitwise_not(image,image,mask=mask)
+
+
+def removeContoursTouchingBorders(image,contours):
+    imgHeight, imgWidth = image.shape[0],image.shape[1]
+    mask = np.zeros(image.shape[:2], dtype="uint8")
+    for contour in contours:
+        x,y,w,h = cv.boundingRect(contour)
+        w += x
+        h += y
+        if x == 0 or y == 0 or w == imgWidth or h == imgHeight:
             cv.drawContours(mask,[contour],-1,255,-1)
     image = cv.bitwise_not(image,image,mask=mask)
+
 
 
 def segmentImage(imagePath):
     vertices = list()
     centers = list()
     image = cv.imread(imagePath)
-    tempImage = image.copy()
     #converts the image to grayscale
-    image = cv.bilateralFilter(image, 8, 175, 175)
+    image = cv.bilateralFilter(image, 8, 75, 75)
     gray = cv.cvtColor(image,cv.COLOR_RGB2GRAY)
     #uses a threshold value to set boundaries for contours
-    ret, thresh = cv.threshold(gray,50,255,cv.THRESH_BINARY_INV)
-    contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
-    removeLargeContours(thresh,contours)
-    contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
+    thresh = cv.adaptiveThreshold(gray,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,cv.THRESH_BINARY_INV,351,2)
+    contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
+    removeContoursTouchingBorders(thresh,contours)
     #noise removal
-    kernel = np.ones((3,3),np.uint8)
-    opening = cv.morphologyEx(thresh,cv.MORPH_OPEN,kernel, iterations = 2)
-    sure_bg = cv.dilate(opening,kernel,iterations=3)
+    cleaningKernel = np.ones((7,7),np.uint8)
+    opening = cv.morphologyEx(thresh,cv.MORPH_OPEN,cleaningKernel, iterations = 2)
+    #watershed marker prep
+    backgroundKernel = np.ones((3,3),np.uint8)
+    sure_bg = cv.dilate(opening,backgroundKernel,iterations=2)
     dist_transform = cv.distanceTransform(opening,cv.DIST_L2,maskSize=5,dstType=cv.CV_8U)
     ret, sure_fg = cv.threshold(dist_transform,0.01*dist_transform.max(),255,0)
     sure_fg = np.uint8(sure_fg)
@@ -46,15 +63,15 @@ def segmentImage(imagePath):
     #Re-contouring
     gray = cv.cvtColor(segmentation,cv.COLOR_RGB2GRAY)
     ret, thresh = cv.threshold(gray,50,255,cv.THRESH_BINARY_INV)
-    contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+    contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
     removeLargeContours(thresh,contours)
-    contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
-
-    #Guess the polygon, and nodirtyte all vertices
+    #removeContoursTouchingBorders(thresh,contours)
+    contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
+    #Guess the polygon, and note all vertices
     #This finds the center of mass and mark
     for c in contours:
         #polygon
-        polyEpsilon = 0.05*cv.arcLength(c,True)
+        polyEpsilon = 0.025*cv.arcLength(c,True)
         polyApprox = cv.approxPolyDP(c,polyEpsilon,True)
         cv.polylines(image,[polyApprox],True,(0,255,255))
         for vert in polyApprox:
@@ -72,13 +89,13 @@ def segmentImage(imagePath):
             pass
         centers.append((cX,cY))
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
-    return image,centers,vertices
+    return {"image":image,"centers":centers,"vertices":vertices}
 
 
 imageDir = "SampleImages/"
-imageName = "cell.png"
+imageName = "spidergfpapril12_11_z01_t021.tif"
 imagePath = os.path.join(imageDir,imageName)
-image,centers,vertices = segmentImage(imagePath)
-image = cv.cvtColor(image,cv.COLOR_BGR2RGB)
+info = segmentImage(imagePath)
+image = cv.cvtColor(info["image"],cv.COLOR_BGR2RGB)
 plt.imshow(image)
 plt.show()

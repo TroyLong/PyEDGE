@@ -11,6 +11,18 @@ def removeLargeContours(image,contours):
     mask = np.zeros(image.shape[:2], dtype="uint8")
     for contour in contours:
         if cv.contourArea(contour) > (areaOfLargest/4):
+            cv.drawContours(mask,[contour], -1, 255, thickness = cv.FILLED)
+    image = cv.bitwise_not(image,image,mask=mask)
+
+
+def removeContoursTouchingBorders(image,contours):
+    imgHeight, imgWidth = image.shape[0],image.shape[1]
+    mask = np.zeros(image.shape[:2], dtype="uint8")
+    for contour in contours:
+        x,y,w,h = cv.boundingRect(contour)
+        w += x
+        h += y
+        if x == 0 or y == 0 or w == imgWidth or h == imgHeight:
             cv.drawContours(mask,[contour],-1,255,-1)
     image = cv.bitwise_not(image,image,mask=mask)
 
@@ -21,7 +33,7 @@ displayImage = [[],[],[]]
 
 #opens the image file
 imageDir = "SampleImages/"
-imageName = "cell.png"
+imageName = "spidergfpapril12_11_z01_t021.tif"
 imagePath = os.path.join(imageDir,imageName)
 print("Loading %s."%(imagePath))
 image = cv.imread(imagePath)
@@ -30,17 +42,18 @@ displayImage[0].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 #converts the image to grayscale
 image = cv.bilateralFilter(image, 8, 175, 175)
 gray = cv.cvtColor(image,cv.COLOR_RGB2GRAY)
-displayImage[0].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
+displayImage[0].append(cv.cvtColor(gray,cv.COLOR_BGR2RGB))
 
 #uses a threshold value to set boundaries for contours
-ret, thresh = cv.threshold(gray,50,255,cv.THRESH_BINARY_INV)
+thresh = cv.adaptiveThreshold(gray,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,cv.THRESH_BINARY_INV,91,2)
 displayImage[0].append(cv.cvtColor(thresh,cv.COLOR_BGR2RGB))
 
 #creates contours around the rings, and fills in with white.
 #this may need to be changed as images get "dirtier"
-contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
-removeLargeContours(thresh,contours)
-contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
+contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+removeContoursTouchingBorders(thresh,contours)
+contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
+
 
 filled = thresh.copy()
 cv.drawContours(filled,contours, -1, (255,255,255), thickness = cv.FILLED)
@@ -83,13 +96,10 @@ displayImage[1].append(cv.cvtColor(segmentation,cv.COLOR_BGR2RGB))
 
 gray = cv.cvtColor(segmentation,cv.COLOR_RGB2GRAY)
 ret, thresh = cv.threshold(gray,50,255,cv.THRESH_BINARY_INV)
-
-#creates contours around the rings, and fills in with white.
-#this may need to be changed as images get "dirtier"
-contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
+contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
 removeLargeContours(thresh,contours)
-contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_TC89_L1)
-
+removeContoursTouchingBorders(thresh,contours)
+contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_NONE)
 filled = thresh.copy()
 cv.drawContours(filled,contours, -1, (255,0,255), thickness = cv.FILLED)
 displayImage[2].append(cv.cvtColor(filled,cv.COLOR_BGR2RGB))
@@ -128,7 +138,7 @@ displayImage[2].append(cv.cvtColor(image,cv.COLOR_BGR2RGB))
 #Images added to the displayImage list
 imageLabels = ["Original","Gray","Thresholded","Filled Contour",
                 "Sure Background","Distance Transform","Sure Foreground","Segmented Image",
-                "Segmented Contours","Centroids and Vertices",]
+                "Threshold","Segmented Contours","Centroids and Vertices",]
 fig, axes = plt.subplots(nrows=3, ncols=4, figsize=(8, 8),
                          sharex=True, sharey=True)
 ax = axes.ravel()
