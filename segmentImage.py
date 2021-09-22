@@ -1,8 +1,7 @@
 import cv2 as cv
 import numpy as np
-import matplotlib.pyplot as plt
-import os
 from numpy.lib.function_base import disp
+
 
 # This is used get rid of contours that can appear for the black outer regions of the image
 def removeLargeContours(image,contours,thresholdHi=4):
@@ -31,8 +30,9 @@ def removeContoursTouchingBorders(image,contours):
     image = cv.bitwise_not(image,image,mask=mask)
 
 
+# Output is a list of cellDictionarys of the form {"vertices":list(),"centers":list(),"areas":list()}
 def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
-    cellDictionary = {"vertices":list(),"centers":list(),"areas":list()}
+    cells = list()
     image = cv.imread(imagePath)
     #converts the image to grayscale
     image = cv.bilateralFilter(image, bfSigmaColor, bfSigmaSpace, bfSigmaSpace)
@@ -65,17 +65,11 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
     contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
     removeLargeContours(thresh,contours)
     contours,_ = cv.findContours(thresh,cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
-    edgeOutline = np.ones(thresh.shape[:2], dtype="uint8")*255
-    cv.drawContours(edgeOutline,contours,-1,0,-1)
-    # Takes too long
-    edgeOutline = cv.ximgproc.thinning(edgeOutline,thinningType=cv.ximgproc.THINNING_ZHANGSUEN)
-    ret, edgeOutline = cv.threshold(edgeOutline,50,255,cv.THRESH_BINARY_INV)
-    cv.imshow("",edgeOutline)
-    cv.waitKey(0)
-
+    
     #Guess the polygon, and note all vertices
     #This finds the center of mass and mark
     for contour in contours:
+        cellDict = dict()
         #polygon
         polyEpsilon = 0.025*cv.arcLength(contour,True)
         polyApprox = cv.approxPolyDP(contour,polyEpsilon,True)
@@ -83,7 +77,7 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
         for vert in polyApprox:
             vert = vert[0]
             cv.circle(image, (vert[0],vert[1]), 2, (255, 0, 0), -1)
-        cellDictionary["vertices"].append(polyApprox)
+        cellDict["vertices"] = polyApprox
         #center of mass
         moment = cv.moments(contour)
         cX = 0
@@ -93,17 +87,10 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
             cY = int(moment["m01"] / moment["m00"])
         except ZeroDivisionError:
             pass
-        cellDictionary["centers"].append((cX,cY))
+        cellDict["center"] = (cX,cY)
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
-        cellDictionary["areas"].append(cv.contourArea(contour))
-    cellDictionary["image"] = image
-    return cellDictionary
+        cellDict["area"] = cv.contourArea(contour)
+        cells.append(cellDict)
+    return cells, image
 
 
-imageDir = "SampleImages/"
-imageName = "spidergfpapril12_11_z01_t021.tif"
-imagePath = os.path.join(imageDir,imageName)
-info = segmentImage(imagePath)
-image = cv.cvtColor(info["image"],cv.COLOR_BGR2RGB)
-plt.imshow(image)
-plt.show()
