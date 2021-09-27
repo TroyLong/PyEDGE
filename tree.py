@@ -7,12 +7,23 @@ import matplotlib.pyplot as plt
 import os
 import cv2 as cv
 import segmentImage as sI
+import sorting as srt
 
 from anytree import NodeMixin, RenderTree, PreOrderIter
-
+from enum import Enum
 
 Serial = 0
 BodySerial = 0
+
+
+class treeUpdateActions(Enum):
+    DISTANCES = 1
+    MAX_DISTANCE = 2
+    NEIGHBORS = 3
+
+
+def pointsDist(pointA,pointB):
+    return np.sqrt((pointA[0]-pointB[0])**2 + (pointA[1]-pointB[1])**2)
 
 
 # This is a rectangle object that also keeps up with its bisections
@@ -57,20 +68,43 @@ class treeNode(NodeMixin):
         if len(cells) > 1:
             self.__createChildrenNodes()
         # Does this node have only 1 element?
-        self.isNodeOccupied = len(cells) > 0
+        self.isNodeSingleOccupied = len(cells) == 1
     def setSerial(self):
         global Serial
         self.Serial = Serial
         Serial += 1
 
-    def update(self,cell):
-        if(self.is_leaf and self.isNodeOccupied):
-            pass     
+    #TODO:: Walk through this only once for each cell, instead of twice
+    # Finds distances to neighbors for initial guess
+    def findNeighborDistances(self,cell):
+        if(self.isNodeSingleOccupied):
+            cell["neighGuessDist"].append(pointsDist(cell["center"],self.centerOfMass))
+
+    # Finds maximum distance for probable neighboring cells and resets the cutoffThreshold accordingly.
+    def findMaxNeighborDistance(self,deviation):
+        self.cells[0]["neighborGuessDist"] = srt.merge(self.cells[0]["neighGuessDist"])
+        try:
+            maxDistance = self.cells[0]["neighborGuessDist"][0]
+            for distance in range(1,len(self.cells[0]["neighborGuessDist"])):
+                if (self.cells[0]["neighborGuessDist"][distance] < maxDistance+deviation):
+                    maxDistance = self.cells[0]["neighborGuessDist"][distance]
+                else:
+                    break
+            #TODO:: Make this work with the already present cutoff threshold
+            self.cutoffThreshold = maxDistance/self.rect.width
+        except IndexError:
+            self.cutoffThreshold = 0
+
+
+    def findNeighbors(self,cell,maxNeighborDistance):
+        if(self.isNodeSingleOccupied and pointsDist(cell["center"],self.centerOfMass) <= maxNeighborDistance):
+            self.cells[0]["neighbors"].append(cell["center"])
+
     # Is cell far enough away to be considered seprate
     def isInternalNodeWithinCutoff(self,cell):
         cellToNode = np.sqrt((cell["center"][0]-self.centerOfMass[0])**2+(cell["center"][1]-self.centerOfMass[1])**2)
         cellToNode = cellToNode if cellToNode != 0 else 0.000000001
-        sd = self.rect.width/cellToNode
+        sd = cellToNode/self.rect.width
         return  sd <= self.cutoffThreshold
 
     def __findCenterOfMass(self):
@@ -111,40 +145,68 @@ class treeNode(NodeMixin):
 
 
 
-def findCloseCells(cells):
+
+
+def walkTree(cells,updateAction,deviation=0,maxNeighborDistance=0):
     for cell in cells:
         nodeIterator = PreOrderIter(root)
         # Start looking through all nodes. Skip child nodes is parent node is past the cutoff
         for node in nodeIterator:
             # Is the center of mass of the node within the cutoff, if so, continue searching deeper
-            if (node.is_leaf and node.isNodeOccupied and (not node.cells[0] == cell) and (node.isInternalNodeWithinCutoff(cell))):
-                print("Update {0}".format(cell.Serial))
-                node.update(cell)
-            # Check if the cell is checking itself against itself
-            elif node.is_leaf and node.isNodeOccupied and (node.cells[0] == cell):
-                print('Self')
-                pass
-            # If the center of mass is out of the cutoff, make approximation, and skip the nodes that are deeper
+            if (node.isNodeSingleOccupied and (not node.cells[0]["center"] == cell["center"]) and (node.isInternalNodeWithinCutoff(cell))):
+                treeActions(node,cell,deviation,maxNeighborDistance,updateAction)
+            # If the center of mass is out of the cutoff, then skip the nodes that are deeper
             elif not node.isInternalNodeWithinCutoff(cell):
-                print("Not within Cutoff?")
-                node.update(cell)
-                # Skip all descendants of current node
                 for i in range(len(node.descendants)):
                     next(nodeIterator, None)
-        cell.update(.001)
 
+# Actions taken by walkTree            
+def treeActions(node,cell,deviation,maxNeighborDistance,updateAction):
+    if (updateAction==treeUpdateActions.DISTANCES):
+        node.findNeighborDistances(cell)
+    elif (updateAction==treeUpdateActions.MAX_DISTANCE):
+        node.findMaxNeighborDistance(deviation)
+    elif (updateAction==treeUpdateActions.NEIGHBORS):
+        node.findNeighbors(cell,maxNeighborDistance)
+
+
+def findCloseCells(cells,deviation,maxNeighborDistance):
+    walkTree(cells,treeUpdateActions.DISTANCES)
+    walkTree(cells,treeUpdateActions.MAX_DISTANCE,deviation)
+    walkTree(cells,treeUpdateActions.NEIGHBORS,maxNeighborDistance=maxNeighborDistance)
+
+
+
+
+#How far can a center be away from the last center and be in the same set
+deviation = 15
+#TODO:: I do not like this
+maxNeighborDistance = 100
+#TODO:: I think this needs work
+# First over-estimated guess for cell neighbors
+upperCutoffDistance = 5000
 
 imageDir = "SampleImages/"
 imageName = "spidergfpapril12_11_z01_t021.tif"
 imagePath = os.path.join(imageDir,imageName)
 cells,image = sI.segmentImage(imagePath)
 ncells = len(cells)
-box = Rectangle(0,0,10,10)
-root = treeNode(box,list(cells),500000)
+box = Rectangle(0,0,image.shape[0],image.shape[1])
+upperCutoff = upperCutoffDistance/image.shape[1]
+root = treeNode(box,list(cells),upperCutoff)
+
+findCloseCells(cells,deviation,maxNeighborDistance)
+
+for cell in cells:
+    cv.circle(image, (cell["center"][0],cell["center"][1]), 3, (255, 255, 0), -1)
+    for neighbor in cell["neighbors"]:
+        cv.line(image,cell["center"],neighbor,(132,124,255), 2)
 
 image = cv.cvtColor(image,cv.COLOR_BGR2RGB)
 plt.imshow(image)
 plt.show()
+
+
 
 
 
