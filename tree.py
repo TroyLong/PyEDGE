@@ -16,14 +16,16 @@ Serial = 0
 BodySerial = 0
 
 
-class treeUpdateActions(Enum):
-    DISTANCES = 1
-    MAX_DISTANCE = 2
-    NEIGHBORS = 3
 
-
+#TODO:: Find one that already exists, get rid of it, or add it to a file of convienent functions
+#TODO:: If I commit to this function, then I need to actually use it where it is needed
 def pointsDist(pointA,pointB):
     return np.sqrt((pointA[0]-pointB[0])**2 + (pointA[1]-pointB[1])**2)
+
+
+
+
+
 
 
 # This is a rectangle object that also keeps up with its bisections
@@ -44,7 +46,13 @@ class Rectangle(object):
 
 
 
-#This is the node to the Barnes-Hut tree structure
+
+
+
+
+#TODO:: Figure out if the cutoffThreshold is working as it should. I think it might be being ignored on empty parent nodes.
+#TODO:: Recomment this section to be clearer to the new purpose of this code
+#This is the node to the Barnes-Hut tree structure. It was recycled from my n-body simulator.
 class treeNode(NodeMixin):
     def __init__(self,rect,cells=[],cutoffThreshold = 0,parent=None,children=None):
         # each node is serialized for easy naming scheme
@@ -78,11 +86,11 @@ class treeNode(NodeMixin):
     # Finds distances to neighbors for initial guess
     def findNeighborDistances(self,cell):
         if(self.isNodeSingleOccupied):
-            cell["neighGuessDist"].append(pointsDist(cell["center"],self.centerOfMass))
+            cell["neighborGuessDist"].append(pointsDist(cell["center"],self.centerOfMass))
 
     # Finds maximum distance for probable neighboring cells and resets the cutoffThreshold accordingly.
     def findMaxNeighborDistance(self,deviation):
-        self.cells[0]["neighborGuessDist"] = srt.merge(self.cells[0]["neighGuessDist"])
+        self.cells[0]["neighborGuessDist"] = srt.merge(self.cells[0]["neighborGuessDist"])
         try:
             maxDistance = self.cells[0]["neighborGuessDist"][0]
             for distance in range(1,len(self.cells[0]["neighborGuessDist"])):
@@ -147,12 +155,34 @@ class treeNode(NodeMixin):
 
 
 
+#TODO:: Put the below in their own file. The above is really all that should be in this one.
+class treeUpdateActions(Enum):
+    DISTANCES = 1
+    MAX_DISTANCE = 2
+    NEIGHBORS = 3
+
+
+
+
+
+
+
+# This finds the neighbors using the moments of the cells
+def findCloseCells(cells,deviation,maxNeighborDistance):
+    # Finds the distance between all cells and all other cells within initial cutoff distances from each other.
+    walkTree(cells,treeUpdateActions.DISTANCES)
+    # Finds the largest distance around each cell from probable neighbors.
+    walkTree(cells,treeUpdateActions.MAX_DISTANCE,deviation)
+    # Finds probable neighbors for each cell.
+    walkTree(cells,treeUpdateActions.NEIGHBORS,maxNeighborDistance=maxNeighborDistance)
+
+# This correctly navigates the tree structure. Uses nodes that need to be used, and ignores decendants of those that don't
 def walkTree(cells,updateAction,deviation=0,maxNeighborDistance=0):
     for cell in cells:
         nodeIterator = PreOrderIter(root)
         # Start looking through all nodes. Skip child nodes is parent node is past the cutoff
         for node in nodeIterator:
-            # Is the center of mass of the node within the cutoff, if so, continue searching deeper
+            # Is the node within the cutoff, not itself, and a cell? Then do action relevant action on node
             if (node.isNodeSingleOccupied and (not node.cells[0]["center"] == cell["center"]) and (node.isInternalNodeWithinCutoff(cell))):
                 treeActions(node,cell,deviation,maxNeighborDistance,updateAction)
             # If the center of mass is out of the cutoff, then skip the nodes that are deeper
@@ -160,7 +190,7 @@ def walkTree(cells,updateAction,deviation=0,maxNeighborDistance=0):
                 for i in range(len(node.descendants)):
                     next(nodeIterator, None)
 
-# Actions taken by walkTree            
+# Actions taken by walkTree. Was created because this was origianlly called twice. Function calls are "slow", so it may go. But, it is convienent and modular
 def treeActions(node,cell,deviation,maxNeighborDistance,updateAction):
     if (updateAction==treeUpdateActions.DISTANCES):
         node.findNeighborDistances(cell)
@@ -170,10 +200,7 @@ def treeActions(node,cell,deviation,maxNeighborDistance,updateAction):
         node.findNeighbors(cell,maxNeighborDistance)
 
 
-def findCloseCells(cells,deviation,maxNeighborDistance):
-    walkTree(cells,treeUpdateActions.DISTANCES)
-    walkTree(cells,treeUpdateActions.MAX_DISTANCE,deviation)
-    walkTree(cells,treeUpdateActions.NEIGHBORS,maxNeighborDistance=maxNeighborDistance)
+
 
 
 
@@ -186,43 +213,31 @@ maxNeighborDistance = 100
 # First over-estimated guess for cell neighbors
 upperCutoffDistance = 5000
 
+#Loads image
 imageDir = "SampleImages/"
 imageName = "spidergfpapril12_11_z01_t021.tif"
 imagePath = os.path.join(imageDir,imageName)
 cells,image = sI.segmentImage(imagePath)
-ncells = len(cells)
+
+#This box is the default for the tree geometry
 box = Rectangle(0,0,image.shape[0],image.shape[1])
+#Puts Cutoff length in format of tree cutoffThreshold
 upperCutoff = upperCutoffDistance/image.shape[1]
+#Creates Tree
 root = treeNode(box,list(cells),upperCutoff)
 
+#Finds neighbors of cells using tree structure
+#TODO:: Have root passed. Will not work when I move this code out of tree.py
 findCloseCells(cells,deviation,maxNeighborDistance)
 
+#This Draws the lines neighboring cells
 for cell in cells:
     cv.circle(image, (cell["center"][0],cell["center"][1]), 3, (255, 255, 0), -1)
     for neighbor in cell["neighbors"]:
         cv.line(image,cell["center"],neighbor,(132,124,255), 2)
 
+#This converts the image to the same color format as pyplot.
 image = cv.cvtColor(image,cv.COLOR_BGR2RGB)
+#Displays image with all alterations applied
 plt.imshow(image)
 plt.show()
-
-
-
-
-
-xaxis = [[],[],[],[]]
-yaxis = [[],[],[],[]]
-
-###
-#for i in range(ncells):
-#    for i in range(ncells):
-#        xaxis[i].append(cells[i]["center"][0])
-#        yaxis[i].append(cells[i]["center"][1])
-#    findCloseCells(cells)
-#    root = treeNode(box,list(cells),5000)
-#
-#for i in range(ncells):
-#    plt.scatter(xaxis[i],yaxis[i])
-#
-#plt.show()
-###
