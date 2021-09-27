@@ -11,13 +11,6 @@ BodySerial = 0
 
 
 
-#TODO:: Find one that already exists, get rid of it, or add it to a file of convienent functions
-#TODO:: If I commit to this function, then I need to actually use it where it is needed
-def pointsDist(pointA,pointB):
-    return np.sqrt((pointA[0]-pointB[0])**2 + (pointA[1]-pointB[1])**2)
-
-
-
 # This is a rectangle object that also keeps up with its bisections
 class Rectangle(object):
     def __init__(self,x,y,height,width):
@@ -72,7 +65,7 @@ class treeNode(NodeMixin):
     # Finds distances to neighbors for initial guess
     def findNeighborDistances(self,cell):
         if(self.isNodeSingleOccupied):
-            cell["neighborGuessDist"].append(pointsDist(cell["center"],self.centerOfMass))
+            cell["neighborGuessDist"].append(dist(cell["center"],self.centerOfMass))
 
     # Finds maximum distance for probable neighboring cells and resets the cutoffThreshold accordingly.
     def findMaxNeighborDistance(self,deviation):
@@ -91,7 +84,7 @@ class treeNode(NodeMixin):
 
 
     def findNeighbors(self,cell,maxNeighborDistance):
-        if(self.isNodeSingleOccupied and pointsDist(cell["center"],self.centerOfMass) <= maxNeighborDistance):
+        if(self.isNodeSingleOccupied and dist(cell["center"],self.centerOfMass) <= maxNeighborDistance):
             self.cells[0]["neighbors"].append(cell["center"])
 
     # Is cell far enough away to be considered seprate
