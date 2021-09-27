@@ -90,6 +90,8 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
         cellDict["center"] = (cX,cY)
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
         cellDict["area"] = cv.contourArea(contour)
+        cellDict["neighborGuessDist"] = list()
+        cellDict["neighbors"] = list()
         cells.append(cellDict)
     return cells, image
 
