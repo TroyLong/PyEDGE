@@ -3,6 +3,7 @@ import cv2 as cv
 import segmentImage as sI
 import matplotlib.pyplot as plt
 import tree
+import walkTree
 
 #How far can a center be away from the last center and be in the same set
 deviation = 15
@@ -27,7 +28,7 @@ root = tree.treeNode(box,list(cells),upperCutoff)
 
 #Finds neighbors of cells using tree structure
 #TODO:: Have root passed. Will not work when I move this code out of tree.py
-tree.findCloseCells(root,cells,deviation,maxNeighborDistance)
+walkTree.findCloseCells(root,cells,deviation,maxNeighborDistance)
 
 #This Draws the lines neighboring cells
 for cell in cells:

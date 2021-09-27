@@ -94,5 +94,3 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
         cellDict["neighbors"] = list()
         cells.append(cellDict)
     return cells, image
-
-
