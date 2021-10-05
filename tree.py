@@ -3,6 +3,7 @@
 from math import dist
 import numpy as np
 import sorting as srt
+import cell as ce
 from anytree import NodeMixin, RenderTree, PreOrderIter
 
 
@@ -29,7 +30,6 @@ class Rectangle(object):
 
 
 
-#TODO:: Figure out if the cutoffThreshold is working as it should. I think it might be being ignored on empty parent nodes.
 #TODO:: Recomment this section to be clearer to the new purpose of this code
 #This is the node to the Barnes-Hut tree structure. It was recycled from my n-body simulator.
 class treeNode(NodeMixin):
@@ -45,7 +45,6 @@ class treeNode(NodeMixin):
         self.centerOfMass = [0,0]
         self.cutoffThreshold = cutoffThreshold
         #temp variable
-        self.parentCutoff = True
         self.childRects = []
         self.childcellPartitions = [[],[],[],[]]
         if children:
@@ -61,45 +60,52 @@ class treeNode(NodeMixin):
         self.Serial = Serial
         Serial += 1
 
-    #TODO:: Walk through this only once for each cell, instead of twice
+
     # Finds distances to neighbors for initial guess
     def findNeighborDistances(self,cell):
         if(self.isNodeSingleOccupied):
-            cell["neighborGuessDist"].append(dist(cell["center"],self.centerOfMass))
+            cell[ce.cellTraits.NEIGHBORGUESSES].append(dist(cell[ce.cellTraits.CENTER],self.centerOfMass))
 
+    #TODO:: Should this take place in the tree or an n^2 loop?
     # Finds maximum distance for probable neighboring cells and resets the cutoffThreshold accordingly.
     def findMaxNeighborDistance(self,deviation):
-        self.cells[0]["neighborGuessDist"] = srt.merge(self.cells[0]["neighborGuessDist"])
+        self.cells[0][ce.cellTraits.NEIGHBORGUESSES] = srt.merge(self.cells[0][ce.cellTraits.NEIGHBORGUESSES])
         try:
-            maxDistance = self.cells[0]["neighborGuessDist"][0]
-            for distance in range(1,len(self.cells[0]["neighborGuessDist"])):
-                if (self.cells[0]["neighborGuessDist"][distance] < maxDistance+deviation):
-                    maxDistance = self.cells[0]["neighborGuessDist"][distance]
+            maxDistance = self.cells[0][ce.cellTraits.NEIGHBORGUESSES][0]
+            for distance in range(1,len(self.cells[0][ce.cellTraits.NEIGHBORGUESSES])):
+                if (self.cells[0][ce.cellTraits.NEIGHBORGUESSES][distance] < maxDistance+deviation):
+                    maxDistance = self.cells[0][ce.cellTraits.NEIGHBORGUESSES][distance]
                 else:
                     break
             #TODO:: Make this work with the already present cutoff threshold
-            self.cutoffThreshold = maxDistance/self.rect.width
+            self.cutoffThreshold = self.rect.width/maxDistance
         except IndexError:
             self.cutoffThreshold = 0
 
-
+    #TODO:: Should this take place in the tree or an n^2 loop?
     def findNeighbors(self,cell,maxNeighborDistance):
-        if(self.isNodeSingleOccupied and dist(cell["center"],self.centerOfMass) <= maxNeighborDistance):
-            self.cells[0]["neighbors"].append(cell["center"])
+        if(self.isNodeSingleOccupied and dist(cell[ce.cellTraits.CENTER],self.centerOfMass) <= maxNeighborDistance):
+            self.cells[0][ce.cellTraits.NEIGHBORS].append(cell)
+
+
+
 
     # Is cell far enough away to be considered seprate
     def isInternalNodeWithinCutoff(self,cell):
-        cellToNode = np.sqrt((cell["center"][0]-self.centerOfMass[0])**2+(cell["center"][1]-self.centerOfMass[1])**2)
+        cellToNode = np.sqrt((cell[ce.cellTraits.CENTER][0]-self.centerOfMass[0])**2+(cell[ce.cellTraits.CENTER][1]-self.centerOfMass[1])**2)
         cellToNode = cellToNode if cellToNode != 0 else 0.000000001
-        sd = cellToNode/self.rect.width
-        return  sd <= self.cutoffThreshold
+        sd = self.rect.width/cellToNode
+        #print("RECT: ",self.rect.width)
+        #print("SD: ",sd)
+        #print("CUT: ",self.cutoffThreshold)
+        return  sd >= self.cutoffThreshold
 
     def __findCenterOfMass(self):
         self.totalArea = 0
         for cell in self.cells:
-            self.centerOfMass[0] += cell["area"]*cell["center"][0]
-            self.centerOfMass[1] += cell["area"]*cell["center"][1]
-            self.totalArea += cell["area"]
+            self.centerOfMass[0] += cell[ce.cellTraits.AREA]*cell[ce.cellTraits.CENTER][0]
+            self.centerOfMass[1] += cell[ce.cellTraits.AREA]*cell[ce.cellTraits.CENTER][1]
+            self.totalArea += cell[ce.cellTraits.AREA]
         if self.totalArea == 0:
             self.totalArea = 0.000000001
         self.centerOfMass[0] /= self.totalArea
@@ -121,9 +127,9 @@ class treeNode(NodeMixin):
         for cell in list(self.cells):
             for i in range(len(self.childRects)):
                 #which the cell in the childRect being checked
-                if ((cell["center"][0] >= self.childRects[i].x)
-                        and (cell["center"][0] < (self.childRects[i].x+self.childRects[i].width))
-                        and (cell["center"][1] >= self.childRects[i].y)
-                        and (cell["center"][1] < (self.childRects[i].y+self.childRects[i].height))):
+                if ((cell[ce.cellTraits.CENTER][0] >= self.childRects[i].x)
+                        and (cell[ce.cellTraits.CENTER][0] < (self.childRects[i].x+self.childRects[i].width))
+                        and (cell[ce.cellTraits.CENTER][1] >= self.childRects[i].y)
+                        and (cell[ce.cellTraits.CENTER][1] < (self.childRects[i].y+self.childRects[i].height))):
                     self.childcellPartitions[i].append(cell)
                     self.cells.remove(cell)
