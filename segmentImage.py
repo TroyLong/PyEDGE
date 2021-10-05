@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
+import cell
 from numpy.lib.function_base import disp
-
 
 # This is used get rid of contours that can appear for the black outer regions of the image
 def removeLargeContours(image,contours,thresholdHi=4):
@@ -69,7 +69,7 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
     #Guess the polygon, and note all vertices
     #This finds the center of mass and mark
     for contour in contours:
-        cellDict = dict()
+        cellDict = cell.cell.copy()
         #polygon
         polyEpsilon = 0.025*cv.arcLength(contour,True)
         polyApprox = cv.approxPolyDP(contour,polyEpsilon,True)
@@ -77,7 +77,7 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
         for vert in polyApprox:
             vert = vert[0]
             cv.circle(image, (vert[0],vert[1]), 2, (255, 0, 0), -1)
-        cellDict["vertices"] = polyApprox
+        cellDict[cell.cellTraits.VERTICIES] = polyApprox
         #center of mass
         moment = cv.moments(contour)
         cX = 0
@@ -87,10 +87,10 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
             cY = int(moment["m01"] / moment["m00"])
         except ZeroDivisionError:
             pass
-        cellDict["center"] = (cX,cY)
+        cellDict[cell.cellTraits.CENTER] = (cX,cY)
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
-        cellDict["area"] = cv.contourArea(contour)
-        cellDict["neighborGuessDist"] = list()
-        cellDict["neighbors"] = list()
+        cellDict[cell.cellTraits.AREA] = cv.contourArea(contour)
+        cellDict[cell.cellTraits.NEIGHBORGUESSES] = list()
+        cellDict[cell.cellTraits.NEIGHBORS] = list()
         cells.append(cellDict)
     return cells, image
