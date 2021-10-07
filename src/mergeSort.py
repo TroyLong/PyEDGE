@@ -2,17 +2,16 @@ from cell import cellTraits as ct
 
 
 def findNeighbors(cell,deviation):
-        print("CELL")
-        cell[ct.NEIGHBORGUESSES] = mergeSortNeighbors(cell[ct.NEIGHBORGUESSES])
-        if len(cell[ct.NEIGHBORGUESSES]) > 0:
-            maxDistance = cell[ct.NEIGHBORGUESSES][0][1]
-            for possibleNeighbor in cell[ct.NEIGHBORGUESSES]:
-                if (possibleNeighbor[1] < maxDistance+deviation):
-                    print(possibleNeighbor[1])
-                    cell[ct.NEIGHBORS].append(possibleNeighbor[0])
-                else:
-                    break
-                maxDistance = possibleNeighbor[1]
+    deviation = deviation
+    cell[ct.NEIGHBORGUESSES] = mergeSortNeighbors(cell[ct.NEIGHBORGUESSES])
+    if len(cell[ct.NEIGHBORGUESSES]) > 0:
+        maxDistance = cell[ct.NEIGHBORGUESSES][0][1]
+        for possibleNeighbor in cell[ct.NEIGHBORGUESSES]:
+            if (possibleNeighbor[1] < maxDistance+deviation):
+                cell[ct.NEIGHBORS].append(possibleNeighbor[0])
+            else:
+                break
+            maxDistance = possibleNeighbor[1]
 
 
 

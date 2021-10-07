@@ -12,9 +12,9 @@ import walkTree
 from cell import cellTraits as ct
 import mergeSort as ms
 #How far can a center be away from the last center and be in the same set
-deviation = 10
+deviation = 15
 #Sets a longest possible neighbor distance. Really important variable
-maxNeighborDistance = 80
+maxNeighborDistance = 80000
 #Allows a first order approximation to speed up tree branching. Small numbers don't look far enough, large numbers take a long time
 upperCutoffDistance = 5000
 
@@ -39,14 +39,14 @@ for cell in cells:
 
 #TODO:: Find a better place to store this.
 #This checks for a one to one relationship between neighboring cells
-#for cell in cells:
-#    for neighbor in cell[ct.NEIGHBORS]:
-#        oneToOne = False
-#        for neighorsNeighbor in neighbor[ct.NEIGHBORS]:
-#            if cell[ct.CENTER] == neighorsNeighbor[ct.CENTER]:
-#                oneToOne = True
-#        if not oneToOne:
-#            cell[ct.NEIGHBORS].remove(neighbor)
+for cell in cells:
+    for neighbor in cell[ct.NEIGHBORS]:
+        oneToOne = False
+        for neighorsNeighbor in neighbor[ct.NEIGHBORS]:
+            if cell[ct.CENTER] == neighorsNeighbor[ct.CENTER]:
+                oneToOne = True
+        if not oneToOne:
+            cell[ct.NEIGHBORS].remove(neighbor)
 
 
 

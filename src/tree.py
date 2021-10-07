@@ -64,10 +64,9 @@ class treeNode(NodeMixin):
     # Finds distances to neighbors and cell area for initial guess
     def findNeighborDistances(self,cell):
         if(self.isNodeSingleOccupied):
-            cell[ct.NEIGHBORGUESSES].append((cell,self._neighborCellCenterOfMass(cell)))
+            cell[ct.NEIGHBORGUESSES].append((self.cells[0],self._neighborCellCenterOfMass(cell)))
     def _neighborCellCenterOfMass(self,cell):
-        return dist(cell[ct.CENTER],self.centerOfMass)
-        #return (cell[ct.AREA]*dist(cell[ct.CENTER],self.centerOfMass))/(self.cells[0][ct.AREA]+cell[ct.AREA])
+        return dist(cell[ct.CENTER],self.centerOfMass)-(np.sqrt(cell[ct.AREA]/np.pi))
 
 
     # Is cell far enough away to be considered seprate
