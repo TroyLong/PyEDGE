@@ -10,13 +10,9 @@ class treeUpdateActions(Enum):
 
 
 # This finds the neighbors using the moments of the cells
-def findCloseCells(root,cells,deviation,maxNeighborDistance):
+def findCloseCells(root,cells):
     # Finds the distance between all cells and all other cells within initial cutoff distances from each other.
     walkTree(root,cells,treeUpdateActions.DISTANCES)
-    # Finds the largest distance around each cell from probable neighbors.
-    walkTree(root,cells,treeUpdateActions.MAX_DISTANCE,deviation)
-    # Finds probable neighbors for each cell.
-    walkTree(root,cells,treeUpdateActions.NEIGHBORS,maxNeighborDistance=maxNeighborDistance)
 
 
 
@@ -40,7 +36,3 @@ def walkTree(root,cells,updateAction,deviation=0,maxNeighborDistance=0):
 def treeActions(node,cell,deviation,maxNeighborDistance,updateAction):
     if (updateAction==treeUpdateActions.DISTANCES):
         node.findNeighborDistances(cell)
-    elif (updateAction==treeUpdateActions.MAX_DISTANCE):
-        node.findMaxNeighborDistance(deviation)
-    elif (updateAction==treeUpdateActions.NEIGHBORS):
-        node.findNeighbors(cell,maxNeighborDistance)

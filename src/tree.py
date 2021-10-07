@@ -3,7 +3,7 @@
 from math import dist
 import numpy as np
 import sorting as srt
-import cell as ce
+from cell import cellTraits as ct
 from anytree import NodeMixin, RenderTree, PreOrderIter
 
 
@@ -61,38 +61,18 @@ class treeNode(NodeMixin):
         Serial += 1
 
 
-    # Finds distances to neighbors for initial guess
+    # Finds distances to neighbors and cell area for initial guess
     def findNeighborDistances(self,cell):
         if(self.isNodeSingleOccupied):
-            cell[ce.cellTraits.NEIGHBORGUESSES].append(dist(cell[ce.cellTraits.CENTER],self.centerOfMass))
-
-    #TODO:: Should this take place in the tree or an n^2 loop?
-    # Finds maximum distance for probable neighboring cells and resets the cutoffThreshold accordingly.
-    def findMaxNeighborDistance(self,deviation):
-        self.cells[0][ce.cellTraits.NEIGHBORGUESSES] = srt.merge(self.cells[0][ce.cellTraits.NEIGHBORGUESSES])
-        try:
-            maxDistance = self.cells[0][ce.cellTraits.NEIGHBORGUESSES][0]
-            for distance in range(1,len(self.cells[0][ce.cellTraits.NEIGHBORGUESSES])):
-                if (self.cells[0][ce.cellTraits.NEIGHBORGUESSES][distance] < maxDistance+deviation):
-                    maxDistance = self.cells[0][ce.cellTraits.NEIGHBORGUESSES][distance]
-                else:
-                    break
-            #TODO:: Make this work with the already present cutoff threshold
-            self.cutoffThreshold = self.rect.width/maxDistance
-        except IndexError:
-            self.cutoffThreshold = 0
-
-    #TODO:: Should this take place in the tree or an n^2 loop?
-    def findNeighbors(self,cell,maxNeighborDistance):
-        if(self.isNodeSingleOccupied and dist(cell[ce.cellTraits.CENTER],self.centerOfMass) <= maxNeighborDistance):
-            self.cells[0][ce.cellTraits.NEIGHBORS].append(cell)
-
-
+            cell[ct.NEIGHBORGUESSES].append((cell,self._neighborCellCenterOfMass(cell)))
+    def _neighborCellCenterOfMass(self,cell):
+        return dist(cell[ct.CENTER],self.centerOfMass)
+        #return (cell[ct.AREA]*dist(cell[ct.CENTER],self.centerOfMass))/(self.cells[0][ct.AREA]+cell[ct.AREA])
 
 
     # Is cell far enough away to be considered seprate
     def isInternalNodeWithinCutoff(self,cell):
-        cellToNode = np.sqrt((cell[ce.cellTraits.CENTER][0]-self.centerOfMass[0])**2+(cell[ce.cellTraits.CENTER][1]-self.centerOfMass[1])**2)
+        cellToNode = np.sqrt((cell[ct.CENTER][0]-self.centerOfMass[0])**2+(cell[ct.CENTER][1]-self.centerOfMass[1])**2)
         cellToNode = cellToNode if cellToNode != 0 else 0.000000001
         sd = self.rect.width/cellToNode
         #print("RECT: ",self.rect.width)
@@ -103,9 +83,9 @@ class treeNode(NodeMixin):
     def __findCenterOfMass(self):
         self.totalArea = 0
         for cell in self.cells:
-            self.centerOfMass[0] += cell[ce.cellTraits.AREA]*cell[ce.cellTraits.CENTER][0]
-            self.centerOfMass[1] += cell[ce.cellTraits.AREA]*cell[ce.cellTraits.CENTER][1]
-            self.totalArea += cell[ce.cellTraits.AREA]
+            self.centerOfMass[0] += cell[ct.AREA]*cell[ct.CENTER][0]
+            self.centerOfMass[1] += cell[ct.AREA]*cell[ct.CENTER][1]
+            self.totalArea += cell[ct.AREA]
         if self.totalArea == 0:
             self.totalArea = 0.000000001
         self.centerOfMass[0] /= self.totalArea
@@ -127,9 +107,9 @@ class treeNode(NodeMixin):
         for cell in list(self.cells):
             for i in range(len(self.childRects)):
                 #which the cell in the childRect being checked
-                if ((cell[ce.cellTraits.CENTER][0] >= self.childRects[i].x)
-                        and (cell[ce.cellTraits.CENTER][0] < (self.childRects[i].x+self.childRects[i].width))
-                        and (cell[ce.cellTraits.CENTER][1] >= self.childRects[i].y)
-                        and (cell[ce.cellTraits.CENTER][1] < (self.childRects[i].y+self.childRects[i].height))):
+                if ((cell[ct.CENTER][0] >= self.childRects[i].x)
+                        and (cell[ct.CENTER][0] < (self.childRects[i].x+self.childRects[i].width))
+                        and (cell[ct.CENTER][1] >= self.childRects[i].y)
+                        and (cell[ct.CENTER][1] < (self.childRects[i].y+self.childRects[i].height))):
                     self.childcellPartitions[i].append(cell)
                     self.cells.remove(cell)

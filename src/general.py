@@ -9,10 +9,10 @@ import segmentImage as sI
 import matplotlib.pyplot as plt
 import tree
 import walkTree
-import cell as ce
-
+from cell import cellTraits as ct
+import mergeSort as ms
 #How far can a center be away from the last center and be in the same set
-deviation = 30
+deviation = 10
 #Sets a longest possible neighbor distance. Really important variable
 maxNeighborDistance = 80
 #Allows a first order approximation to speed up tree branching. Small numbers don't look far enough, large numbers take a long time
@@ -32,26 +32,29 @@ upperCutoff = image.shape[1]/upperCutoffDistance
 root = tree.treeNode(box,list(cells),upperCutoff)
 
 #Finds neighbors of cells using tree structure
-walkTree.findCloseCells(root,cells,deviation,maxNeighborDistance)
+walkTree.findCloseCells(root,cells)
+
+for cell in cells:
+    ms.findNeighbors(cell,deviation)
 
 #TODO:: Find a better place to store this.
 #This checks for a one to one relationship between neighboring cells
-for cell in cells:
-    for neighbor in cell[ce.cellTraits.NEIGHBORS]:
-        oneToOne = False
-        for neighorsNeighbor in neighbor[ce.cellTraits.NEIGHBORS]:
-            if cell[ce.cellTraits.CENTER] == neighorsNeighbor[ce.cellTraits.CENTER]:
-                oneToOne = True
-        if not oneToOne:
-            cell[ce.cellTraits.NEIGHBORS].remove(neighbor)
+#for cell in cells:
+#    for neighbor in cell[ct.NEIGHBORS]:
+#        oneToOne = False
+#        for neighorsNeighbor in neighbor[ct.NEIGHBORS]:
+#            if cell[ct.CENTER] == neighorsNeighbor[ct.CENTER]:
+#                oneToOne = True
+#        if not oneToOne:
+#            cell[ct.NEIGHBORS].remove(neighbor)
 
 
 
 #This Draws the lines neighboring cells
 for cell in cells:
-    cv.circle(image, (cell[ce.cellTraits.CENTER][0],cell[ce.cellTraits.CENTER][1]), 3, (255, 255, 0), -1)
-    for neighbor in cell[ce.cellTraits.NEIGHBORS]:
-        cv.line(image,cell[ce.cellTraits.CENTER],neighbor[ce.cellTraits.CENTER],(132,124,255), 2)
+    cv.circle(image, (cell[ct.CENTER][0],cell[ct.CENTER][1]), 3, (255, 255, 0), -1)
+    for neighbor in cell[ct.NEIGHBORS]:
+        cv.line(image,cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
 
 #This converts the image to the same color format as pyplot.
 image = cv.cvtColor(image,cv.COLOR_BGR2RGB)
