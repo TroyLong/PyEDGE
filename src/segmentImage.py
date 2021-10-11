@@ -1,6 +1,7 @@
 import cv2 as cv
 import numpy as np
 import cell
+from cell import cellTraits as ct
 from numpy.lib.function_base import disp
 
 # This is used get rid of contours that can appear for the black outer regions of the image
@@ -77,7 +78,7 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
         for vert in polyApprox:
             vert = vert[0]
             cv.circle(image, (vert[0],vert[1]), 2, (255, 0, 0), -1)
-        cellDict[cell.cellTraits.VERTICIES] = polyApprox
+        cellDict[ct.VERTICIES] = polyApprox
         #center of mass
         moment = cv.moments(contour)
         cX = 0
@@ -87,10 +88,11 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
             cY = int(moment["m01"] / moment["m00"])
         except ZeroDivisionError:
             pass
-        cellDict[cell.cellTraits.CENTER] = (cX,cY)
+        cellDict[ct.CENTER] = (cX,cY)
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
-        cellDict[cell.cellTraits.AREA] = cv.contourArea(contour)
-        cellDict[cell.cellTraits.NEIGHBORGUESSES] = list()
-        cellDict[cell.cellTraits.NEIGHBORS] = list()
+        cellDict[ct.AREA] = cv.contourArea(contour)
+        cellDict[ct.RADIUS] = np.sqrt(cellDict[ct.AREA]/np.pi)
+        cellDict[ct.NEIGHBORGUESSES] = list()
+        cellDict[ct.NEIGHBORS] = list()
         cells.append(cellDict)
     return cells, image

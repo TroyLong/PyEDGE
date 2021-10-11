@@ -5,8 +5,9 @@ class cellTraits(Enum):
     CENTER = 0
     VERTICIES = 1
     AREA = 2
-    NEIGHBORGUESSES = 3
-    NEIGHBORS = 4
+    RADIUS = 3
+    NEIGHBORGUESSES = 4
+    NEIGHBORS = 5
 
 # A dictionary is used over a traditional object for speed
-cell = {cellTraits.CENTER:(0,0), cellTraits.VERTICIES:list(), cellTraits.AREA:0, cellTraits.NEIGHBORGUESSES:list(), cellTraits.NEIGHBORS:list()}
+cell = {cellTraits.CENTER:(0,0), cellTraits.VERTICIES:list(), cellTraits.AREA:0, cellTraits.RADIUS:0, cellTraits.NEIGHBORGUESSES:list(), cellTraits.NEIGHBORS:list()}
