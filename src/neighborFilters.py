@@ -5,7 +5,8 @@ from cell import cellTraits as ct
 from math import dist
 
 
-def findNeighbors(cell,deviation):
+def findNeighbors(cells,deviation):
+    for cell in cells:
         deviation = deviation
         cell[ct.NEIGHBORGUESSES] = ms.mergeSortNeighbors(cell[ct.NEIGHBORGUESSES])
         if len(cell[ct.NEIGHBORGUESSES]) > 0:
