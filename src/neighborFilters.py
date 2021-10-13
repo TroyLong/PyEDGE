@@ -1,8 +1,10 @@
+from types import CellType
 import cv2 as cv
 import numpy as np
 import mergeSort as ms
 from cell import cellTraits as ct
 from math import dist
+from tree import Rectangle as rect
 
 
 def distanceFilter(cells,deviation):
@@ -21,31 +23,47 @@ def distanceFilter(cells,deviation):
 
 
 
-#TODO:: Why does this allow certain lines to pass through the areas. Term3 has a lot of power here
+#TODO:: It is only removing the first neighbor that intersects, not all of them!
 def passThroughMultipleAreasFilter(cells,image):
-    color1 = 255
-    color2 = 0
     for point1 in cells:
+        tempList = list()
         for point2 in point1[ct.NEIGHBORS]:
+            #This should restrict the algorithm to look along the line segment, but it misses near points, whose radii are in the box
+            bottomPointX = point1[ct.CENTER][0] if point1[ct.CENTER][0]<point2[ct.CENTER][0] else point2[ct.CENTER][0]
+            bottomPointY = point1[ct.CENTER][1] if point1[ct.CENTER][1]<point2[ct.CENTER][1] else point2[ct.CENTER][1]
+            height = np.abs(point2[ct.CENTER][1]-point1[ct.CENTER][1])
+            width = np.abs(point2[ct.CENTER][0]-point1[ct.CENTER][0])
+            boundingRect = rect(bottomPointX,bottomPointY,height,width)
+            #This should become true if a line passes through it's neighbor
             intersects = False
             for circle in point1[ct.NEIGHBORS]:
-                if circle[ct.CENTER] == point2[ct.CENTER]:
+                # The circle isn't point2 and it is between point1 and point2
+                #TODO:: This doesn't account for when the point goes from being to far on one side, to being to far on the other. 0|-----|0
+                #TODO:: I might make two rectangles and see if the segments cross.
+                if ((circle[ct.CENTER] == point2[ct.CENTER]) or not(boundingRect.isPositionInside(circle[ct.CENTER]) or
+                                                                    boundingRect.isPositionInside((circle[ct.CENTER][0]+circle[ct.RADIUS],circle[ct.CENTER][1])) or
+                                                                    boundingRect.isPositionInside((circle[ct.CENTER][0]-circle[ct.RADIUS],circle[ct.CENTER][1])) or
+                                                                    boundingRect.isPositionInside((circle[ct.CENTER][0],circle[ct.CENTER][1]+circle[ct.RADIUS])) or
+                                                                    boundingRect.isPositionInside((circle[ct.CENTER][0],circle[ct.CENTER][1]-circle[ct.RADIUS])) or
+                                                                    boundingRect.isPositionInside((circle[ct.CENTER][0]+circle[ct.RADIUS],circle[ct.CENTER][1]+circle[ct.RADIUS])) or
+                                                                    boundingRect.isPositionInside((circle[ct.CENTER][0]-circle[ct.RADIUS],circle[ct.CENTER][1]-circle[ct.RADIUS])) or
+                                                                    boundingRect.isPositionInside((circle[ct.CENTER][0]+circle[ct.RADIUS],circle[ct.CENTER][1]-circle[ct.RADIUS])) or
+                                                                    boundingRect.isPositionInside((circle[ct.CENTER][0]-circle[ct.RADIUS],circle[ct.CENTER][1]+circle[ct.RADIUS]))
+                                                                    )):
                     continue
+                #Finds the perpendicular distance between the line of point1-2 and the circle's center
                 distance = (np.abs(np.cross(np.asarray(point2[ct.CENTER])-np.asarray(point1[ct.CENTER]),
                                             np.asarray(point1[ct.CENTER])-np.asarray(circle[ct.CENTER])))
                                     /np.linalg.norm(np.asarray(point2[ct.CENTER])-np.asarray(point1[ct.CENTER])))
-                cv.circle(image, (circle[ct.CENTER][0],circle[ct.CENTER][1]), int(circle[ct.RADIUS]), (color1, color2, 0), 3)
-                cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(color1,color2,0), 2)
-                if distance < circle[ct.RADIUS]:
+                #cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(132,124,255), 1)
+                if distance <= circle[ct.RADIUS]:
                     intersects = True
-                    #cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(color1,color2,0), 2)
-                    #cv.circle(image, (circle[ct.CENTER][0],circle[ct.CENTER][1]), int(distance), (color1, color2,0), -1)
+                    cv.circle(image, (circle[ct.CENTER][0],circle[ct.CENTER][1]), int(circle[ct.RADIUS]), (255, 255, 0), -1)
+                    cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(255,0,0), 4)
                     break
-        color1-=1
-        color2+=1
-            #if intersects:
-            #    pass
-                #point1[ct.NEIGHBORS].remove(point2)
+            if not intersects:
+                tempList.append(point2)
+        point1[ct.NEIGHBORS] = tempList
 
 
 
