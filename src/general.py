@@ -38,17 +38,18 @@ root = tree.treeNode(box,list(cells),upperCutoff)
 #Finds neighbors of cells using tree structure
 walkTree.findCloseCells(root,cells)
 
-nf.findNeighbors(cells,deviation)
+nf.distanceFilter(cells,deviation)
 nf.passThroughMultipleAreasFilter(cells,image)
-#nf.oneToOneFilter(cells)
+nf.oneToOneFilter(cells)
 
 
 #This Draws the lines neighboring cells
-for cell in cells:
-    cv.circle(image, (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), -1)
+#for cell in cells:
+#    cv.circle(image, (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), -1)
 for cell in cells:
     for neighbor in cell[ct.NEIGHBORS]:
-        cv.line(image,cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
+        pass
+        #cv.line(image,cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
 
 #This converts the image to the same color format as pyplot.
 image = cv.cvtColor(image,cv.COLOR_BGR2RGB)

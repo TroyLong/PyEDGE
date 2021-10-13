@@ -5,7 +5,7 @@ from cell import cellTraits as ct
 from math import dist
 
 
-def findNeighbors(cells,deviation):
+def distanceFilter(cells,deviation):
     for cell in cells:
         deviation = deviation
         cell[ct.NEIGHBORGUESSES] = ms.mergeSortNeighbors(cell[ct.NEIGHBORGUESSES])
@@ -23,23 +23,29 @@ def findNeighbors(cells,deviation):
 
 #TODO:: Why does this allow certain lines to pass through the areas. Term3 has a lot of power here
 def passThroughMultipleAreasFilter(cells,image):
+    color1 = 255
+    color2 = 0
     for point1 in cells:
         for point2 in point1[ct.NEIGHBORS]:
-            term3 = dist(point1[ct.CENTER],point2[ct.CENTER])
             intersects = False
             for circle in point1[ct.NEIGHBORS]:
-                if circle == point2:
+                if circle[ct.CENTER] == point2[ct.CENTER]:
                     continue
-                term1 = (point2[ct.CENTER][0]-point1[ct.CENTER][0])*(point1[ct.CENTER][1]-circle[ct.CENTER][1])
-                term2 = (point1[ct.CENTER][0]-circle[ct.CENTER][0])*(point2[ct.CENTER][1]-point1[ct.CENTER][1])
-                distance = np.abs(term1-term2)/term3
-                if (circle[ct.RADIUS] >=  distance):
-                    print(circle[ct.RADIUS]-distance)
+                distance = (np.abs(np.cross(np.asarray(point2[ct.CENTER])-np.asarray(point1[ct.CENTER]),
+                                            np.asarray(point1[ct.CENTER])-np.asarray(circle[ct.CENTER])))
+                                    /np.linalg.norm(np.asarray(point2[ct.CENTER])-np.asarray(point1[ct.CENTER])))
+                cv.circle(image, (circle[ct.CENTER][0],circle[ct.CENTER][1]), int(circle[ct.RADIUS]), (color1, color2, 0), 3)
+                cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(color1,color2,0), 2)
+                if distance < circle[ct.RADIUS]:
                     intersects = True
-                    cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(0,255,255), 6)
+                    #cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(color1,color2,0), 2)
+                    #cv.circle(image, (circle[ct.CENTER][0],circle[ct.CENTER][1]), int(distance), (color1, color2,0), -1)
                     break
-            if intersects == True:
-                point1[ct.NEIGHBORS].remove(point2)
+        color1-=1
+        color2+=1
+            #if intersects:
+            #    pass
+                #point1[ct.NEIGHBORS].remove(point2)
 
 
 
