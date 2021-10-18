@@ -44,8 +44,8 @@ nf.passThroughMultipleAreasFilter(cells,image)
 
 
 #This Draws the lines neighboring cells
-for cell in cells:
-    cv.circle(image, (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
+#for cell in cells:
+    #cv.circle(image, (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
 for cell in cells:
     for neighbor in cell[ct.NEIGHBORS]:
         cv.line(image,cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)

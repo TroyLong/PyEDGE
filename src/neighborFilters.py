@@ -37,6 +37,9 @@ def passThroughMultipleAreasFilter(cells,image):
             #This should become true if a line passes through it's neighbor
             intersects = False
             for circle in point1[ct.NEIGHBORS]:
+                height = np.abs(point2[ct.CENTER][1]-point1[ct.CENTER][1])+circle[ct.RADIUS]
+                width = np.abs(point2[ct.CENTER][0]-point1[ct.CENTER][0])+circle[ct.RADIUS]
+                boundingRect = rect(bottomPointX,bottomPointY,height,width)
                 # The circle isn't point2 and it is between point1 and point2
                 #TODO:: This doesn't account for when the point goes from being to far on one side, to being to far on the other. 0|-----|0
                 #TODO:: I might make two rectangles and see if the segments cross.
@@ -58,8 +61,6 @@ def passThroughMultipleAreasFilter(cells,image):
                 #cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(132,124,255), 1)
                 if distance <= circle[ct.RADIUS]:
                     intersects = True
-                    cv.circle(image, (circle[ct.CENTER][0],circle[ct.CENTER][1]), int(circle[ct.RADIUS]), (255, 255, 0), -1)
-                    cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(255,0,0), 4)
                     break
             if not intersects:
                 tempList.append(point2)

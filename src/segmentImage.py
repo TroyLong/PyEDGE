@@ -74,7 +74,7 @@ def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
         #polygon
         polyEpsilon = 0.025*cv.arcLength(contour,True)
         polyApprox = cv.approxPolyDP(contour,polyEpsilon,True)
-        cv.polylines(image,[polyApprox],True,(0,255,255))
+        #cv.polylines(image,[polyApprox],True,(0,255,255))
         for vert in polyApprox:
             vert = vert[0]
             cv.circle(image, (vert[0],vert[1]), 2, (255, 0, 0), -1)
