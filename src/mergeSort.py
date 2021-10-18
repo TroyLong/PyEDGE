@@ -1,3 +1,5 @@
+#Mergesort algorithm cell neighbors by neighbor distance.
+
 from cell import cellTraits as ct
 
 def mergeSortNeighbors(cells):

@@ -2,9 +2,8 @@
 # It also might be used to compare the closeness to estimations across multiple images
 from math import dist
 import numpy as np
-import sorting as srt
 from cell import cellTraits as ct
-from anytree import NodeMixin, RenderTree, PreOrderIter
+from anytree import NodeMixin, PreOrderIter
 
 
 Serial = 0
@@ -74,9 +73,6 @@ class treeNode(NodeMixin):
         cellToNode = np.sqrt((cell[ct.CENTER][0]-self.centerOfMass[0])**2+(cell[ct.CENTER][1]-self.centerOfMass[1])**2)
         cellToNode = cellToNode if cellToNode != 0 else 0.000000001
         sd = self.rect.width/cellToNode
-        #print("RECT: ",self.rect.width)
-        #print("SD: ",sd)
-        #print("CUT: ",self.cutoffThreshold)
         return  sd >= self.cutoffThreshold
 
     def __findCenterOfMass(self):

@@ -23,7 +23,6 @@ def distanceFilter(cells,deviation):
 
 
 
-#TODO:: It is only removing the first neighbor that intersects, not all of them!
 def passThroughMultipleAreasFilter(cells,image):
     for point1 in cells:
         tempList = list()
@@ -58,7 +57,6 @@ def passThroughMultipleAreasFilter(cells,image):
                 distance = (np.abs(np.cross(np.asarray(point2[ct.CENTER])-np.asarray(point1[ct.CENTER]),
                                             np.asarray(point1[ct.CENTER])-np.asarray(circle[ct.CENTER])))
                                     /np.linalg.norm(np.asarray(point2[ct.CENTER])-np.asarray(point1[ct.CENTER])))
-                #cv.line(image,point1[ct.CENTER],point2[ct.CENTER],(132,124,255), 1)
                 if distance <= circle[ct.RADIUS]:
                     intersects = True
                     break
