@@ -22,15 +22,29 @@ class App(tk.Frame):
         self.topMenuBar = topMenu(self)
         self.master.config(menu=self.topMenuBar)
 
-        # An attempt to get matplot integration
-        self.figure = plt.Figure(figsize=(6,5), dpi=100)
-        self.ax = self.figure.add_subplot(111)
-
-        self.canvas = FigureCanvasTkAgg(self.figure,self)
-        self.canvas.get_tk_widget().grid()
+        #Unaltered Image from file
+        self.originalImageFig = plt.Figure(figsize=(3,4), dpi=100, tight_layout=True)
+        self.originalImagePlt = self.originalImageFig.add_subplot(111)
+        self.originalImageCanvas = FigureCanvasTkAgg(self.originalImageFig,self)
+        self.originalImageCanvas.get_tk_widget().grid(row=0,column=0)
+        #Image after going through openCV filters
+        self.filteredImageFig = plt.Figure(figsize=(3,4), dpi=100, tight_layout=True)
+        self.filteredImagePlt = self.filteredImageFig.add_subplot(111)
+        self.filteredImageCanvas = FigureCanvasTkAgg(self.filteredImageFig,self)
+        self.filteredImageCanvas.get_tk_widget().grid(row=0,column=1)
+        #Drawings of the neighborhood paths
+        self.neighborImageFig = plt.Figure(figsize=(3,4), dpi=100, tight_layout=True)
+        self.neighborImagePlt = self.neighborImageFig.add_subplot(111)        
+        self.neighborImageCanvas = FigureCanvasTkAgg(self.neighborImageFig,self)
+        self.neighborImageCanvas.get_tk_widget().grid(row=0,column=2)
+        #Histogram of the neighborhood paths
+        self.neighborHistFig = plt.Figure(figsize=(3,4), dpi=100, tight_layout=True)
+        self.neighborHistPlt = self.neighborHistFig.add_subplot(111)        
+        self.neighborHistCanvas = FigureCanvasTkAgg(self.neighborHistFig,self)
+        self.neighborHistCanvas.get_tk_widget().grid(row=0,column=3)
 
         self.textLabel = tk.Label(self,text="Hello, world!")
-        self.textLabel.grid()
+        self.textLabel.grid(row=1,column=0,columnspan=4)
         
 
     def __initApproxConstants(self):
@@ -52,6 +66,7 @@ class App(tk.Frame):
     def reset(self):
         self.__runImageAnalysis()
         self.__setImages()
+        self.__setGraphs()
 
 
     def __runImageAnalysis(self):
@@ -82,9 +97,19 @@ class App(tk.Frame):
 
 
     def __setImages(self):
-        newImage = cv.cvtColor(self.filteredImage,cv.COLOR_BGR2RGB)
-        self.ax.imshow(newImage)
-        self.canvas.draw()
+        self.originalImagePlt.imshow(cv.cvtColor(cv.imread(self.imagePath),cv.COLOR_BGR2RGB))
+        self.filteredImagePlt.imshow(cv.cvtColor(self.filteredImage,cv.COLOR_BGR2RGB))
+        self.neighborImagePlt.imshow(cv.cvtColor(self.filteredImage,cv.COLOR_BGR2RGB))
+        self.originalImageCanvas.draw()
+        self.filteredImageCanvas.draw()
+        self.neighborImageCanvas.draw()
+
+    def __setGraphs(self):
+        neighborNumbers = list()
+        for cell in self.cells:
+            neighborNumbers.append(len(cell[ct.NEIGHBORS]))
+        self.neighborHistPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
+        self.neighborHistCanvas.draw()
 
 
 
