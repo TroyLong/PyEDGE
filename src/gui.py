@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import filedialog as fd
-import time
 import cv2 as cv
 import segmentImage as sI
 import matplotlib.pyplot as plt
@@ -18,7 +17,6 @@ class App(tk.Frame):
         
         self.__initApproxConstants()
         self.__bindEvents()
-
 
         self.grid()
         self.topMenuBar = topMenu(self)
@@ -51,18 +49,17 @@ class App(tk.Frame):
         self.reset()
 
 
-
-
     def reset(self):
         self.__runImageAnalysis()
         self.__setImages()
+
 
     def __runImageAnalysis(self):
         self.cells,self.filteredImage = sI.segmentImage(self.imagePath)
         self.__runTreeApprox()
         self.__runNeighborFilters()
         self.__drawNeighborAnalysis()
-
+    
     def __runTreeApprox(self):
         #This box is the default for the tree geometry
         box = tree.Rectangle(0,0,self.filteredImage.shape[0],self.filteredImage.shape[1])
@@ -72,7 +69,7 @@ class App(tk.Frame):
         root = tree.treeNode(box,list(self.cells),upperCutoff)
         #Finds neighbors of cells using tree structure
         walkTree.findCloseCells(root,self.cells)
-
+    
     def __runNeighborFilters(self):
         nf.distanceFilter(self.cells,self.deviation)
         nf.passThroughMultipleAreasFilter(self.cells,self.filteredImage)
