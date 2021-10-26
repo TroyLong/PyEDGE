@@ -31,6 +31,7 @@ root = tree.treeNode(box,list(cells),upperCutoff)
 #Finds neighbors of cells using tree structure
 walkTree.findCloseCells(root,cells)
 
+
 nf.distanceFilter(cells,deviation)
 nf.passThroughMultipleAreasFilter(cells,image)
 #nf.oneToOneFilter(cells)
