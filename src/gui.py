@@ -3,7 +3,8 @@ from tkinter import filedialog as fd
 import cv2 as cv
 import segmentImage as sI
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg, NavigationToolbar2Tk)
 import tree
 import walkTree
 from cell import cellTraits as ct
@@ -23,28 +24,51 @@ class App(tk.Frame):
         self.master.config(menu=self.topMenuBar)
 
         #Unaltered Image from file
-        self.originalImageFig = plt.Figure(figsize=(3,4), dpi=100, tight_layout=True)
+        self.originalImageLabel = tk.Label(self,text="Original")
+        self.originalImageLabel.grid(row=0,column=0)
+        self.originalImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
         self.originalImagePlt = self.originalImageFig.add_subplot(111)
         self.originalImageCanvas = FigureCanvasTkAgg(self.originalImageFig,self)
-        self.originalImageCanvas.get_tk_widget().grid(row=0,column=0)
+        self.originalImageCanvas.get_tk_widget().grid(row=1,column=0)
+        #Toolbar has to go in Frame to back with grid
+        originalImageToolbarFrame = tk.Frame(self)
+        originalImageToolbarFrame.grid(row=2,column=0)
+        originalImageToolbar = NavigationToolbar2Tk(self.originalImageCanvas,originalImageToolbarFrame)
+
         #Image after going through openCV filters
-        self.filteredImageFig = plt.Figure(figsize=(3,4), dpi=100, tight_layout=True)
+        self.filteredImageLabel = tk.Label(self,text="Filtered")
+        self.filteredImageLabel.grid(row=0,column=1)
+        self.filteredImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
         self.filteredImagePlt = self.filteredImageFig.add_subplot(111)
         self.filteredImageCanvas = FigureCanvasTkAgg(self.filteredImageFig,self)
-        self.filteredImageCanvas.get_tk_widget().grid(row=0,column=1)
+        self.filteredImageCanvas.get_tk_widget().grid(row=1,column=1)
+        #Toolbar has to go in Frame to back with grid 
+        filteredImageToolbarFrame = tk.Frame(self)
+        filteredImageToolbarFrame.grid(row=2,column=1)
+        filteredImageToolbar = NavigationToolbar2Tk(self.filteredImageCanvas,filteredImageToolbarFrame)
+
         #Drawings of the neighborhood paths
-        self.neighborImageFig = plt.Figure(figsize=(3,4), dpi=100, tight_layout=True)
+        self.neighborImageLabel = tk.Label(self,text="Neighbor Mapping")
+        self.neighborImageLabel.grid(row=0,column=2)
+        self.neighborImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
         self.neighborImagePlt = self.neighborImageFig.add_subplot(111)        
         self.neighborImageCanvas = FigureCanvasTkAgg(self.neighborImageFig,self)
-        self.neighborImageCanvas.get_tk_widget().grid(row=0,column=2)
+        self.neighborImageCanvas.get_tk_widget().grid(row=1,column=2)
+        #Toolbar has to go in Frame to back with grid
+        neighborImageToolbarFrame = tk.Frame(self)
+        neighborImageToolbarFrame.grid(row=2,column=2)
+        neighborImageToolbar = NavigationToolbar2Tk(self.neighborImageCanvas,neighborImageToolbarFrame)
+
         #Histogram of the neighborhood paths
-        self.neighborHistFig = plt.Figure(figsize=(3,4), dpi=100, tight_layout=True)
+        self.neighborHistLabel = tk.Label(self,text="Histogram of Neighbors")
+        self.neighborHistLabel.grid(row=0,column=3)
+        self.neighborHistFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
         self.neighborHistPlt = self.neighborHistFig.add_subplot(111)        
         self.neighborHistCanvas = FigureCanvasTkAgg(self.neighborHistFig,self)
-        self.neighborHistCanvas.get_tk_widget().grid(row=0,column=3)
+        self.neighborHistCanvas.get_tk_widget().grid(row=1,column=3)
 
         self.textLabel = tk.Label(self,text="Hello, world!")
-        self.textLabel.grid(row=1,column=0,columnspan=4)
+        self.textLabel.grid(row=3,column=0,columnspan=4)
         
 
     def __initApproxConstants(self):
