@@ -22,12 +22,19 @@ class App(tk.Frame):
         self.grid()
         self.topMenuBar = topMenu(self)
         self.master.config(menu=self.topMenuBar)
+        self.buildGraphs()
 
+        #Hello world banner
+        self.textLabel = tk.Label(self,text="Hello, world!")
+        self.textLabel.grid(row=3,column=0,columnspan=4)
+
+
+    def buildGraphs(self):
+        #Original Image
         #Unaltered Image from file
         self.originalImageLabel = tk.Label(self,text="Original")
         self.originalImageLabel.grid(row=0,column=0)
         self.originalImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.originalImagePlt = self.originalImageFig.add_subplot(111)
         self.originalImageCanvas = FigureCanvasTkAgg(self.originalImageFig,self)
         self.originalImageCanvas.get_tk_widget().grid(row=1,column=0)
         #Toolbar has to go in Frame to back with grid
@@ -35,11 +42,11 @@ class App(tk.Frame):
         originalImageToolbarFrame.grid(row=2,column=0)
         originalImageToolbar = NavigationToolbar2Tk(self.originalImageCanvas,originalImageToolbarFrame)
 
+        #Filtered Image
         #Image after going through openCV filters
         self.filteredImageLabel = tk.Label(self,text="Filtered")
         self.filteredImageLabel.grid(row=0,column=1)
         self.filteredImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.filteredImagePlt = self.filteredImageFig.add_subplot(111)
         self.filteredImageCanvas = FigureCanvasTkAgg(self.filteredImageFig,self)
         self.filteredImageCanvas.get_tk_widget().grid(row=1,column=1)
         #Toolbar has to go in Frame to back with grid 
@@ -47,11 +54,11 @@ class App(tk.Frame):
         filteredImageToolbarFrame.grid(row=2,column=1)
         filteredImageToolbar = NavigationToolbar2Tk(self.filteredImageCanvas,filteredImageToolbarFrame)
 
+        #Neighbor Image
         #Drawings of the neighborhood paths
         self.neighborImageLabel = tk.Label(self,text="Neighbor Mapping")
         self.neighborImageLabel.grid(row=0,column=2)
         self.neighborImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.neighborImagePlt = self.neighborImageFig.add_subplot(111)        
         self.neighborImageCanvas = FigureCanvasTkAgg(self.neighborImageFig,self)
         self.neighborImageCanvas.get_tk_widget().grid(row=1,column=2)
         #Toolbar has to go in Frame to back with grid
@@ -63,13 +70,8 @@ class App(tk.Frame):
         self.neighborHistLabel = tk.Label(self,text="Histogram of Neighbors")
         self.neighborHistLabel.grid(row=0,column=3)
         self.neighborHistFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.neighborHistPlt = self.neighborHistFig.add_subplot(111)        
         self.neighborHistCanvas = FigureCanvasTkAgg(self.neighborHistFig,self)
         self.neighborHistCanvas.get_tk_widget().grid(row=1,column=3)
-
-        self.textLabel = tk.Label(self,text="Hello, world!")
-        self.textLabel.grid(row=3,column=0,columnspan=4)
-        
 
     def __initApproxConstants(self):
         #How far can a center be away from the last center and be in the same set
@@ -93,6 +95,7 @@ class App(tk.Frame):
         self.__setGraphs()
 
 
+    #TODO:: Make this it's own file
     def __runImageAnalysis(self):
         self.cells,self.filteredImage = sI.segmentImage(self.imagePath)
         self.__runTreeApprox()
@@ -121,9 +124,19 @@ class App(tk.Frame):
 
 
     def __setImages(self):
+        #Original Image
+        self.originalImageFig.clf()
+        self.originalImagePlt = self.originalImageFig.add_subplot(111)
         self.originalImagePlt.imshow(cv.cvtColor(cv.imread(self.imagePath),cv.COLOR_BGR2RGB))
+        #Filtered Image
+        self.filteredImageFig.clf()
+        self.filteredImagePlt = self.filteredImageFig.add_subplot(111)
         self.filteredImagePlt.imshow(cv.cvtColor(self.filteredImage,cv.COLOR_BGR2RGB))
+        #Neighbor Image
+        self.neighborImageFig.clf()
+        self.neighborImagePlt = self.neighborImageFig.add_subplot(111)        
         self.neighborImagePlt.imshow(cv.cvtColor(self.filteredImage,cv.COLOR_BGR2RGB))
+        #Updates the canvas
         self.originalImageCanvas.draw()
         self.filteredImageCanvas.draw()
         self.neighborImageCanvas.draw()
@@ -132,6 +145,8 @@ class App(tk.Frame):
         neighborNumbers = list()
         for cell in self.cells:
             neighborNumbers.append(len(cell[ct.NEIGHBORS]))
+        self.neighborHistFig.clf()
+        self.neighborHistPlt = self.neighborHistFig.add_subplot(111)        
         self.neighborHistPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
         self.neighborHistCanvas.draw()
 
