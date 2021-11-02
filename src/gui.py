@@ -9,11 +9,12 @@ class App(tk.Frame):
         
         self.__initApproxConstants()
         self.__bindEvents()
-
+        #Layout manager
         self.grid()
+        #Menu bar
         self.topMenuBar = tm.TopMenu(self)
         self.master.config(menu=self.topMenuBar)
-        
+        #Frame for graphs
         self.graphFrame = gf.GraphFrame(self,self.deviation,self.maxNeighborDistance,self.upperCutoffDistance)
         self.graphFrame.grid(row=0,column=0)
         #Hello world banner
