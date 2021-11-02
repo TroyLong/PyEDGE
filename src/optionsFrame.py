@@ -19,9 +19,10 @@ class OptionsFrame(tk.Frame):
         self.optionsBannerLabel.grid(row=0,column=0,columnspan=4)
 
         self.filterOptions = FilterOptions(self)
-        self.filterOptions.grid(row=1,column=0)
+        self.filterOptions.grid(row=1,column=0,padx=5)
+
         self.neighborOptions = NeighborOptions(self)
-        self.neighborOptions.grid(row=1,column=1)
+        self.neighborOptions.grid(row=1,column=1,padx=5)
 
     # The events in this frame just pass the event up to the main frame. The events are done like this to make the sub
     # Options classes more robust. They only reference their master this way, and not their master's master.
@@ -53,28 +54,29 @@ class FilterOptions(tk.Frame):
 
     def __createFilterOptionsBanner(self,row):
         bannerLabel = tk.Label(self,text="Filter Options")
+        bannerLabel.config(font=("Ubuntu",10))
         bannerLabel.grid(row=row,column=0,columnspan=2)
     def __createFilterDiameterOption(self,row):
         optionLabel = tk.Label(self,text="Filter Diameter:")
-        optionLabel.grid(row=row,column=0)
+        optionLabel.grid(row=row,column=0,sticky="e")
         self.filterDiameterEntry = tk.Entry(self)
         self.filterDiameterEntry.insert(0,"10")
         self.filterDiameterEntry.grid(row=row,column=1)
     def __createSigmaColorOption(self,row):
         optionLabel = tk.Label(self,text="Bilinear Filter Sigma Color:")
-        optionLabel.grid(row=row,column=0)
+        optionLabel.grid(row=row,column=0,sticky="e")
         self.sigmaColorEntry = tk.Entry(self)
         self.sigmaColorEntry.insert(0,"75")
         self.sigmaColorEntry.grid(row=row,column=1)
     def __createSigmaSpaceOption(self,row):
         optionLabel = tk.Label(self,text="Bilinear Filter Sigma Space:")
-        optionLabel.grid(row=row,column=0)
+        optionLabel.grid(row=row,column=0,sticky="e")
         self.sigmaSpaceEntry = tk.Entry(self)
         self.sigmaSpaceEntry.insert(0,"75")
         self.sigmaSpaceEntry.grid(row=row,column=1)
     def __createAdaptiveBlockSizeOption(self,row):
         optionLabel = tk.Label(self,text="Adaptive Threshold Block Size:")
-        optionLabel.grid(row=row,column=0)
+        optionLabel.grid(row=row,column=0,sticky="e")
         self.adaptiveBlockSizeEntry = tk.Entry(self)
         self.adaptiveBlockSizeEntry.insert(0,"151")
         self.adaptiveBlockSizeEntry.grid(row=row,column=1)
@@ -103,22 +105,23 @@ class NeighborOptions(tk.Frame):
 
     def __createNeighborOptionsBanner(self,row):
         bannerLabel = tk.Label(self,text="Neighbor Options")
+        bannerLabel.config(font=("Ubuntu",10))
         bannerLabel.grid(row=row,column=0,columnspan=2)
     def __createDeviationOption(self,row):
         optionLabel = tk.Label(self,text="Neighbor Distance Deviation:")
-        optionLabel.grid(row=row,column=0)
+        optionLabel.grid(row=row,column=0,sticky="e")
         self.deviationEntry = tk.Entry(self)
         self.deviationEntry.insert(0,"15")
         self.deviationEntry.grid(row=row,column=1)
     def __createMaxNeighborDistanceOption(self,row):
         optionLabel = tk.Label(self,text="Maximum Distance to Neighbors:")
-        optionLabel.grid(row=row,column=0)
+        optionLabel.grid(row=row,column=0,sticky="e")
         self.maxNeighborDistanceEntry = tk.Entry(self)
         self.maxNeighborDistanceEntry.insert(0,"80000")
         self.maxNeighborDistanceEntry.grid(row=row,column=1)
     def __createUpperCutoffDistanceOption(self,row):
         optionLabel = tk.Label(self,text="Tree sorting cutoff distance:")
-        optionLabel.grid(row=row,column=0)
+        optionLabel.grid(row=row,column=0,sticky="e")
         self.upperCutoffDistanceEntry = tk.Entry(self)
         self.upperCutoffDistanceEntry.insert(0,"75")
         self.upperCutoffDistanceEntry.grid(row=row,column=1)
