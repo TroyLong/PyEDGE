@@ -1,6 +1,9 @@
+#TODO:: Finish implementing the controls with the setting changes.
+
 import tkinter as tk
-import graphFrame as gf
 import topMenu as tm
+import graphFrame as gf
+import optionsFrame as of
 
 
 class App(tk.Frame):
@@ -17,9 +20,9 @@ class App(tk.Frame):
         #Frame for graphs
         self.graphFrame = gf.GraphFrame(self,self.deviation,self.maxNeighborDistance,self.upperCutoffDistance)
         self.graphFrame.grid(row=0,column=0)
-        #Hello world banner
-        self.textLabel = tk.Label(self,text="Hello, world!")
-        self.textLabel.grid(row=1,column=0)
+        #Options
+        self.optionsFrame = of.OptionsFrame(self)
+        self.optionsFrame.grid(row=1,column=0)
 
 
     def __initApproxConstants(self):
@@ -31,21 +34,25 @@ class App(tk.Frame):
         self.upperCutoffDistance = 5000
 
         
+    ##TODO:: I NEED to work on more event functions, so each setting submition gets its own function.
     def __bindEvents(self):
         self.bind("<<OpenFile>>",self.__openImage)
+        #This needs a more specific function than all reset analysis
+        self.bind("<<SubmitFilterOptions>>",self.__resetAnalysis)
+        #Simular to above
+        self.bind("<<SubmitNeighborOptions>>",self.__resetAnalysis)
     def __openImage(self,event):
         self.imagePath = self.topMenuBar.openImagePath
-        self.resetImage()
-
-
-    def resetImage(self):
-        self.graphFrame.resetImage(self.imagePath)
+        self.graphFrame.openImage(self.imagePath)
+    def __resetAnalysis(self,event):
+        self.graphFrame.updateFilterSettings(self.optionsFrame.filterOptions.getOptions())
 
 
 
 
 
 
+# This actually starts the code
 app = App()
 app.master.title("PyEDGE")
 app.mainloop()

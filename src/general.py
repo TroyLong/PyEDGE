@@ -1,3 +1,5 @@
+#No longer necessary, but is useful for debugging.
+
 import os
 import cv2 as cv
 import segmentImage as sI

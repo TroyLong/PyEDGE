@@ -32,11 +32,11 @@ def removeContoursTouchingBorders(image,contours):
 
 
 # Output is a list of cellDictionarys of the form {"vertices":list(),"centers":list(),"areas":list()}
-def segmentImage(imagePath,bfSigmaColor=10,bfSigmaSpace=75,atBlockSize=151):
+def segmentImage(imagePath,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=151):
     cells = list()
     image = cv.imread(imagePath)
     #converts the image to grayscale
-    image = cv.bilateralFilter(image, bfSigmaColor, bfSigmaSpace, bfSigmaSpace)
+    image = cv.bilateralFilter(image, d=diameter,sigmaColor=bfSigmaColor, sigmaSpace=bfSigmaSpace)
     gray = cv.cvtColor(image,cv.COLOR_RGB2GRAY)
     #uses a threshold value to set boundaries for contours
     thresh = cv.adaptiveThreshold(gray,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,cv.THRESH_BINARY_INV,atBlockSize,2)
