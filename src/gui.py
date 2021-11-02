@@ -1,4 +1,5 @@
 #TODO:: Finish implementing the controls with the setting changes.
+#TODO:: Add locks to stop buttons from working with invalid input and no images
 
 import tkinter as tk
 import topMenu as tm
@@ -38,14 +39,16 @@ class App(tk.Frame):
     def __bindEvents(self):
         self.bind("<<OpenFile>>",self.__openImage)
         #This needs a more specific function than all reset analysis
-        self.bind("<<SubmitFilterOptions>>",self.__resetAnalysis)
+        self.bind("<<SubmitFilterOptions>>",self.__updateFilterOptions)
         #Simular to above
-        self.bind("<<SubmitNeighborOptions>>",self.__resetAnalysis)
+        self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
     def __openImage(self,event):
         self.imagePath = self.topMenuBar.openImagePath
         self.graphFrame.openImage(self.imagePath)
-    def __resetAnalysis(self,event):
-        self.graphFrame.updateFilterSettings(self.optionsFrame.filterOptions.getOptions())
+    def __updateFilterOptions(self,event):
+        self.graphFrame.updateFilterOptions(self.optionsFrame.filterOptions.getOptions())
+    def __updateNeighborOptions(self,event):
+        self.graphFrame.updateNeighborOptions(self.optionsFrame.neighborOptions.getOptions())
 
 
 

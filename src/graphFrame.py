@@ -28,9 +28,21 @@ class GraphFrame(tk.Frame):
         self.__setImages()
         self.__setGraphs()
 
-    def updateFilterSettings(self,options):
+    def updateFilterOptions(self,options):
         self.cells,self.filteredImage = sI.segmentImage(self.imagePath,diameter=options[0],bfSigmaColor=options[1],bfSigmaSpace=options[2],atBlockSize=options[3])
         self.neighborImage = self.filteredImage.copy()
+        self.__runTreeApprox()
+        self.__runNeighborFilters()
+        self.__drawNeighborAnalysis()
+        self.__setImages()
+        self.__setGraphs()
+
+    #Weird error with the number of neighbors
+    def updateNeighborOptions(self,options):
+        self.neighborImage = self.filteredImage.copy()
+        self.deviation = options[0]
+        self.maxNeighborDistance = options[1]
+        self.upperCutoffDistance = options[2]
         self.__runTreeApprox()
         self.__runNeighborFilters()
         self.__drawNeighborAnalysis()
