@@ -5,13 +5,15 @@ import tkinter as tk
 import topMenu as tm
 import graphFrame as gf
 import optionsFrame as of
+import imageState as iS
+from imageState import imageStateTraits as iST
 
 
 class App(tk.Frame):
     def __init__(self, master=None):
         super().__init__(master)
         
-        self.__initApproxConstants()
+        self.__initImageState()
         self.__bindEvents()
         #Layout manager
         self.grid()
@@ -26,13 +28,9 @@ class App(tk.Frame):
         self.optionsFrame.grid(row=1,column=0)
 
 
-    def __initApproxConstants(self):
-        #How far can a center be away from the last center and be in the same set
-        self.deviation = 15
-        #Sets a longest possible neighbor distance. Really important variable
-        self.maxNeighborDistance = 80000
-        #Allows a first order approximation to speed up tree branching. Small numbers don't look far enough, large numbers take a long time
-        self.upperCutoffDistance = 5000
+    def __initImageState(self):
+        self.imageStateIndex = 0
+        self.imageStateList = list(None)
 
         
     ##TODO:: I NEED to work on more event functions, so each setting submition gets its own function.
@@ -43,13 +41,26 @@ class App(tk.Frame):
         #Simular to above
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
     def __openImage(self,event):
-        self.imagePath = self.topMenuBar.openImagePath
-        self.graphFrame.openImage(self.imagePath)
+        self.graphFrame.openImage(self.topMenuBar.openImagePath)
+        self.imageStateList.append(self.__getImageState())
     def __updateFilterOptions(self,event):
         self.graphFrame.updateFilterOptions(self.optionsFrame.filterOptions.getOptions())
     def __updateNeighborOptions(self,event):
         self.graphFrame.updateNeighborOptions(self.optionsFrame.neighborOptions.getOptions())
-
+    
+    #TODO:: I'm right here. Trying to implement a state loader for different images
+    def __getImageState(self):
+        images = self.graphFrame.getImageStateInfo()
+        options = self.optionsFrame.getImageStateInfo()
+        imageState = iS.imageState.copy()
+        imageState[iST.IMAGE] = images[0]
+        imageState[iST.FILTERED_IMAGE] = images[1]
+        imageState[iST.NEIGHBOR_IMAGE] = images[2]
+        imageState[iST.DEVIATION] = options[0]
+        imageState[iST.MAX_NEIGHBHOR_DIST] = options[1]
+        imageState[iST.UPPER_CUTOFF_DIST] = options[2]
+        self.imageStateList.append(imageState)
+        self.imageStateIndex += 1
 
 
 

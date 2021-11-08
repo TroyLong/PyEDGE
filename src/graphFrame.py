@@ -28,6 +28,9 @@ class GraphFrame(tk.Frame):
         self.__setImages()
         self.__setGraphs()
 
+    def getImageStateInfo(self):
+        return (self.originalImage,self.filteredImage,self.neighborImage)
+
     def updateFilterOptions(self,options):
         self.cells,self.filteredImage = sI.segmentImage(self.imagePath,diameter=options[0],bfSigmaColor=options[1],bfSigmaSpace=options[2],atBlockSize=options[3])
         self.neighborImage = self.filteredImage.copy()
@@ -105,7 +108,8 @@ class GraphFrame(tk.Frame):
     def __setOriginalImage(self):
         self.originalImageFig.clf()
         self.originalImagePlt = self.originalImageFig.add_subplot(111)
-        self.originalImagePlt.imshow(cv.cvtColor(cv.imread(self.imagePath),cv.COLOR_BGR2RGB))
+        self.originalImage = cv.imread(self.imagePath)
+        self.originalImagePlt.imshow(cv.cvtColor(self.originalImage,cv.COLOR_BGR2RGB))
         self.originalImageCanvas.draw()
     def __setFilteredImage(self):
         self.filteredImageFig.clf()

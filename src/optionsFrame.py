@@ -36,6 +36,10 @@ class OptionsFrame(tk.Frame):
         self.master.event_generate("<<SubmitNeighborOptions>>")
 
 
+    def getImageStateInfo(self):
+        return self.filterOptions.getOptions()
+
+
 
 
 

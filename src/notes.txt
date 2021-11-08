@@ -1,0 +1,5 @@
+These are good options for the image analysis
+
+self.deviation = 15
+self.maxNeighborDistance = 80000
+self.upperCutoffDistance = 5000
