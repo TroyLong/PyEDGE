@@ -11,7 +11,7 @@ import neighborFilters as nf
 
 
 class GraphFrame(tk.Frame):
-    def __init__(self, master=None,deviation=0,maxNeighborDistance=0,upperCutoffDistance=0):
+    def __init__(self, master=None,deviation=0,maxNeighborDistance=0,upperCutoffDistance=5000):
         super().__init__(master)
         self.master = master
 
@@ -28,7 +28,7 @@ class GraphFrame(tk.Frame):
         self.__setImages()
         self.__setGraphs()
 
-    def getImageStateInfo(self):
+    def getStateInfo(self):
         return (self.originalImage,self.filteredImage,self.neighborImage)
 
     def updateFilterOptions(self,options):
