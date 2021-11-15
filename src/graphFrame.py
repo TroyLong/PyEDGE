@@ -7,91 +7,55 @@ from matplotlib.backends.backend_tkagg import (
 import tree
 import walkTree
 from cell import cellTraits as ct
+from imageState import imageStateTraits as iST
 import neighborFilters as nf
+import imageState as iS
 
 
-class GraphFrame(tk.Frame):
-    def __init__(self, master=None,deviation=0,maxNeighborDistance=0,upperCutoffDistance=5000):
+class GraphZoneFrame(tk.Frame):
+    def __init__(self, master=None,state=iS.imageState.copy()):
         super().__init__(master)
         self.master = master
-
-        self.grid()
-
-        self.deviation = deviation
-        self.maxNeighborDistance = maxNeighborDistance
-        self.upperCutoffDistance = upperCutoffDistance
+        self.state = state
         self.__createGraphs()
 
-    def openImage(self,imagePath):
+    def loadState(self,state):
+        self.state = state
+        self.__loadImages()
+
+    def openFile(self,imagePath):
         self.imagePath = imagePath
-        self.__runImageAnalysis()
-        self.__setImages()
+        self.__createOriginalImage()
+        self.__createFilteredImageAndCells()
+        self.__createNeighborImage()
+        self.__loadImages()
+
+    # These functions can be called to have images re-created
+    def updateFilterOptions(self):
+        self.__createFilteredImageAndCells()
+        self.updateNeighborOptions()
+    def updateNeighborOptions(self):
+        self.__createNeighborImage()
+        #TODO:: Do I still use these functions?
+        self.__loadImages()
         self.__setGraphs()
 
-    def getStateInfo(self):
-        return (self.originalImage,self.filteredImage,self.neighborImage)
-
-    def updateFilterOptions(self,options):
-        self.cells,self.filteredImage = sI.segmentImage(self.imagePath,diameter=options[0],bfSigmaColor=options[1],bfSigmaSpace=options[2],atBlockSize=options[3])
-        self.neighborImage = self.filteredImage.copy()
-        self.__runTreeApprox()
-        self.__runNeighborFilters()
-        self.__drawNeighborAnalysis()
-        self.__setImages()
-        self.__setGraphs()
-
-    #Weird error with the number of neighbors
-    def updateNeighborOptions(self,options):
-        self.neighborImage = self.filteredImage.copy()
-        self.deviation = options[0]
-        self.maxNeighborDistance = options[1]
-        self.upperCutoffDistance = options[2]
-        self.__runTreeApprox()
-        self.__runNeighborFilters()
-        self.__drawNeighborAnalysis()
-        self.__setImages()
-        self.__setGraphs()
-    
-
+    # These functions create the spaces where the images can be placed
     def __createGraphs(self):
-        self.__createOriginalGraph()
-        self.__createFilteredGraph()
-        self.__createNeighborGraph()
+        self.grid()
+        self.__createOriginalGraph(0)
+        self.__createFilteredGraph(1)
+        self.__createNeighborGraph(2)
         self.__createNeighborHistogramGraph()
-    #Unaltered Image from file
-    def __createOriginalGraph(self):
-        self.originalImageLabel = tk.Label(self,text="Original")
-        self.originalImageLabel.grid(row=0,column=0)
-        self.originalImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.originalImageCanvas = FigureCanvasTkAgg(self.originalImageFig,self)
-        self.originalImageCanvas.get_tk_widget().grid(row=1,column=0)
-        #Toolbar has to go in Frame to back with grid
-        originalImageToolbarFrame = tk.Frame(self)
-        originalImageToolbarFrame.grid(row=2,column=0)
-        originalImageToolbar = NavigationToolbar2Tk(self.originalImageCanvas,originalImageToolbarFrame)
-    #Image after going through openCV filters
-    def __createFilteredGraph(self):
-        self.filteredImageLabel = tk.Label(self,text="Filtered")
-        self.filteredImageLabel.grid(row=0,column=1)
-        self.filteredImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.filteredImageCanvas = FigureCanvasTkAgg(self.filteredImageFig,self)
-        self.filteredImageCanvas.get_tk_widget().grid(row=1,column=1)
-        #Toolbar has to go in Frame to back with grid 
-        filteredImageToolbarFrame = tk.Frame(self)
-        filteredImageToolbarFrame.grid(row=2,column=1)
-        filteredImageToolbar = NavigationToolbar2Tk(self.filteredImageCanvas,filteredImageToolbarFrame)
-    #Drawings of the neighborhood paths
-    def __createNeighborGraph(self):
-        self.neighborImageLabel = tk.Label(self,text="Neighbor Mapping")
-        self.neighborImageLabel.grid(row=0,column=2)
-        self.neighborImageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.neighborImageCanvas = FigureCanvasTkAgg(self.neighborImageFig,self)
-        self.neighborImageCanvas.get_tk_widget().grid(row=1,column=2)
-        #Toolbar has to go in Frame to back with grid
-        neighborImageToolbarFrame = tk.Frame(self)
-        neighborImageToolbarFrame.grid(row=2,column=2)
-        neighborImageToolbar = NavigationToolbar2Tk(self.neighborImageCanvas,neighborImageToolbarFrame)
-    #Histogram of the neighborhood paths
+    def __createOriginalGraph(self,column):
+        self.originalImageFrame = ImageFrame(self,state=self.state,imageType=iST.IMAGE,imageLabelText="Original")
+        self.originalImageFrame.grid(row=1,column=column)
+    def __createFilteredGraph(self,column):
+        self.filteredImageFrame = ImageFrame(self,state=self.state,imageType=iST.FILTERED_IMAGE,imageLabelText="Filtered")
+        self.filteredImageFrame.grid(row=1,column=column)
+    def __createNeighborGraph(self,column):
+        self.neighborImageFrame = ImageFrame(self,state=self.state,imageType=iST.NEIGHBOR_IMAGE,imageLabelText="Neighbor Mapping")
+        self.neighborImageFrame.grid(row=1,column=column)
     def __createNeighborHistogramGraph(self):
         self.neighborHistLabel = tk.Label(self,text="Histogram of Neighbors")
         self.neighborHistLabel.grid(row=0,column=3)
@@ -99,32 +63,61 @@ class GraphFrame(tk.Frame):
         self.neighborHistCanvas = FigureCanvasTkAgg(self.neighborHistFig,self)
         self.neighborHistCanvas.get_tk_widget().grid(row=1,column=3)
 
+    # These functions create and recreate the images loaded by the program
+    def __createOriginalImage(self):
+        self.state[iST.IMAGE] = cv.imread(self.imagePath)
+    def __createFilteredImageAndCells(self):
+        if self.state[iST.IMAGE].all()!=iS.emptyImage.all():
+            self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(self.state[iST.IMAGE])
+        else:
+            self.state[iST.CELLS] = []
+            self.state[iST.FILTERED_IMAGE] = iS.emptyImage.copy()
+    def __createNeighborImage(self):
+        if self.state[iST.FILTERED_IMAGE].all()!=iS.emptyImage.all():
+            self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
+            self.__processNeighorAnalysis()
+        else:
+            self.state[iST.NEIGHBOR_IMAGE] = iS.emptyImage
 
+    # Should only run within __createNeighborImage. NEVER ON ITS OWN!!!
+    def __processNeighorAnalysis(self):
+        self.__runTreeApprox()
+        self.__runNeighborFilters()
+        self.__drawNeighborAnalysis()
+    def __runTreeApprox(self):
+        #This box is the default for the tree geometry
+        box = tree.Rectangle(0,0,self.state[iST.NEIGHBOR_IMAGE].shape[0],self.state[iST.NEIGHBOR_IMAGE].shape[1])
+        #Puts Cutoff length in format of tree cutoffThreshold
+        upperCutoff = self.state[iST.NEIGHBOR_IMAGE].shape[1]/self.state[iST.UPPER_CUTOFF_DIST]
+        #Creates Tree
+        root = tree.treeNode(box,list(self.state[iST.CELLS]),upperCutoff)
+        #Finds neighbors of cells using tree structure
+        walkTree.findCloseCells(root,self.state[iST.CELLS])
+    def __runNeighborFilters(self):
+        nf.distanceFilter(self.state[iST.CELLS],self.state[iST.DEVIATION])
+        nf.passThroughMultipleAreasFilter(self.state[iST.CELLS],self.state[iST.NEIGHBOR_IMAGE])
+    def __drawNeighborAnalysis(self):
+        for cell in self.state[iST.CELLS]:
+            cv.circle(self.neighborImage, (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
+            for neighbor in cell[ct.NEIGHBORS]:
+                cv.line(self.neighborImage,cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
 
-    def __setImages(self):
-        self.__setOriginalImage()
-        self.__setFilteredImage()
-        self.__setNeighborImage()
-    def __setOriginalImage(self):
-        self.originalImageFig.clf()
-        self.originalImagePlt = self.originalImageFig.add_subplot(111)
-        self.originalImage = cv.imread(self.imagePath)
-        self.originalImagePlt.imshow(cv.cvtColor(self.originalImage,cv.COLOR_BGR2RGB))
-        self.originalImageCanvas.draw()
-    def __setFilteredImage(self):
-        self.filteredImageFig.clf()
-        self.filteredImagePlt = self.filteredImageFig.add_subplot(111)
-        self.filteredImagePlt.imshow(cv.cvtColor(self.filteredImage,cv.COLOR_BGR2RGB))
-        self.filteredImageCanvas.draw()
-    def __setNeighborImage(self):
-        self.neighborImageFig.clf()
-        self.neighborImagePlt = self.neighborImageFig.add_subplot(111)        
-        self.neighborImagePlt.imshow(cv.cvtColor(self.neighborImage,cv.COLOR_BGR2RGB))
-        self.neighborImageCanvas.draw()
+    # These functions load pre-created images to the graphs
+    def __loadImages(self):
+        self.__loadOriginalImage()
+        self.__loadFilteredImage()
+        self.__loadNeighborImage()
+    def __loadOriginalImage(self):
+        self.originalImageFrame.loadState(self.state)
+    def __loadFilteredImage(self):
+        self.filteredImageFrame.loadState(self.state)
+    def __loadNeighborImage(self):       
+        self.neighborImageFrame.loadState(self.state)
 
+    # TODO:: Deal with this function in a better manner
     def __setGraphs(self):
         neighborNumbers = list()
-        for cell in self.cells:
+        for cell in self.state[iST.CELLS]:
             neighborNumbers.append(len(cell[ct.NEIGHBORS]))
         self.neighborHistFig.clf()
         self.neighborHistPlt = self.neighborHistFig.add_subplot(111)        
@@ -132,26 +125,43 @@ class GraphFrame(tk.Frame):
         self.neighborHistCanvas.draw()
 
 
-    def __runImageAnalysis(self):
-        self.cells,self.filteredImage = sI.segmentImage(self.imagePath)
-        self.neighborImage = self.filteredImage.copy()
-        self.__runTreeApprox()
-        self.__runNeighborFilters()
-        self.__drawNeighborAnalysis()
-    def __runTreeApprox(self):
-        #This box is the default for the tree geometry
-        box = tree.Rectangle(0,0,self.neighborImage.shape[0],self.neighborImage.shape[1])
-        #Puts Cutoff length in format of tree cutoffThreshold
-        upperCutoff = self.neighborImage.shape[1]/self.upperCutoffDistance
-        #Creates Tree
-        root = tree.treeNode(box,list(self.cells),upperCutoff)
-        #Finds neighbors of cells using tree structure
-        walkTree.findCloseCells(root,self.cells)
-    def __runNeighborFilters(self):
-        nf.distanceFilter(self.cells,self.deviation)
-        nf.passThroughMultipleAreasFilter(self.cells,self.neighborImage)
-    def __drawNeighborAnalysis(self):
-        for cell in self.cells:
-            cv.circle(self.neighborImage, (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
-            for neighbor in cell[ct.NEIGHBORS]:
-                cv.line(self.neighborImage,cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
+        
+    
+
+
+
+
+
+class ImageFrame(tk.Frame):
+    def __init__(self, master=None,state=iS.imageState.copy(),imageType=None,imageLabelText = ""):
+        super().__init__(master)
+        self.master = master
+        self.state = state
+        self.imageLabelText = imageLabelText
+        self.imageType = imageType
+        self.__createImageLabel()
+        self.__createImageFigure()
+    
+    def loadState(self,state):
+        self.state = state
+        self.__loadImageState()
+
+    def __createImageLabel(self):
+        self.graphLabel = tk.Label(self,text=self.imageLabelText)
+        self.graphLabel.grid(row=0,column=0)
+    def __createImageFigure(self):
+        self.imageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
+        # Canvas for the image or graph to display to
+        self.imageCanvas = FigureCanvasTkAgg(self.imageFig,self)
+        self.imageCanvas.get_tk_widget().grid(row=1,column=0)
+        # Toolbar has to go in Frame to back with grid
+        imageToolbarFrame = tk.Frame(self)
+        imageToolbarFrame.grid(row=2,column=0)
+        imageToolbar = NavigationToolbar2Tk(self.imageCanvas,imageToolbarFrame)
+
+    def __loadImageState(self):
+        self.imageFig.clf()
+        self.imagePlt = self.imageFig.add_subplot(111)
+        self.originalImage = cv.cvtColor(self.state[self.imageType],cv.COLOR_BGR2RGB)
+        self.imagePlt.imshow(cv.cvtColor(self.originalImage,cv.COLOR_BGR2RGB))
+        self.imageCanvas.draw()

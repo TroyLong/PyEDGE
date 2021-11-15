@@ -3,29 +3,42 @@
 # This frame holds settings for the image processing, and neighbor guessing.
 # The file currently includes three classes for convienence, but they could be split if need be
 import tkinter as tk
+import imageState as iS
+from imageState import imageStateTraits as iST
 
-class OptionsFrame(tk.Frame):
-    def __init__(self,master=None):
+class OptionsZoneFrame(tk.Frame):
+    def __init__(self, master=None, state=iS.imageState.copy()):
         super().__init__(master)
         self.master = master
-
+        self.state = state
         self.__bindEvents()
-
         self.grid()
+        self.__createOptionsLabel()
+        self.__createStateOptions(0)
+        self.__createFilterOptions(1)
+        self.__createNeighborOptions(2)
 
-        #Options banner
+# These functions are only called for creation
+    def __createOptionsLabel(self):
         self.optionsBannerLabel = tk.Label(self,text="Options")
         self.optionsBannerLabel.config(font=("Ubuntu",12))
         self.optionsBannerLabel.grid(row=0,column=0,columnspan=4)
+    def __createStateOptions(self,column):
+        self.stateOptions = ImageStateOptions(self,state=self.state)
+        self.stateOptions.grid(row=1,column=column,padx=5)
+    def __createFilterOptions(self,column):
+        self.filterOptions = FilterOptions(self,state=self.state)
+        self.filterOptions.grid(row=1,column=column,padx=5)
+    def __createNeighborOptions(self,column):
+        self.neighborOptions = NeighborOptions(self,state=self.state)
+        self.neighborOptions.grid(row=1,column=column,padx=5)
 
-        self.stateOptions = ImageStateOptions(self)
-        self.stateOptions.grid(row=1,column=0,padx=5)
-
-        self.filterOptions = FilterOptions(self)
-        self.filterOptions.grid(row=1,column=1,padx=5)
-
-        self.neighborOptions = NeighborOptions(self)
-        self.neighborOptions.grid(row=1,column=2,padx=5)
+    # Called to load new state
+    def loadState(self,state):
+        self.state = state
+        self.stateOptions.loadState(state)
+        self.filterOptions.loadState(state)
+        self.neighborOptions.loadState(state)
 
     # The events in this frame just pass the event up to the main frame. The events are done like this to make the sub
     # Options classes more robust. They only reference their master this way, and not their master's master.
@@ -50,45 +63,46 @@ class OptionsFrame(tk.Frame):
     def __submitNeighborOptions(self,event):
         self.master.event_generate("<<SubmitNeighborOptions>>")
 
+    # TODO:: Does this still connect to anything?
     def update(self):
         self.stateOptions.update()
         self.filterOptions.update()
         self.neighborOptions.update()
 
-    # this outputs the different states of the options panel to the main program
-    def getStateInfo(self):
-        output = self.filterOptions.getStateInfo()
-        output.extend(self.neighborOptions.getStateInfo())
-        return output
-
-    # grabs index of loaded state, and how many states there are from parent
-    def getImageStateIndexInfo(self):
-        return self.master.getStateIndexInfo()
+    # grabs number of total loaded states
+    def getTotalStatesCount(self):
+        return self.master.getTotalStatesCount()
 
 
 
 
-
+# This one is weird as it deals with multiple states at the same time
 class ImageStateOptions(tk.Frame):
-    def __init__(self, master=None):
+    def __init__(self, master=None, state=iS.imageState.copy()):
         super().__init__(master)
         self.master = master
-
+        self.state = state
         self.__createStateOptionsBanner(1)
         self.__createStateStatusBanner(2)
         self.__createAddStateButton(3)
         self.__createUpStateButton(4)
         self.__createDownStateButton(5)
 
+# Called to load new state
+    def loadState(self,state):
+        self.state = state
+        self.__loadStateStatusBannerState()
+
+# These functions are only called for creation
     def __createStateOptionsBanner(self,row):
         bannerLabel = tk.Label(self,text="Image State Options")
         bannerLabel.config(font=("Ubuntu",10))
         bannerLabel.grid(row=row,column=0,columnspan=2)
     def __createStateStatusBanner(self,row):
-        stateIndexInfo = self.master.getImageStateIndexInfo()
-        status = "Loaded Image State: "+str(stateIndexInfo[0]+1)+"\tTotal Image States: "+str(stateIndexInfo[1])
-        statusLabel = tk.Label(self,text=status)
-        statusLabel.grid(row=row,column=0,columnspan=2)
+        indexInfo = self.master.getTotalStatesCount()
+        status = "Loaded Image State: " + str(indexInfo[0]) + "\tTotal Image States: " + str(indexInfo[1])
+        self.statusLabel = tk.Label(self,text=status)
+        self.statusLabel.grid(row=row,column=0,columnspan=2)
     def __createAddStateButton(self,row):
         self.addStateButton = tk.Button(self,text="Add New",command=self.__addImageState)
         self.addStateButton.grid(row=row,column=0,columnspan=2)
@@ -99,6 +113,13 @@ class ImageStateOptions(tk.Frame):
         self.addStateButton = tk.Button(self,text="Down Image State",command=self.__downImageState)
         self.addStateButton.grid(row=row,column=0,columnspan=2)
 
+# This function is called each time a state is loaded
+    def __loadStateStatusBannerState(self):
+        status = "Loaded Image State: "+str(self.state[iST.STATE_INDEX])+"\tTotal Image States: "+str(self.master.getTotalStatesCount())
+        self.statusLabel.set(status)
+        self.draw()
+
+# These functions only call up to the parent
     def __addImageState(self):
         self.master.event_generate("<<AddImageState>>")
     def __upImageState(self):
@@ -110,9 +131,10 @@ class ImageStateOptions(tk.Frame):
 
 
 class FilterOptions(tk.Frame):
-    def __init__(self, master=None):
+    def __init__(self, master=None, state=iS.imageState.copy()):
         super().__init__(master)
         self.master = master
+        self.state = state
 
         self.__createFilterOptionsBanner(1)
         self.__createFilterDiameterOption(2)
@@ -121,6 +143,15 @@ class FilterOptions(tk.Frame):
         self.__createAdaptiveBlockSizeOption(5)
         self.__createFilterOptionsSubmit(6)
 
+# Called to load new state
+    def loadState(self,state):
+        self.state = state
+        self.__loadFilterDiameterOptionState()
+        self.__loadSigmaColorOptionState()
+        self.__loadSigmaSpaceOptionState()
+        self.__loadAdaptiveBlockSizeOptionState()
+
+# These functions are only called for creation
     def __createFilterOptionsBanner(self,row):
         bannerLabel = tk.Label(self,text="Filter Options")
         bannerLabel.config(font=("Ubuntu",10))
@@ -153,26 +184,49 @@ class FilterOptions(tk.Frame):
         self.filterOptionsSubmitButton = tk.Button(self,text="Submit",command=self.__optionsSubmit)
         self.filterOptionsSubmitButton.grid(row=row,column=0,columnspan=2)
     
+# These functions are called each time a state is loaded
+    def __loadFilterDiameterOptionState(self):
+        pass
+    def __loadSigmaColorOptionState(self):
+        pass
+    def __loadSigmaSpaceOptionState(self):
+        pass
+    def __loadAdaptiveBlockSizeOptionState(self):
+        pass
+
+# Saves option data to loaded state before button event activates
     def __optionsSubmit(self):
+        self.__saveToState()
         self.master.event_generate("<<SubmitFilterOptions>>")
-    def getStateInfo(self):
-        return [int(self.filterDiameterEntry.get()),float(self.sigmaColorEntry.get()),float(self.sigmaSpaceEntry.get()),int(self.adaptiveBlockSizeEntry.get())]
+    def __saveToState(self):
+        self.state[iST.FILTER_DIAMETER]=self.filterDiameterEntry.get()
+        self.state[iST.SIGMA_COLOR]=self.sigmaColorEntry.get()
+        self.state[iST.SIGMA_SPACE]=self.sigmaSpaceEntry.get()
+        self.state[iST.ADAPTIVE_BLOCKSIZE]=self.adaptiveBlockSizeEntry.get()
 
 
 
 
 
 class NeighborOptions(tk.Frame):
-    def __init__(self,master=None):
+    def __init__(self,master=None, state=iS.imageState.copy()):
         super().__init__(master)
         self.master = master
-
+        self.state = state
         self.__createNeighborOptionsBanner(1)
         self.__createDeviationOption(2)
         self.__createMaxNeighborDistanceOption(3)
         self.__createUpperCutoffDistanceOption(4)
         self.__createNeighborOptionsSubmitButton(5)
 
+# Called to load new state
+    def loadState(self,state):
+        self.state = state
+        self.__loadDeviationOptionState()
+        self.__loadMaxNeighborDistanceOptionState()
+        self.__loadUpperCutoffDistanceOptionState()
+
+# These functions are only called for creation
     def __createNeighborOptionsBanner(self,row):
         bannerLabel = tk.Label(self,text="Neighbor Options")
         bannerLabel.config(font=("Ubuntu",10))
@@ -199,7 +253,19 @@ class NeighborOptions(tk.Frame):
         optionsSubmitButton = tk.Button(self,text="Submit",command=self.__optionsSubmit)
         optionsSubmitButton.grid(row=row,column=0,columnspan=2)
 
+# These functions are called each time a state is loaded
+    def __loadDeviationOptionState(self):
+        pass
+    def __loadMaxNeighborDistanceOptionState(self):
+        pass
+    def __loadUpperCutoffDistanceOptionState(self):
+        pass
+
+# Saves option data to loaded state before button event activates
     def __optionsSubmit(self):
+        self.saveToState()
         self.master.event_generate("<<SubmitNeighborOptions>>")
-    def getStateInfo(self):
-        return [float(self.deviationEntry.get()),int(self.maxNeighborDistanceEntry.get()),int(self.upperCutoffDistanceEntry.get())]
+    def saveToState(self):
+        self.state[iST.DEVIATION]=self.deviationEntry.get()
+        self.state[iST.MAX_NEIGHBHOR_DIST]=self.maxNeighborDistanceEntry.get()
+        self.state[iST.UPPER_CUTOFF_DIST]=self.upperCutoffDistanceEntry.get()

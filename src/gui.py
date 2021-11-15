@@ -1,6 +1,4 @@
-#TODO:: The state machine is sloppy. Currently builds, then sets state, then changes build to new state. Should start with state loaded, then populate first state.
-####### IE it is too ad-hoc. This should be fixed by passing the state to the graph and option frames on creation. This will force them to integrate them better.
-####### Tighter integration should allow the state to be changed without having as many high level event calls.
+#TODO:: Finish implementing the state loader function. Gui.py is the biggest part of this right now.
 #TODO:: Finish implementing the controls with the setting changes.
 #TODO:: Add locks to stop buttons from working with invalid input and no images
 
@@ -23,17 +21,16 @@ class App(tk.Frame):
         self.topMenuBar = tm.TopMenu(self)
         self.master.config(menu=self.topMenuBar)
         #Frame for graphs
-        self.graphFrame = gf.GraphFrame(self)
+        self.graphFrame = gf.GraphZoneFrame(self,state=self.imageStateList[self.imageStateIndex])
         self.graphFrame.grid(row=0,column=0)
         #Options
-        self.optionsFrame = of.OptionsFrame(self)
+        self.optionsFrame = of.OptionsZoneFrame(self,state=self.imageStateList[self.imageStateIndex])
         self.optionsFrame.grid(row=1,column=0)
     def __initImageState(self):
         self.imageStateIndex = 0
-        self.imageStateList = list()
+        self.imageStateList = [iS.imageState.copy()]
 
         
-    ##TODO:: I NEED to work on more event functions, so each setting submition gets its own function.
     def __bindEvents(self):
         self.bind("<<OpenFile>>",self.__openImage)
         #Image State Events
@@ -46,8 +43,7 @@ class App(tk.Frame):
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
 
     def __openImage(self,event):
-        self.graphFrame.openImage(self.topMenuBar.openImagePath)
-        self.__getImageState()
+        self.graphFrame.openFile(self.topMenuBar.openImagePath)
     # Image State Events
     def __addImageState(self,event):
         self.imageStateList.append(None)
@@ -60,26 +56,12 @@ class App(tk.Frame):
         print(self.imageStateIndex)
     # Imaging Events
     def __updateFilterOptions(self,event):
-        self.graphFrame.updateFilterOptions(self.optionsFrame.filterOptions.getStateInfo())
-        self.__getImageState()
+        self.graphFrame.updateFilterOptions()
     # Neighbor Analysis Events
     def __updateNeighborOptions(self,event):
-        self.graphFrame.updateNeighborOptions(self.optionsFrame.neighborOptions.getStateInfo())
-        self.__getImageState()
+        self.graphFrame.updateNeighborOptions()
 
-    def __getImageState(self):
-        images = self.graphFrame.getStateInfo()
-        options = self.optionsFrame.getStateInfo()
-        imageState = iS.imageState.copy()
-        imageState[iST.IMAGE] = images[0]
-        imageState[iST.FILTERED_IMAGE] = images[1]
-        imageState[iST.NEIGHBOR_IMAGE] = images[2]
-        imageState[iST.DEVIATION] = options[0]
-        imageState[iST.MAX_NEIGHBHOR_DIST] = options[1]
-        imageState[iST.UPPER_CUTOFF_DIST] = options[2]
-        self.imageStateList[self.imageStateIndex] = imageState
-
-    def getStateIndexInfo(self):
+    def getTotalStatesCount(self):
         return (self.imageStateIndex,len(self.imageStateList))
 
 
