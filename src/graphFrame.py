@@ -46,7 +46,7 @@ class GraphZoneFrame(tk.Frame):
         self.__createOriginalGraph(0)
         self.__createFilteredGraph(1)
         self.__createNeighborGraph(2)
-        self.__createNeighborHistogramGraph()
+        self.__createNeighborHistogramGraph(3)
     def __createOriginalGraph(self,column):
         self.originalImageFrame = ImageFrame(self,state=self.state,imageType=iST.IMAGE,imageLabelText="Original")
         self.originalImageFrame.grid(row=1,column=column)
@@ -56,12 +56,9 @@ class GraphZoneFrame(tk.Frame):
     def __createNeighborGraph(self,column):
         self.neighborImageFrame = ImageFrame(self,state=self.state,imageType=iST.NEIGHBOR_IMAGE,imageLabelText="Neighbor Mapping")
         self.neighborImageFrame.grid(row=1,column=column)
-    def __createNeighborHistogramGraph(self):
-        self.neighborHistLabel = tk.Label(self,text="Histogram of Neighbors")
-        self.neighborHistLabel.grid(row=0,column=3)
-        self.neighborHistFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.neighborHistCanvas = FigureCanvasTkAgg(self.neighborHistFig,self)
-        self.neighborHistCanvas.get_tk_widget().grid(row=1,column=3)
+    def __createNeighborHistogramGraph(self,column):
+        self.neighborHistFrame = HistFrame(self,state=self.state,imageLabelText="Neighbor Histogram")
+        self.neighborHistFrame.grid(row=1,column=column)
 
     # These functions create and recreate the images loaded by the program
     def __createOriginalImage(self):
@@ -100,26 +97,15 @@ class GraphZoneFrame(tk.Frame):
         self.__loadOriginalImage()
         self.__loadFilteredImage()
         self.__loadNeighborImage()
+        self.__loadNeighborHist()
     def __loadOriginalImage(self):
         self.originalImageFrame.loadState(self.state)
     def __loadFilteredImage(self):
         self.filteredImageFrame.loadState(self.state)
     def __loadNeighborImage(self):       
         self.neighborImageFrame.loadState(self.state)
-
-    # TODO:: Deal with this function in a better manner
-    def __setGraphs(self):
-        neighborNumbers = list()
-        for cell in self.state[iST.CELLS]:
-            neighborNumbers.append(len(cell[ct.NEIGHBORS]))
-        self.neighborHistFig.clf()
-        self.neighborHistPlt = self.neighborHistFig.add_subplot(111)        
-        self.neighborHistPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
-        self.neighborHistCanvas.draw()
-
-
-        
-    
+    def __loadNeighborHist(self):
+        self.neighborHistFrame.loadState(self.state)
 
 
 
@@ -158,3 +144,42 @@ class ImageFrame(tk.Frame):
         self.image = cv.cvtColor(self.state[self.imageType],cv.COLOR_BGR2RGB)
         self.imagePlt.imshow(cv.cvtColor(self.image,cv.COLOR_BGR2RGB))
         self.imageCanvas.draw()
+
+
+
+
+
+class HistFrame(tk.Frame):
+    def __init__(self, master=None,state=iS.imageState.copy(),imageLabelText = ""):
+        super().__init__(master)
+        self.master = master
+        self.state = state
+        self.imageLabelText = imageLabelText
+        self.__createHistLabel()
+        self.__createHistFigure()
+    
+    def loadState(self,state):
+        self.state = state
+        self.__loadHistState()
+
+    def __createHistLabel(self):
+        self.graphLabel = tk.Label(self,text=self.imageLabelText)
+        self.graphLabel.grid(row=0,column=0)
+    def __createHistFigure(self):
+        self.histFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
+        self.histCanvas = FigureCanvasTkAgg(self.histFig,self)
+        self.histCanvas.get_tk_widget().grid(row=1,column=0)
+        # Toolbar has to go in Frame to back with grid
+        histToolbarFrame = tk.Frame(self)
+        histToolbarFrame.grid(row=2,column=0)
+        histToolbar = NavigationToolbar2Tk(self.histCanvas,histToolbarFrame)
+
+    def __loadHistState(self):
+        neighborNumbers = list()
+        for cell in self.state[iST.CELLS]:
+            neighborNumbers.append(len(cell[ct.NEIGHBORS]))
+        self.histFig.clf()
+        self.histPlt = self.histFig.add_subplot(111)        
+        self.histPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
+        self.histCanvas.draw()
+
