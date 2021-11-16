@@ -1,6 +1,5 @@
-#TODO:: Finish implementing the state loader function. Gui.py is the biggest part of this right now.
 #TODO:: Finish implementing the controls with the setting changes.
-#TODO:: Add locks to stop buttons from working with invalid input and no images
+#TODO:: Allow states to be swapped
 
 import tkinter as tk
 import topMenu as tm
@@ -26,11 +25,12 @@ class App(tk.Frame):
         #Options
         self.optionsFrame = of.OptionsZoneFrame(self,state=self.imageStateList[self.imageStateIndex])
         self.optionsFrame.grid(row=1,column=0)
+    # There is a list of states, each of which can be loaded and passed to the whole program
     def __initImageState(self):
         self.imageStateIndex = 0
         self.imageStateList = [iS.imageState.copy()]
 
-        
+    # This is the main event handler     
     def __bindEvents(self):
         self.bind("<<OpenFile>>",self.__openImage)
         #Image State Events
@@ -42,6 +42,7 @@ class App(tk.Frame):
         #Simular to above
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
 
+    # Opens image from file and loads to current state
     def __openImage(self,event):
         self.graphFrame.openFile(self.topMenuBar.openImagePath)
     # Image State Events
@@ -61,18 +62,11 @@ class App(tk.Frame):
     def __updateNeighborOptions(self,event):
         self.graphFrame.updateNeighborOptions()
 
+    # This passes the current state to all dependants
     def __loadCurrentStateToAll(self):
         self.graphFrame.loadState(self.imageStateList[self.imageStateIndex])
         self.optionsFrame.loadState(self.imageStateList[self.imageStateIndex])
 
-
+    # This passes information about the number of states, and which is active now
     def getTotalStatesCount(self):
         return (self.imageStateIndex,len(self.imageStateList))
-
-
-
-
-# This actually starts the code
-app = App()
-app.master.title("PyEDGE")
-app.mainloop()
