@@ -6,6 +6,8 @@ import tkinter as tk
 import imageState as iS
 from imageState import imageStateTraits as iST
 
+
+
 class OptionsZoneFrame(tk.Frame):
     def __init__(self, master=None, state=iS.imageState.copy()):
         super().__init__(master)
@@ -63,12 +65,6 @@ class OptionsZoneFrame(tk.Frame):
     def __submitNeighborOptions(self,event):
         self.master.event_generate("<<SubmitNeighborOptions>>")
 
-    # TODO:: Does this still connect to anything?
-    def update(self):
-        self.stateOptions.update()
-        self.filterOptions.update()
-        self.neighborOptions.update()
-
     # grabs number of total loaded states
     def getTotalStatesCount(self):
         return self.master.getTotalStatesCount()
@@ -115,9 +111,9 @@ class ImageStateOptions(tk.Frame):
 
 # This function is called each time a state is loaded
     def __loadStateStatusBannerState(self):
-        status = "Loaded Image State: "+str(self.state[iST.STATE_INDEX])+"\tTotal Image States: "+str(self.master.getTotalStatesCount())
-        self.statusLabel.set(status)
-        self.draw()
+        indexInfo = self.master.getTotalStatesCount()
+        status = "Loaded Image State: " + str(indexInfo[0]) + "\tTotal Image States: " + str(indexInfo[1])
+        self.statusLabel.config(text=status)
 
 # These functions only call up to the parent
     def __addImageState(self):
@@ -126,6 +122,7 @@ class ImageStateOptions(tk.Frame):
         self.master.event_generate("<<UpImageState>>")
     def __downImageState(self):
         self.master.event_generate("<<DownImageState>>")
+
 
 
 

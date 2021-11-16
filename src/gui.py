@@ -46,20 +46,25 @@ class App(tk.Frame):
         self.graphFrame.openFile(self.topMenuBar.openImagePath)
     # Image State Events
     def __addImageState(self,event):
-        self.imageStateList.append(None)
-        print(len(self.imageStateList))
+        self.imageStateList.append(iS.imageState.copy())
+        self.optionsFrame.loadState(self.imageStateList[self.imageStateIndex])
     def __upImageState(self,event):
         self.imageStateIndex += 1 if (self.imageStateIndex<len(self.imageStateList)-1) else 0
-        print(self.imageStateIndex)
+        self.__loadCurrentStateToAll()
     def __downImageState(self,event):
         self.imageStateIndex -= 1 if (self.imageStateIndex>0) else 0
-        print(self.imageStateIndex)
+        self.__loadCurrentStateToAll()
     # Imaging Events
     def __updateFilterOptions(self,event):
         self.graphFrame.updateFilterOptions()
     # Neighbor Analysis Events
     def __updateNeighborOptions(self,event):
         self.graphFrame.updateNeighborOptions()
+
+    def __loadCurrentStateToAll(self):
+        self.graphFrame.loadState(self.imageStateList[self.imageStateIndex])
+        self.optionsFrame.loadState(self.imageStateList[self.imageStateIndex])
+
 
     def getTotalStatesCount(self):
         return (self.imageStateIndex,len(self.imageStateList))

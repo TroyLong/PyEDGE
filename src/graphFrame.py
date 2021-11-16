@@ -67,17 +67,10 @@ class GraphZoneFrame(tk.Frame):
     def __createOriginalImage(self):
         self.state[iST.IMAGE] = cv.imread(self.imagePath)
     def __createFilteredImageAndCells(self):
-        if self.state[iST.IMAGE].all()!=iS.emptyImage.all():
-            self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(self.state[iST.IMAGE])
-        else:
-            self.state[iST.CELLS] = []
-            self.state[iST.FILTERED_IMAGE] = iS.emptyImage.copy()
+        self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(self.state[iST.IMAGE])
     def __createNeighborImage(self):
-        if self.state[iST.FILTERED_IMAGE].all()!=iS.emptyImage.all():
-            self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
-            self.__processNeighorAnalysis()
-        else:
-            self.state[iST.NEIGHBOR_IMAGE] = iS.emptyImage
+        self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
+        self.__processNeighorAnalysis()
 
     # Should only run within __createNeighborImage. NEVER ON ITS OWN!!!
     def __processNeighorAnalysis(self):
@@ -98,9 +91,9 @@ class GraphZoneFrame(tk.Frame):
         nf.passThroughMultipleAreasFilter(self.state[iST.CELLS],self.state[iST.NEIGHBOR_IMAGE])
     def __drawNeighborAnalysis(self):
         for cell in self.state[iST.CELLS]:
-            cv.circle(self.neighborImage, (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
+            cv.circle(self.state[iST.NEIGHBOR_IMAGE], (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
             for neighbor in cell[ct.NEIGHBORS]:
-                cv.line(self.neighborImage,cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
+                cv.line(self.state[iST.NEIGHBOR_IMAGE],cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
 
     # These functions load pre-created images to the graphs
     def __loadImages(self):
@@ -162,6 +155,6 @@ class ImageFrame(tk.Frame):
     def __loadImageState(self):
         self.imageFig.clf()
         self.imagePlt = self.imageFig.add_subplot(111)
-        self.originalImage = cv.cvtColor(self.state[self.imageType],cv.COLOR_BGR2RGB)
-        self.imagePlt.imshow(cv.cvtColor(self.originalImage,cv.COLOR_BGR2RGB))
+        self.image = cv.cvtColor(self.state[self.imageType],cv.COLOR_BGR2RGB)
+        self.imagePlt.imshow(cv.cvtColor(self.image,cv.COLOR_BGR2RGB))
         self.imageCanvas.draw()
