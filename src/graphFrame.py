@@ -22,6 +22,8 @@ class GraphZoneFrame(iS.StateMachinePanel):
     def loadState(self,state):
         if super().loadState(state):
             self.__loadImages()
+        else:
+            self.__loadBlankImages()
 
     def openFile(self,imagePath):
         self.state[iST.IMAGE_OPENED] = True
@@ -96,19 +98,18 @@ class GraphZoneFrame(iS.StateMachinePanel):
 
     # These functions load pre-created images to the graphs
     def __loadImages(self):
-        self.__loadOriginalImage()
-        self.__loadFilteredImage()
-        self.__loadNeighborImage()
-        self.__loadNeighborHist()
-    def __loadOriginalImage(self):
         self.originalImageFrame.loadState(self.state)
-    def __loadFilteredImage(self):
         self.filteredImageFrame.loadState(self.state)
-    def __loadNeighborImage(self):       
         self.neighborImageFrame.loadState(self.state)
-    def __loadNeighborHist(self):
         self.neighborHistFrame.loadState(self.state)
 
+    # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
+    def __loadBlankImages(self):
+        self.originalImageFrame.loadBlankImage()
+        self.filteredImageFrame.loadBlankImage()
+        self.neighborImageFrame.loadBlankImage()
+        self.neighborHistFrame.loadBlankImage()
+        
 
 
 
@@ -122,11 +123,13 @@ class ImageFrame(iS.StateMachinePanel):
         self.__createImageFigure()
     
     def loadState(self,state):
-        #print(state[iST.IMAGE_OPENED])
-        #print(super().loadState(state))
         if super().loadState(state):
-            #print("I'm in")
             self.__loadImageState()
+
+    # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
+    def loadBlankImage(self):
+        self.imageFig.clf()
+        self.imageCanvas.draw()
 
     def __createImageLabel(self):
         self.graphLabel = tk.Label(self,text=self.imageLabelText)
@@ -162,6 +165,11 @@ class HistFrame(iS.StateMachinePanel):
     def loadState(self,state):
         if super().loadState(state):
             self.__loadHistState()
+
+    # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
+    def loadBlankImage(self):
+        self.histFig.clf()
+        self.histCanvas.draw()
 
     def __createHistLabel(self):
         self.graphLabel = tk.Label(self,text=self.imageLabelText)

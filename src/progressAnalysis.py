@@ -54,7 +54,7 @@ print("Multi Neighbor Analysis Code : " + str(mNA))
 print("Gui Code                     : " + str(gF))
 print("Progress Analysis Code       : " + str(pA))
 
-graphLabels = 'Main File', 'Image Analysis', 'Neighbor Analysis', 'Multi Neighbor Analysis', 'gui', 'Progress Analysis'
+graphLabels = 'Main File', 'Image Analysis', 'Neighbor Analysis', 'Multi Neighbor Analysis', 'Gui', 'Progress Analysis'
 sizes = [mF,iA,nA,mNA,gF,pA]
 figure, ax = plt.subplots()
 ax.pie(sizes,labels=graphLabels,autopct='%1.1f%%')

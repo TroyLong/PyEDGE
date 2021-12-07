@@ -218,12 +218,10 @@ class FilterOptionsPanel(ControlPanel):
         self.master.event_generate("<<SubmitFilterOptions>>")
     def saveState(self):
         if super().saveState():
-            print("status before save: " + str(self.state[iST.FILTER_DIAMETER]))
             self.state[iST.FILTER_DIAMETER]=self.filterDiameterEntry.get()
             self.state[iST.SIGMA_COLOR]=self.sigmaColorEntry.get()
             self.state[iST.SIGMA_SPACE]=self.sigmaSpaceEntry.get()
             self.state[iST.ADAPTIVE_BLOCKSIZE]=self.adaptiveBlockSizeEntry.get()
-            print("state on save: " + str(self.state[iST.FILTER_DIAMETER]))
 
 
 
