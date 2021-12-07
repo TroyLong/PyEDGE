@@ -16,7 +16,8 @@ from datetime import datetime
 date = datetime.now()
 imageFileDate = date.strftime("%Y_%m_%d-%I:%M:%S_%p")
 analysisDate = date.strftime("%m/%d%Y/ - (%I:%M:%S %p)")
-pieChartFileName = str(os.path.join(sys.path[0], str("../Code-Analysis/LinesPieChart"+imageFileDate+".png")))
+pieChartFileName = str("/Code-Analysis/LinesPieChart"+imageFileDate+".png")
+pieChartFileNameForPC = str(os.path.join(sys.path[0], str(".."+pieChartFileName)))
 tableFileName = str(os.path.join(sys.path[0], str("../CODEANALYSIS.md")))
 
 labels = 'Main File', 'Image Analysis', 'Neighbor Analysis', 'Multi-Neighbor Analysis', 'GUI', 'Progress Analysis'
@@ -80,7 +81,7 @@ ax3.set_title("Ratio of Comments to Total Lines by Section")
 figure.set_size_inches(14.5, 5.5)
 figure.legend(labels,loc="lower center")
 plt.tight_layout()
-figure.savefig(pieChartFileName, dpi=100)
+figure.savefig(pieChartFileNameForPC, dpi=100)
 plt.show()
 
 with open(tableFileName, "a") as file:
