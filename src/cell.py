@@ -1,6 +1,10 @@
 #TODO:: Neighborguesses is just taking up extra memory.
 #TODO:: Neighbors might need to be its own datatype.
 
+########################
+## Imported Libraries ##
+########################
+# Typeset Constants Libraries
 from enum import Enum
 
 # The enum is for type completion for my cell dictionary's keys.

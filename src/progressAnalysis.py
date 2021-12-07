@@ -1,7 +1,17 @@
+########################
+##        About       ##
+########################
+# I'm always curious about the program length, and I hate counting by hand.
+# Could be better, but this is good enough for now
+########################
+## Imported Libraries ##
+########################
+# Graphing Libraries
 import matplotlib.pyplot as plt
+# System Libraries
 import os
 import sys
-# I'm always curious about the program length, and I hate counting by hand. Could be better, but this is good enough for now
+
 filePath = "src/"
 
 imageAnalysisFiles = ['cell.py','segmentImage.py']
@@ -11,7 +21,7 @@ for filename in imageAnalysisFiles:
             rawInputList = program.read().split('\n')
             iA += len(rawInputList)
 
-neighborAnalysisFiles = ['mergeSort.py','neighborFilters.py','tree.py','walkTree.py']
+neighborAnalysisFiles = ['mergeSort.py','neighborAnalysis.py','neighborFilters.py','tree.py','walkTree.py']
 nA = 0
 for filename in neighborAnalysisFiles:
     with open(os.path.join(sys.path[0], filename)) as program:

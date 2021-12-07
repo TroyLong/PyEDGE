@@ -1,9 +1,23 @@
-from types import CellType
+########################
+##        About       ##
+########################
+# These are a series of tests for neighbor finding.
+# Split from neighborAnalysis.py because they are dealing with the data in completely different ways
+########################
+## Imported Libraries ##
+########################
+# Image Analysis Libraries
 import cv2 as cv
+# Neighbor Libraries
 import numpy as np
-import mergeSort as ms
-from cell import cellTraits as ct
 from math import dist
+import mergeSort as ms
+from types import CellType
+########################
+## Imported Libraries ##
+########################
+# Neighbor Libraries
+from cell import cellTraits as ct
 from tree import Rectangle as rect
 
 

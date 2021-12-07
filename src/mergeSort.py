@@ -1,5 +1,11 @@
-#Mergesort algorithm cell neighbors by neighbor distance.
-
+########################
+##        About       ##
+########################
+# Mergesort algorithm cell neighbors by neighbor distance.
+########################
+## Internal Libraries ##
+########################
+# Neighbor Libraries
 from cell import cellTraits as ct
 
 def mergeSortNeighbors(cells):

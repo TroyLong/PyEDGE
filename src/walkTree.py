@@ -1,4 +1,18 @@
+# TODO:: Merge with tree.py
+########################
+##        About       ##
+########################
+# Used to navigate tree.py for the barnes--hut simulation
+# Is currently seprate from tree.py for obsolete reasons
+########################
+## Imported Libraries ##
+########################
+# Neighbor Libraries
 import tree
+########################
+## Internal Libraries ##
+########################
+# Neighbor Libraries
 import cell as ce
 
 # This correctly navigates the tree structure. Uses nodes that need to be used, and ignores decendants of those that don't

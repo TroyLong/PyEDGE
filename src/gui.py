@@ -1,10 +1,23 @@
 #TODO:: Finish implementing the controls with the setting changes.
 #TODO:: Allow states to be swapped
-
+########################
+##        About       ##
+########################
+# The root overhead of the gui.
+# It also currently holds the state machine and cards.
+# Loads state cards to gui panels, and holds old states for later
+########################
+## Imported Libraries ##
+########################
+# Gui Libraries
 import tkinter as tk
 import topMenu as tm
 import graphFrame as gf
 import optionsFrame as of
+########################
+## Internal Libraries ##
+########################
+# State Machine Libraries
 import imageState as iS
 from imageState import imageStateTraits as iST
 

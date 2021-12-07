@@ -1,8 +1,19 @@
+########################
+##        About       ##
+########################
+# Splits images into cells.
+########################
+## Imported Libraries ##
+########################
+# Image Analysis Libraries
 import cv2 as cv
 import numpy as np
+########################
+## Internal Libraries ##
+########################
+# Neighbor Libraries
 import cell
 from cell import cellTraits as ct
-from numpy.lib.function_base import disp
 
 # This is used get rid of contours that can appear for the black outer regions of the image
 def removeLargeContours(image,contours,thresholdHi=4):

@@ -1,7 +1,15 @@
+########################
+##        About       ##
+########################
 # This holds the state information for each image loaded into the main program
-
+########################
+## Imported Libraries ##
+########################
+# Typeset Constants Libraries
 from enum import Enum, auto
+# Image Analysis Libraries
 import numpy as np
+# Gui Libraries
 import tkinter as tk
 
 # The enum is for type completion for my deque dictionary's keys.

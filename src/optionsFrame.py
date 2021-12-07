@@ -1,7 +1,19 @@
+########################
+##        About       ##
+########################
 # This frame holds settings for the image processing, and neighbor guessing.
 # The file currently includes three classes for convienence, but they could be split if need be
+########################
+## Imported Libraries ##
+########################
+# Gui Libraries
 import tkinter as tk
+# State Machine Libraries
 import imageState as iS
+########################
+## Internal Libraries ##
+########################
+# State Machine Libraries
 from imageState import imageStateTraits as iST
 
 
@@ -218,10 +230,10 @@ class FilterOptionsPanel(ControlPanel):
         self.master.event_generate("<<SubmitFilterOptions>>")
     def saveState(self):
         if super().saveState():
-            self.state[iST.FILTER_DIAMETER]=self.filterDiameterEntry.get()
-            self.state[iST.SIGMA_COLOR]=self.sigmaColorEntry.get()
-            self.state[iST.SIGMA_SPACE]=self.sigmaSpaceEntry.get()
-            self.state[iST.ADAPTIVE_BLOCKSIZE]=self.adaptiveBlockSizeEntry.get()
+            self.state[iST.FILTER_DIAMETER]=float(self.filterDiameterEntry.get())
+            self.state[iST.SIGMA_COLOR]=float(self.sigmaColorEntry.get())
+            self.state[iST.SIGMA_SPACE]=float(self.sigmaSpaceEntry.get())
+            self.state[iST.ADAPTIVE_BLOCKSIZE]=float(self.adaptiveBlockSizeEntry.get())
 
 
 
@@ -285,9 +297,9 @@ class NeighborOptionsPanel(ControlPanel):
         self.master.event_generate("<<SubmitNeighborOptions>>")
     def saveState(self):
         if super().saveState():
-            self.state[iST.DEVIATION]=self.deviationEntry.get()
-            self.state[iST.MAX_NEIGHBHOR_DIST]=self.maxNeighborDistanceEntry.get()
-            self.state[iST.UPPER_CUTOFF_DIST]=self.upperCutoffDistanceEntry.get()
+            self.state[iST.DEVIATION]=float(self.deviationEntry.get())
+            self.state[iST.MAX_NEIGHBHOR_DIST]=float(self.maxNeighborDistanceEntry.get())
+            self.state[iST.UPPER_CUTOFF_DIST]=float(self.upperCutoffDistanceEntry.get())
 
 
 

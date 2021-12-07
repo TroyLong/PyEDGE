@@ -1,9 +1,20 @@
+########################
+##        About       ##
+########################
 # This is a Barnes-Hut Tree. It might be used for neighborhood estimation if this makes it any faster.
 # It also might be used to compare the closeness to estimations across multiple images
+########################
+## Imported Libraries ##
+########################
+# Neighbor Libraries
 from math import dist
 import numpy as np
-from cell import cellTraits as ct
 from anytree import NodeMixin, PreOrderIter
+########################
+## Internal Libraries ##
+########################
+# Neighbor Libraries
+from cell import cellTraits as ct
 
 
 Serial = 0

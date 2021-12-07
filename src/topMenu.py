@@ -1,3 +1,11 @@
+########################
+##        About       ##
+########################
+# Menubar at top of screen.
+########################
+## Imported Libraries ##
+########################
+# Gui Libraries
 import tkinter as tk
 from tkinter import filedialog as fd
 
