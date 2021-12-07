@@ -1,14 +1,14 @@
 # PyEDGE TODO List
 
 ### Analysis Goals by Priority
-- [] Fix the neighbor analysis so it removes neighbors when analysis is rerun.
-- [] Fix the intersection neighbor filter.
+- [ ] Fix the neighbor analysis so it removes neighbors when analysis is rerun.
+- [ ] Fix the intersection neighbor filter.
 
 ### GUI Goals by Priority
-- [] Catch ValueErrors when strings are typed where floats belong in setting panels.
-- [] Fix the open menu so it does not throw an error if canceled.
-- [] Introduce multi-file image open support.
-- [] Set values of the gui to be rescalable. Not important now, but will help small screen users.
+- [ ] Catch ValueErrors when strings are typed where floats belong in setting panels.
+- [ ] Fix the open menu so it does not throw an error if canceled.
+- [ ] Introduce multi-file image open support.
+- [ ] Set values of the gui to be rescalable. Not important now, but will help small screen users.
 
 ### Resently Completed Goals
 - [x] Documented import libraries, so they can more easily be traced to intent by users wishing to modify the code.
