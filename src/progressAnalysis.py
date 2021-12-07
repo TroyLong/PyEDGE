@@ -2,7 +2,7 @@
 ##        About       ##
 ########################
 # I'm always curious about the program length, and I hate counting by hand.
-# Could be better, but this is good enough for now
+# I made it a MUCH better, and much shorter. It was one of the longer programs.
 ########################
 ## Imported Libraries ##
 ########################
@@ -11,63 +11,77 @@ import matplotlib.pyplot as plt
 # System Libraries
 import os
 import sys
+from datetime import datetime
 
-filePath = "src/"
+date = datetime.now()
+imageFileDate = date.strftime("%Y_%m_%d-%I:%M:%S_%p")
+analysisDate = date.strftime("%m/%d%Y/ - (%I:%M:%S %p)")
+pieChartFileName = str(os.path.join(sys.path[0], str("../Code-Analysis/LinesPieChart"+imageFileDate+".png")))
+tableFileName = str(os.path.join(sys.path[0], str("../CODEANALYSIS.md")))
 
-imageAnalysisFiles = ['cell.py','segmentImage.py']
-iA=0
-for filename in imageAnalysisFiles:
-    with open(os.path.join(sys.path[0], filename)) as program:
+labels = 'Main File', 'Image Analysis', 'Neighbor Analysis', 'Multi-Neighbor Analysis', 'GUI', 'Progress Analysis'
+filesBySection = list()
+lineNumbersBySection = list()
+totalLines = 0
+commentLineNumbersBySection = list()
+totalCommentLines = 0
+percentCommentsToLinesBySection = list()
+
+# Main File
+filesBySection.append(['pyEDGE.py'])
+# Image Analysis Files
+filesBySection.append(['cell.py','segmentImage.py'])
+# Neighbor Analysis Files
+filesBySection.append(['mergeSort.py','neighborAnalysis.py','neighborFilters.py','tree.py','walkTree.py'])
+# Multi-Neighbor Analysis Files
+filesBySection.append(['imageState.py'])
+# Gui Files
+filesBySection.append(['gui.py','graphFrame.py','optionsFrame.py','topMenu.py'])
+# Progress Analysis Files
+filesBySection.append(['progressAnalysis.py'])
+
+for section in filesBySection:
+    lineNumbersBySection.append(0)
+    commentLineNumbersBySection.append(0)
+    for filename in section:
+        with open(os.path.join(sys.path[0], filename)) as program:
             rawInputList = program.read().split('\n')
-            iA += len(rawInputList)
+            lineNumbersBySection[-1] += len(rawInputList)
+            if rawInputList[0].startswith("#"):
+                commentLineNumbersBySection[-1] += 1
+    totalLines += lineNumbersBySection[-1]
+    totalCommentLines += commentLineNumbersBySection[-1]
+    percentCommentsToLinesBySection.append(100*commentLineNumbersBySection[-1]/lineNumbersBySection[-1])
 
-neighborAnalysisFiles = ['mergeSort.py','neighborAnalysis.py','neighborFilters.py','tree.py','walkTree.py']
-nA = 0
-for filename in neighborAnalysisFiles:
-    with open(os.path.join(sys.path[0], filename)) as program:
-            rawInputList = program.read().split('\n')
-            nA += len(rawInputList)
 
-multiImageAnalysisFiles = ['imageState.py']
-mNA = 0
-for filename in multiImageAnalysisFiles:
-    with open(os.path.join(sys.path[0], filename)) as program:
-            rawInputList = program.read().split('\n')
-            mNA += len(rawInputList)
 
-guiFiles = ['gui.py','graphFrame.py','optionsFrame.py','topMenu.py']
-gF = 0
-for filename in guiFiles:
-    with open(os.path.join(sys.path[0], filename)) as program:
-            rawInputList = program.read().split('\n')
-            gF += len(rawInputList)
+outputString = "\n## " + str(analysisDate) +"\n"
+outputString += "![Code Sections by Percent of Total Lines](" + str(pieChartFileName) + ")\n\n"
+outputString += "| Sections | Lines | Percent of Total | Comments | Percent of Total | Percent Comments to Lines in Section |\n"
+outputString += "| ------- | ----- | ---------------- | -------- | ---------------- | ------------------------------------ |\n"
+outputString += "| Total Code | {:d} | 100 | {:d} | {:.2f} | N/A |\n".format(totalLines,totalCommentLines,(100*totalCommentLines/totalLines))
+for i in range(len(labels)):
+    outputString += ("| {:s} | {:d} | {:.2f} | {:d} | {:.2f} | {:.2f} |\n".format(labels[i],lineNumbersBySection[i],(100*lineNumbersBySection[i]/totalLines),
+                                                    commentLineNumbersBySection[i], (100*commentLineNumbersBySection[i]/totalCommentLines),
+                                                    percentCommentsToLinesBySection[i]))
 
-mainFile = ['pyEDGE.py']
-mF = 0
-for filename in mainFile:
-    with open(os.path.join(sys.path[0], filename)) as program:
-            rawInputList = program.read().split('\n')
-            mF += len(rawInputList)
+print(outputString)
 
-progressAnalysisFiles = ['progressAnalysis.py']
-pA = 0
-for filename in progressAnalysisFiles:
-    with open(os.path.join(sys.path[0], filename)) as program:
-            rawInputList = program.read().split('\n')
-            pA += len(rawInputList)
-
-print("Total Code                   : " + str(mF+iA+nA+mNA+gF+pA))
-print("Main File Code               : " + str(mF))
-print("Image Analysis Code          : " + str(iA))
-print("Neighbor Analysis Code       : " + str(nA))
-print("Multi Neighbor Analysis Code : " + str(mNA))
-print("Gui Code                     : " + str(gF))
-print("Progress Analysis Code       : " + str(pA))
-
-graphLabels = 'Main File', 'Image Analysis', 'Neighbor Analysis', 'Multi Neighbor Analysis', 'Gui', 'Progress Analysis'
-sizes = [mF,iA,nA,mNA,gF,pA]
-figure, ax = plt.subplots()
-ax.pie(sizes,labels=graphLabels,autopct='%1.1f%%')
-ax.axis('equal')
-
+figure, (ax1,ax2,ax3) = plt.subplots(1,3)
+ax1.pie(lineNumbersBySection,startangle=90)
+ax1.axis('equal')
+ax1.set_title("Lines of Code by Section")
+ax2.pie(commentLineNumbersBySection,startangle=90)
+ax2.axis('equal')
+ax2.set_title("Comments of Code by Section")
+ax3.pie(percentCommentsToLinesBySection,startangle=90)
+ax3.axis('equal')
+ax3.set_title("Ratio of Comments to Total Lines by Section")
+figure.set_size_inches(14.5, 5.5)
+figure.legend(labels,loc="lower center")
+plt.tight_layout()
+figure.savefig(pieChartFileName, dpi=100)
 plt.show()
+
+with open(tableFileName, "a") as file:
+    file.write(outputString)
