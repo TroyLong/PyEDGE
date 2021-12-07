@@ -1,7 +1,7 @@
-# PyEDGE
-PyEDGE is a rewrite of the Embryo Development Geometry Explorer in Python. This package is currently in it's early alpha stages.
+# PyEDGE Code Analysis
+Code analysis reports will provide quatitative data on PyEDGE's progress.
 
-# Current Code Analysis
+This section will serve as an archive for past analysis reports. This data can be used to study trends in development, and decide what parts of the code base should be worked on next.
 
 ## December 7, 2021
 ![Code Sections by Percent of Total Lines](CodeAnalysis/PiChart12-07-2021.png)
