@@ -4,7 +4,7 @@ PyEDGE is a rewrite of the Embryo Development Geometry Explorer in Python. This 
 # Current Code Analysis
 
 ## December 7, 2021
-![Code Sections by Percent of Total Lines](Code-Analysis/PiChart12-07-2021.png)
+![Code Sections by Percent of Total Lines](Code-Analysis/PieChart12-07-2021.png)
 
 | Section                 | Lines |
 | ----------------------- | ----- |
