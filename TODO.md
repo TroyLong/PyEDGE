@@ -17,3 +17,4 @@
 - [x] Auto remember -- but not submit -- setting input when state is changed.
 - [x] Re-connected neighbor analysis settings.
 - [x] Auto clear image when blank state is set.
+- [x] Implement a progress analysis tool.
