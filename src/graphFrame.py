@@ -12,7 +12,7 @@ import neighborFilters as nf
 import imageState as iS
 
 
-class GraphZoneFrame(tk.Frame):
+class GraphZoneFrame(iS.StateMachinePanel):
     def __init__(self, master=None,state=iS.imageState.copy()):
         super().__init__(master)
         self.master = master
@@ -20,10 +20,11 @@ class GraphZoneFrame(tk.Frame):
         self.__createGraphs()
 
     def loadState(self,state):
-        self.state = state
-        self.__loadImages()
+        if super().loadState(state):
+            self.__loadImages()
 
     def openFile(self,imagePath):
+        self.state[iST.IMAGE_OPENED] = True
         self.imagePath = imagePath
         self.__createOriginalImage()
         self.__createFilteredImageAndCells()
@@ -32,13 +33,14 @@ class GraphZoneFrame(tk.Frame):
 
     # These functions can be called to have images re-created
     def updateFilterOptions(self):
-        self.__createFilteredImageAndCells()
-        self.updateNeighborOptions()
+        if self.state[iST.IMAGE_OPENED]:
+            self.__createFilteredImageAndCells()
+            self.updateNeighborOptions()
     def updateNeighborOptions(self):
-        self.__createNeighborImage()
-        #TODO:: Do I still use these functions?
-        self.__loadImages()
-        self.__setGraphs()
+        if self.state[iST.IMAGE_OPENED]:
+            self.__createNeighborImage()
+            #TODO:: Do I still use these functions?
+            self.__loadImages()
 
     # These functions create the spaces where the images can be placed
     def __createGraphs(self):
@@ -111,19 +113,20 @@ class GraphZoneFrame(tk.Frame):
 
 
 
-class ImageFrame(tk.Frame):
+class ImageFrame(iS.StateMachinePanel):
     def __init__(self, master=None,state=iS.imageState.copy(),imageType=None,imageLabelText = ""):
-        super().__init__(master)
-        self.master = master
-        self.state = state
+        super().__init__(master,state)
         self.imageLabelText = imageLabelText
         self.imageType = imageType
         self.__createImageLabel()
         self.__createImageFigure()
     
     def loadState(self,state):
-        self.state = state
-        self.__loadImageState()
+        #print(state[iST.IMAGE_OPENED])
+        #print(super().loadState(state))
+        if super().loadState(state):
+            #print("I'm in")
+            self.__loadImageState()
 
     def __createImageLabel(self):
         self.graphLabel = tk.Label(self,text=self.imageLabelText)
@@ -149,18 +152,16 @@ class ImageFrame(tk.Frame):
 
 
 
-class HistFrame(tk.Frame):
+class HistFrame(iS.StateMachinePanel):
     def __init__(self, master=None,state=iS.imageState.copy(),imageLabelText = ""):
-        super().__init__(master)
-        self.master = master
-        self.state = state
+        super().__init__(master,state)
         self.imageLabelText = imageLabelText
         self.__createHistLabel()
         self.__createHistFigure()
     
     def loadState(self,state):
-        self.state = state
-        self.__loadHistState()
+        if super().loadState(state):
+            self.__loadHistState()
 
     def __createHistLabel(self):
         self.graphLabel = tk.Label(self,text=self.imageLabelText)
@@ -176,10 +177,12 @@ class HistFrame(tk.Frame):
 
     def __loadHistState(self):
         neighborNumbers = list()
-        for cell in self.state[iST.CELLS]:
-            neighborNumbers.append(len(cell[ct.NEIGHBORS]))
-        self.histFig.clf()
-        self.histPlt = self.histFig.add_subplot(111)        
-        self.histPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
-        self.histCanvas.draw()
+        # Only draw histogram if there are cells to create it with
+        if len(self.state[iST.CELLS]):
+            for cell in self.state[iST.CELLS]:
+                neighborNumbers.append(len(cell[ct.NEIGHBORS]))
+            self.histFig.clf()
+            self.histPlt = self.histFig.add_subplot(111)        
+            self.histPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
+            self.histCanvas.draw()
 

@@ -41,6 +41,9 @@ class App(tk.Frame):
         self.bind("<<SubmitFilterOptions>>",self.__updateFilterOptions)
         #Simular to above
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
+        #Cell Focus Panel Events
+        self.bind("<<PreviousCell>>",self.__previousCell)
+        self.bind("<<NextCell>>",self.__nextCell)
 
     # Opens image from file and loads to current state
     def __openImage(self,event):
@@ -61,7 +64,10 @@ class App(tk.Frame):
     # Neighbor Analysis Events
     def __updateNeighborOptions(self,event):
         self.graphFrame.updateNeighborOptions()
-
+    def __previousCell(self,event):
+        pass
+    def __nextCell(self,event):
+        pass
     # This passes the current state to all dependants
     def __loadCurrentStateToAll(self):
         self.graphFrame.loadState(self.imageStateList[self.imageStateIndex])
