@@ -1,15 +1,32 @@
-import tkinter as tk
+# TODO:: The neighbor analysis is continually adding guessed neighbors each time it is run
+# TODO:: Split the neighbor analysis back into its own file. It makes this one bloated.
+########################
+##        About       ##
+########################
+# This displays cell images, the filtered image, and the neighbor mappings
+# It may also display graphical aids to analyse the date
+########################
+## Imported Libraries ##
+########################
+# Image Analysis Libraries
 import cv2 as cv
-import segmentImage as sI
+# Gui Libraries
+import tkinter as tk
+# Graphing Libraries
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
-import tree
-import walkTree
+########################
+## Internal Libraries ##
+########################
+# Image Analysis Libraries
 from cell import cellTraits as ct
-from imageState import imageStateTraits as iST
-import neighborFilters as nf
+import segmentImage as sI
+# Neighbor Libraries
+import neighborAnalysis as nA
+# State Machine Libraries
 import imageState as iS
+from imageState import imageStateTraits as iST
 
 
 class GraphZoneFrame(iS.StateMachinePanel):
@@ -71,30 +88,7 @@ class GraphZoneFrame(iS.StateMachinePanel):
         self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(self.state[iST.IMAGE])
     def __createNeighborImage(self):
         self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
-        self.__processNeighorAnalysis()
-
-    # Should only run within __createNeighborImage. NEVER ON ITS OWN!!!
-    def __processNeighorAnalysis(self):
-        self.__runTreeApprox()
-        self.__runNeighborFilters()
-        self.__drawNeighborAnalysis()
-    def __runTreeApprox(self):
-        #This box is the default for the tree geometry
-        box = tree.Rectangle(0,0,self.state[iST.NEIGHBOR_IMAGE].shape[0],self.state[iST.NEIGHBOR_IMAGE].shape[1])
-        #Puts Cutoff length in format of tree cutoffThreshold
-        upperCutoff = self.state[iST.NEIGHBOR_IMAGE].shape[1]/self.state[iST.UPPER_CUTOFF_DIST]
-        #Creates Tree
-        root = tree.treeNode(box,list(self.state[iST.CELLS]),upperCutoff)
-        #Finds neighbors of cells using tree structure
-        walkTree.findCloseCells(root,self.state[iST.CELLS])
-    def __runNeighborFilters(self):
-        nf.distanceFilter(self.state[iST.CELLS],self.state[iST.DEVIATION])
-        nf.passThroughMultipleAreasFilter(self.state[iST.CELLS],self.state[iST.NEIGHBOR_IMAGE])
-    def __drawNeighborAnalysis(self):
-        for cell in self.state[iST.CELLS]:
-            cv.circle(self.state[iST.NEIGHBOR_IMAGE], (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
-            for neighbor in cell[ct.NEIGHBORS]:
-                cv.line(self.state[iST.NEIGHBOR_IMAGE],cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
+        nA.processNeighorAnalysis(self.state)
 
     # These functions load pre-created images to the graphs
     def __loadImages(self):
