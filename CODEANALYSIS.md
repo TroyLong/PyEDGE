@@ -4,7 +4,7 @@ Code analysis reports will provide quatitative data on PyEDGE's progress.
 This section will serve as an archive for past analysis reports. This data can be used to study trends in development, and decide what parts of the code base should be worked on next.
 
 ## 12/072021/ - (03:57:28 AM)
-![Code Sections by Percent of Total Lines](~/Code-Analysis/LinesPieChart2021_12_07-03:57:28_AM.png)
+![Code Sections by Percent of Total Lines](https://github.com/TroyLong/PyEDGE/tree/main/Code-Analysis/LinesPieChart2021_12_07-03:57:28_AM.png)
 
 | Sections | Lines | Percent of Total | Comments | Percent of Total | Percent Comments to Lines in Section |
 | ------- | ----- | ---------------- | -------- | ---------------- | ------------------------------------ |
