@@ -73,3 +73,8 @@ class StateMachinePanel(tk.Frame):
     # This sets the state back to the default
     def reset(self):
         self.state=imageState.copy()
+    # This creates the title for the machine panel
+    def _createTitleBanner(self,text="",fontSize=10,row=1,column=0,columnspan=2):
+        bannerLabel = tk.Label(self,text=text)
+        bannerLabel.config(font=("Ubuntu",fontSize))
+        bannerLabel.grid(row=row,column=column,columnspan=columnspan)

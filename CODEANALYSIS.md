@@ -28,3 +28,16 @@ This section will serve as an archive for past analysis reports. This data can b
 | Multi-Neighbor Analysis | 75 | 5.75 | 1 | 7.69 | 1.33 |
 | GUI | 663 | 50.80 | 4 | 30.77 | 0.60 |
 | Progress Analysis | 88 | 6.74 | 1 | 7.69 | 1.14 |
+
+## 12/092021/ - (03:16:26 PM)
+![Code Sections by Percent of Total Lines](/Code-Analysis/LinesPieChart2021_12_09-03:16:26_PM.png)
+
+| Sections | Lines | Percent of Total | Comments | Percent of Total | Percent Comments to Lines in Section |
+| ------- | ----- | ---------------- | -------- | ---------------- | ------------------------------------ |
+| Total Code | 1332 | 100 | 14 | 1.05 | N/A |
+| Main File | 13 | 0.98 | 1 | 7.14 | 7.69 |
+| Image Analysis | 129 | 9.68 | 2 | 14.29 | 1.55 |
+| Neighbor Analysis | 337 | 25.30 | 4 | 28.57 | 1.19 |
+| Multi-Neighbor Analysis | 80 | 6.01 | 1 | 7.14 | 1.25 |
+| GUI | 685 | 51.43 | 5 | 35.71 | 0.73 |
+| Progress Analysis | 88 | 6.61 | 1 | 7.14 | 1.14 |
