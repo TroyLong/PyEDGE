@@ -1,5 +1,6 @@
-#TODO:: Finish implementing the controls with the setting changes.
-#TODO:: Allow states to be swapped
+# TODO:: The states being passed down to graphFrame and optionsFrame are not the same.
+# This is creating more memory, and overhead. I need to make the thing work by reference
+
 ########################
 ##        About       ##
 ########################
@@ -14,6 +15,7 @@ import tkinter as tk
 import topMenu as tm
 import graphFrame as gf
 import optionsFrame as of
+from sys import getrefcount
 ########################
 ## Internal Libraries ##
 ########################
@@ -32,16 +34,25 @@ class App(tk.Frame):
         #Menu bar
         self.topMenuBar = tm.TopMenu(self)
         self.master.config(menu=self.topMenuBar)
+        print(getrefcount(self.imageStateList[self.imageStateIndex]))
         #Frame for graphs
         self.graphFrame = gf.GraphZoneFrame(self,state=self.imageStateList[self.imageStateIndex])
         self.graphFrame.grid(row=0,column=0)
+        print(getrefcount(self.imageStateList[self.imageStateIndex]))
         #Options
         self.optionsFrame = of.OptionsZoneFrame(self,state=self.imageStateList[self.imageStateIndex])
         self.optionsFrame.grid(row=1,column=0)
+        print(getrefcount(self.imageStateList[self.imageStateIndex]))
+        if self.optionsFrame.state is self.graphFrame.state:
+            print("The state is the same.")
+        else:
+            print("The states are different")
     # There is a list of states, each of which can be loaded and passed to the whole program
     def __initImageState(self):
         self.imageStateIndex = 0
         self.imageStateList = [iS.imageState.copy()]
+        self.statusMessage = ""
+
 
     # This is the main event handler     
     def __bindEvents(self):
@@ -61,9 +72,11 @@ class App(tk.Frame):
     # Opens image from file and loads to current state
     def __openImage(self,event):
         self.graphFrame.openFile(self.topMenuBar.openImagePath)
+        self.__loadCurrentStateToAll()
     # Image State Events
     def __addImageState(self,event):
         self.imageStateList.append(iS.imageState.copy())
+        # Updates the status display to show new state option
         self.optionsFrame.loadState(self.imageStateList[self.imageStateIndex])
     def __upImageState(self,event):
         self.imageStateIndex += 1 if (self.imageStateIndex<len(self.imageStateList)-1) else 0
@@ -89,3 +102,6 @@ class App(tk.Frame):
     # This passes information about the number of states, and which is active now
     def getTotalStatesCount(self):
         return (self.imageStateIndex,len(self.imageStateList))
+
+    def getStatusMessage(self):
+        return self.statusMessage

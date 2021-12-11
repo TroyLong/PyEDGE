@@ -7,6 +7,7 @@
 ########################
 # State Machine Libraries
 import imageState as iS
+from imageState import imageStateTraits as iST
 ########################
 ## Internal Libraries ##
 ########################
@@ -16,7 +17,7 @@ from controlPanel import StatusPanel, ImageStatePanel, FilterOptionsPanel, Neigh
 # This is the main Panel Window Section
 class OptionsZoneFrame(iS.StateMachinePanel):
     def __init__(self, master=None, state=iS.imageState.copy()):
-        super().__init__(master)
+        super().__init__(master,state)
         self.__bindEvents()
         self.grid()
         self._createTitleBanner("Options",fontSize=12,row=0)
@@ -43,18 +44,24 @@ class OptionsZoneFrame(iS.StateMachinePanel):
         self.cellFocusPanel = CellFocusPanel(self, state=self.state)
         self.cellFocusPanel.grid(row=1,column=column,padx=5)
 
+
+#TODO:: Overwritting the old stuff, and not really running filter any more
     # Called to load new state
     def loadState(self,state):
-        # This insures default settings are saved to previous State if state is changed
-        # This does NOT submit the changes for view
-        if self.saveState():
-            self.filterOptions.saveState()
-            self.neighborOptions.saveState()
+        self.saveState()
         # I don't want stateOptions locking up, so I can't lock this up too.
         super().loadState(state)
+        self.statusPanel.loadState(state)
         self.stateOptions.loadState(state)
         self.filterOptions.loadState(state)
         self.neighborOptions.loadState(state)
+
+    def saveState(self):
+        # This insures default settings are saved to previous State if state is changed
+        # This does NOT submit the changes for view
+        if super().saveState():
+            self.filterOptions.saveState()
+            self.neighborOptions.saveState()
 
     # The events in this frame just pass the event up to the main frame. The events are done like this to make the sub
     # Options classes more robust. They only reference their master this way, and not their master's master.
@@ -90,6 +97,6 @@ class OptionsZoneFrame(iS.StateMachinePanel):
     # grabs number of total loaded states
     def getTotalStatesCount(self):
         return self.master.getTotalStatesCount()
-
-
+    def getStatusMessage(self):
+        return self.master.getStatusMessage()
 

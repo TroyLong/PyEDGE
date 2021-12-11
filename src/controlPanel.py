@@ -1,3 +1,6 @@
+#TODO:: This is still overwriting 'unsaved' settings on click out
+#TODO:: Not running the proper commands. Not being uploaded to the graph correctly
+
 ########################
 ##        About       ##
 ########################
@@ -14,6 +17,7 @@ import imageState as iS
 ########################
 # State Machine Libraries
 from imageState import imageStateTraits as iST
+
 
 
 
@@ -35,6 +39,14 @@ class ControlPanel(iS.StateMachinePanel):
     # Needs to be implemented in subclasses that use the status banner
     def _generateStatusText(self):
         return self.statusText
+    # Ensures data entry is float type
+    def _getEntry(self,currentValue,entry):
+        newValue = 0
+        try:
+            newValue = float(entry.get())
+        except ValueError:
+            newValue = currentValue
+        currentValue = newValue
 
 
 
@@ -44,9 +56,11 @@ class ControlPanel(iS.StateMachinePanel):
 class StatusPanel(ControlPanel):
     def __init__(self, master=None, state=iS.imageState.copy()):
         super().__init__(master,state,"Program Status")
-
+    def loadState(self, state):
+        super().loadState(state)
+        self._updateStatusBanner()
     def _generateStatusText(self):
-        self.statusText += "\n"
+        self.statusText += self.master.getStatusMessage()
         return self.statusText
 
 
@@ -163,10 +177,12 @@ class FilterOptionsPanel(ControlPanel):
         self.master.event_generate("<<SubmitFilterOptions>>")
     def saveState(self):
         if super().saveState():
-            self.state[iST.FILTER_DIAMETER]=float(self.filterDiameterEntry.get())
-            self.state[iST.SIGMA_COLOR]=float(self.sigmaColorEntry.get())
-            self.state[iST.SIGMA_SPACE]=float(self.sigmaSpaceEntry.get())
-            self.state[iST.ADAPTIVE_BLOCKSIZE]=float(self.adaptiveBlockSizeEntry.get())
+            self._getEntry(self.state[iST.FILTER_DIAMETER],self.filterDiameterEntry)
+            self._getEntry(self.state[iST.SIGMA_COLOR],self.sigmaColorEntry)
+            self._getEntry(self.state[iST.SIGMA_SPACE],self.sigmaSpaceEntry)
+            self._getEntry(self.state[iST.ADAPTIVE_BLOCKSIZE],self.adaptiveBlockSizeEntry)
+        
+
 
 
 
@@ -228,9 +244,9 @@ class NeighborOptionsPanel(ControlPanel):
         self.master.event_generate("<<SubmitNeighborOptions>>")
     def saveState(self):
         if super().saveState():
-            self.state[iST.DEVIATION]=float(self.deviationEntry.get())
-            self.state[iST.MAX_NEIGHBHOR_DIST]=float(self.maxNeighborDistanceEntry.get())
-            self.state[iST.UPPER_CUTOFF_DIST]=float(self.upperCutoffDistanceEntry.get())
+            self._getEntry(self.state[iST.DEVIATION],self.deviationEntry)
+            self._getEntry(self.state[iST.MAX_NEIGHBHOR_DIST],self.maxNeighborDistanceEntry)
+            self._getEntry(self.state[iST.UPPER_CUTOFF_DIST],self.upperCutoffDistanceEntry)
 
 
 
