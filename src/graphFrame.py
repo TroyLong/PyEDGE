@@ -13,13 +13,12 @@ import cv2 as cv
 import tkinter as tk
 # Graphing Libraries
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import (
-    FigureCanvasTkAgg, NavigationToolbar2Tk)
 ########################
 ## Internal Libraries ##
 ########################
+# Plot Panel Libraries
+from plotPanel import ImagePanel, HistPanel
 # Image Analysis Libraries
-from cell import cellTraits as ct
 import segmentImage as sI
 # Neighbor Libraries
 import neighborAnalysis as nA
@@ -68,16 +67,16 @@ class GraphZoneFrame(iS.StateMachinePanel):
         self.__createNeighborGraph(2)
         self.__createNeighborHistogramGraph(3)
     def __createOriginalGraph(self,column):
-        self.originalImageFrame = ImageFrame(self,state=self.state,imageType=iST.IMAGE,imageLabelText="Original")
+        self.originalImageFrame = ImagePanel(self,state=self.state,title="Original",imageType=iST.IMAGE)
         self.originalImageFrame.grid(row=1,column=column)
     def __createFilteredGraph(self,column):
-        self.filteredImageFrame = ImageFrame(self,state=self.state,imageType=iST.FILTERED_IMAGE,imageLabelText="Filtered")
+        self.filteredImageFrame = ImagePanel(self,state=self.state,title="Filtered",imageType=iST.FILTERED_IMAGE)
         self.filteredImageFrame.grid(row=1,column=column)
     def __createNeighborGraph(self,column):
-        self.neighborImageFrame = ImageFrame(self,state=self.state,imageType=iST.NEIGHBOR_IMAGE,imageLabelText="Neighbor Mapping")
+        self.neighborImageFrame = ImagePanel(self,state=self.state,title="Neighbor Mapping",imageType=iST.NEIGHBOR_IMAGE)
         self.neighborImageFrame.grid(row=1,column=column)
     def __createNeighborHistogramGraph(self,column):
-        self.neighborHistFrame = HistFrame(self,state=self.state,imageLabelText="Neighbor Histogram")
+        self.neighborHistFrame = HistPanel(self,state=self.state,title="Neighbor Histogram")
         self.neighborHistFrame.grid(row=1,column=column)
 
     # These functions create and recreate the images loaded by the program
@@ -107,88 +106,3 @@ class GraphZoneFrame(iS.StateMachinePanel):
         self.filteredImageFrame.loadBlankImage()
         self.neighborImageFrame.loadBlankImage()
         self.neighborHistFrame.loadBlankImage()
-        
-
-
-
-
-class ImageFrame(iS.StateMachinePanel):
-    def __init__(self, master=None,state=iS.imageState.copy(),imageType=None,imageLabelText = ""):
-        super().__init__(master,state)
-        self.imageLabelText = imageLabelText
-        self.imageType = imageType
-        self.__createImageLabel()
-        self.__createImageFigure()
-    
-    def loadState(self,state):
-        if super().loadState(state):
-            self.__loadImageState()
-
-    # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
-    def loadBlankImage(self):
-        self.imageFig.clf()
-        self.imageCanvas.draw()
-
-    def __createImageLabel(self):
-        self.graphLabel = tk.Label(self,text=self.imageLabelText)
-        self.graphLabel.grid(row=0,column=0)
-    def __createImageFigure(self):
-        self.imageFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        # Canvas for the image or graph to display to
-        self.imageCanvas = FigureCanvasTkAgg(self.imageFig,self)
-        self.imageCanvas.get_tk_widget().grid(row=1,column=0)
-        # Toolbar has to go in Frame to back with grid
-        imageToolbarFrame = tk.Frame(self)
-        imageToolbarFrame.grid(row=2,column=0)
-        imageToolbar = NavigationToolbar2Tk(self.imageCanvas,imageToolbarFrame)
-
-    def __loadImageState(self):
-        self.imageFig.clf()
-        self.imagePlt = self.imageFig.add_subplot(111)
-        self.image = cv.cvtColor(self.state[self.imageType],cv.COLOR_BGR2RGB)
-        self.imagePlt.imshow(cv.cvtColor(self.image,cv.COLOR_BGR2RGB))
-        self.imageCanvas.draw()
-
-
-
-
-
-class HistFrame(iS.StateMachinePanel):
-    def __init__(self, master=None,state=iS.imageState.copy(),imageLabelText = ""):
-        super().__init__(master,state)
-        self.imageLabelText = imageLabelText
-        self.__createHistLabel()
-        self.__createHistFigure()
-    
-    def loadState(self,state):
-        if super().loadState(state):
-            self.__loadHistState()
-
-    # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
-    def loadBlankImage(self):
-        self.histFig.clf()
-        self.histCanvas.draw()
-
-    def __createHistLabel(self):
-        self.graphLabel = tk.Label(self,text=self.imageLabelText)
-        self.graphLabel.grid(row=0,column=0)
-    def __createHistFigure(self):
-        self.histFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
-        self.histCanvas = FigureCanvasTkAgg(self.histFig,self)
-        self.histCanvas.get_tk_widget().grid(row=1,column=0)
-        # Toolbar has to go in Frame to back with grid
-        histToolbarFrame = tk.Frame(self)
-        histToolbarFrame.grid(row=2,column=0)
-        histToolbar = NavigationToolbar2Tk(self.histCanvas,histToolbarFrame)
-
-    def __loadHistState(self):
-        neighborNumbers = list()
-        # Only draw histogram if there are cells to create it with
-        if len(self.state[iST.CELLS]):
-            for cell in self.state[iST.CELLS]:
-                neighborNumbers.append(len(cell[ct.NEIGHBORS]))
-            self.histFig.clf()
-            self.histPlt = self.histFig.add_subplot(111)        
-            self.histPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
-            self.histCanvas.draw()
-

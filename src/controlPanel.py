@@ -19,9 +19,6 @@ import imageState as iS
 from imageState import imageStateTraits as iST
 
 
-
-
-
 # ControlPanel parent class for inheritance. Regulates updates to the status banner
 class ControlPanel(iS.StateMachinePanel):
     def __init__(self, master=None, state=iS.imageState.copy(),title = ""):
@@ -43,14 +40,21 @@ class ControlPanel(iS.StateMachinePanel):
     def _generateStatusText(self):
         return self.statusText
     # Ensures data entry is float type
-    def _getEntry(self,currentValue,entry):
+    def _getFloatEntry(self,currentValue,entry):
         newValue = 0
         try:
             newValue = float(entry.get())
         except ValueError:
             newValue = currentValue
-        currentValue = newValue
-
+        return newValue
+    # Ensures data entry is int type
+    def _getIntEntry(self,currentValue,entry):
+        newValue = 0
+        try:
+            newValue = int(entry.get())
+        except ValueError:
+            newValue = currentValue
+        return newValue
 
 
 
@@ -65,7 +69,6 @@ class StatusPanel(ControlPanel):
     def _generateStatusText(self):
         self.statusText += self.master.getStatusMessage()
         return self.statusText
-
 
 
 
@@ -108,7 +111,6 @@ class ImageStatePanel(ControlPanel):
         self.master.event_generate("<<UpImageState>>")
     def __downImageState(self):
         self.master.event_generate("<<DownImageState>>")
-
 
 
 
@@ -180,14 +182,11 @@ class FilterOptionsPanel(ControlPanel):
         self.master.event_generate("<<SubmitFilterOptions>>")
     def saveState(self):
         if super().saveState():
-            self._getEntry(self.state[iST.FILTER_DIAMETER],self.filterDiameterEntry)
-            self._getEntry(self.state[iST.SIGMA_COLOR],self.sigmaColorEntry)
-            self._getEntry(self.state[iST.SIGMA_SPACE],self.sigmaSpaceEntry)
-            self._getEntry(self.state[iST.ADAPTIVE_BLOCKSIZE],self.adaptiveBlockSizeEntry)
+            self.state[iST.FILTER_DIAMETER] = self._getIntEntry(self.state[iST.FILTER_DIAMETER],self.filterDiameterEntry)
+            self.state[iST.SIGMA_COLOR] = self._getFloatEntry(self.state[iST.SIGMA_COLOR],self.sigmaColorEntry)
+            self.state[iST.SIGMA_SPACE] = self._getFloatEntry(self.state[iST.SIGMA_SPACE],self.sigmaSpaceEntry)
+            self.state[iST.ADAPTIVE_BLOCKSIZE] = self._getIntEntry(self.state[iST.ADAPTIVE_BLOCKSIZE],self.adaptiveBlockSizeEntry)
         
-
-
-
 
 
 
@@ -247,10 +246,9 @@ class NeighborOptionsPanel(ControlPanel):
         self.master.event_generate("<<SubmitNeighborOptions>>")
     def saveState(self):
         if super().saveState():
-            self._getEntry(self.state[iST.DEVIATION],self.deviationEntry)
-            self._getEntry(self.state[iST.MAX_NEIGHBHOR_DIST],self.maxNeighborDistanceEntry)
-            self._getEntry(self.state[iST.UPPER_CUTOFF_DIST],self.upperCutoffDistanceEntry)
-
+            self.state[iST.DEVIATION] = self._getFloatEntry(self.state[iST.DEVIATION],self.deviationEntry)
+            self.state[iST.MAX_NEIGHBHOR_DIST] = self._getFloatEntry(self.state[iST.MAX_NEIGHBHOR_DIST],self.maxNeighborDistanceEntry)
+            self.state[iST.UPPER_CUTOFF_DIST] = self._getFloatEntry(self.state[iST.UPPER_CUTOFF_DIST],self.upperCutoffDistanceEntry)
 
 
 

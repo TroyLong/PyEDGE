@@ -14,6 +14,7 @@ from imageState import imageStateTraits as iST
 # Control Panel Libraries
 from controlPanel import StatusPanel, ImageStatePanel, FilterOptionsPanel, NeighborOptionsPanel, CellFocusPanel
 
+
 # This is the main Panel Window Section
 class OptionsZoneFrame(iS.StateMachinePanel):
     def __init__(self, master=None, state=iS.imageState.copy()):
