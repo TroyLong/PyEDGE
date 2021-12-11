@@ -37,7 +37,7 @@ filesBySection.append(['mergeSort.py','neighborAnalysis.py','neighborFilters.py'
 # Multi-Neighbor Analysis Files
 filesBySection.append(['imageState.py'])
 # Gui Files
-filesBySection.append(['gui.py','graphFrame.py','optionsFrame.py','controlPanel.py','topMenu.py'])
+filesBySection.append(['gui.py','graphFrame.py','optionsFrame.py','controlPanel.py','plotPanel.py','topMenu.py'])
 # Progress Analysis Files
 filesBySection.append(['progressAnalysis.py'])
 
