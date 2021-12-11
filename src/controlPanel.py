@@ -33,6 +33,9 @@ class ControlPanel(iS.StateMachinePanel):
     def _createStatusBanner(self,row=2,column=0,columnspan=2):
         self.statusLabel = tk.Label(self,text=self._generateStatusText())
         self.statusLabel.grid(row=row,column=column,columnspan=columnspan)
+    # Updates panel content without loading new state
+    def update(self):
+        self._updateStatusBanner()
     def _updateStatusBanner(self):
         self.statusLabel.config(text=self._generateStatusText())
     # Called by _createStatusBanner and _updateStatusBanner

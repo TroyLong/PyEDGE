@@ -1,5 +1,4 @@
 # TODO:: The neighbor analysis is continually adding guessed neighbors each time it is run
-# TODO:: Split the neighbor analysis back into its own file. It makes this one bloated.
 ########################
 ##        About       ##
 ########################
@@ -85,7 +84,12 @@ class GraphZoneFrame(iS.StateMachinePanel):
     def __createOriginalImage(self):
         self.state[iST.IMAGE] = cv.imread(self.imagePath)
     def __createFilteredImageAndCells(self):
-        self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(self.state[iST.IMAGE])
+        # TODO:: If Adaptive Blocksize is > 2 or %2 = 1 this works. Otherwise I get an error
+        self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(image=self.state[iST.IMAGE],
+                                                                                diameter=self.state[iST.FILTER_DIAMETER],
+                                                                                bfSigmaColor=self.state[iST.SIGMA_COLOR],
+                                                                                bfSigmaSpace=self.state[iST.SIGMA_SPACE],
+                                                                                atBlockSize=self.state[iST.ADAPTIVE_BLOCKSIZE])
     def __createNeighborImage(self):
         self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
         nA.processNeighorAnalysis(self.state)

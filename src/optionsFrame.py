@@ -44,7 +44,6 @@ class OptionsZoneFrame(iS.StateMachinePanel):
         self.cellFocusPanel = CellFocusPanel(self, state=self.state)
         self.cellFocusPanel.grid(row=1,column=column,padx=5)
 
-
 #TODO:: Overwritting the old stuff, and not really running filter any more
     # Called to load new state
     def loadState(self,state):
@@ -62,6 +61,11 @@ class OptionsZoneFrame(iS.StateMachinePanel):
         if super().saveState():
             self.filterOptions.saveState()
             self.neighborOptions.saveState()
+
+    # This allows the panels to refresh with new info without loading a new state
+    def update(self):
+        self.statusPanel.update()
+        self.stateOptions.update()
 
     # The events in this frame just pass the event up to the main frame. The events are done like this to make the sub
     # Options classes more robust. They only reference their master this way, and not their master's master.

@@ -50,8 +50,8 @@ imageState = {imageStateTraits.IMAGE_OPENED:False,
                 imageStateTraits.IMAGE:emptyImage.copy(),imageStateTraits.FILTERED_IMAGE:emptyImage.copy(),
                 imageStateTraits.NEIGHBOR_IMAGE:emptyImage.copy(),
                 imageStateTraits.CELLS:[],imageStateTraits.CELL_INDEX:0,
-                imageStateTraits.FILTER_DIAMETER:0,imageStateTraits.SIGMA_COLOR:0,
-                imageStateTraits.SIGMA_SPACE:0,imageStateTraits.ADAPTIVE_BLOCKSIZE:0,
+                imageStateTraits.FILTER_DIAMETER:1,imageStateTraits.SIGMA_COLOR:0,
+                imageStateTraits.SIGMA_SPACE:0,imageStateTraits.ADAPTIVE_BLOCKSIZE:3,
                 imageStateTraits.DEVIATION:15,imageStateTraits.MAX_NEIGHBHOR_DIST:80000,
                 imageStateTraits.UPPER_CUTOFF_DIST:5000}
 
@@ -70,6 +70,9 @@ class StateMachinePanel(tk.Frame):
     # Only saves config if the image is already opened, otherwise it returns a false flag for downstream to deal with
     def saveState(self):
         return self.state[imageStateTraits.IMAGE_OPENED]
+    # Allows frame to update without loading a new state
+    def update(self):
+        pass
     # This sets the state back to the default
     def reset(self):
         self.state=imageState.copy()
