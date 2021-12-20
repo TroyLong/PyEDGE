@@ -1,5 +1,8 @@
 # PyEDGE TODO List
 
+### Code Structure
+- [ ] I'm importing through modules, but not consistant at all
+
 ### Analysis Goals by Priority
 - [ ] Fix the neighbor analysis so it removes neighbors when analysis is rerun.
 - [ ] Fix the intersection neighbor filter.
@@ -18,4 +21,5 @@
 - [x] Re-connected neighbor analysis settings.
 - [x] Fixed the assignment of state to the options frame. Wasn't passed to parent. Used "sys.getrefcount()" to debug and "is" to verify.
 - [x] (fixed) Auto remember -- but not submit -- setting input when state is changed.
-- [x] created parent PlotPanel and ControlPanel classes to streamline codebase
+- [x] Created parent PlotPanel and ControlPanel classes to streamline codebase
+- [x] Split code into multiple packages for source code clarity

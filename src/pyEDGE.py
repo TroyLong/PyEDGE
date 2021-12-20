@@ -6,8 +6,8 @@
 ## Internal Libraries ##
 ########################
 # Gui Libraries
-import gui
+import gui.applicationFrame as applicationFrame
 
-app = gui.App()
+app = applicationFrame.App()
 app.master.title("PyEDGE")
 app.mainloop()
