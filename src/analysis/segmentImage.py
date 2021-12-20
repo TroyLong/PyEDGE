@@ -100,7 +100,6 @@ def segmentImage(image,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=1
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
         cellDict[ct.AREA] = cv.contourArea(contour)
         cellDict[ct.RADIUS] = np.sqrt(cellDict[ct.AREA]/np.pi)
-        cellDict[ct.NEIGHBORGUESSES] = list()
         cellDict[ct.NEIGHBORS] = list()
         cells.append(cellDict)
     return cells, image

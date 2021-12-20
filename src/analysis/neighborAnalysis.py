@@ -13,6 +13,7 @@ import cv2 as cv
 ## Internal Libraries ##
 ########################
 from dataTypes.cell import cellTraits as ct
+from dataTypes.cellNeighbor import cellNeighborTraits as cnt
 import dataTypes.imageState as iS
 from dataTypes.imageState import imageStateTraits as iST
 from . import neighborFilters as nf
@@ -56,4 +57,4 @@ def drawNeighborAnalysis(state):
     for cell in state[iST.CELLS]:
         cv.circle(state[iST.NEIGHBOR_IMAGE], (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
         for neighbor in cell[ct.NEIGHBORS]:
-            cv.line(state[iST.NEIGHBOR_IMAGE],cell[ct.CENTER],neighbor[ct.CENTER],(132,124,255), 2)
+            cv.line(state[iST.NEIGHBOR_IMAGE],cell[ct.CENTER],neighbor[cnt.CELL][ct.CENTER],(132,124,255), 2)

@@ -13,7 +13,8 @@ from anytree import NodeMixin, PreOrderIter
 ## Internal Libraries ##
 ########################
 from dataTypes.cell import cellTraits as ct
-
+from dataTypes.cellNeighbor import cellNeighbor
+from dataTypes.cellNeighbor import cellNeighborTraits as cnt
 
 Serial = 0
 BodySerial = 0
@@ -72,8 +73,11 @@ class treeNode(NodeMixin):
     # Finds distances to neighbors and cell area for initial guess
     def findNeighborDistances(self,cell):
         if(self.isNodeSingleOccupied):
-            cell[ct.NEIGHBORGUESSES].append((self.cells[0],self._neighborCellCenterOfMass(cell)))
-    def _neighborCellCenterOfMass(self,cell):
+            neighborCell = cellNeighbor.copy()
+            neighborCell[cnt.CELL] = self.cells[0]
+            neighborCell[cnt.DISTANCE_TO_BORDER] = self._neighborCellDistanceToBorder(cell)
+            cell[ct.NEIGHBORS].append(neighborCell)
+    def _neighborCellDistanceToBorder(self,cell):
         return dist(cell[ct.CENTER],self.centerOfMass)-(np.sqrt(cell[ct.AREA]/np.pi))
 
 
