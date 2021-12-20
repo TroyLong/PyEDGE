@@ -13,6 +13,7 @@
 - [ ] Set values of the gui to be rescalable. Not important now, but will help small screen users.
 
 ### Github and Code Analysis Goals by Priority
+- [ ] Just looked at the number of comments. Doesn't match even remotely. All past data is no bueno
 - [ ] Have the most up to date code analysis replace the current one on the readme.
 - [ ] Learn new metrics that might be interesting to analyize.
 
