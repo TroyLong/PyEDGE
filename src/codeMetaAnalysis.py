@@ -15,6 +15,8 @@ import os
 import sys
 from datetime import datetime
 
+from gui import controlPanels
+
 date = datetime.now()
 imageFileDate = date.strftime("%Y_%m_%d-%I:%M:%S_%p")
 analysisDate = date.strftime("%m/%d%Y/ - (%I:%M:%S %p)")
@@ -33,15 +35,19 @@ percentCommentsToLinesBySection = list()
 # Main File
 filesBySection.append(['pyEDGE.py'])
 # Image Analysis Files
-filesBySection.append(['cell.py','segmentImage.py'])
+filesBySection.append(['dataTypes/cell.py','analysis/segmentImage.py'])
 # Neighbor Analysis Files
-filesBySection.append(['mergeSort.py','neighborAnalysis.py','neighborFilters.py','tree.py','walkTree.py'])
+filesBySection.append(['analysis/mergeSort.py','analysis/neighborAnalysis.py','analysis/neighborFilters.py','analysis/tree.py','analysis/walkTree.py'])
 # Multi-Neighbor Analysis Files
-filesBySection.append(['imageState.py'])
+filesBySection.append(['dataTypes/imageState.py'])
 # Gui Files
-filesBySection.append(['gui.py','graphFrame.py','optionsFrame.py','controlPanel.py','plotPanel.py','topMenu.py'])
+filesBySection.append(['gui/applicationFrame.py','gui/graphFrame.py','gui/optionsFrame.py','gui/topMenu.py'])
+filesBySection[-1].extend(['gui/controlPanels/controlPanel.py','gui/controlPanels/cellFocusPanel.py','gui/controlPanels/controlPanel.py',
+                            'gui/controlPanels/filterOptionsPanel.py','gui/controlPanels/imageStatePanel.py',
+                            'gui/controlPanels/neighborOptionsPanel.py','gui/controlPanels/statusPanel.py'])
+filesBySection[-1].extend(['gui/plotPanels/plotPanel.py','gui/plotPanels/histPanel.py','gui/plotPanels/imagePanel.py'])
 # Progress Analysis Files
-filesBySection.append(['progressAnalysis.py'])
+filesBySection.append(['codeMetaAnalysis.py'])
 
 for section in filesBySection:
     lineNumbersBySection.append(0)
