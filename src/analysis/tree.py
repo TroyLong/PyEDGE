@@ -70,13 +70,18 @@ class treeNode(NodeMixin):
         Serial += 1
 
 
+#TODO:: Source of woe and agony. Fix this after the break!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # Finds distances to neighbors and cell area for initial guess
     def findNeighborDistances(self,cell):
         if(self.isNodeSingleOccupied):
             neighborCell = cellNeighbor.copy()
             neighborCell[cnt.CELL] = self.cells[0]
             neighborCell[cnt.DISTANCE_TO_BORDER] = self._neighborCellDistanceToBorder(cell)
-            cell[ct.NEIGHBORS].append(neighborCell)
+            # TODO:: This is the source of the broken histogram################################################################################################
+            # TODO:: Is this even proper? This is a bad way to handle this, but I need to see if it works for now
+            tempList = list(cell[ct.NEIGHBORS])
+            tempList.append(neighborCell)
+            cell[ct.NEIGHBORS] = tuple(tempList)
     def _neighborCellDistanceToBorder(self,cell):
         return dist(cell[ct.CENTER],self.centerOfMass)-(np.sqrt(cell[ct.AREA]/np.pi))
 

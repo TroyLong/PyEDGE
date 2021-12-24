@@ -1,14 +1,3 @@
-These are good options for the image analysis
-
-self.deviation = 15
-self.maxNeighborDistance = 80000
-self.upperCutoffDistance = 5000
-
 I should probably depend more on tuples. It would take a page out of functional programming. Tests need to be
 run to know if the rewrite is faster than the overwrite in python with my data. These results should be stored
 in the code analysis section of my github.
-
-number of neighbors is being added each time to the CELL data structure
-hint for later: self.state[iST.CELLS][cell][ct.NEIGHBORS] is appending and not replacing
-providing a immutable data type for this might be a solution, as it ensures replacement and not simple appending.
-This data structure needs to be reanalyized anyways to better match the current design of the program.

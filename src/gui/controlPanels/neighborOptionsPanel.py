@@ -35,19 +35,19 @@ class NeighborOptionsPanel(cP.ControlPanel):
         optionLabel = tk.Label(self,text="Neighbor Distance Deviation:")
         optionLabel.grid(row=row,column=0,sticky="e")
         self.deviationEntry = tk.Entry(self)
-        self.deviationEntry.insert(0,"15")
+        self.deviationEntry.insert(0,"15.0")
         self.deviationEntry.grid(row=row,column=1)
     def _createMaxNeighborDistanceOption(self,row):
         optionLabel = tk.Label(self,text="Maximum Distance to Neighbors:")
         optionLabel.grid(row=row,column=0,sticky="e")
         self.maxNeighborDistanceEntry = tk.Entry(self)
-        self.maxNeighborDistanceEntry.insert(0,"80000")
+        self.maxNeighborDistanceEntry.insert(0,"80000.0")
         self.maxNeighborDistanceEntry.grid(row=row,column=1)
     def _createUpperCutoffDistanceOption(self,row):
         optionLabel = tk.Label(self,text="Tree sorting cutoff distance:")
         optionLabel.grid(row=row,column=0,sticky="e")
         self.upperCutoffDistanceEntry = tk.Entry(self)
-        self.upperCutoffDistanceEntry.insert(0,"75")
+        self.upperCutoffDistanceEntry.insert(0,"5000.0")
         self.upperCutoffDistanceEntry.grid(row=row,column=1)
     def _createNeighborOptionsSubmitButton(self,row):
         optionsSubmitButton = tk.Button(self,text="Submit",command=self.__optionsSubmit)
@@ -73,4 +73,3 @@ class NeighborOptionsPanel(cP.ControlPanel):
             self.state[iST.DEVIATION] = self._getFloatEntry(self.state[iST.DEVIATION],self.deviationEntry)
             self.state[iST.MAX_NEIGHBHOR_DIST] = self._getFloatEntry(self.state[iST.MAX_NEIGHBHOR_DIST],self.maxNeighborDistanceEntry)
             self.state[iST.UPPER_CUTOFF_DIST] = self._getFloatEntry(self.state[iST.UPPER_CUTOFF_DIST],self.upperCutoffDistanceEntry)
-

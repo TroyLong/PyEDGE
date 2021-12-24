@@ -47,7 +47,7 @@ class OptionsZoneFrame(iS.StateMachinePanel):
         self.cellFocusPanel = CellFocusPanel(self, state=self.state)
         self.cellFocusPanel.grid(row=1,column=column,padx=5)
 
-#TODO:: Overwritting the old stuff, and not really running filter any more
+    #TODO:: Overwritting the old stuff, and not really running filter any more
     # Called to load new state
     def loadState(self,state):
         self.saveState()
@@ -106,4 +106,3 @@ class OptionsZoneFrame(iS.StateMachinePanel):
         return self.master.getTotalStatesCount()
     def getStatusMessage(self):
         return self.master.getStatusMessage()
-

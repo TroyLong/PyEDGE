@@ -76,9 +76,11 @@ class App(tk.Frame):
         self.__loadCurrentStateToAll()
     # Imaging Events
     def __updateFilterOptions(self,event):
+        iS.printState(self.imageStateList[self.imageStateIndex])
         self.graphFrame.updateFilterOptions()
     # Neighbor Analysis Events
     def __updateNeighborOptions(self,event):
+        iS.printState(self.imageStateList[self.imageStateIndex])
         self.graphFrame.updateNeighborOptions()
     def __previousCell(self,event):
         pass

@@ -41,7 +41,7 @@ class imageStateTraits(Enum):
 emptyImage = np.zeros(np.shape([1,1,3]),dtype=np.uint8)
 
 
-
+#TODO:: change cells to tuple
 # A dictionary is used over a traditional object for speed
 imageState = {imageStateTraits.IMAGE_OPENED:False,
                 imageStateTraits.IMAGE:emptyImage.copy(),imageStateTraits.FILTERED_IMAGE:emptyImage.copy(),
@@ -49,9 +49,25 @@ imageState = {imageStateTraits.IMAGE_OPENED:False,
                 imageStateTraits.CELLS:[],imageStateTraits.CELL_INDEX:0,
                 imageStateTraits.FILTER_DIAMETER:1,imageStateTraits.SIGMA_COLOR:0,
                 imageStateTraits.SIGMA_SPACE:0,imageStateTraits.ADAPTIVE_BLOCKSIZE:3,
-                imageStateTraits.DEVIATION:15,imageStateTraits.MAX_NEIGHBHOR_DIST:80000,
-                imageStateTraits.UPPER_CUTOFF_DIST:5000}
+                imageStateTraits.DEVIATION:15.0,imageStateTraits.MAX_NEIGHBHOR_DIST:80000.0,
+                imageStateTraits.UPPER_CUTOFF_DIST:5000.0}
 
+
+# TODO:: This should probably go in the status panel. WOW it's already paid for itself
+# Debug tool that prints state in a readable format
+def printState(imgState):
+    print("  \n######  STATE PRINTOUT  ######"
+            "\nImage Created:         " + str(imgState[imageStateTraits.IMAGE_OPENED]) +
+            "\n######  Filter Options  ######" +
+            "\nFilter Diameter:       " + str(imgState[imageStateTraits.FILTER_DIAMETER]) +
+            "\nSigma Color:           " + str(imgState[imageStateTraits.SIGMA_COLOR]) +
+            "\nSimga Space:           " + str(imgState[imageStateTraits.SIGMA_SPACE]) +
+            "\nAdaptive Blocksize:    " + str(imgState[imageStateTraits.ADAPTIVE_BLOCKSIZE]) +
+            "\n######  Neighbor Options #####" +
+            "\nDeviation:             " + str(imgState[imageStateTraits.DEVIATION]) + 
+            "\nMax Neighbor Distance: " + str(imgState[imageStateTraits.MAX_NEIGHBHOR_DIST]) +
+            "\nUpper Cutoff Distance: " + str(imgState[imageStateTraits.UPPER_CUTOFF_DIST]) +
+            "\n\n")
 
 
 # This is used by all panels and such that are handed the state

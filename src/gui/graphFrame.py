@@ -50,8 +50,8 @@ class GraphZoneFrame(iS.StateMachinePanel):
     def updateNeighborOptions(self):
         if self.state[iST.IMAGE_OPENED]:
             self.__createNeighborImage()
-            #TODO:: Do I still use these functions?
-            #Yes, but why?
+            # TODO:: Do I still use these functions?
+            # Yes, but why?
             self.__loadImages()
 
     # These functions create the spaces where the images can be placed

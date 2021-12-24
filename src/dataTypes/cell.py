@@ -15,4 +15,6 @@ class cellTraits(Enum):
     NEIGHBORS = auto()
 
 # A dictionary is used over a traditional object for speed
+# TODO:: I'm not sure if I should use a tuple or a list for neighbors seeing as how often it will be changed
+# TODO:: I need to change verticies to tuple
 cell = {cellTraits.CENTER:(0,0), cellTraits.VERTICIES:list(), cellTraits.AREA:0, cellTraits.RADIUS:0, cellTraits.NEIGHBORS:tuple()}
