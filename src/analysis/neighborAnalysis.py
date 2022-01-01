@@ -15,7 +15,7 @@ import cv2 as cv
 from dataTypes.cell import cellTraits as ct
 from dataTypes.cellNeighbor import cellNeighborTraits as cnt
 import dataTypes.imageState as iS
-from dataTypes.imageState import imageStateTraits as iST
+from dataTypes.imageStateTraits import imageStateTraits as iST
 from . import neighborFilters as nf
 from . import walkTree as walkTree
 from . import tree as tree
@@ -24,7 +24,7 @@ from . import tree as tree
 
 ## Only run through __createNeighborImage in graphFrame.py or another simular function. NEVER ON ITS OWN!!!
     
-def processNeighorAnalysis(state):
+def processNeighborAnalysis(state):
     runTreeApprox(state)
     runNeighborFilters(state)
     drawNeighborAnalysis(state)
@@ -48,7 +48,7 @@ def runTreeApprox(state):
 
 # This reduces the list of possible neighbors by throwing out neighbors that don't pass a series of tests
 def runNeighborFilters(state):
-    nf.distanceFilter(state[iST.CELLS],state[iST.DEVIATION])
+    state[iST.CELLS] = nf.distanceFilter(state[iST.CELLS],state[iST.DEVIATION])
     nf.passThroughMultipleAreasFilter(state[iST.CELLS],state[iST.NEIGHBOR_IMAGE])
     
     
