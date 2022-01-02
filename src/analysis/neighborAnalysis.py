@@ -1,5 +1,3 @@
-
-# TODO:: This is appending the neighbor list even when it should be starting over. Problem probably in filters
 ########################
 ##        About       ##
 ########################

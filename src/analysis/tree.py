@@ -72,8 +72,7 @@ class treeNode(NodeMixin):
 
 
     # Functional Form
-    # This should be related to cellDist somehow
-    # TODO:: Source of woe and agony. Fix this after the break!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # This should be more related to cellDist
     # Finds distances to neighbors and cell area for initial guess
     def buildNeighborCell(self,cell):
         if(self.isNodeSingleOccupied):
