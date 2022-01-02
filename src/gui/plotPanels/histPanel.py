@@ -16,7 +16,7 @@ from matplotlib.backends.backend_tkagg import (
 ########################
 from dataTypes.cell import cellTraits as ct
 import dataTypes.imageState as iS
-from dataTypes.imageState import imageStateTraits as iST
+from dataTypes.imageStateTraits import imageStateTraits as iST
 from gui.plotPanels import plotPanel as pP
 
 

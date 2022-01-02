@@ -10,7 +10,7 @@ import dataTypes.imageState as iS
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.imageState import imageStateTraits as iST
+from dataTypes.imageStateTraits import imageStateTraits as iST
 from . import controlPanel as cP
 
 

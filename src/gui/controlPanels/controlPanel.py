@@ -10,10 +10,10 @@
 ########################
 import tkinter as tk
 import dataTypes.imageState as iS
-
+import gui.stateMachineFrame as sMF
 
 # ControlPanel parent class for inheritance. Regulates updates to the status banner
-class ControlPanel(iS.StateMachinePanel):
+class ControlPanel(sMF.StateMachineFrame):
     def __init__(self, master=None, state=iS.imageState.copy(),title = ""):
         super().__init__(master,state)
         # Text that will display in the status box

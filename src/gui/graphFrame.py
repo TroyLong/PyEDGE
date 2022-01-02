@@ -15,13 +15,15 @@ import matplotlib.pyplot as plt
 ########################
 import analysis.segmentImage as sI
 import analysis.neighborAnalysis as nA
+import analysis.cellFilters as cF
 import dataTypes.imageState as iS
-from dataTypes.imageState import imageStateTraits as iST
+import gui.stateMachineFrame as sMF
+from dataTypes.imageStateTraits import imageStateTraits as iST
 from gui.plotPanels.imagePanel import ImagePanel
 from gui.plotPanels.histPanel import HistPanel
 
 
-class GraphZoneFrame(iS.StateMachinePanel):
+class GraphZoneFrame(sMF.StateMachineFrame):
     def __init__(self, master=None,state=iS.imageState.copy()):
         super().__init__(master)
         self.master = master
@@ -84,9 +86,11 @@ class GraphZoneFrame(iS.StateMachinePanel):
                                                                                 bfSigmaColor=self.state[iST.SIGMA_COLOR],
                                                                                 bfSigmaSpace=self.state[iST.SIGMA_SPACE],
                                                                                 atBlockSize=self.state[iST.ADAPTIVE_BLOCKSIZE])
+        #TODO:: I think I should have a more general function call eventually
+        self.state[iST.CELLS] = cF.removeOutlierSmallRadii(self.state,1)
     def __createNeighborImage(self):
         self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
-        nA.processNeighorAnalysis(self.state)
+        nA.processNeighborAnalysis(self.state)
 
     # These functions load pre-created images to the graphs
     def __loadImages(self):

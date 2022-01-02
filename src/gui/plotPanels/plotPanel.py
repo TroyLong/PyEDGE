@@ -15,10 +15,10 @@ from matplotlib.backends.backend_tkagg import (
 ## Internal Libraries ##
 ########################
 import dataTypes.imageState as iS
-
+import gui.stateMachineFrame as sMF
 
 # PlotPanel parent class for inheritance. Creates figures
-class PlotPanel(iS.StateMachinePanel):
+class PlotPanel(sMF.StateMachineFrame):
     def __init__(self, master=None,state=iS.imageState.copy(),title = ""):
         super().__init__(master,state)
         self.title = title

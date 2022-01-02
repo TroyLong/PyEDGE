@@ -1,6 +1,3 @@
-# TODO:: The states being passed down to graphFrame and optionsFrame are not the same.
-# This is creating more memory, and overhead. I need to make the thing work by reference
-
 ########################
 ##        About       ##
 ########################
@@ -18,7 +15,7 @@ from . import topMenu as tm
 from . import graphFrame as gf
 from . import optionsFrame as of
 import dataTypes.imageState as iS
-from dataTypes.imageState import imageStateTraits as iST
+from dataTypes.imageStateTraits import imageStateTraits as iST
 
 
 class App(tk.Frame):

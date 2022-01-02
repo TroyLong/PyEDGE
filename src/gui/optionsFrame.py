@@ -3,22 +3,18 @@
 ########################
 # This frame holds settings for the image processing, and neighbor guessing.
 ########################
-## Imported Libraries ##
-########################
-import dataTypes.imageState as iS
-from dataTypes.imageState import imageStateTraits as iST
-########################
 ## Internal Libraries ##
 ########################
+import gui.stateMachineFrame as sMF
 from gui.controlPanels.statusPanel import StatusPanel
 from gui.controlPanels.imageStatePanel import ImageStatePanel
 from gui.controlPanels.filterOptionsPanel import FilterOptionsPanel
 from gui.controlPanels.neighborOptionsPanel import NeighborOptionsPanel
 from gui.controlPanels.cellFocusPanel import CellFocusPanel
-
+import dataTypes.imageState as iS
 
 # This is the main Panel Window Section
-class OptionsZoneFrame(iS.StateMachinePanel):
+class OptionsZoneFrame(sMF.StateMachineFrame):
     def __init__(self, master=None, state=iS.imageState.copy()):
         super().__init__(master,state)
         self.__bindEvents()
