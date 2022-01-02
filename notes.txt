@@ -1,3 +1,10 @@
-I should probably depend more on tuples. It would take a page out of functional programming. Tests need to be
-run to know if the rewrite is faster than the overwrite in python with my data. These results should be stored
-in the code analysis section of my github.
+I rewrote much of the code to follow more functional based programming proceedures.
+This fixed a few errors, made the code more readable, and more managable, so it will stay.
+
+I'm having a problem where my neighbor filters are removing viable cells, but not updating their
+neighbors while doing so. Also, there is not a one-to-one relationship between cells and their
+neighbors. I don't like filtering by one-to-one, but I do need to re-afferm that relationship
+between filters in order to ensure reliable data. Currently rerunning the neighbor filters a
+few times fixes this, but that is not an ideal solution.
+
+I'm about ready to start moving to multiple picture processing.

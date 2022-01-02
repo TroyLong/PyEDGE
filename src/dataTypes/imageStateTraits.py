@@ -1,4 +1,9 @@
 ########################
+##        About       ##
+########################
+# This is split from imageState to increase the clarity of imageState
+# And because each file was getting a bit too big to manage
+########################
 ## Imported Libraries ##
 ########################
 from enum import Enum, auto

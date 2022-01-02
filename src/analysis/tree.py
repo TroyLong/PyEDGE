@@ -81,11 +81,6 @@ class treeNode(NodeMixin):
             neighborCell[cNT.CELL] = self.cells[0]
             neighborCell[cNT.DISTANCE_TO_BORDER] = self._neighborCellDistanceToBorder(cell)
             return neighborCell
-            # TODO:: This is the source of the broken histogram################################################################################################
-            # TODO:: Is this even proper? This is a bad way to handle this, but I need to see if it works for now
-            #tempList = list(cell[ct.NEIGHBORS])
-            #tempList.append(neighborCell)
-            #return tuple(tempList)
     def _neighborCellDistanceToBorder(self,cell):
         return ce.cellDist(cell,self.cells[0])-cell[ct.RADIUS]
 

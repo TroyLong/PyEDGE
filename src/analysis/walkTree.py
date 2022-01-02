@@ -1,9 +1,9 @@
-# TODO:: Merge with tree.py
 ########################
 ##        About       ##
 ########################
 # Used to navigate tree.py for the barnes--hut simulation
-# Is currently seprate from tree.py for obsolete reasons
+# Is currently seprate from tree.py because this is a stand alone function right now, while tree is full
+# Of more OOP structures. They might become merged, but not right now.
 ########################
 ## Internal Libraries ##
 ########################

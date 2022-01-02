@@ -1,10 +1,7 @@
 # PyEDGE TODO List
 
-### Code Structure
-- [ ] I'm importing through modules, but not consistant at all
-
 ### Analysis Goals by Priority
-- [ ] Fix the neighbor analysis so it removes neighbors when analysis is rerun. Tied to tree.py. Look for bad comments.
+- [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data.
 - [ ] Fix the intersection neighbor filter.
 
 ### GUI Goals by Cells only store one neighbor list. Priority
@@ -18,7 +15,7 @@
 - [ ] Learn new metrics that might be interesting to analyize.
 
 ### Resently Completed Goals
-- [x] Catch ValueErrors when strings are typed where floats belong in setting panels.
-- [x] (fixed) Auto remember -- but not submit -- setting input when state is changed.
-- [x] Created parent PlotPanel and ControlPanel classes to streamline codebase.
 - [x] Split code into multiple packages for source code clarity.
+- [x] Found consistant way to import modules
+- [x] Fixed the neighbor analysis so it removes neighbors when analysis is rerun. Histogram finally works.
+- [x] Leveraged tuples throughout code, and introduced functional programming techniques.
