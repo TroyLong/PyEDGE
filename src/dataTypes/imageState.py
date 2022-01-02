@@ -23,7 +23,7 @@ emptyImage = np.zeros(np.shape([1,1,3]),dtype=np.uint8)
 imageState = {iST.IMAGE_OPENED:False,
                 iST.IMAGE:emptyImage.copy(),iST.FILTERED_IMAGE:emptyImage.copy(),
                 iST.NEIGHBOR_IMAGE:emptyImage.copy(),
-                iST.CELLS:[],iST.CELL_INDEX:0,
+                iST.CELLS:tuple(),iST.CELL_INDEX:0,
                 iST.MEAN_CELL_RADII:0,
                 iST.FILTER_DIAMETER:1,iST.SIGMA_COLOR:0,
                 iST.SIGMA_SPACE:0,iST.ADAPTIVE_BLOCKSIZE:3,
@@ -35,25 +35,23 @@ imageState = {iST.IMAGE_OPENED:False,
 
 # Finds the mean radii of all the cells in a state
 def meanCellRadii(state):
-    cells = state[iST.CELLS]
     averageRadius = 0
-    for cell in cells:
+    for cell in state[iST.CELLS]:
         averageRadius += cell[cT.RADIUS]
     try:
-        return averageRadius/(len(cells))
+        return averageRadius/(len(state[iST.CELLS]))
     except ZeroDivisionError:
         return 0
 
 # Caluclates the deviation in cell radii
 # There is probably also a library for this
 def cellRadiusDeviation(state):
-    cells = state[iST.CELLS]
     deviation = 0
     meanRadius = meanCellRadii(state)
-    for cell in cells:
+    for cell in state[iST.CELLS]:
         deviation += (cell[cT.RADIUS]-meanRadius)**2
     try:
-        return np.sqrt(deviation/(len(cells)))
+        return np.sqrt(deviation/(len(state[iST.CELLS])))
     except ZeroDivisionError:
         return 0
 

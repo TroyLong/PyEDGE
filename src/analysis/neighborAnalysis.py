@@ -16,7 +16,9 @@ from dataTypes.cell import cellTraits as ct
 from dataTypes.cellNeighbor import cellNeighborTraits as cnt
 import dataTypes.imageState as iS
 from dataTypes.imageStateTraits import imageStateTraits as iST
-from . import neighborFilters as nf
+from analysis.filters.neighborFilters.tooFewNeighborsFilter import tooFewNeighborsFilter
+from analysis.filters.neighborFilters.distanceFilter import distanceFilter
+from analysis.filters.neighborFilters.passThroughMultipleAreasFilter import passThroughMultipleAreasFilter
 from . import walkTree as walkTree
 from . import tree as tree
 
@@ -43,13 +45,20 @@ def runTreeApprox(state):
     #Creates Tree
     root = tree.treeNode(box,list(state[iST.CELLS]),upperCutoff)
     #Finds neighbors of cells using tree structure
-    walkTree.findCloseCells(root,state[iST.CELLS])
+    state[iST.CELLS] = walkTree.findCloseCells(root,state[iST.CELLS])
 
 
+# Knowingly breaks functional programming here
 # This reduces the list of possible neighbors by throwing out neighbors that don't pass a series of tests
 def runNeighborFilters(state):
-    state[iST.CELLS] = nf.distanceFilter(state[iST.CELLS],state[iST.DEVIATION])
-    nf.passThroughMultipleAreasFilter(state[iST.CELLS],state[iST.NEIGHBOR_IMAGE])
+    state[iST.CELLS] = distanceFilter(state,state[iST.DEVIATION])
+    # TODO:: Neighbor lines are still drawing to these?
+    # I think it is because the other cells still think it is a neighbor 
+    # It is going to need a way to check if the neighbor still exists afterwords
+    # Running recursively should get rid of chaining effects.
+    state[iST.CELLS] = tooFewNeighborsFilter(state,1)
+    state[iST.CELLS] = passThroughMultipleAreasFilter(state)
+    
     
     
 # This draws the neighbor lines and the circles on the neighbor image

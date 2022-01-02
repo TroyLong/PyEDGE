@@ -13,6 +13,7 @@ class cellNeighborTraits(Enum):
     CELL = auto()
     DISTANCE_TO_BORDER = auto()
 
+# TODO:: should distance_to_border be distance between each exterior?
 # A dictionary is used over a traditional object for speed
 cellNeighbor = {cellNeighborTraits.CELL:cell.copy(), 
                 cellNeighborTraits.DISTANCE_TO_BORDER:0}

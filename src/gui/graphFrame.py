@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 ########################
 import analysis.segmentImage as sI
 import analysis.neighborAnalysis as nA
-import analysis.cellFilters as cF
+import analysis.filters.cellFilters.cellFilters as cF
 import dataTypes.imageState as iS
 import gui.stateMachineFrame as sMF
 from dataTypes.imageStateTraits import imageStateTraits as iST

@@ -78,6 +78,7 @@ def segmentImage(image,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=1
     #Guess the polygon, and note all vertices
     #This finds the center of mass and mark
     for contour in contours:
+        # Creates copy of cell data structure for cells to be stored in
         cellDict = cell.cell.copy()
         #polygon
         polyEpsilon = 0.025*cv.arcLength(contour,True)
@@ -100,6 +101,6 @@ def segmentImage(image,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=1
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
         cellDict[ct.AREA] = cv.contourArea(contour)
         cellDict[ct.RADIUS] = np.sqrt(cellDict[ct.AREA]/np.pi)
-        cellDict[ct.NEIGHBORS] = list()
         cells.append(cellDict)
-    return cells, image
+    return tuple(cells), image
+    

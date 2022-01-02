@@ -13,8 +13,9 @@ from anytree import NodeMixin, PreOrderIter
 ## Internal Libraries ##
 ########################
 from dataTypes.cell import cellTraits as ct
-from dataTypes.cellNeighbor import cellNeighbor
-from dataTypes.cellNeighbor import cellNeighborTraits as cnt
+import dataTypes.cell as ce
+import dataTypes.cellNeighbor as cN
+from dataTypes.cellNeighbor import cellNeighborTraits as cNT
 
 Serial = 0
 BodySerial = 0
@@ -70,20 +71,23 @@ class treeNode(NodeMixin):
         Serial += 1
 
 
-#TODO:: Source of woe and agony. Fix this after the break!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # Functional Form
+    # This should be related to cellDist somehow
+    # TODO:: Source of woe and agony. Fix this after the break!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # Finds distances to neighbors and cell area for initial guess
-    def findNeighborDistances(self,cell):
+    def buildNeighborCell(self,cell):
         if(self.isNodeSingleOccupied):
-            neighborCell = cellNeighbor.copy()
-            neighborCell[cnt.CELL] = self.cells[0]
-            neighborCell[cnt.DISTANCE_TO_BORDER] = self._neighborCellDistanceToBorder(cell)
+            neighborCell = cN.cellNeighbor.copy()
+            neighborCell[cNT.CELL] = self.cells[0]
+            neighborCell[cNT.DISTANCE_TO_BORDER] = self._neighborCellDistanceToBorder(cell)
+            return neighborCell
             # TODO:: This is the source of the broken histogram################################################################################################
             # TODO:: Is this even proper? This is a bad way to handle this, but I need to see if it works for now
-            tempList = list(cell[ct.NEIGHBORS])
-            tempList.append(neighborCell)
-            cell[ct.NEIGHBORS] = tuple(tempList)
+            #tempList = list(cell[ct.NEIGHBORS])
+            #tempList.append(neighborCell)
+            #return tuple(tempList)
     def _neighborCellDistanceToBorder(self,cell):
-        return dist(cell[ct.CENTER],self.centerOfMass)-(np.sqrt(cell[ct.AREA]/np.pi))
+        return ce.cellDist(cell,self.cells[0])-cell[ct.RADIUS]
 
 
     # Is cell far enough away to be considered seprate
