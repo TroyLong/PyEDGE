@@ -14,4 +14,5 @@ class cellNeighborTraits(Enum):
     DISTANCE_TO_BORDER = auto()
 
 # A dictionary is used over a traditional object for speed
-cellNeighbor = {cellNeighborTraits.CELL:cell.copy(), cellNeighborTraits.DISTANCE_TO_BORDER:0}
+cellNeighbor = {cellNeighborTraits.CELL:cell.copy(), 
+                cellNeighborTraits.DISTANCE_TO_BORDER:0}
