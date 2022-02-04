@@ -26,3 +26,16 @@ def cellDist(cell1, cell2):
 def cellEqual(cell1, cell2):
     return cell1[cellTraits.CENTER] == cell2[cellTraits.CENTER]
     
+
+
+# Returns two new tuples with connection between cell1 and cell2 broken
+def removeNeighborTwoWay(cell1, cell2):
+    cell1Neighbors = removeNeighborOneWay(cell1,cell2)
+    cell2Neighbors = removeNeighborOneWay(cell2,cell1)
+    return cell1Neighbors,cell2Neighbors
+
+# Returns new tuple of cell1's neighbors without cell2.
+def removeNeighborOneWay(cell1, cell2):
+    cellNeighbors = list(cell1[cellTraits.NEIGHBORS].copy())
+    cellNeighbors.remove(cell2)
+    return tuple(cellNeighbors)

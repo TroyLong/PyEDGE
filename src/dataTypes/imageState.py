@@ -17,8 +17,7 @@ from dataTypes.cell import cellTraits as cT
 emptyImage = np.zeros(np.shape([1,1,3]),dtype=np.uint8)
 
 
-#TODO:: I think cell index is for the gui
-#TODO:: change cells to tuple
+
 # A dictionary is used over a traditional object for speed
 imageState = {iST.IMAGE_OPENED:False,
                 iST.IMAGE:emptyImage.copy(),iST.FILTERED_IMAGE:emptyImage.copy(),

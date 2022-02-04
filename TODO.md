@@ -2,9 +2,10 @@
 
 ## Module Goals
 ### Data Types
-- [ ] Design a controlled connection between cells and neighbors
+- [x] Design a controlled connection between cells and neighbors
 
 ### Analysis
+- [ ] Leverage filters to use the remove neighbor functions
 - [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data.
 - [ ] Fix the intersection neighbor filter.
 - [x] Fixed the neighbor analysis so it removes neighbors when analysis is rerun. Histogram finally works.
