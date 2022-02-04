@@ -19,7 +19,7 @@ from analysis.filters.neighborFilters.distanceFilter import distanceFilter
 from analysis.filters.neighborFilters.passThroughMultipleAreasFilter import passThroughMultipleAreasFilter
 from . import walkTree as walkTree
 from . import tree as tree
-
+import analysis.cleanNeighbors as cN
 
 
 ## Only run through __createNeighborImage in graphFrame.py or another simular function. NEVER ON ITS OWN!!!
@@ -49,11 +49,11 @@ def runTreeApprox(state):
 # Knowingly breaks functional programming here
 # This reduces the list of possible neighbors by throwing out neighbors that don't pass a series of tests
 def runNeighborFilters(state):
-    state[iST.CELLS] = distanceFilter(state,state[iST.DEVIATION])
     # TODO:: Neighbor lines are still drawing to these?
     # I think it is because the other cells still think it is a neighbor 
     # It is going to need a way to check if the neighbor still exists afterwords
     # Running recursively should get rid of chaining effects.
+    state[iST.CELLS] = distanceFilter(state,state[iST.DEVIATION])
     state[iST.CELLS] = tooFewNeighborsFilter(state,1)
     state[iST.CELLS] = passThroughMultipleAreasFilter(state)
     

@@ -10,3 +10,5 @@ few times fixes this, but that is not an ideal solution.
 I'm about ready to start moving to multiple picture processing.
 
 I could have a filter for deviation of shortest neighbor distances
+
+cell neighbors do not link back got actual CELLS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
