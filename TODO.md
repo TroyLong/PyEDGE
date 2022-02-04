@@ -1,21 +1,41 @@
 # PyEDGE TODO List
 
-### Analysis Goals by Priority
+## Module Goals
+### Data Types
+- [ ] Design a controlled connection between cells and neighbors
+
+### Analysis
 - [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data.
 - [ ] Fix the intersection neighbor filter.
+- [x] Fixed the neighbor analysis so it removes neighbors when analysis is rerun. Histogram finally works.
 
-### GUI Goals by Cells only store one neighbor list. Priority
+### Multi-Image Analysis
+- [ ] Continue to develop useful functions
+- [ ] Build in appropriate calling to single-state analysis
+- [ ] Ensure data types and large state loading is stable
+
+### GUI
 - [ ] Fix the open menu so it does not throw an error if canceled.
 - [ ] Introduce multi-file image open support.
+- [ ] Integrate a multi-image analysis panel.
 - [ ] Set values of the gui to be rescalable. Not important now, but will help small screen users.
 
-### Github and Code Analysis Goals by Priority
-- [ ] Just looked at the number of comments. Doesn't match even remotely. All past data is no bueno
-- [ ] Have the most up to date code analysis replace the current one on the readme.
-- [ ] Learn new metrics that might be interesting to analyize.
+- - -
 
-### Resently Completed Goals
+## Framework Goals
+### Project Layout
 - [x] Split code into multiple packages for source code clarity.
 - [x] Found consistant way to import modules
-- [x] Fixed the neighbor analysis so it removes neighbors when analysis is rerun. Histogram finally works.
 - [x] Leveraged tuples throughout code, and introduced functional programming techniques.
+
+### Testing
+- [ ] Develop a testing platform using pytest
+
+- - -
+
+## Paradigm Goals
+### Object Oriented
+- [ ] Read on Python specific OOP
+- [ ] Abstractify and build interfaces as program becomes more complex
+### Functional
+- [ ] Continue to isolate "side effects"
