@@ -2,8 +2,8 @@
 ## Internal Libraries ##
 ########################
 import dataTypes.imageState as iS
-from dataTypes.imageStateTraits import imageStateTraits as iST
-from dataTypes.cell import cellTraits as cT
+from dataTypes.dataTypeTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import cellTraits as cT
 
 # Functional Form
 # Removes cells to small to be real cells. Recreates cells to be tuple ready

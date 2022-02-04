@@ -12,10 +12,10 @@ from anytree import NodeMixin, PreOrderIter
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.cell import cellTraits as ct
 import dataTypes.cell as ce
 import dataTypes.cellNeighbor as cN
-from dataTypes.cellNeighbor import cellNeighborTraits as cNT
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
 
 Serial = 0
 BodySerial = 0
@@ -81,12 +81,12 @@ class treeNode(NodeMixin):
             neighborCell[cNT.DISTANCE_TO_BORDER] = self._neighborCellDistanceToBorder(cell)
             return neighborCell
     def _neighborCellDistanceToBorder(self,cell):
-        return ce.cellDist(cell,self.cells[0])-cell[ct.RADIUS]
+        return ce.cellDist(cell,self.cells[0])-cell[cT.RADIUS]
 
 
     # Is cell far enough away to be considered seprate
     def isInternalNodeWithinCutoff(self,cell):
-        cellToNode = np.sqrt((cell[ct.CENTER][0]-self.centerOfMass[0])**2+(cell[ct.CENTER][1]-self.centerOfMass[1])**2)
+        cellToNode = np.sqrt((cell[cT.CENTER][0]-self.centerOfMass[0])**2+(cell[cT.CENTER][1]-self.centerOfMass[1])**2)
         cellToNode = cellToNode if cellToNode != 0 else 0.000000001
         sd = self.rect.width/cellToNode
         return  sd >= self.cutoffThreshold
@@ -94,9 +94,9 @@ class treeNode(NodeMixin):
     def __findCenterOfMass(self):
         self.totalArea = 0
         for cell in self.cells:
-            self.centerOfMass[0] += cell[ct.AREA]*cell[ct.CENTER][0]
-            self.centerOfMass[1] += cell[ct.AREA]*cell[ct.CENTER][1]
-            self.totalArea += cell[ct.AREA]
+            self.centerOfMass[0] += cell[cT.AREA]*cell[cT.CENTER][0]
+            self.centerOfMass[1] += cell[cT.AREA]*cell[cT.CENTER][1]
+            self.totalArea += cell[cT.AREA]
         if self.totalArea == 0:
             self.totalArea = 0.000000001
         self.centerOfMass[0] /= self.totalArea
@@ -118,9 +118,9 @@ class treeNode(NodeMixin):
         for cell in list(self.cells):
             for i in range(len(self.childRects)):
                 #which the cell in the childRect being checked
-                if ((cell[ct.CENTER][0] >= self.childRects[i].x)
-                        and (cell[ct.CENTER][0] < (self.childRects[i].x+self.childRects[i].width))
-                        and (cell[ct.CENTER][1] >= self.childRects[i].y)
-                        and (cell[ct.CENTER][1] < (self.childRects[i].y+self.childRects[i].height))):
+                if ((cell[cT.CENTER][0] >= self.childRects[i].x)
+                        and (cell[cT.CENTER][0] < (self.childRects[i].x+self.childRects[i].width))
+                        and (cell[cT.CENTER][1] >= self.childRects[i].y)
+                        and (cell[cT.CENTER][1] < (self.childRects[i].y+self.childRects[i].height))):
                     self.childcellPartitions[i].append(cell)
                     self.cells.remove(cell)

@@ -6,7 +6,7 @@ import tkinter as tk
 ## Internal Libraries ##
 ########################
 import dataTypes.imageState as iS
-from dataTypes.imageStateTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 
 # This is used by all panels and such that are handed the state
 class StateMachineFrame(tk.Frame):

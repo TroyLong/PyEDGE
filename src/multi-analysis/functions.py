@@ -1,9 +1,9 @@
-from dataTypes.cell import cellTraits as ct
 from dataTypes.cell import cell
 from dataTypes.cell import cellDist
-from dataTypes.cellNeighbor import cellNeighborTraits as cnt
 from dataTypes.cellNeighbor import cellNeighbor
-from dataTypes.imageState import imageStateTraits as ist
+from dataTypes.dataTypeTraits import cellTraits as ct
+from dataTypes.dataTypeTraits import cellNeighborTraits as cnt
+from dataTypes.dataTypeTraits import imageStateTraits as ist
 from dataTypes.imageState import imageState
 
 from numpy import sqrt

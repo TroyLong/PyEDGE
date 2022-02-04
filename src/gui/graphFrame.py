@@ -18,7 +18,7 @@ import analysis.neighborAnalysis as nA
 import analysis.filters.cellFilters.cellFilters as cF
 import dataTypes.imageState as iS
 import gui.stateMachineFrame as sMF
-from dataTypes.imageStateTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 from gui.plotPanels.imagePanel import ImagePanel
 from gui.plotPanels.histPanel import HistPanel
 

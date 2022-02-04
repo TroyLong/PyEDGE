@@ -14,9 +14,9 @@ from matplotlib.backends.backend_tkagg import (
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.cell import cellTraits as ct
 import dataTypes.imageState as iS
-from dataTypes.imageStateTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 from gui.plotPanels import plotPanel as pP
 
 
@@ -33,7 +33,7 @@ class HistPanel(pP.PlotPanel):
         # Only draw histogram if there are cells to create it with
         if len(self.state[iST.CELLS]):
             for cell in self.state[iST.CELLS]:
-                neighborNumbers.append(len(cell[ct.NEIGHBORS]))
+                neighborNumbers.append(len(cell[cT.NEIGHBORS]))
             self.plotFig.clf()
             self.histPlt = self.plotFig.add_subplot(111)        
             self.histPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))

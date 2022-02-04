@@ -4,27 +4,22 @@
 from enum import Enum, auto
 from math import dist
 from types import CellType
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
 
 
-# The enum is for type completion for my cell dictionary's keys.
-class cellTraits(Enum):
-    CENTER = auto()
-    VERTICIES = auto()
-    AREA = auto()
-    RADIUS = auto()
-    NEIGHBORS = auto()
 
 # A dictionary is used over a traditional object for speed
 # TODO:: I'm not sure if I should use a tuple or a list for
 # neighbors seeing as how often it will be changed
-cell = {cellTraits.CENTER:(0,0), cellTraits.VERTICIES:tuple(),
-        cellTraits.AREA:0, cellTraits.RADIUS:0, cellTraits.NEIGHBORS:tuple()}
+cell = {cT.CENTER:(0,0), cT.VERTICIES:tuple(),
+        cT.AREA:0, cT.RADIUS:0, cT.NEIGHBORS:tuple()}
 
 def cellDist(cell1, cell2):
-    return dist(cell1[cellTraits.CENTER],cell2[cellTraits.CENTER])
+    return dist(cell1[cT.CENTER],cell2[cT.CENTER])
 
 def cellEqual(cell1, cell2):
-    return cell1[cellTraits.CENTER] == cell2[cellTraits.CENTER]
+    return cell1[cT.CENTER] == cell2[cT.CENTER]
     
 
 
@@ -36,6 +31,9 @@ def removeNeighborTwoWay(cell1, cell2):
 
 # Returns new tuple of cell1's neighbors without cell2.
 def removeNeighborOneWay(cell1, cell2):
-    cellNeighbors = list(cell1[cellTraits.NEIGHBORS].copy())
+    cellNeighbors = list(cell1[cT.NEIGHBORS].copy())
     cellNeighbors.remove(cell2)
     return tuple(cellNeighbors)
+
+def sortNeighbors(cell):
+    return sorted(cell[cT.NEIGHBORS], key=lambda cellN: cellN[cNT.DISTANCE_TO_BORDER])  

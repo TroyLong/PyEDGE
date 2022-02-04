@@ -9,8 +9,8 @@ import numpy as np
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.imageStateTraits import imageStateTraits as iST
-from dataTypes.cell import cellTraits as cT
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 
 
 # Provides a basic empty image for the default state

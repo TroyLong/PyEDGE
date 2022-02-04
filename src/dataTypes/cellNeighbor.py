@@ -6,13 +6,10 @@ from enum import Enum, auto
 ## Internal Libraries ##
 ########################
 from dataTypes.cell import cell
+from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
 
 
-# The enum is for type completion for my cell's neighbor's dictionary's keys.
-class cellNeighborTraits(Enum):
-    CELL = auto()
-    DISTANCE_TO_BORDER = auto()
 
 # A dictionary is used over a traditional object for speed
-cellNeighbor = {cellNeighborTraits.CELL:cell, 
-                cellNeighborTraits.DISTANCE_TO_BORDER:0}
+cellNeighbor = {cNT.CELL:cell, 
+                cNT.DISTANCE_TO_BORDER:0}

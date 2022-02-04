@@ -1,14 +1,24 @@
-########################
-##        About       ##
-########################
-# This is split from imageState to increase the clarity of imageState
-# And because each file was getting a bit too big to manage
-########################
-## Imported Libraries ##
-########################
 from enum import Enum, auto
 
 # The enum is for type completion for my dictionary's keys.
+
+
+
+class cellTraits(Enum):
+    CENTER = auto()
+    VERTICIES = auto()
+    AREA = auto()
+    RADIUS = auto()
+    NEIGHBORS = auto()
+
+
+
+class cellNeighborTraits(Enum):
+    CELL = auto()
+    DISTANCE_TO_BORDER = auto()
+
+
+
 class imageStateTraits(Enum):
     # Locks commands that rely on an image to work until an image is loaded. Being a boolean should make it faster
     IMAGE_OPENED = auto()
@@ -36,3 +46,6 @@ class imageStateTraits(Enum):
     MAX_NEIGHBHOR_DIST = auto()
     #Allows a first order approximation to speed up tree branching. Small numbers don't look far enough, large numbers take a long time
     UPPER_CUTOFF_DIST = auto()
+
+
+

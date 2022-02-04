@@ -10,10 +10,10 @@ import cv2 as cv
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.cell import cellTraits as ct
-from dataTypes.cellNeighbor import cellNeighborTraits as cnt
 import dataTypes.imageState as iS
-from dataTypes.imageStateTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 from analysis.filters.neighborFilters.tooFewNeighborsFilter import tooFewNeighborsFilter
 from analysis.filters.neighborFilters.distanceFilter import distanceFilter
 from analysis.filters.neighborFilters.passThroughMultipleAreasFilter import passThroughMultipleAreasFilter
@@ -62,6 +62,6 @@ def runNeighborFilters(state):
 # This draws the neighbor lines and the circles on the neighbor image
 def drawNeighborAnalysis(state):
     for cell in state[iST.CELLS]:
-        cv.circle(state[iST.NEIGHBOR_IMAGE], (cell[ct.CENTER][0],cell[ct.CENTER][1]), int(cell[ct.RADIUS]), (255, 255, 0), 2)
-        for neighbor in cell[ct.NEIGHBORS]:
-            cv.line(state[iST.NEIGHBOR_IMAGE],cell[ct.CENTER],neighbor[cnt.CELL][ct.CENTER],(132,124,255), 2)
+        cv.circle(state[iST.NEIGHBOR_IMAGE], (cell[cT.CENTER][0],cell[cT.CENTER][1]), int(cell[cT.RADIUS]), (255, 255, 0), 2)
+        for neighbor in cell[cT.NEIGHBORS]:
+            cv.line(state[iST.NEIGHBOR_IMAGE],cell[cT.CENTER],neighbor[cNT.CELL][cT.CENTER],(132,124,255), 2)

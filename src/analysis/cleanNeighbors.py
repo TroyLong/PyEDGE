@@ -9,10 +9,10 @@
 ## Internal Libraries ##
 ########################
 import dataTypes.cell as ce
-from dataTypes.cell import cellTraits as ct
-from dataTypes.cellNeighbor import cellNeighborTraits as cnt
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
 import dataTypes.imageState as iS
-from dataTypes.imageStateTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 from analysis.filters.neighborFilters.tooFewNeighborsFilter import tooFewNeighborsFilter
 from analysis.filters.neighborFilters.distanceFilter import distanceFilter
 from analysis.filters.neighborFilters.passThroughMultipleAreasFilter import passThroughMultipleAreasFilter
@@ -22,15 +22,15 @@ from . import tree as tree
 def cleanNeighbors(state):
     cells = state[iST.CELLS]
     for cell in cells:
-        for neighbor in cell[ct.NEIGHBORS]:
-            neighbor = neighbor[cnt.CELL]
+        for neighbor in cell[cT.NEIGHBORS]:
+            neighbor = neighbor[cNT.CELL]
             cleanNeighbor(cell, neighbor)
 
 
 # This knowingly breaks functional form
 def cleanNeighbor(cell, neighbor):
     if not doesNeighborContainCell(cell, neighbor):
-        neighbor[ct.NEIGHBORS] = tuple(list(neighbor[ct.NEIGHBORS]).append(cell))
+        neighbor[cT.NEIGHBORS] = tuple(list(neighbor[cT.NEIGHBORS]).append(cell))
         print("Recovered")
 
 

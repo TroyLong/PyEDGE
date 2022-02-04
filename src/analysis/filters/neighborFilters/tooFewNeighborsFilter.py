@@ -5,8 +5,8 @@
 ########################
 ## Imported Libraries ##
 ########################
-from dataTypes.cell import cellTraits as cT
-from dataTypes.imageStateTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 
 
 # Functional Form

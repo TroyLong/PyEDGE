@@ -15,7 +15,7 @@ from . import topMenu as tm
 from . import graphFrame as gf
 from . import optionsFrame as of
 import dataTypes.imageState as iS
-from dataTypes.imageStateTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 
 
 class App(tk.Frame):

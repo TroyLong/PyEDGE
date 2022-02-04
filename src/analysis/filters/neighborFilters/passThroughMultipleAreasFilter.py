@@ -9,9 +9,9 @@ import numpy as np
 ########################
 ## Imported Libraries ##
 ########################
-from dataTypes.cell import cellTraits as cT
-from dataTypes.cellNeighbor import cellNeighborTraits as cnt
-from dataTypes.imageStateTraits import imageStateTraits as iST
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import cellNeighborTraits as cnt
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 from analysis.tree import Rectangle as rect
 
 

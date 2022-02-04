@@ -8,7 +8,7 @@
 ## Internal Libraries ##
 ########################
 import dataTypes.cell as ce
-from dataTypes.cell import cellTraits as cT
+from dataTypes.dataTypeTraits import cellTraits as cT
 from . import tree as tree
 
 
@@ -27,7 +27,7 @@ def findCloseCells(root,cells):
         # Start looking through all nodes. Skip child nodes is parent node is past the cutoff
         for node in nodeIterator:
             # Is the node within the cutoff, not itself, and a cell? Then do action relevant action on node
-            if (node.isNodeSingleOccupied and (not node.cells[0][ce.cellTraits.CENTER] == cell[ce.cellTraits.CENTER]) and (node.isInternalNodeWithinCutoff(cell))):
+            if (node.isNodeSingleOccupied and (not node.cells[0][cT.CENTER] == cell[cT.CENTER]) and (node.isInternalNodeWithinCutoff(cell))):
                 # If plausable neighbors, then append to neighbor list
                 tempNeighbors.append(node.buildNeighborCell(cell))
             # If the center of mass is out of the cutoff, then skip the nodes that are deeper

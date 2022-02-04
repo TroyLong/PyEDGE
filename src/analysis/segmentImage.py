@@ -11,7 +11,7 @@ import numpy as np
 ## Internal Libraries ##
 ########################
 import dataTypes.cell as cell
-from dataTypes.cell import cellTraits as ct
+from dataTypes.dataTypeTraits import cellTraits as cT
 
 # This is used get rid of contours that can appear for the black outer regions of the image
 def removeLargeContours(image,contours,thresholdHi=4):
@@ -87,7 +87,7 @@ def segmentImage(image,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=1
         for vert in polyApprox:
             vert = vert[0]
             cv.circle(image, (vert[0],vert[1]), 2, (255, 0, 0), -1)
-        cellDict[ct.VERTICIES] = polyApprox
+        cellDict[cT.VERTICIES] = polyApprox
         #center of mass
         moment = cv.moments(contour)
         cX = 0
@@ -97,10 +97,10 @@ def segmentImage(image,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=1
             cY = int(moment["m01"] / moment["m00"])
         except ZeroDivisionError:
             pass
-        cellDict[ct.CENTER] = (cX,cY)
+        cellDict[cT.CENTER] = (cX,cY)
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
-        cellDict[ct.AREA] = cv.contourArea(contour)
-        cellDict[ct.RADIUS] = np.sqrt(cellDict[ct.AREA]/np.pi)
+        cellDict[cT.AREA] = cv.contourArea(contour)
+        cellDict[cT.RADIUS] = np.sqrt(cellDict[cT.AREA]/np.pi)
         cells.append(cellDict)
     return tuple(cells), image
     
