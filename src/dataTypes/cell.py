@@ -26,6 +26,8 @@ def cellEqual(cell1, cell2):
 def isCellNeighbor(cellNeighbors,possibleNeighbor):
     return possibleNeighbor in cellNeighbors
 
+
+
 # TODO:: Not sure if this is going to be useful
 # Returns two new tuples with connection between cell1 and cell2 broken
 def removeNeighborTwoWay(cell, neighbor):
@@ -41,10 +43,10 @@ def removeNeighborOneWay(cell, neighbor):
         pass
     return tuple(cellNeighbors)
 
+
+
 # Adapter to the sorted function
 def sortNeighbors(cell):
     return sorted(cell[cT.NEIGHBORS], key=lambda cellN: cellN[cNT.DISTANCE_TO_BORDER])  
 
-# removes single cell
-def remove(cells,cell):
-    return tuple(list(cells).remove(cell))
+ 
