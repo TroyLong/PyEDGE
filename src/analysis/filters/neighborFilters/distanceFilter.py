@@ -3,48 +3,41 @@
 ########################
 # These are a series of tests for neighbor finding.
 # Split from neighborAnalysis.py because they are dealing with the data in completely different ways
-
+# TODO:: RUN SPEED TESTS
 ########################
 ## Imported Libraries ##
 ########################
+from copy import deepcopy
+import dataTypes.cell as ce
 from dataTypes.dataTypeTraits import cellTraits as cT
 from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
 from dataTypes.dataTypeTraits import imageStateTraits as iST
 
-#TODO:: Incorperate cell.py removal
-# Functional Form
-# Takes neighbors out of the neighbor list if they are 
+
+#TODO:: Deepcopy might be too slow
+#Functional Form, might require deepcopy to work properly though
 def distanceFilter(state,deviation):
-    tempCells = list()
-    for cell in state[iST.CELLS]:
-        tempCells.append(cellularDistanceFilter(cell,deviation))
+    tempCells = deepcopy(state[iST.CELLS])
+    for cell in tempCells:
+        cellularDistanceFilter(cell,deviation)
     return tuple(tempCells)
 
-
-#TODO:: To make this better, I should first sort the neighbors somewhere else, perhaps under a clean data function
+# Is not functional, since it removes from cell and cell neighbor
+# If it is passed a copy, it is effectivily functional
 def cellularDistanceFilter(cell,deviation):
-    # sorts neighbors by distance
-    sortedNeighbors = sorted(cell[cT.NEIGHBORS], key=lambda cellN: cellN[cNT.DISTANCE_TO_BORDER])    
-    realNeighbors = list()
-    # returned cell datastructure. Does not alter the original cell
-    tempCell = cell.copy()
-    maxDistance = 0
-    if len(cell[cT.NEIGHBORS]) > 0:
-        # this is the furthest distance to allowed neighbor. Starts at the shortest
-        maxDistance = cell[cT.NEIGHBORS][0][cNT.DISTANCE_TO_BORDER]
-    for possibleNeighbor in sortedNeighbors:
-        if isWithinAllowedDistance(cell,possibleNeighbor,maxDistance,deviation):
-            # if neighbor is in limit, adds it to final neighbor list
-            realNeighbors.append(possibleNeighbor)
+    cell[cT.NEIGHBORS] = ce.sortNeighbors(cell)
+    # this is the furthest distance to allowed neighbor. Starts at the shortest
+    maxDistance = cell[cT.NEIGHBORS][0][cNT.DISTANCE_TO_BORDER] if (len(cell[cT.NEIGHBORS]) > 0) else 0
+    # Bypasses isWithinAllowedDistance() computation after it fails the first time
+    pastAllowed = False
+    for possibleNeighbor in cell[cT.NEIGHBORS]:
+        # possibly faster to nest, but not as clean
+        if (not pastAllowed) and (isWithinAllowedDistance(cell,possibleNeighbor,maxDistance,deviation)): 
+            maxDistance = possibleNeighbor[cNT.DISTANCE_TO_BORDER]
         else:
-            # the list is sorted, and no others will be successful
-            break
-        # set new max distance
-        maxDistance = possibleNeighbor[cNT.DISTANCE_TO_BORDER]
-    tempCell[cT.NEIGHBORS] = realNeighbors
-    # sets the neighbor list to be the new one based on the filter
-    # DO NOT CHANGE TO TUPLE ON ACCIDENT
-    return tempCell
+            pastAllowed = True
+        if pastAllowed:
+            cell[cT.NEIGHBORS],possibleNeighbor[cNT.CELL][cT.NEIGHBORS] = ce.removeNeighborTwoWay(cell,possibleNeighbor)
 
 
 #TODO:: This is messy, and both booleans are probably not neccessary

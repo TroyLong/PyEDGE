@@ -7,6 +7,7 @@
 ## Imported Libraries ##
 ########################
 import cv2 as cv
+from analysis.filters.neighborFilters.oneToOneFilter import oneToOneFilter
 ########################
 ## Internal Libraries ##
 ########################
@@ -54,8 +55,9 @@ def runNeighborFilters(state):
     # It is going to need a way to check if the neighbor still exists afterwords
     # Running recursively should get rid of chaining effects.
     state[iST.CELLS] = distanceFilter(state,state[iST.DEVIATION])
-    state[iST.CELLS] = tooFewNeighborsFilter(state,1)
-    state[iST.CELLS] = passThroughMultipleAreasFilter(state)
+    state[iST.CELLS] = tooFewNeighborsFilter(state,2)
+    #state[iST.CELLS] = oneToOneFilter(state)
+    #state[iST.CELLS] = passThroughMultipleAreasFilter(state)
     
     
     

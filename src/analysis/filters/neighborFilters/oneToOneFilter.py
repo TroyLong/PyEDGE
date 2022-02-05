@@ -1,10 +1,12 @@
-#This checks for a one to one relationship between neighboring cells
-#def oneToOneFilter(cells):
-#    for cell in cells:
-#        for neighbor in cell[cT.NEIGHBORS]:
-#            oneToOne = False
-#            for neighorsNeighbor in neighbor[cT.NEIGHBORS]:
-#                if cell[cT.CENTER] == neighorsNeighbor[cT.CENTER]:
-#                    oneToOne = True
-#            if not oneToOne:
-#                cell[cT.NEIGHBORS].remove(neighbor)
+from copy import deepcopy
+import dataTypes.cell as ce
+from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
+from dataTypes.dataTypeTraits import imageStateTraits as iST
+
+def oneToOneFilter(state):
+    tempCells = deepcopy(state[iST.CELLS])
+    for cell in tempCells:
+        for neighbor in cell:
+            if cell not in neighbor[cNT.CELL][cT.NEIGHBORS]:
+                ce.removeNeighborOneWay(cell,neighbor)

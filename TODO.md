@@ -2,10 +2,12 @@
 
 ## Module Goals
 ### Data Types
+- [ ] Test connection between cells and neighbors in a pytest setting. I am not sure if they are working as expected
 - [x] Design a controlled connection between cells and neighbors
 
 ### Analysis
 - [ ] Leverage filters to use the remove neighbor functions
+- [ ] Run speed test on the old, new, and deepcopy versions of filters.
 - [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data.
 - [ ] Fix the intersection neighbor filter.
 - [x] Fixed the neighbor analysis so it removes neighbors when analysis is rerun. Histogram finally works.
