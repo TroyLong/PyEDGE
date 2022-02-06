@@ -16,12 +16,13 @@ from . import graphFrame as gf
 from . import optionsFrame as of
 import dataTypes.imageState as iS
 from dataTypes.dataTypeTraits import imageStateTraits as iST
+from app import App
 
 
-class App(tk.Frame):
-    def __init__(self, master=None):
+class AppFrame(tk.Frame):
+    def __init__(self, master=None, appCore=App()):
         super().__init__(master)
-        self.__initImageState()
+        self.appCore = appCore
         self.__bindEvents()
         #Layout manager
         self.grid()
@@ -29,16 +30,11 @@ class App(tk.Frame):
         self.topMenuBar = tm.TopMenu(self)
         self.master.config(menu=self.topMenuBar)
         #Frame for graphs
-        self.graphFrame = gf.GraphZoneFrame(self,state=self.imageStateList[self.imageStateIndex])
+        self.graphFrame = gf.GraphZoneFrame(self,state=self.appCore.getState())
         self.graphFrame.grid(row=0,column=0)
         #Options
-        self.optionsFrame = of.OptionsZoneFrame(self,state=self.imageStateList[self.imageStateIndex])
+        self.optionsFrame = of.OptionsZoneFrame(self,state=self.appCore.getState())
         self.optionsFrame.grid(row=1,column=0)
-    # There is a list of states, each of which can be loaded and passed to the whole program
-    def __initImageState(self):
-        self.imageStateIndex = 0
-        self.imageStateList = [iS.imageState.copy()]
-        self.statusMessage = ""
 
 
     # This is the main event handler     
@@ -52,45 +48,38 @@ class App(tk.Frame):
         self.bind("<<SubmitFilterOptions>>",self.__updateFilterOptions)
         #Simular to above
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
-        #Cell Focus Panel Events
-        self.bind("<<PreviousCell>>",self.__previousCell)
-        self.bind("<<NextCell>>",self.__nextCell)
+
 
     # Opens image from file and loads to current state
     def __openImage(self,event):
-        self.graphFrame.openFile(self.topMenuBar.openImagePath)
+        self.appCore.openImage(self.topMenuBar.openImagePath)
+        #TODO:: LOAD TO GRAPH PROPERLY
     # Image State Events
     def __addImageState(self,event):
-        self.imageStateList.append(iS.imageState.copy())
+        self.appCore.addImageState()
         # Updates the status display to show new state option
         self.optionsFrame.update()
         #self.optionsFrame.loadState(self.imageStateList[self.imageStateIndex])
     def __upImageState(self,event):
-        self.imageStateIndex += 1 if (self.imageStateIndex<len(self.imageStateList)-1) else 0
+        self.appCore.upImageState()
         self.__loadCurrentStateToAll()
     def __downImageState(self,event):
-        self.imageStateIndex -= 1 if (self.imageStateIndex>0) else 0
+        self.appCore.downImageState()
         self.__loadCurrentStateToAll()
     # Imaging Events
     def __updateFilterOptions(self,event):
-        iS.printState(self.imageStateList[self.imageStateIndex])
+        self.appCore.updateFilterOptions()
         self.graphFrame.updateFilterOptions()
     # Neighbor Analysis Events
     def __updateNeighborOptions(self,event):
-        iS.printState(self.imageStateList[self.imageStateIndex])
+        self.appCore.updateNeighborOptions()
         self.graphFrame.updateNeighborOptions()
-    def __previousCell(self,event):
-        pass
-    def __nextCell(self,event):
-        pass
+   
+
     # This passes the current state to all dependants
     def __loadCurrentStateToAll(self):
-        self.graphFrame.loadState(self.imageStateList[self.imageStateIndex])
-        self.optionsFrame.loadState(self.imageStateList[self.imageStateIndex])
+        self.graphFrame.loadState(self.appCore.getState())
+        self.optionsFrame.loadState(self.appCore.getState())
 
-    # This passes information about the number of states, and which is active now
     def getTotalStatesCount(self):
-        return (self.imageStateIndex,len(self.imageStateList))
-
-    def getStatusMessage(self):
-        return self.statusMessage
+        return self.appCore.getTotalStatesCount()

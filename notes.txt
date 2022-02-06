@@ -12,3 +12,7 @@ I'm about ready to start moving to multiple picture processing.
 I could have a filter for deviation of shortest neighbor distances
 
 cell neighbors do not link back got actual CELLS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+I am currently rewriting the gui to seperate the gui from the underpinnings. This is specifically
+so I can start to build headless tests

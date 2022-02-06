@@ -7,6 +7,8 @@
 ########################
 # Gui Libraries
 import gui.applicationFrame as applicationFrame
-app = applicationFrame.App()
+from app import App
+
+app = applicationFrame.AppFrame(appCore=App())
 app.master.title("PyEDGE")
 app.mainloop()

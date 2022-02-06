@@ -27,6 +27,7 @@
 
 ## Framework Goals
 ### Project Layout
+- [ ] I am in the middle of splitting the internal and gui elements of applicationFrame.py into app.py
 - [x] Split code into multiple packages for source code clarity.
 - [x] Found consistant way to import modules
 - [x] Leveraged tuples throughout code, and introduced functional programming techniques.

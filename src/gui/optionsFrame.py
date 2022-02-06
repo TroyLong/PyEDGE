@@ -100,5 +100,3 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
     # grabs number of total loaded states
     def getTotalStatesCount(self):
         return self.master.getTotalStatesCount()
-    def getStatusMessage(self):
-        return self.master.getStatusMessage()

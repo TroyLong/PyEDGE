@@ -21,5 +21,5 @@ class StatusPanel(cP.ControlPanel):
         super().loadState(state)
         self._updateStatusBanner()
     def _generateStatusText(self):
-        self.statusText += self.master.getStatusMessage()
+        #self.statusText += self.master.getStatusMessage()
         return self.statusText
