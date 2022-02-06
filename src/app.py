@@ -1,11 +1,11 @@
 import cv2 as cv
 import analysis.segmentImage as sI
 import analysis.neighborAnalysis as nA
-import analysis.filters.cellFilters as cF
+import analysis.filters.cellFilters.cellFilters as cF
 import dataTypes.imageState as iS
 from dataTypes.dataTypeTraits import imageStateTraits as iST
 
-class App:
+class AppCore:
     def __init__(self):
         self.__initImageState()
 
@@ -53,11 +53,13 @@ class App:
         self.state = self.imageStateList[self.imageStateIndex]
     # Imaging Events
     def updateFilterOptions(self):
+        self.__createFilteredImageAndCells()
         # TODO:: Perhaps move to test implementation
-        iS.printState(self.imageStateList[self.imageStateIndex])
+        iS.printState(self.state)
     # Neighbor Analysis Events
     def updateNeighborOptions(self):
-        iS.printState(self.imageStateList[self.imageStateIndex])
+        self.__createNeighborImage()
+        iS.printState(self.state)
 
 
     # GETTERS

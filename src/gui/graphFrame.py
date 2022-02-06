@@ -7,7 +7,6 @@
 ########################
 ## Imported Libraries ##
 ########################
-import cv2 as cv
 import tkinter as tk
 import matplotlib.pyplot as plt
 ########################
@@ -37,21 +36,16 @@ class GraphZoneFrame(sMF.StateMachineFrame):
             self.__loadBlankImages()
 
     def openFile(self,imagePath):
-        self.state[iST.IMAGE_OPENED] = True
-        self.imagePath = imagePath
-        self.__createOriginalImage()
-        self.__createFilteredImageAndCells()
-        self.__createNeighborImage()
         self.__loadImages()
 
     # These functions can be called to have images re-created
     def updateFilterOptions(self):
         if self.state[iST.IMAGE_OPENED]:
-            self.__createFilteredImageAndCells()
+            #self.__createFilteredImageAndCells()
             self.updateNeighborOptions()
     def updateNeighborOptions(self):
         if self.state[iST.IMAGE_OPENED]:
-            self.__createNeighborImage()
+            #self.__createNeighborImage()
             # TODO:: Do I still use these functions?
             # Yes, but why?
             self.__loadImages()
@@ -75,22 +69,6 @@ class GraphZoneFrame(sMF.StateMachineFrame):
     def __createNeighborHistogramGraph(self,column):
         self.neighborHistFrame = HistPanel(self,state=self.state,title="Neighbor Histogram")
         self.neighborHistFrame.grid(row=1,column=column)
-
-    # These functions create and recreate the images loaded by the program
-    def __createOriginalImage(self):
-        self.state[iST.IMAGE] = cv.imread(self.imagePath)
-    def __createFilteredImageAndCells(self):
-        # If Adaptive Blocksize is > 2 or %2 = 1 this works. Otherwise I get an error
-        self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(image=self.state[iST.IMAGE],
-                                                                                diameter=self.state[iST.FILTER_DIAMETER],
-                                                                                bfSigmaColor=self.state[iST.SIGMA_COLOR],
-                                                                                bfSigmaSpace=self.state[iST.SIGMA_SPACE],
-                                                                                atBlockSize=self.state[iST.ADAPTIVE_BLOCKSIZE])
-        #TODO:: I think I should have a more general function call eventually
-        self.state[iST.CELLS] = cF.removeOutlierSmallRadii(self.state,1)
-    def __createNeighborImage(self):
-        self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
-        nA.processNeighborAnalysis(self.state)
 
     # These functions load pre-created images to the graphs
     def __loadImages(self):

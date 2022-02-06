@@ -14,5 +14,4 @@ I could have a filter for deviation of shortest neighbor distances
 cell neighbors do not link back got actual CELLS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-I am currently rewriting the gui to seperate the gui from the underpinnings. This is specifically
-so I can start to build headless tests
+GUI and AppCore are seperated. Filters not working as well as they were before.

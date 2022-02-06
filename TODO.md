@@ -2,15 +2,13 @@
 
 ## Module Goals
 ### Data Types
-- [ ] Use pytest platform to find accuracy of code connections
-- [x] Design a controlled connection between cells and neighbors
+- [ ] Use pytest platform to find accuracy of connections
 
 ### Analysis
 - [ ] Leverage filters to use the remove neighbor functions
 - [ ] Run speed test on the deepcopy versions of filters.
 - [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data.
-- [ ] Fix the intersection neighbor filter.
-- [x] Fixed the neighbor analysis so it removes neighbors when analysis is rerun. Histogram finally works.
+- [ ] Fix the intersection neighbor filter. This got worse after AppCore was created
 
 ### Multi-Image Analysis
 - [ ] Continue to develop useful functions
@@ -27,12 +25,12 @@
 
 ## Framework Goals
 ### Project Layout
-- [ ] I am in the middle of splitting the internal and gui elements of applicationFrame.py into app.py
-- [x] Split code into multiple packages for source code clarity.
-- [x] Found consistant way to import modules
-- [x] Leveraged tuples throughout code, and introduced functional programming techniques.
+- [ ] splitting AppFrame and AppCore might have effected filters
+- [x] split app gui into AppFrame and AppCore objects
+
 
 ### Testing
+- [ ] Build interface to AppCore
 - [ ] Test Immutability/copy/deepcopy for dataTypes, and the results of deleting from other objects.
 
 - - -
@@ -41,5 +39,8 @@
 ### Object Oriented
 - [ ] Read on Python specific OOP
 - [ ] Abstractify and build interfaces as program becomes more complex
+- [ ] Consider command objects
+- [x] Seperating the responsibilties of the panels helped split of AppFrame and AppCore
+
 ### Functional
 - [ ] Continue to isolate "side effects"

@@ -53,6 +53,7 @@ class AppFrame(tk.Frame):
     # Opens image from file and loads to current state
     def __openImage(self,event):
         self.appCore.openImage(self.topMenuBar.openImagePath)
+        self.__loadCurrentStateToAll()
         #TODO:: LOAD TO GRAPH PROPERLY
     # Image State Events
     def __addImageState(self,event):
