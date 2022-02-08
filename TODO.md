@@ -14,12 +14,15 @@
 - [ ] Continue to develop useful functions
 - [ ] Build in appropriate calling to single-state analysis
 - [ ] Ensure data types and large state loading is stable
+- [ ] Built Gui connections to Multi-Image Analysis.
+- [ ] Create new state based on average of two previous states
 
 ### GUI
 - [ ] Fix the open menu so it does not throw an error if canceled.
 - [ ] Introduce multi-file image open support.
 - [ ] Integrate a multi-image analysis panel.
 - [ ] Set values of the gui to be rescalable. Not important now, but will help small screen users.
+- [x] Multi state image analysis control panel created.
 
 - - -
 

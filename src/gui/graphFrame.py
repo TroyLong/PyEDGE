@@ -70,6 +70,7 @@ class GraphZoneFrame(sMF.StateMachineFrame):
         self.neighborHistFrame = HistPanel(self,state=self.state,title="Neighbor Histogram")
         self.neighborHistFrame.grid(row=1,column=column)
 
+
     # These functions load pre-created images to the graphs
     def __loadImages(self):
         self.originalImageFrame.loadState(self.state)

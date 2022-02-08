@@ -1,5 +1,6 @@
 from dataTypes.cell import cell
 from dataTypes.cell import cellDist
+import dataTypes.cell as ce
 from dataTypes.cellNeighbor import cellNeighbor
 from dataTypes.dataTypeTraits import cellTraits as ct
 from dataTypes.dataTypeTraits import cellNeighborTraits as cnt
@@ -16,14 +17,17 @@ from numpy import sqrt
 def doodle(state1, state2):
     pass
 
+# TODO:: This a jank way to do this
 # This could possibly benifit from being placed in a tree
 def findCellOverlap(cells1, cells2):
+    tempCells = list()
     for cell1 in cells1:
         for cell2 in cells2:
-            if not cellsOverlap(cell1,cell2):
-                print("This don't overlap")
-
+            if cellsOverlap(cell1,cell2):
+                tempCells.append(ce.createAverageCell(cell1,cell2))
+                break
+    return tuple(tempCells)
 
 # Returns true if two cells geometries overlap
 def cellsOverlap(cell1, cell2):
-    (cellDist(cell1,cell2) < (cell1[ct.RADIUS]+cell2[ct.RADIUS]))
+    return cellDist(cell1,cell2) < (cell1[ct.RADIUS]+cell2[ct.RADIUS])

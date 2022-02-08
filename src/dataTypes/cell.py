@@ -27,7 +27,6 @@ def isCellNeighbor(cellNeighbors,possibleNeighbor):
     return possibleNeighbor in cellNeighbors
 
 
-
 # TODO:: Not sure if this is going to be useful
 # Returns two new tuples with connection between cell1 and cell2 broken
 def removeNeighborTwoWay(cell, neighbor):
@@ -49,4 +48,12 @@ def removeNeighborOneWay(cell, neighbor):
 def sortNeighbors(cell):
     return sorted(cell[cT.NEIGHBORS], key=lambda cellN: cellN[cNT.DISTANCE_TO_BORDER])  
 
- 
+
+
+def createAverageCell(cell1,cell2):
+    tempCell = cell.copy()
+    tempCell[cT.CENTER] = ((cell1[cT.CENTER][0] + cell2[cT.CENTER][0])/2,
+                            (cell1[cT.CENTER][1] + cell2[cT.CENTER][1])/2)
+    tempCell[cT.AREA] = (cell1[cT.AREA] + cell2[cT.AREA])/2
+    tempCell[cT.RADIUS] = (cell1[cT.RADIUS] + cell2[cT.RADIUS])/2
+    return tempCell

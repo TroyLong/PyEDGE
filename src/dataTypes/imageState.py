@@ -13,8 +13,7 @@ from dataTypes.dataTypeTraits import cellTraits as cT
 from dataTypes.dataTypeTraits import imageStateTraits as iST
 
 
-# Provides a basic empty image for the default state
-emptyImage = np.zeros(np.shape([1,1,3]),dtype=np.uint8)
+
 
 
 
@@ -28,6 +27,13 @@ imageState = {iST.IMAGE_OPENED:False,
                 iST.SIGMA_SPACE:0,iST.ADAPTIVE_BLOCKSIZE:3,
                 iST.DEVIATION:15.0,iST.MAX_NEIGHBHOR_DIST:80000.0,
                 iST.UPPER_CUTOFF_DIST:5000.0}
+
+
+
+
+# Provides a basic empty image for the default state
+def createEmptyImage(shape=np.shape(1,1,3)):
+    return np.zeros(shape,dtype=np.uint8)
 
 
 # Functions on imageState data structure ############

@@ -11,6 +11,7 @@ from gui.controlPanels.imageStatePanel import ImageStatePanel
 from gui.controlPanels.filterOptionsPanel import FilterOptionsPanel
 from gui.controlPanels.neighborOptionsPanel import NeighborOptionsPanel
 from gui.controlPanels.cellFocusPanel import CellFocusPanel
+from gui.controlPanels.multiStateControl import multiStateAnalysisPanel
 import dataTypes.imageState as iS
 
 # This is the main Panel Window Section
@@ -24,7 +25,7 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self._createStatePanel(1)
         self._createFilterOptionsPanel(2)
         self._createNeighborOptionsPanel(3)
-        self._createCellFocusPanel(4)
+        self._createMultiStateAnalysisPanel(4)
 
     # These functions are only called for creation
     def _createStatusPanel(self,column):
@@ -42,6 +43,9 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
     def _createCellFocusPanel(self,column):
         self.cellFocusPanel = CellFocusPanel(self, state=self.state)
         self.cellFocusPanel.grid(row=1,column=column,padx=5)
+    def _createMultiStateAnalysisPanel(self,column):
+        self.multiStateAnalysisPanel = multiStateAnalysisPanel(self, state=None)
+        self.multiStateAnalysisPanel.grid(row=1,column=column,padx=5)
 
     #TODO:: Overwritting the old stuff, and not really running filter any more
     # Called to load new state
@@ -81,6 +85,9 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         #Cell Focus Panel Events
         self.bind("<<PreviousCell>>",self.__previousCell)
         self.bind("<<NextCell>>",self.__nextCell)
+        #Multi state image analysis
+        self.bind("<<StartMultiStateAnalysis>>",self.__startMultiStateAnalysis)
+
     def __addImageState(self,event):
         self.master.event_generate("<<AddImageState>>")
     def __upImageState(self,event):
@@ -96,6 +103,8 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.master.event_generate("<<PreviousCell>>")
     def __nextCell(self,event):
         self.master.event_generate("<<NextCell>>")
+    def __startMultiStateAnalysis(self,event):
+        self.master.event_generate("<<StartMultiStateAnalysis>>")
 
     # grabs number of total loaded states
     def getTotalStatesCount(self):

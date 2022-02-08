@@ -16,11 +16,11 @@ from . import graphFrame as gf
 from . import optionsFrame as of
 import dataTypes.imageState as iS
 from dataTypes.dataTypeTraits import imageStateTraits as iST
-from app import App
+from app import AppCore
 
 
 class AppFrame(tk.Frame):
-    def __init__(self, master=None, appCore=App()):
+    def __init__(self, master=None, appCore=AppCore()):
         super().__init__(master)
         self.appCore = appCore
         self.__bindEvents()
@@ -48,7 +48,7 @@ class AppFrame(tk.Frame):
         self.bind("<<SubmitFilterOptions>>",self.__updateFilterOptions)
         #Simular to above
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
-
+        self.bind("<<StartMultiStateAnalysis>>",self.__startMultiStateAnalysis)
 
     # Opens image from file and loads to current state
     def __openImage(self,event):
@@ -75,7 +75,10 @@ class AppFrame(tk.Frame):
     def __updateNeighborOptions(self,event):
         self.appCore.updateNeighborOptions()
         self.graphFrame.updateNeighborOptions()
-   
+   # processes multiple images against each other
+    def __startMultiStateAnalysis(self,event):
+        self.appCore.startMultiStateAnalysis()
+
 
     # This passes the current state to all dependants
     def __loadCurrentStateToAll(self):
