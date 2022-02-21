@@ -1,5 +1,13 @@
 # PyEDGE TODO List
 
+
+## Version One Goals
+- [ ] Conduct super-state analysis
+- [x] Segment cells from image with openCV
+- [x] Reduce and clean cell segment data
+- [x] Construct GUI interface
+- [x] Export data with Pandas
+
 ## Module Goals
 ### Data Types
 - [ ] Use pytest platform to find accuracy of connections
@@ -11,7 +19,8 @@
 - [x] Leverage filters to use the remove neighbor functions
 
 ### Multi-Image Analysis
-- [ ] Continue to develop useful functions
+- [ ] Create arbitary state roll-through
+- [ ] Use roll-through data to construct super-state
 - [ ] Build in appropriate calling to single-state analysis
 - [ ] Ensure data types and large state loading is stable
 - [x] Built Gui connections to Multi-Image Analysis.
