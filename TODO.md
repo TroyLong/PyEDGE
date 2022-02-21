@@ -3,6 +3,7 @@
 ## Module Goals
 ### Data Types
 - [ ] Use pytest platform to find accuracy of connections
+- [ ] Examine replacing dictionaries with dataframes
 
 ### Analysis
 - [ ] Leverage filters to use the remove neighbor functions

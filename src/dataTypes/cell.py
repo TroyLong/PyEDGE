@@ -50,6 +50,7 @@ def sortNeighbors(cell):
 
 
 
+# I don't want to use this
 def createAverageCell(cell1,cell2):
     tempCell = cell.copy()
     tempCell[cT.CENTER] = ((cell1[cT.CENTER][0] + cell2[cT.CENTER][0])/2,

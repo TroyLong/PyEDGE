@@ -7,11 +7,12 @@ import analysis.filters.cellFilters.cellFilters as cF
 import dataTypes.imageState as iS
 from dataTypes.dataTypeTraits import imageStateTraits as iST
 import multiAnalysis.functions as f
-
+import sqLiteOut
 
 class AppCore:
     def __init__(self):
         self.__initImageState()
+        self.__initMultiState()
 
     # There is a list of states, each of which can be loaded and passed to the whole program
     def __initImageState(self):
@@ -19,29 +20,28 @@ class AppCore:
         self.imageStateList = [iS.imageState.copy()]
         self.state = self.imageStateList[self.imageStateIndex]
         self.statusMessage = ""
-
+    def __initMultiState(self):
+        self.multiState = iS.imageState.copy()
 
     def openImage(self,imagePath):
         # TODO:: Is there a shorterway?
         self.state[iST.IMAGE_OPENED] = True
-        self.state[iST.IMAGE] = self.__createOriginalImage(imagePath)
-        self.state[iST.CELLS], self.state[iST.FILTERED_IMAGE] = self.__createFilteredImageAndCells()
+        self.__createOriginalImage(imagePath)
+        self.__createFilteredImageAndCells()
         self.__createNeighborImage()
 
-    # Functional Form
+
     def __createOriginalImage(self,imagePath):
-        return cv.imread(imagePath)
-    # Functional Form
+        self.state[iST.IMAGE] = cv.imread(imagePath)
     def __createFilteredImageAndCells(self):
         # If Adaptive Blocksize is > 2 or %2 = 1 this works. Otherwise I get an error
-        cells, filteredImage = sI.segmentImage(image=self.state[iST.IMAGE],
+        self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(image=self.state[iST.IMAGE],
                                                                                 diameter=self.state[iST.FILTER_DIAMETER],
                                                                                 bfSigmaColor=self.state[iST.SIGMA_COLOR],
                                                                                 bfSigmaSpace=self.state[iST.SIGMA_SPACE],
                                                                                 atBlockSize=self.state[iST.ADAPTIVE_BLOCKSIZE])
         #TODO:: I think I should have a more general function call eventually
-        cells = cF.removeOutlierSmallRadii(self.state,1)
-        return cells,filteredImage
+        self.state[iST.CELLS] = cF.removeOutlierSmallRadii(self.state,1)
     def __createNeighborImage(self):
         self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
         nA.processNeighborAnalysis(self.state)
@@ -66,19 +66,23 @@ class AppCore:
     def updateNeighborOptions(self):
         self.__createNeighborImage()
         iS.printState(self.state)
-    
+
     # TODO:: This is just a proof of concept right now
     #Multi state image analysis
     def startMultiStateAnalysis(self):
         # I'm comparing the first and last to keep it simple for now
-        self.combinedState = iS.combinedImageState.copy()
-        self.combinedState[iST.IMAGE] = iS.createEmptyImage(self.state.shape)
-        self.combinedState[iST.CELLS] = f.findCellOverlap(self.state[iST.CELLS],self.imageStateList[-1][iST.CELLS])
-        self.__createNeighborImage()
-        print(len(self.combinedState)[iST.CELLS])
-        print(len(self.state[iST.CELLS]))
-
-
+        self.multiState = iS.combinedImageState.copy()
+        self.multiState[iST.IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
+        self.multiState[iST.FILTERED_IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
+        self.multiState[iST.NEIGHBOR_IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
+        self.multiState[iST.CELLS] = f.findCellOverlap(self.state[iST.CELLS],self.imageStateList[-1][iST.CELLS])
+        iS.drawCells(self.multiState)
+        
+    #Exports the state to the database
+    def exportDatabase(self):
+        sqLiteOut.loadCells(self.state[iST.CELLS])
+        sqLiteOut.fetchall()
+        sqLiteOut.closeDatabase()
 
     # GETTERS
     def getState(self):

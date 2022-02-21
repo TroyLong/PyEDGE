@@ -24,7 +24,7 @@ def findCellOverlap(cells1, cells2):
     for cell1 in cells1:
         for cell2 in cells2:
             if cellsOverlap(cell1,cell2):
-                tempCells.append(ce.createAverageCell(cell1,cell2))
+                tempCells.append(cell2)
                 break
     return tuple(tempCells)
 

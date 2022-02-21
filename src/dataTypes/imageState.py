@@ -5,7 +5,9 @@
 ########################
 ## Imported Libraries ##
 ########################
+from re import I
 import numpy as np
+import cv2 as cv
 ########################
 ## Internal Libraries ##
 ########################
@@ -15,12 +17,14 @@ from dataTypes.dataTypeTraits import imageStateTraits as iST
 
 
 
-
+# Provides a basic empty image for the default state
+def createEmptyImage(shape=np.shape((1,1,3))):
+    return np.zeros(shape,dtype=np.uint8)
 
 # A dictionary is used over a traditional object for speed
 imageState = {iST.IMAGE_OPENED:False,
-                iST.IMAGE:emptyImage.copy(),iST.FILTERED_IMAGE:emptyImage.copy(),
-                iST.NEIGHBOR_IMAGE:emptyImage.copy(),
+                iST.IMAGE:createEmptyImage(),iST.FILTERED_IMAGE:createEmptyImage(),
+                iST.NEIGHBOR_IMAGE:createEmptyImage(),
                 iST.CELLS:tuple(),iST.CELL_INDEX:0,
                 iST.MEAN_CELL_RADII:0,
                 iST.FILTER_DIAMETER:1,iST.SIGMA_COLOR:0,
@@ -30,10 +34,10 @@ imageState = {iST.IMAGE_OPENED:False,
 
 
 
+# TODO:: Making imageState an object might be more
+combinedImageState = imageState.copy()
+combinedImageState[iST.IMAGE_OPENED] = True
 
-# Provides a basic empty image for the default state
-def createEmptyImage(shape=np.shape(1,1,3)):
-    return np.zeros(shape,dtype=np.uint8)
 
 
 # Functions on imageState data structure ############
@@ -59,6 +63,13 @@ def cellRadiusDeviation(state):
         return np.sqrt(deviation/(len(state[iST.CELLS])))
     except ZeroDivisionError:
         return 0
+
+
+# Not functional!!!
+def drawCells(state):
+    for cell in state[iST.CELLS]:
+        cv.circle(state[iST.NEIGHBOR_IMAGE], (cell[cT.CENTER][0],cell[cT.CENTER][1]), int(cell[cT.RADIUS]), (255, 255, 0), 2)
+
 
 # Debug tool that prints state in a readable format
 def printState(imgState):

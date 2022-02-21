@@ -12,6 +12,7 @@ from gui.controlPanels.filterOptionsPanel import FilterOptionsPanel
 from gui.controlPanels.neighborOptionsPanel import NeighborOptionsPanel
 from gui.controlPanels.cellFocusPanel import CellFocusPanel
 from gui.controlPanels.multiStateControl import multiStateAnalysisPanel
+from gui.controlPanels.databasePanel import databasePanel
 import dataTypes.imageState as iS
 
 # This is the main Panel Window Section
@@ -26,6 +27,7 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self._createFilterOptionsPanel(2)
         self._createNeighborOptionsPanel(3)
         self._createMultiStateAnalysisPanel(4)
+        self._createDatabasePanel(5)
 
     # These functions are only called for creation
     def _createStatusPanel(self,column):
@@ -46,6 +48,9 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
     def _createMultiStateAnalysisPanel(self,column):
         self.multiStateAnalysisPanel = multiStateAnalysisPanel(self, state=None)
         self.multiStateAnalysisPanel.grid(row=1,column=column,padx=5)
+    def _createDatabasePanel(self,column):
+        self.databasePanel = databasePanel(self, state=None)
+        self.databasePanel.grid(row=1,column=column,padx=5)
 
     #TODO:: Overwritting the old stuff, and not really running filter any more
     # Called to load new state
@@ -85,8 +90,10 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         #Cell Focus Panel Events
         self.bind("<<PreviousCell>>",self.__previousCell)
         self.bind("<<NextCell>>",self.__nextCell)
-        #Multi state image analysis
+        #Multi state image analysis Events
         self.bind("<<StartMultiStateAnalysis>>",self.__startMultiStateAnalysis)
+        #Database Events
+        self.bind("<<ExportDatabase>>",self.__exportDatabase)
 
     def __addImageState(self,event):
         self.master.event_generate("<<AddImageState>>")
@@ -105,6 +112,9 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.master.event_generate("<<NextCell>>")
     def __startMultiStateAnalysis(self,event):
         self.master.event_generate("<<StartMultiStateAnalysis>>")
+    def __exportDatabase(self,event):
+        self.master.event_generate("<<ExportDatabase>>")
+
 
     # grabs number of total loaded states
     def getTotalStatesCount(self):

@@ -30,7 +30,7 @@ class PlotPanel(sMF.StateMachineFrame):
         self.plotTitle.grid(row=0,column=0)
     
     def __createPlotFigure(self):
-        self.plotFig = plt.Figure(figsize=(4,4), dpi=100, tight_layout=True)
+        self.plotFig = plt.Figure(figsize=(3.75,4), dpi=100, tight_layout=True)
         # Canvas for the image or graph to display to
         self.plotCanvas = FigureCanvasTkAgg(self.plotFig,self)
         self.plotCanvas.get_tk_widget().grid(row=1,column=0)
