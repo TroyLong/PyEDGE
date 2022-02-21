@@ -78,9 +78,11 @@ class AppCore:
         self.multiState[iST.CELLS] = f.findCellOverlap(self.state[iST.CELLS],self.imageStateList[-1][iST.CELLS])
         iS.drawCells(self.multiState)
         
-    #Exports the state to the database
-    def exportDatabase(self):
+    #Exports the state
+    def exportState(self):
         pandasFunctions.cellsToPandas(self.state[iST.CELLS]).to_csv("cell.csv")
+    def exportSuperState(self):
+        pass
     # Getters
     def getState(self):
         return self.state

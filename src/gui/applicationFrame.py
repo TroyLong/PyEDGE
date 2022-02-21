@@ -49,8 +49,8 @@ class AppFrame(tk.Frame):
         #Simular to above
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
         self.bind("<<StartMultiStateAnalysis>>",self.__startMultiStateAnalysis)
-        self.bind("<<ExportDatabase>>",self.__exportDatabase)
-
+        self.bind("<<ExportState>>",self.__exportState)
+        self.bind("<<ExportSuperState>>",self.__exportSuperState)
     # Opens image from file and loads to current state
     def __openImage(self,event):
         self.appCore.openImage(self.topMenuBar.openImagePath)
@@ -81,9 +81,11 @@ class AppFrame(tk.Frame):
         self.appCore.startMultiStateAnalysis()
         self.graphFrame.loadMultiState(self.appCore.multiState)
 
-    # exports state info to the database
-    def __exportDatabase(self,event):
-        self.appCore.exportDatabase()
+    # Export Events
+    def __exportState(self,event):
+        self.appCore.exportState()
+    def __exportSuperState(self,event):
+        self.appCore.exportSuperState()
 
     # This passes the current state to all dependants
     def __loadCurrentStateToAll(self):

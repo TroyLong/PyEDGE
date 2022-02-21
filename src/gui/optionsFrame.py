@@ -12,7 +12,7 @@ from gui.controlPanels.filterOptionsPanel import FilterOptionsPanel
 from gui.controlPanels.neighborOptionsPanel import NeighborOptionsPanel
 from gui.controlPanels.cellFocusPanel import CellFocusPanel
 from gui.controlPanels.multiStateControl import multiStateAnalysisPanel
-from gui.controlPanels.databasePanel import databasePanel
+from gui.controlPanels.exportPanel import databasePanel
 import dataTypes.imageState as iS
 
 # This is the main Panel Window Section
@@ -21,7 +21,7 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         super().__init__(master,state)
         self.__bindEvents()
         self.grid()
-        self._createTitleBanner("Options",fontSize=12,row=0)
+        self._createTitleBanner("Options",fontSize=14,row=0,columnspan=6)
         self._createStatusPanel(0)
         self._createStatePanel(1)
         self._createFilterOptionsPanel(2)
@@ -92,8 +92,9 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.bind("<<NextCell>>",self.__nextCell)
         #Multi state image analysis Events
         self.bind("<<StartMultiStateAnalysis>>",self.__startMultiStateAnalysis)
-        #Database Events
-        self.bind("<<ExportDatabase>>",self.__exportDatabase)
+        #Export Events
+        self.bind("<<ExportState>>",self.__exportState)
+        self.bind("<<ExportSuperState>>",self.__exportSuperState)
 
     def __addImageState(self,event):
         self.master.event_generate("<<AddImageState>>")
@@ -112,9 +113,10 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.master.event_generate("<<NextCell>>")
     def __startMultiStateAnalysis(self,event):
         self.master.event_generate("<<StartMultiStateAnalysis>>")
-    def __exportDatabase(self,event):
-        self.master.event_generate("<<ExportDatabase>>")
-
+    def __exportState(self,event):
+        self.master.event_generate("<<ExportState>>")
+    def __exportSuperState(self):
+        self.master.event_generate("<<ExportSuperState>>")
 
     # grabs number of total loaded states
     def getTotalStatesCount(self):
