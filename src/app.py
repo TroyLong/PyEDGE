@@ -7,7 +7,7 @@ import analysis.filters.cellFilters.cellFilters as cF
 import dataTypes.imageState as iS
 from dataTypes.dataTypeTraits import imageStateTraits as iST
 import multiAnalysis.functions as f
-import sqLiteOut
+import pandasFunctions
 
 class AppCore:
     def __init__(self):
@@ -80,11 +80,8 @@ class AppCore:
         
     #Exports the state to the database
     def exportDatabase(self):
-        sqLiteOut.loadCells(self.state[iST.CELLS])
-        sqLiteOut.fetchall()
-        sqLiteOut.closeDatabase()
-
-    # GETTERS
+        pandasFunctions.cellsToPandas(self.state[iST.CELLS]).to_csv("cell.csv")
+    # Getters
     def getState(self):
         return self.state
     # This passes information about the number of states, and which is active now
