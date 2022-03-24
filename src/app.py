@@ -70,12 +70,18 @@ class AppCore:
     # TODO:: This is just a proof of concept right now
     #Multi state image analysis
     def startMultiStateAnalysis(self):
-        # I'm comparing the first and last to keep it simple for now
+        # Create new multistate image from state size and get to the neighbor image
         self.multiState = iS.combinedImageState.copy()
         self.multiState[iST.IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
         self.multiState[iST.FILTERED_IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
         self.multiState[iST.NEIGHBOR_IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
-        self.multiState[iST.CELLS] = f.findCellOverlap(self.state[iST.CELLS],self.imageStateList[-1][iST.CELLS])
+        # Fill the multiState with the base case.
+        # TODO:: Exception catching should occur here
+        self.multiState[iST.CELLS] = f.findCellOverlap(self.imageStateList[0][iST.CELLS],self.imageStateList[0][iST.CELLS])
+        # Loop through all image states
+        # TODO:: Only loop through a window of indexies to give more user control
+        for state in self.imageStateList:
+            self.multiState[iST.CELLS] = f.findCellOverlap(self.multiState[iST.CELLS],state[iST.CELLS])
         iS.drawCells(self.multiState)
         
     #Exports the state
