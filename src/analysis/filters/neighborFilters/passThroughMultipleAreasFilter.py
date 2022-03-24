@@ -11,7 +11,6 @@ import numpy as np
 ########################
 from dataTypes.dataTypeTraits import cellTraits as cT
 from dataTypes.dataTypeTraits import cellNeighborTraits as cnt
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from analysis.tree import Rectangle as rect
 
 
@@ -22,7 +21,7 @@ def passThroughMultipleAreasFilter(state):
     # cells returned
     tempCells = list()
     # do this for every cell in the state
-    for cell in state[iST.CELLS]:
+    for cell in state.cells:
         cell = cell.copy()
         # This is the center of the cell. Simplifies math
         point1 = cell[cT.CENTER]

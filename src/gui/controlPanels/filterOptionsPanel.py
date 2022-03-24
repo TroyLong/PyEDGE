@@ -10,12 +10,11 @@ import dataTypes.imageState as iS
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from . import controlPanel as cP
 
 # Controls image filter options
 class FilterOptionsPanel(cP.ControlPanel):
-    def __init__(self, master=None, state=iS.imageState.copy()):
+    def __init__(self, master=None, state=None):
         super().__init__(master,state,"Filter Options")
         self._createFilterDiameterOption(2)
         self._createSigmaColorOption(3)
@@ -63,16 +62,16 @@ class FilterOptionsPanel(cP.ControlPanel):
     # These functions are called each time a state is loaded
     def _loadFilterDiameterOptionState(self):
         self.filterDiameterEntry.delete(0,tk.END)
-        self.filterDiameterEntry.insert(0,self.state[iST.FILTER_DIAMETER])
+        self.filterDiameterEntry.insert(0,self.state.filter_diameter)
     def _loadSigmaColorOptionState(self):
         self.sigmaColorEntry.delete(0,tk.END)
-        self.sigmaColorEntry.insert(0,self.state[iST.SIGMA_COLOR])
+        self.sigmaColorEntry.insert(0,self.state.sigma_color)
     def _loadSigmaSpaceOptionState(self):
         self.sigmaSpaceEntry.delete(0,tk.END)
-        self.sigmaSpaceEntry.insert(0,self.state[iST.SIGMA_SPACE])
+        self.sigmaSpaceEntry.insert(0,self.state.sigma_space)
     def _loadAdaptiveBlockSizeOptionState(self):
         self.adaptiveBlockSizeEntry.delete(0,tk.END)
-        self.adaptiveBlockSizeEntry.insert(0,self.state[iST.ADAPTIVE_BLOCKSIZE])
+        self.adaptiveBlockSizeEntry.insert(0,self.state.adaptive_blocksize)
 
     # Saves option data to loaded state before button event activates
     def __optionsSubmit(self):
@@ -80,7 +79,7 @@ class FilterOptionsPanel(cP.ControlPanel):
         self.master.event_generate("<<SubmitFilterOptions>>")
     def saveState(self):
         if super().saveState():
-            self.state[iST.FILTER_DIAMETER] = self._getIntEntry(self.state[iST.FILTER_DIAMETER],self.filterDiameterEntry)
-            self.state[iST.SIGMA_COLOR] = self._getFloatEntry(self.state[iST.SIGMA_COLOR],self.sigmaColorEntry)
-            self.state[iST.SIGMA_SPACE] = self._getFloatEntry(self.state[iST.SIGMA_SPACE],self.sigmaSpaceEntry)
-            self.state[iST.ADAPTIVE_BLOCKSIZE] = self._getIntEntry(self.state[iST.ADAPTIVE_BLOCKSIZE],self.adaptiveBlockSizeEntry)
+            self.state.filter_diameter = self._getIntEntry(self.state.filter_diameter,self.filterDiameterEntry)
+            self.state.sigma_color = self._getFloatEntry(self.state.sigma_color,self.sigmaColorEntry)
+            self.state.sigma_space = self._getFloatEntry(self.state.sigma_space,self.sigmaSpaceEntry)
+            self.state.adaptive_blocksize = self._getIntEntry(self.state.adaptive_blocksize,self.adaptiveBlockSizeEntry)

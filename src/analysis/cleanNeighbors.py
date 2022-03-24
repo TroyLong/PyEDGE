@@ -12,7 +12,6 @@ import dataTypes.cell as ce
 from dataTypes.dataTypeTraits import cellTraits as cT
 from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
 import dataTypes.imageState as iS
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from analysis.filters.neighborFilters.tooFewNeighborsFilter import tooFewNeighborsFilter
 from analysis.filters.neighborFilters.distanceFilter import distanceFilter
 from analysis.filters.neighborFilters.passThroughMultipleAreasFilter import passThroughMultipleAreasFilter
@@ -20,7 +19,7 @@ from . import walkTree as walkTree
 from . import tree as tree
 
 def cleanNeighbors(state):
-    cells = state[iST.CELLS]
+    cells = state.cells
     for cell in cells:
         for neighbor in cell[cT.NEIGHBORS]:
             neighbor = neighbor[cNT.CELL]

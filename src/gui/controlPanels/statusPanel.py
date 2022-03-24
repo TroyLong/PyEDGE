@@ -15,7 +15,7 @@ from . import controlPanel as cP
 
 # Displays program status and error messages
 class StatusPanel(cP.ControlPanel):
-    def __init__(self, master=None, state=iS.imageState.copy()):
+    def __init__(self, master=None, state=None):
         super().__init__(master,state,"Program Status")
     def loadState(self, state):
         super().loadState(state)

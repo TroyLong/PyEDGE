@@ -11,13 +11,12 @@ from copy import deepcopy
 import dataTypes.cell as ce
 from dataTypes.dataTypeTraits import cellTraits as cT
 from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 
 
 #TODO:: Deepcopy might be too slow
 #Functional Form, might require deepcopy to work properly though
 def distanceFilter(state,deviation):
-    tempCells = deepcopy(state[iST.CELLS])
+    tempCells = deepcopy(state.cells)
     for cell in tempCells:
         cellularDistanceFilter(cell,deviation)
     return tuple(tempCells)

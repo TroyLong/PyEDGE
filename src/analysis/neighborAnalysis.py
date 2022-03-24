@@ -38,13 +38,13 @@ def processNeighborAnalysis(state):
 # Not sure if currently set up correctly (its been a while since I've looked).
 def runTreeApprox(state):
     #This box is the default for the tree geometry
-    box = tree.Rectangle(0,0,state[iST.NEIGHBOR_IMAGE].shape[0],state[iST.NEIGHBOR_IMAGE].shape[1])
+    box = tree.Rectangle(0,0,state.neighbor_image.shape[0],state.neighbor_image.shape[1])
     #Puts Cutoff length in format of tree cutoffThreshold
-    upperCutoff = state[iST.NEIGHBOR_IMAGE].shape[1]/state[iST.UPPER_CUTOFF_DIST]
+    upperCutoff = state.neighbor_image.shape[1]/state.upper_cutoff_dist
     #Creates Tree
-    root = tree.treeNode(box,list(state[iST.CELLS]),upperCutoff)
+    root = tree.treeNode(box,list(state.cells),upperCutoff)
     #Finds neighbors of cells using tree structure
-    state[iST.CELLS] = walkTree.findCloseCells(root,state[iST.CELLS])
+    state.cells = walkTree.findCloseCells(root,state.cells)
 
 
 # Knowingly breaks functional programming here
@@ -54,8 +54,8 @@ def runNeighborFilters(state):
     # I think it is because the other cells still think it is a neighbor 
     # It is going to need a way to check if the neighbor still exists afterwords
     # Running recursively should get rid of chaining effects.
-    state[iST.CELLS] = distanceFilter(state,state[iST.DEVIATION])
-    state[iST.CELLS] = tooFewNeighborsFilter(state,2)
+    state.cells = distanceFilter(state,state.deviation)
+    state.cells = tooFewNeighborsFilter(state,2)
     #state[iST.CELLS] = oneToOneFilter(state)
     #state[iST.CELLS] = passThroughMultipleAreasFilter(state)
     
@@ -63,7 +63,7 @@ def runNeighborFilters(state):
     
 # This draws the neighbor lines and the circles on the neighbor image
 def drawNeighborAnalysis(state):
-    for cell in state[iST.CELLS]:
-        cv.circle(state[iST.NEIGHBOR_IMAGE], (cell[cT.CENTER][0],cell[cT.CENTER][1]), int(cell[cT.RADIUS]), (255, 255, 0), 2)
+    for cell in state.cells:
+        cv.circle(state.neighbor_image, (cell[cT.CENTER][0],cell[cT.CENTER][1]), int(cell[cT.RADIUS]), (255, 255, 0), 2)
         for neighbor in cell[cT.NEIGHBORS]:
-            cv.line(state[iST.NEIGHBOR_IMAGE],cell[cT.CENTER],neighbor[cNT.CELL][cT.CENTER],(132,124,255), 2)
+            cv.line(state.neighbor_image,cell[cT.CENTER],neighbor[cNT.CELL][cT.CENTER],(132,124,255), 2)

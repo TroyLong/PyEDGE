@@ -1,97 +1,95 @@
 from re import I
-import cv2 as cv
+from time import time
 import analysis
-import analysis.segmentImage as sI
-import analysis.neighborAnalysis as nA
 import analysis.filters.cellFilters.cellFilters as cF
 import dataTypes.imageState as iS
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 import multiAnalysis.functions as f
 import pandasFunctions
 
+
 class AppCore:
     def __init__(self):
+        print(f"Initializing AppCore: {id(self)}")
         self.__initImageState()
-        self.__initMultiState()
+        self.__initStateUnion()
 
     # There is a list of states, each of which can be loaded and passed to the whole program
     def __initImageState(self):
-        self.imageStateIndex = 0
-        self.imageStateList = [iS.imageState.copy()]
-        self.state = self.imageStateList[self.imageStateIndex]
+        self.multiState = [[iS.SingleState()]]
+        self.timeIndex = 0
+        self.zIndex = 0
+        self.state = self.multiState[self.timeIndex][self.zIndex]
+        print(self.state.image_opened)
         self.statusMessage = ""
-    def __initMultiState(self):
-        self.multiState = iS.imageState.copy()
 
-    def openImage(self,imagePath):
-        # TODO:: Is there a shorterway?
-        self.state[iST.IMAGE_OPENED] = True
-        self.__createOriginalImage(imagePath)
-        self.__createFilteredImageAndCells()
-        self.__createNeighborImage()
+    def __initStateUnion(self):
+        self.stateUnion = iS.SingleState()
 
+    def openImage(self, imagePath):
+        self.multiState[self.timeIndex][self.zIndex].openImage(imagePath)
 
-    def __createOriginalImage(self,imagePath):
-        self.state[iST.IMAGE] = cv.imread(imagePath)
-    def __createFilteredImageAndCells(self):
-        # If Adaptive Blocksize is > 2 or %2 = 1 this works. Otherwise I get an error
-        self.state[iST.CELLS],self.state[iST.FILTERED_IMAGE] = sI.segmentImage(image=self.state[iST.IMAGE],
-                                                                                diameter=self.state[iST.FILTER_DIAMETER],
-                                                                                bfSigmaColor=self.state[iST.SIGMA_COLOR],
-                                                                                bfSigmaSpace=self.state[iST.SIGMA_SPACE],
-                                                                                atBlockSize=self.state[iST.ADAPTIVE_BLOCKSIZE])
-        #TODO:: I think I should have a more general function call eventually
-        self.state[iST.CELLS] = cF.removeOutlierSmallRadii(self.state,1)
-    def __createNeighborImage(self):
-        self.state[iST.NEIGHBOR_IMAGE] = self.state[iST.FILTERED_IMAGE].copy()    
-        nA.processNeighborAnalysis(self.state)
+    # Time Image State Events
+    def addImageStateTime(self):
+        self.multiState.append([iS.SingleState()])
+    # TODO:: Moves to 0 z index each time for safety. Will work on later
+    def upImageStateTime(self):
+        self.timeIndex += 1 if (self.timeIndex <
+                                len(self.multiState)-1) else 0
+        self.state = self.multiState[self.timeIndex][0]
+    def downImageStateTime(self):
+        self.timeIndex -= 1 if (self.timeIndex>0) else 0
+        self.state = self.multiState[self.timeIndex][0]
+    
+    # Z Image State Events
+    def addImageStateZ(self):
+        self.multiState[self.timeIndex].append(iS.SingleState())
+    def upImageStateZ(self):
+        self.zIndex += 1 if (self.zIndex <
+                                len(self.multiState)-1) else 0
+        self.state = self.multiState[self.timeIndex][self.zIndex]
+    def downImageStateZ(self):
+        self.zIndex -= 1 if (self.zIndex>0) else 0
+        self.state = self.multiState[self.timeIndex][self.zIndex]
 
-
-
-    # Image State Events
-    def addImageState(self):
-        self.imageStateList.append(iS.imageState.copy())
-    def upImageState(self):
-        self.imageStateIndex += 1 if (self.imageStateIndex<len(self.imageStateList)-1) else 0
-        self.state = self.imageStateList[self.imageStateIndex]
-    def downImageState(self):
-        self.imageStateIndex -= 1 if (self.imageStateIndex>0) else 0
-        self.state = self.imageStateList[self.imageStateIndex]
     # Imaging Events
     def updateFilterOptions(self):
-        self.__createFilteredImageAndCells()
-        # TODO:: Perhaps move to test implementation
-        iS.printState(self.state)
+        self.multiState[self.timeIndex][self.zIndex].updateFilterOptions()
+        print(self.multiState[self.timeIndex][self.zIndex])
     # Neighbor Analysis Events
     def updateNeighborOptions(self):
-        self.__createNeighborImage()
-        iS.printState(self.state)
+        self.multiState[self.timeIndex][self.zIndex].updateNeighborOptions()
+        print(self.multiState[self.timeIndex][self.zIndex])
 
     # TODO:: This is just a proof of concept right now
-    #Multi state image analysis
-    def startMultiStateAnalysis(self):
-        # Create new multistate image from state size and get to the neighbor image
-        self.multiState = iS.combinedImageState.copy()
-        self.multiState[iST.IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
-        self.multiState[iST.FILTERED_IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
-        self.multiState[iST.NEIGHBOR_IMAGE] = iS.createEmptyImage(self.state[iST.IMAGE].shape)
-        # Fill the multiState with the base case.
+    # Multi state image analysis
+    def startStateUnionAnalysis(self):
+        # Create new stateUnion image from state size and get to the neighbor image
+        self.stateUnion = iS.SingleState(shape = self.multiState[0][0].image.shape)
+    
+        # Fill the stateUnion with the base case.
         # TODO:: Exception catching should occur here
-        self.multiState[iST.CELLS] = f.findCellOverlap(self.imageStateList[0][iST.CELLS],self.imageStateList[0][iST.CELLS])
+        self.stateUnion.cells = f.findCellOverlap(
+            self.multiState[0][0].cells, self.multiState[0][0].cells)
         # Loop through all image states
         # TODO:: Only loop through a window of indexies to give more user control
-        for state in self.imageStateList:
-            self.multiState[iST.CELLS] = f.findCellOverlap(self.multiState[iST.CELLS],state[iST.CELLS])
-        iS.drawCells(self.multiState)
-        
-    #Exports the state
+        # TODO:: Only looping through top row
+        for state in self.multiState:
+            self.stateUnion.cells = f.findCellOverlap(
+                self.stateUnion.cells, state[0].cells)
+        iS.drawCells(self.stateUnion)
+
+    # Exports the state
     def exportState(self):
-        pandasFunctions.cellsToPandas(self.state[iST.CELLS]).to_csv("cell.csv")
+        pandasFunctions.cellsToPandas(
+            self.multiState[self.timeIndex][self.zIndex].cells).to_csv("cell.csv")
+
     def exportSuperState(self):
         pass
     # Getters
+
     def getState(self):
         return self.state
     # This passes information about the number of states, and which is active now
+
     def getTotalStatesCount(self):
-        return (self.imageStateIndex,len(self.imageStateList))
+        return (self.timeIndex, len(self.multiState))

@@ -1,3 +1,6 @@
+# TODO:: THIS MIGHT NEED TO BELONG TO THE STATE OBJECT?
+
+
 ########################
 ## Internal Libraries ##
 ########################
@@ -9,9 +12,9 @@ from dataTypes.dataTypeTraits import cellTraits as cT
 # Removes cells to small to be real cells. Recreates cells to be tuple ready
 # Currently doesn't protect against negative numbers
 def removeOutlierSmallRadii(state,deviations):
-    cells = state[iST.CELLS]
-    meanRadius = iS.meanCellRadii(state)
-    deviation = iS.cellRadiusDeviation(state)
+    cells = state.cells
+    meanRadius = state.meanCellRadii()
+    deviation = state.cellRadiusDeviation()
     tempCells = list()
     for cell in cells:
         if cell[cT.RADIUS] > (meanRadius - (deviations * deviation)):

@@ -19,7 +19,7 @@ import gui.stateMachineFrame as sMF
 
 # PlotPanel parent class for inheritance. Creates figures
 class PlotPanel(sMF.StateMachineFrame):
-    def __init__(self, master=None,state=iS.imageState.copy(),title = ""):
+    def __init__(self, master=None,state=None,title = ""):
         super().__init__(master,state)
         self.title = title
         self.__createPlotTitle()

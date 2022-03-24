@@ -5,7 +5,6 @@ from dataTypes.cellNeighbor import cellNeighbor
 from dataTypes.dataTypeTraits import cellTraits as ct
 from dataTypes.dataTypeTraits import cellNeighborTraits as cnt
 from dataTypes.dataTypeTraits import imageStateTraits as ist
-from dataTypes.imageState import imageState
 
 from numpy import sqrt
 

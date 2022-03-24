@@ -11,14 +11,16 @@ import tkinter as tk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
+from soupsieve import match
 ########################
 ## Internal Libraries ##
 ########################
 import dataTypes.imageState as iS
+from dataTypes.dataTypeTraits import imageStateTraits as iST
 from gui.plotPanels import plotPanel as pP
 
 class ImagePanel(pP.PlotPanel):
-    def __init__(self, master=None,state=iS.imageState.copy(),title = "",imageType=None):
+    def __init__(self, master=None,state=None,title = "",imageType=None):
         super().__init__(master,state,title)
         self.imageType = imageType
     
@@ -29,6 +31,12 @@ class ImagePanel(pP.PlotPanel):
     def __loadImageState(self):
         self.plotFig.clf()
         self.imagePlt = self.plotFig.add_subplot(111)
-        self.image = cv.cvtColor(self.state[self.imageType],cv.COLOR_BGR2RGB)
+        # TODO:: replace with match statement after april
+        if self.imageType == iST.IMAGE:
+            self.image = cv.cvtColor(self.state.image,cv.COLOR_BGR2RGB)
+        elif self.imageType == iST.FILTERED_IMAGE:
+            self.image = cv.cvtColor(self.state.filtered_image,cv.COLOR_BGR2RGB)
+        elif self.imageType == iST.NEIGHBOR_IMAGE:
+            self.image = cv.cvtColor(self.state.neighbor_image,cv.COLOR_BGR2RGB)
         self.imagePlt.imshow(cv.cvtColor(self.image,cv.COLOR_BGR2RGB))
         self.plotCanvas.draw()

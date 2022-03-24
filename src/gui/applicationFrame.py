@@ -15,14 +15,13 @@ from . import topMenu as tm
 from . import graphFrame as gf
 from . import optionsFrame as of
 import dataTypes.imageState as iS
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from app import AppCore
 
 
 class AppFrame(tk.Frame):
-    def __init__(self, master=None, appCore=AppCore()):
+    def __init__(self, master=None, appCore=None):
         super().__init__(master)
-        self.appCore = appCore
+        self.appCore = appCore if appCore != None else AppCore()
         self.__bindEvents()
         #Layout manager
         self.grid()
@@ -78,7 +77,7 @@ class AppFrame(tk.Frame):
         self.graphFrame.updateNeighborOptions()
    # processes multiple images against each other
     def __startMultiStateAnalysis(self,event):
-        self.appCore.startMultiStateAnalysis()
+        self.appCore.startStateUnionAnalysis()
         self.graphFrame.loadMultiState(self.appCore.multiState)
 
     # Export Events

@@ -10,13 +10,12 @@ import dataTypes.imageState as iS
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from . import controlPanel as cP
 
 
 # Selects and retrieves information for induvidual cells
 class CellFocusPanel(cP.ControlPanel):
-    def __init__(self,master=None, state=iS.imageState.copy()):
+    def __init__(self,master=None, state=None):
         super().__init__(master,state,"Cell Focus Panel")
         self._createPreviousCellButton(3,0)
         self._createNextCellButton(3,1)
@@ -29,7 +28,7 @@ class CellFocusPanel(cP.ControlPanel):
     # creates text for status text at creation and for updates.
     # Called in _createStatusBanner and _updateStatusBanner()
     def _generateStatusText(self):
-        return str("Cell: " + str(self.state[iST.CELL_INDEX]) + "\tTotal Cells: " + str(len(self.state[iST.CELLS])))
+        return str("Cell: " + str(self.state.cell_index) + "\tTotal Cells: " + str(len(self.state.cells)))
 
     def _createPreviousCellButton(self,row,column):
         self.addStateButton = tk.Button(self,text="Previous",command=self.__previousCell)
@@ -41,15 +40,15 @@ class CellFocusPanel(cP.ControlPanel):
     # Button Events
     def __previousCell(self):
         # Just a wrapped decrementor
-        if (self.state[iST.CELL_INDEX] == 0):
-            self.state[iST.CELL_INDEX] = len(self.state[iST.CELLS])
+        if (self.state.cell_index == 0):
+            self.state.cell_index = len(self.state.cells)
         else:
-            self.state[iST.CELL_INDEX] -= 1
+            self.state.cell_index -= 1
         self.master.event_generate("<<PreviousCell>>")
     def __nextCell(self):
         # Just a wrapped incrementor
-        if (self.state[iST.CELL_INDEX] == len(self.state[iST.CELLS])):
-            self.state[iST.CELL_INDEX] = 0
+        if (self.state.cell_index == len(self.state.cells)):
+            self.state.cell_index = 0
         else:
-            self.state[iST.CELL_INDEX] += 1
+            self.state.cell_index += 1
         self.master.event_generate("<<NextCell>>")

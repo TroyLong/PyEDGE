@@ -17,7 +17,7 @@ import dataTypes.imageState as iS
 
 # This is the main Panel Window Section
 class OptionsZoneFrame(sMF.StateMachineFrame):
-    def __init__(self, master=None, state=iS.imageState.copy()):
+    def __init__(self, master=None, state=None):
         super().__init__(master,state)
         self.__bindEvents()
         self.grid()

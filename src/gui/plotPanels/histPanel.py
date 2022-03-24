@@ -16,12 +16,11 @@ from matplotlib.backends.backend_tkagg import (
 ########################
 import dataTypes.imageState as iS
 from dataTypes.dataTypeTraits import cellTraits as cT
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from gui.plotPanels import plotPanel as pP
 
 
 class HistPanel(pP.PlotPanel):
-    def __init__(self, master=None,state=iS.imageState.copy(),title = ""):
+    def __init__(self, master=None,state=None,title = ""):
         super().__init__(master,state,title)
     
     def loadState(self,state):
@@ -31,8 +30,8 @@ class HistPanel(pP.PlotPanel):
     def __loadHistState(self):
         neighborNumbers = list()
         # Only draw histogram if there are cells to create it with
-        if len(self.state[iST.CELLS]):
-            for cell in self.state[iST.CELLS]:
+        if len(self.state.cells):
+            for cell in self.state.cells:
                 neighborNumbers.append(len(cell[cT.NEIGHBORS]))
             self.plotFig.clf()
             self.histPlt = self.plotFig.add_subplot(111)        

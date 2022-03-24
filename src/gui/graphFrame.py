@@ -23,11 +23,11 @@ from gui.plotPanels.histPanel import HistPanel
 
 
 class GraphZoneFrame(sMF.StateMachineFrame):
-    def __init__(self, master=None,state=iS.imageState.copy(),multiState=iS.imageState.copy()):
+    def __init__(self, master=None,state=None,stateUnion=None):
         super().__init__(master)
         self.master = master
-        self.state = state
-        self.multiState = multiState
+        self.state = state if state != None else iS.SingleState()
+        self.stateUnion = stateUnion if stateUnion != None else iS.SingleState()
         self.__createGraphs()
 
     def loadState(self,state):
@@ -37,8 +37,8 @@ class GraphZoneFrame(sMF.StateMachineFrame):
             self.__loadBlankImages()
 
     # TODO:: Bad Form
-    def loadMultiState(self,multiState):
-        self.multiState=multiState
+    def loadMultiState(self,stateUnion):
+        self.stateUnion=stateUnion
         self.__loadImages()
 
     def openFile(self,imagePath):
@@ -46,11 +46,11 @@ class GraphZoneFrame(sMF.StateMachineFrame):
 
     # These functions can be called to have images re-created
     def updateFilterOptions(self):
-        if self.state[iST.IMAGE_OPENED]:
+        if self.state.image_opened:
             #self.__createFilteredImageAndCells()
             self.updateNeighborOptions()
     def updateNeighborOptions(self):
-        if self.state[iST.IMAGE_OPENED]:
+        if self.state.image_opened:
             #self.__createNeighborImage()
             # TODO:: Do I still use these functions?
             # Yes, but why?
@@ -79,8 +79,8 @@ class GraphZoneFrame(sMF.StateMachineFrame):
         self.neighborHistFrame = HistPanel(self,state=self.state,title="Neighbor Histogram")
         self.neighborHistFrame.grid(row=1,column=column)
     def __createMultiStateAnalysisGraph(self,column):
-        self.multiStateFrame = ImagePanel(self,state=self.state,title="Multi-State Analysis",imageType=iST.NEIGHBOR_IMAGE)
-        self.multiStateFrame.grid(row=1,column=column)
+        self.stateUnionFrame = ImagePanel(self,state=self.state,title="Multi-State Analysis",imageType=iST.NEIGHBOR_IMAGE)
+        self.stateUnionFrame.grid(row=1,column=column)
 
 
     # These functions load pre-created images to the graphs
@@ -89,7 +89,7 @@ class GraphZoneFrame(sMF.StateMachineFrame):
         self.filteredImageFrame.loadState(self.state)
         self.neighborImageFrame.loadState(self.state)
         self.neighborHistFrame.loadState(self.state)
-        self.multiStateFrame.loadState(self.multiState)
+        self.stateUnionFrame.loadState(self.stateUnion)
 
     # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
     def __loadBlankImages(self):
@@ -97,4 +97,4 @@ class GraphZoneFrame(sMF.StateMachineFrame):
         self.filteredImageFrame.loadBlankImage()
         self.neighborImageFrame.loadBlankImage()
         self.neighborHistFrame.loadBlankImage()
-        self.multiStateFrame.loadBlankImage()
+        self.stateUnionFrame.loadBlankImage()

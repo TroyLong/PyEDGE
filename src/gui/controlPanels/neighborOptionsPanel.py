@@ -10,13 +10,12 @@ import dataTypes.imageState as iS
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from . import controlPanel as cP
 
 
 # Controls neighbor finding constraints
 class NeighborOptionsPanel(cP.ControlPanel):
-    def __init__(self,master=None, state=iS.imageState.copy()):
+    def __init__(self,master=None, state=None):
         super().__init__(master,state,"Neighbor Options")
         self._createDeviationOption(2)
         self._createMaxNeighborDistanceOption(3)
@@ -56,13 +55,13 @@ class NeighborOptionsPanel(cP.ControlPanel):
     # These functions are called each time a state is loaded
     def _loadDeviationOptionState(self):
         self.deviationEntry.delete(0,tk.END)
-        self.deviationEntry.insert(0,self.state[iST.DEVIATION])
+        self.deviationEntry.insert(0,self.state.deviation)
     def _loadMaxNeighborDistanceOptionState(self):
         self.maxNeighborDistanceEntry.delete(0,tk.END)
-        self.maxNeighborDistanceEntry.insert(0,self.state[iST.MAX_NEIGHBHOR_DIST])
+        self.maxNeighborDistanceEntry.insert(0,self.state.max_neighbor_dist)
     def _loadUpperCutoffDistanceOptionState(self):
         self.upperCutoffDistanceEntry.delete(0,tk.END)
-        self.upperCutoffDistanceEntry.insert(0,self.state[iST.UPPER_CUTOFF_DIST])
+        self.upperCutoffDistanceEntry.insert(0,self.state.upper_cutoff_dist)
 
     # Saves option data to loaded state before button event activates
     def __optionsSubmit(self):
@@ -70,6 +69,6 @@ class NeighborOptionsPanel(cP.ControlPanel):
         self.master.event_generate("<<SubmitNeighborOptions>>")
     def saveState(self):
         if super().saveState():
-            self.state[iST.DEVIATION] = self._getFloatEntry(self.state[iST.DEVIATION],self.deviationEntry)
-            self.state[iST.MAX_NEIGHBHOR_DIST] = self._getFloatEntry(self.state[iST.MAX_NEIGHBHOR_DIST],self.maxNeighborDistanceEntry)
-            self.state[iST.UPPER_CUTOFF_DIST] = self._getFloatEntry(self.state[iST.UPPER_CUTOFF_DIST],self.upperCutoffDistanceEntry)
+            self.state.deviation = self._getFloatEntry(self.state.deviation,self.deviationEntry)
+            self.state.max_neighbor_dist = self._getFloatEntry(self.state.max_neighbor_dist,self.maxNeighborDistanceEntry)
+            self.state.upper_cutoff_dist = self._getFloatEntry(self.state.upper_cutoff_dist,self.upperCutoffDistanceEntry)

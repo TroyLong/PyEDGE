@@ -15,7 +15,7 @@ from . import controlPanel as cP
 
 # This one is weird as it deals with multiple states at the same time
 class ImageStatePanel(cP.ControlPanel):
-    def __init__(self, master=None, state=iS.imageState.copy()):
+    def __init__(self, master=None, state=None):
         super().__init__(master,state,"Image State Options")
         self._createAddStateButton(3)
         self._createUpStateButton(4)

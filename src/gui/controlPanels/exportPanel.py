@@ -10,7 +10,6 @@ import dataTypes.imageState as iS
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from . import controlPanel as cP
 
 class databasePanel(cP.ControlPanel):
