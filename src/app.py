@@ -26,6 +26,9 @@ class AppCore:
     def __initStateUnion(self):
         self.stateUnion = iS.SingleState()
 
+    # TODO:: rename as openImages, to bulk open the images then sort multiImage
+    # TODO:: create openImage that replaces the current image state
+    # opens images to states, but does not sort them!
     def openImage(self, imagePaths):
         # TODO:: This should house a pattern matching algorithm
         tempTime = self.timeIndex
@@ -35,12 +38,20 @@ class AppCore:
             logging.info(f"Opening: {imagePath}")
             if not self.state.image_opened:
                 logging.info("Image opened to current state.")
+            #TODO:: Needs to add to tempTime in a loop until it finds the next available space.
             elif self.state.image_opened:
                 logging.info("Image opened to new state.")
                 self.addImageStateTime()
                 tempTime += 1
+            # Compression gets the index 2 and 3 of the imagePath split by '_' and trims away the non-number characters.
+            zLevel, time = [int("".join(char for char in x if char.isDigit()))
+                            for i,x in enumerate(imagePath.split("_"))
+                                if i==2 or i==3 ]
+            self.multiState[tempTime][tempZ].zLevel = zLevel
+            self.multiState[tempTime][tempZ].time = time
             self.multiState[tempTime][tempZ].openImage(imagePath)
         logging.info("Finished opening files.\n")
+
 
     # Time Image State Events
     def addImageStateTime(self):

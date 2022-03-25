@@ -17,11 +17,14 @@
 
 ### Analysis
 - [ ] Run speed test on the deepcopy versions of filters.
-- [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data.
+- [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data
 - [ ] Fix the intersection neighbor filter. This got worse after AppCore was created
 
 ### Multi-Image Analysis
 - [ ] Create z level roll-through
+- [ ] Replace/Swap/Delete states
+- [ ] Find next available state
+- [ ] Sort states based on time and z-level
 - [ ] Handle missing data states well
 - [ ] Ensure data types and large state loading is stable
 - [x] Use roll-through data to construct super-state
@@ -29,7 +32,7 @@
 
 ### GUI
 - [ ] Fix the open menu so it does not throw an error if canceled.
-- [ ] Set values of the gui to be rescalable. Not important now, but will help small screen users.
+- [ ] Set values of the gui to be rescalable. Not important now, but will help small screen users
 - [x] Graphs are growing and shrinking. Find a way to lock this
 - [x] Introduce multi-file image open support.
 - [x] Integrate a multi-image analysis panel.
@@ -47,6 +50,7 @@
 ### Testing
 - [ ] Build interface to AppCore
 - [ ] Test Immutability/copy/deepcopy for dataTypes, and the results of deleting from other objects.
+- [x] Implement logging system
 
 - - -
 
