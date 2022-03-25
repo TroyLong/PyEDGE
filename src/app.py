@@ -43,17 +43,19 @@ class AppCore:
     def upImageStateTime(self):
         self.timeIndex += 1 if (self.timeIndex <
                                 len(self.multiState)-1) else 0
-        self.state = self.multiState[self.timeIndex][0]
+        self.zIndex = 0
+        self.state = self.multiState[self.timeIndex][self.zIndex]
     def downImageStateTime(self):
         self.timeIndex -= 1 if (self.timeIndex>0) else 0
-        self.state = self.multiState[self.timeIndex][0]
+        self.zIndex = 0
+        self.state = self.multiState[self.timeIndex][self.zIndex]
     
     # Z Image State Events
     def addImageStateZ(self):
         self.multiState[self.timeIndex].append(iS.SingleState())
     def upImageStateZ(self):
         self.zIndex += 1 if (self.zIndex <
-                                len(self.multiState)-1) else 0
+                                len(self.multiState[self.timeIndex])-1) else 0
         self.state = self.multiState[self.timeIndex][self.zIndex]
     def downImageStateZ(self):
         self.zIndex -= 1 if (self.zIndex>0) else 0
@@ -100,4 +102,4 @@ class AppCore:
     # This passes information about the number of states, and which is active now
 
     def getTotalStatesCount(self):
-        return (self.timeIndex, len(self.multiState))
+        return (self.timeIndex, len(self.multiState),self.zIndex,len(self.multiState[self.timeIndex]))

@@ -7,7 +7,8 @@
 ########################
 import gui.stateMachineFrame as sMF
 from gui.controlPanels.statusPanel import StatusPanel
-from gui.controlPanels.imageStatePanel import ImageStatePanel
+from gui.controlPanels.timeStatePanel import TimeStatePanel
+from gui.controlPanels.zStatePanel import ZStatePanel
 from gui.controlPanels.filterOptionsPanel import FilterOptionsPanel
 from gui.controlPanels.neighborOptionsPanel import NeighborOptionsPanel
 from gui.controlPanels.cellFocusPanel import CellFocusPanel
@@ -23,7 +24,8 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.grid()
         self._createTitleBanner("Options",fontSize=14,row=0,columnspan=6)
         self._createStatusPanel(0)
-        self._createStatePanel(1)
+        self._createTimeStatePanel(0)
+        self._createZStatePanel(1)
         self._createFilterOptionsPanel(2)
         self._createNeighborOptionsPanel(3)
         self._createMultiStateAnalysisPanel(4)
@@ -32,10 +34,13 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
     # These functions are only called for creation
     def _createStatusPanel(self,column):
         self.statusPanel = StatusPanel(self,state=self.state)
-        self.statusPanel.grid(row=1,column=column,padx=5)
-    def _createStatePanel(self,column):
-        self.stateOptions = ImageStatePanel(self,state=self.state)
-        self.stateOptions.grid(row=1,column=column,padx=5)
+        self.statusPanel.grid(row=2,column=column,padx=5,columnspan=6)
+    def _createTimeStatePanel(self,column):
+        self.timeStateOptions = TimeStatePanel(self,state=self.state)
+        self.timeStateOptions.grid(row=1,column=column,padx=5)
+    def _createZStatePanel(self,column):
+        self.zStateOptions = ZStatePanel(self,state=self.state)
+        self.zStateOptions.grid(row=1,column=column,padx=5)
     def _createFilterOptionsPanel(self,column):
         self.filterOptions = FilterOptionsPanel(self,state=self.state)
         self.filterOptions.grid(row=1,column=column,padx=5)
@@ -59,7 +64,8 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         # I don't want stateOptions locking up, so I can't lock this up too.
         super().loadState(state)
         self.statusPanel.loadState(state)
-        self.stateOptions.loadState(state)
+        self.timeStateOptions.loadState(state)
+        self.zStateOptions.loadState(state)
         self.filterOptions.loadState(state)
         self.neighborOptions.loadState(state)
 
@@ -73,7 +79,9 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
     # This allows the panels to refresh with new info without loading a new state
     def update(self):
         self.statusPanel.update()
-        self.stateOptions.update()
+        self.timeStateOptions.update()
+        self.zStateOptions.update()
+        self.zStateOptions.update
 
     # The events in this frame just pass the event up to the main frame. The events are done like this to make the sub
     # Options classes more robust. They only reference their master this way, and not their master's master.
