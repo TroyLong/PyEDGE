@@ -2,7 +2,8 @@
 
 
 ## Version One Goals
-- [ ] Conduct super-state analysis
+- [ ] Conduct super-state analysis of z
+- [x] Conduct super-state analysis of time
 - [x] Segment cells from image with openCV
 - [x] Reduce and clean cell segment data
 - [x] Construct GUI interface
@@ -11,7 +12,8 @@
 ## Module Goals
 ### Data Types
 - [ ] Use pytest platform to find accuracy of connections
-- [x ] Make imageState Dictionary a SingleState() object
+- [ ] Make SingleState() a slots object
+- [x] Make imageState Dictionary a SingleState() object
 
 ### Analysis
 - [ ] Run speed test on the deepcopy versions of filters.
@@ -19,17 +21,19 @@
 - [ ] Fix the intersection neighbor filter. This got worse after AppCore was created
 
 ### Multi-Image Analysis
-- [ ] Create arbitary state roll-through
-- [ ] Use roll-through data to construct super-state
-- [ ] Build in appropriate calling to single-state analysis
+- [ ] Create z level roll-through
+- [ ] Handle missing data states well
 - [ ] Ensure data types and large state loading is stable
+- [x] Use roll-through data to construct super-state
+- [x] Build in appropriate calling to single-state analysis
 
 ### GUI
 - [ ] Fix the open menu so it does not throw an error if canceled.
-- [ ] Introduce multi-file image open support.
-- [ ] Integrate a multi-image analysis panel.
 - [ ] Set values of the gui to be rescalable. Not important now, but will help small screen users.
-- [ ] Graphs are growing and shrinking. Find a way to lock this
+- [x] Graphs are growing and shrinking. Find a way to lock this
+- [x] Introduce multi-file image open support.
+- [x] Integrate a multi-image analysis panel.
+
 
 - - -
 
