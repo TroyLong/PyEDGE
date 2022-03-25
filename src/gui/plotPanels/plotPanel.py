@@ -31,14 +31,17 @@ class PlotPanel(sMF.StateMachineFrame):
     
     def __createPlotFigure(self):
         self.plotFig = plt.Figure(figsize=(3.75,4), dpi=100, tight_layout=True)
+        self.plotFig.format_coord = lambda x, y: ""
         # Canvas for the image or graph to display to
         self.plotCanvas = FigureCanvasTkAgg(self.plotFig,self)
-        self.plotCanvas.get_tk_widget().grid(row=1,column=0)
         # Toolbar has to go in Frame to back with grid
         toolbarFrame = tk.Frame(self)
         toolbarFrame.grid(row=2,column=0)
         imageToolbar = NavigationToolbar2Tk(self.plotCanvas,toolbarFrame)
-    
+        # Adding the canvas to the grid layout manager
+        self.plotCanvas.get_tk_widget().grid(row=1,column=0)
+
+
     # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
     def loadBlankImage(self):
         self.plotFig.clf()

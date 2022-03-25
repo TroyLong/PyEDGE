@@ -8,7 +8,6 @@
 # Image Analysis Libraries
 import cv2 as cv
 import tkinter as tk
-import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
 ########################
@@ -17,6 +16,7 @@ from matplotlib.backends.backend_tkagg import (
 import dataTypes.imageState as iS
 from dataTypes.dataTypeTraits import imageStateTraits as iST
 from gui.plotPanels import plotPanel as pP
+
 
 class ImagePanel(pP.PlotPanel):
     def __init__(self, master=None,state=None,title = "",imageType=None):
@@ -38,4 +38,6 @@ class ImagePanel(pP.PlotPanel):
         elif self.imageType == iST.NEIGHBOR_IMAGE:
             self.image = cv.cvtColor(self.state.neighbor_image,cv.COLOR_BGR2RGB)
         self.imagePlt.imshow(cv.cvtColor(self.image,cv.COLOR_BGR2RGB))
+        axes = self.plotFig.gca()
+        axes.format_coord = lambda x, y: ''
         self.plotCanvas.draw()

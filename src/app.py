@@ -1,15 +1,17 @@
 from re import I
 from time import time
+import cv2 as cv
 import analysis
 import analysis.filters.cellFilters.cellFilters as cF
 import dataTypes.imageState as iS
 import multiAnalysis.functions as f
 import pandasFunctions
-
+import logging
 
 class AppCore:
     def __init__(self):
-        print(f"Initializing AppCore: {id(self)}")
+        logging.info(f"\n\n------------------------------\n\n" +
+                    f"Initializing AppCore: {id(self)}\n")
         self.__initImageState()
         self.__initStateUnion()
 
@@ -26,15 +28,19 @@ class AppCore:
 
     def openImage(self, imagePaths):
         # TODO:: This should house a pattern matching algorithm
+        tempTime = self.timeIndex
+        tempZ = self.zIndex
+        logging.info(f"Opening {len(imagePaths)} files.")
         for imagePath in imagePaths:
-            print(f"Opening: {imagePath}")
+            logging.info(f"Opening: {imagePath}")
             if not self.state.image_opened:
-                print("Image opened to current state.")
-                self.multiState[self.timeIndex][self.zIndex].openImage(imagePath)
+                logging.info("Image opened to current state.")
             elif self.state.image_opened:
-                print("Image opened to new state.")
+                logging.info("Image opened to new state.")
                 self.addImageStateTime()
-                self.multiState[self.timeIndex+1][self.zIndex].openImage(imagePath)
+                tempTime += 1
+            self.multiState[tempTime][tempZ].openImage(imagePath)
+        logging.info("Finished opening files.\n")
 
     # Time Image State Events
     def addImageStateTime(self):
@@ -64,18 +70,18 @@ class AppCore:
     # Imaging Events
     def updateFilterOptions(self):
         self.multiState[self.timeIndex][self.zIndex].updateFilterOptions()
-        print(self.multiState[self.timeIndex][self.zIndex])
+        logging.info(self.multiState[self.timeIndex][self.zIndex])
     # Neighbor Analysis Events
     def updateNeighborOptions(self):
         self.multiState[self.timeIndex][self.zIndex].updateNeighborOptions()
-        print(self.multiState[self.timeIndex][self.zIndex])
+        logging.info(self.multiState[self.timeIndex][self.zIndex])
 
     # TODO:: This is just a proof of concept right now
     # Multi state image analysis
     def startStateUnionAnalysis(self):
+        logging.info(f"Starting Union Analysis of {len(self.multiState)} states.")
         # Create new stateUnion image from state size and get to the neighbor image
-        self.stateUnion = iS.SingleState(shape = self.multiState[0][0].image.shape)
-    
+        self.stateUnion = iS.SingleState(shape = self.multiState[0][0].neighbor_image.shape)
         # Fill the stateUnion with the base case.
         # TODO:: Exception catching should occur here
         self.stateUnion.cells = f.findCellOverlap(
@@ -86,7 +92,11 @@ class AppCore:
         for state in self.multiState:
             self.stateUnion.cells = f.findCellOverlap(
                 self.stateUnion.cells, state[0].cells)
-        iS.drawCells(self.stateUnion)
+        self.stateUnion.image_opened = True
+        logging.info("finished Union Analysis.")
+        logging.info(f"Displaying {len(self.stateUnion.cells)} overlapping cells.\n")
+        self.stateUnion.drawCells()
+        
 
     # Exports the state
     def exportState(self):

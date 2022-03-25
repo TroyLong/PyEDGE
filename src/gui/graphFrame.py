@@ -5,11 +5,6 @@
 # This displays cell images, the filtered image, and the neighbor mappings
 # It may also display graphical aids to analyse the date
 ########################
-## Imported Libraries ##
-########################
-import tkinter as tk
-import matplotlib.pyplot as plt
-########################
 ## Internal Libraries ##
 ########################
 import analysis.segmentImage as sI
@@ -37,7 +32,7 @@ class GraphZoneFrame(sMF.StateMachineFrame):
             self.__loadBlankImages()
 
     # TODO:: Bad Form
-    def loadMultiState(self,stateUnion):
+    def loadStateUnion(self,stateUnion):
         self.stateUnion=stateUnion
         self.__loadImages()
 
@@ -64,7 +59,7 @@ class GraphZoneFrame(sMF.StateMachineFrame):
         self.__createFilteredGraph(1)
         self.__createNeighborGraph(2)
         self.__createNeighborHistogramGraph(3)
-        self.__createMultiStateAnalysisGraph(4)
+        self.__createStateUnionAnalysisGraph(4)
 
     def __createOriginalGraph(self,column):
         self.originalImageFrame = ImagePanel(self,state=self.state,title="Original",imageType=iST.IMAGE)
@@ -78,8 +73,8 @@ class GraphZoneFrame(sMF.StateMachineFrame):
     def __createNeighborHistogramGraph(self,column):
         self.neighborHistFrame = HistPanel(self,state=self.state,title="Neighbor Histogram")
         self.neighborHistFrame.grid(row=1,column=column)
-    def __createMultiStateAnalysisGraph(self,column):
-        self.stateUnionFrame = ImagePanel(self,state=self.state,title="Multi-State Analysis",imageType=iST.NEIGHBOR_IMAGE)
+    def __createStateUnionAnalysisGraph(self,column):
+        self.stateUnionFrame = ImagePanel(self,state=self.stateUnion,title="Multi-State Analysis",imageType=iST.NEIGHBOR_IMAGE)
         self.stateUnionFrame.grid(row=1,column=column)
 
 

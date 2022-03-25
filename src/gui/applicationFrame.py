@@ -17,7 +17,6 @@ from . import optionsFrame as of
 import dataTypes.imageState as iS
 from app import AppCore
 
-
 class AppFrame(tk.Frame):
     def __init__(self, master=None, appCore=None):
         super().__init__(master)
@@ -51,7 +50,7 @@ class AppFrame(tk.Frame):
         self.bind("<<SubmitFilterOptions>>",self.__updateFilterOptions)
         #Simular to above
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
-        self.bind("<<StartMultiStateAnalysis>>",self.__startMultiStateAnalysis)
+        self.bind("<<StartMultiStateAnalysis>>",self.__startStateUnionAnalysis)
         self.bind("<<ExportState>>",self.__exportState)
         self.bind("<<ExportSuperState>>",self.__exportSuperState)
     # Opens image from file and loads to current state
@@ -92,9 +91,9 @@ class AppFrame(tk.Frame):
         self.appCore.updateNeighborOptions()
         self.graphFrame.updateNeighborOptions()
    # processes multiple images against each other
-    def __startMultiStateAnalysis(self,event):
+    def __startStateUnionAnalysis(self,event):
         self.appCore.startStateUnionAnalysis()
-        self.graphFrame.loadMultiState(self.appCore.multiState)
+        self.graphFrame.loadStateUnion(self.appCore.stateUnion)
 
     # Export Events
     def __exportState(self,event):

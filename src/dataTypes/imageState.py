@@ -18,25 +18,27 @@ import analysis.segmentImage as sI
 
 # TODO:: Needs to merge with the imageState dictionary to make a slots class
 class SingleState(object):
-    def __init__(self):
+    def __init__(self,shape = None):
+        # dimensions of the image matrix
+        self.shape = shape if shape!=None else np.shape((1,1,3))
         self.image_opened = False
         self.image = self.__createEmptyImage()
         self.filtered_image = self.__createEmptyImage()
-        self.neighbor_image = self.__createEmptyImage(),
+        self.neighbor_image = self.__createEmptyImage()
         self.cells = tuple()
         self.cell_index = 0
         self.mean_cell_radii = 0
-        self.filter_diameter = 1
-        self.sigma_color = 0
-        self.sigma_space = 0
-        self.adaptive_blocksize = 3
+        self.filter_diameter = 10
+        self.sigma_color = 75
+        self.sigma_space = 75
+        self.adaptive_blocksize = 151
         self.deviation = 15.0
         self.max_neighbor_dist = 80000.0
         self.upper_cutoff_dist = 5000.0
     
     # Provides a basic empty image for the default state
-    def __createEmptyImage(self, shape=np.shape((1,1,3))):
-        return np.zeros(shape,dtype=np.uint8)
+    def __createEmptyImage(self):
+        return np.zeros(self.shape,dtype=np.uint8)
 
     
     def openImage(self,imagePath):
@@ -62,7 +64,7 @@ class SingleState(object):
         #TODO:: I think I should have a more general function call eventually
         self.cells = cF.removeOutlierSmallRadii(self,1)
     def __createNeighborImage(self):
-        self.neighbor_image = self.filtered_image.copy()    
+        self.neighbor_image = self.filtered_image.copy()
         nA.processNeighborAnalysis(self)
 
 
@@ -101,7 +103,7 @@ class SingleState(object):
 
     
     def __repr__(self):
-        return "\n######  STATE PRINTOUT  ######\n" + \
+        return "\n######  STATE PRINTOUT  ######" + \
                 "\nImage Created:         " + str(self.image_opened) + \
                 "\n######  Filter Options  ######" + \
                 "\nFilter Diameter:       " + str(self.filter_diameter) + \
@@ -112,4 +114,4 @@ class SingleState(object):
                 "\nDeviation:             " + str(self.deviation) + \
                 "\nMax Neighbor Distance: " + str(self.max_neighbor_dist) + \
                 "\nUpper Cutoff Distance: " + str(self.upper_cutoff_dist) + \
-                "\n\n"
+                "\n"

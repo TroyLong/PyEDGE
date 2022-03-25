@@ -1,0 +1,57 @@
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140024881531344
+
+INFO:root:Opening 2 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t019.tif
+INFO:root:Image opened to current state.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Image opened to new state.
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Starting Union Analysis of 2 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 110 overlapping cells.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Exiting pyEDGE.

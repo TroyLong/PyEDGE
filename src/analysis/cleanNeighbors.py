@@ -6,6 +6,10 @@
 # in the first place before I start optimizing everything.
 # This knowingly breaks functional form to change the neighbor's neighbor list
 ########################
+## External Libraries ##
+########################
+import logging
+########################
 ## Internal Libraries ##
 ########################
 import dataTypes.cell as ce
@@ -30,7 +34,6 @@ def cleanNeighbors(state):
 def cleanNeighbor(cell, neighbor):
     if not doesNeighborContainCell(cell, neighbor):
         neighbor[cT.NEIGHBORS] = tuple(list(neighbor[cT.NEIGHBORS]).append(cell))
-        print("Recovered")
 
 
 # Compares a cell and its neighbor. Checks if the cell is in its neighbor's neighbor list

@@ -36,4 +36,6 @@ class HistPanel(pP.PlotPanel):
             self.plotFig.clf()
             self.histPlt = self.plotFig.add_subplot(111)        
             self.histPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
+            axes = self.plotFig.gca()
+            axes.format_coord = lambda x, y: ''
             self.plotCanvas.draw()

@@ -1,5 +1,5 @@
 # This will probably be moved to related cell.py
-
+import logging
 import pandas
 from dataTypes.dataTypeTraits import cellTraits as cT
 
@@ -15,6 +15,5 @@ def cellsToPandas(cells):
     dataFrame = pandas.DataFrame()
     for cell in cells:
         dataFrame = pandas.concat([dataFrame,cellToPandas(cell)],ignore_index=True)
-    print(dataFrame)
     return dataFrame
 
