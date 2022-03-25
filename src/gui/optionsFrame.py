@@ -78,11 +78,15 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
     # The events in this frame just pass the event up to the main frame. The events are done like this to make the sub
     # Options classes more robust. They only reference their master this way, and not their master's master.
     def __bindEvents(self):
-        #This binding passes the event up to the next master
-        #Image State Events
-        self.bind("<<AddImageState>>",self.__addImageState)
-        self.bind("<<UpImageState>>",self.__upImageState)
-        self.bind("<<DownImageState>>",self.__downImageState)
+        # This binding passes the event up to the next master
+        # Time Image State Events
+        self.bind("<<AddImageStateTime>>",self.__addImageStateTime)
+        self.bind("<<UpImageStateTime>>",self.__upImageStateTime)
+        self.bind("<<DownImageStateTime>>",self.__downImageStateTime)
+        # Z Image State Events
+        self.bind("<<AddImageStateZ>>",self.__addImageStateZ)
+        self.bind("<<UpImageStateZ>>",self.__upImageStateZ)
+        self.bind("<<DownImageStateZ>>",self.__downImageStateZ)
         #Imaging Events
         self.bind("<<SubmitFilterOptions>>",self.__submitFilterOptions)
         #Neighbor Analysis Events
@@ -96,12 +100,18 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.bind("<<ExportState>>",self.__exportState)
         self.bind("<<ExportSuperState>>",self.__exportSuperState)
 
-    def __addImageState(self,event):
-        self.master.event_generate("<<AddImageState>>")
-    def __upImageState(self,event):
-        self.master.event_generate("<<UpImageState>>")
-    def __downImageState(self,event):
-        self.master.event_generate("<<DownImageState>>")
+    def __addImageStateTime(self,event):
+        self.master.event_generate("<<AddImageStateTime>>")
+    def __upImageStateTime(self,event):
+        self.master.event_generate("<<UpImageStateTime>>")
+    def __downImageStateTime(self,event):
+        self.master.event_generate("<<DownImageStateTime>>")
+    def __addImageStateZ(self,event):
+        self.master.event_generate("<<AddImageStateZ>>")
+    def __upImageStateZ(self,event):
+        self.master.event_generate("<<UpImageStateZ>>")
+    def __downImageStateZ(self,event):
+        self.master.event_generate("<<DownImageStateZ>>")
     def __submitFilterOptions(self,event):
         self.master.event_generate("<<SubmitFilterOptions>>")
     def __submitNeighborOptions(self,event):

@@ -39,10 +39,14 @@ class AppFrame(tk.Frame):
     # This is the main event handler     
     def __bindEvents(self):
         self.bind("<<OpenFile>>",self.__openImage)
-        #Image State Events
-        self.bind("<<AddImageState>>",self.__addImageState)
-        self.bind("<<UpImageState>>",self.__upImageState)
-        self.bind("<<DownImageState>>",self.__downImageState)
+        #Time Image State Events
+        self.bind("<<AddImageStateTime>>",self.__addImageStateTime)
+        self.bind("<<UpImageStateTime>>",self.__upImageStateTime)
+        self.bind("<<DownImageStateTime>>",self.__downImageStateTime)
+        #Z Image State Events
+        self.bind("<<AddImageStateZ>>",self.__addImageStateZ)
+        self.bind("<<UpImageStateZ>>",self.__upImageStateZ)
+        self.bind("<<DownImageStateZ>>",self.__downImageStateZ)
         #This needs a more specific function than all reset analysis
         self.bind("<<SubmitFilterOptions>>",self.__updateFilterOptions)
         #Simular to above
@@ -55,17 +59,29 @@ class AppFrame(tk.Frame):
         self.appCore.openImage(self.topMenuBar.openImagePath)
         self.__loadCurrentStateToAll()
         #TODO:: LOAD TO GRAPH PROPERLY
-    # Image State Events
-    def __addImageState(self,event):
-        self.appCore.addImageState()
+    # Time Image State Events
+    def __addImageStateTime(self,event):
+        self.appCore.addImageStateTime()
         # Updates the status display to show new state option
         self.optionsFrame.update()
         #self.optionsFrame.loadState(self.imageStateList[self.imageStateIndex])
-    def __upImageState(self,event):
-        self.appCore.upImageState()
+    def __upImageStateTime(self,event):
+        self.appCore.upImageStateTime()
         self.__loadCurrentStateToAll()
-    def __downImageState(self,event):
-        self.appCore.downImageState()
+    def __downImageStateTime(self,event):
+        self.appCore.downImageStateTime()
+        self.__loadCurrentStateToAll()
+     # Z Image State Events
+    def __addImageStateZ(self,event):
+        self.appCore.addImageStateZ()
+        # Updates the status display to show new state option
+        self.optionsFrame.update()
+        #self.optionsFrame.loadState(self.imageStateList[self.imageStateIndex])
+    def __upImageStateZ(self,event):
+        self.appCore.upImageStateZ()
+        self.__loadCurrentStateToAll()
+    def __downImageStateZ(self,event):
+        self.appCore.downImageStateZ()
         self.__loadCurrentStateToAll()
     # Imaging Events
     def __updateFilterOptions(self,event):

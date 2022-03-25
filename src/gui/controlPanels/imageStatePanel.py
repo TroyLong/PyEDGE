@@ -17,9 +17,12 @@ from . import controlPanel as cP
 class ImageStatePanel(cP.ControlPanel):
     def __init__(self, master=None, state=None):
         super().__init__(master,state,"Image State Options")
-        self._createAddStateButton(3)
-        self._createUpStateButton(4)
-        self._createDownStateButton(5)
+        self._createAddStateButtonTime()
+        self._createUpStateButtonTime()
+        self._createDownStateButtonTime()
+        self._createAddStateButtonZ()
+        self._createUpStateButtonZ()
+        self._createDownStateButtonZ()
 
     # Called to load new state
     def loadState(self,state):
@@ -31,23 +34,39 @@ class ImageStatePanel(cP.ControlPanel):
     # Called in _createStatusBanner and _updateStatusBanner()
     def _generateStatusText(self):
         indexInfo = self.master.getTotalStatesCount()
-        return str("Loaded Image State: " + str(indexInfo[0]+1) + "\tTotal Image States: " + str(indexInfo[1]))
+        return str(f"Loaded Image State: {str(indexInfo[0]+1)}\tTotal Image States: {str(indexInfo[1])})")
 
     # These functions are only called for creation
-    def _createAddStateButton(self,row):
-        self.addStateButton = tk.Button(self,text="Add New",command=self.__addImageState)
-        self.addStateButton.grid(row=row,column=0,columnspan=2)
-    def _createUpStateButton(self,row):
-        self.upStateButton = tk.Button(self,text="Up Image State",command=self.__upImageState)
-        self.upStateButton.grid(row=row,column=0,columnspan=2)
-    def _createDownStateButton(self,row):
-        self.downStateButton = tk.Button(self,text="Down Image State",command=self.__downImageState)
-        self.downStateButton.grid(row=row,column=0,columnspan=2)
+    def _createAddStateButtonTime(self,column=0,row=3):
+        self.addStateButtonTime = tk.Button(self,text="Add Time",command=self.__addImageStateTime)
+        self.addStateButtonTime.grid(row=row,column=column,columnspan=2)
+    def _createUpStateButtonTime(self,column=0,row=4):
+        self.upStateButtonTime = tk.Button(self,text="Up Time State",command=self.__upImageStateTime)
+        self.upStateButtonTime.grid(row=row,column=column,columnspan=2)
+    def _createDownStateButtonTime(self,column=0,row=5):
+        self.downStateButtonTime = tk.Button(self,text="Down Time State",command=self.__downImageStateTime)
+        self.downStateButtonTime.grid(row=row,column=column,columnspan=2)
+    def _createAddStateButtonZ(self,column=2,row=3):
+        self.addStateButtonZ = tk.Button(self,text="Add Z",command=self.__addImageStateZ)
+        self.addStateButtonZ.grid(row=row,column=column,columnspan=2)
+    def _createUpStateButtonZ(self,column=2,row=4):
+        self.upStateButtonZ = tk.Button(self,text="Up Z State",command=self.__upImageStateZ)
+        self.upStateButtonZ.grid(row=row,column=column,columnspan=2)
+    def _createDownStateButtonZ(self,column=2,row=5):
+        self.downStateButtonZ = tk.Button(self,text="Down Z State",command=self.__downImageStateZ)
+        self.downStateButtonZ.grid(row=row,column=column,columnspan=2)
+
 
     # These functions only call up to the parent
-    def __addImageState(self):
-        self.master.event_generate("<<AddImageState>>")
-    def __upImageState(self):
-        self.master.event_generate("<<UpImageState>>")
-    def __downImageState(self):
-        self.master.event_generate("<<DownImageState>>")
+    def __addImageStateTime(self):
+        self.master.event_generate("<<AddImageStateTime>>")
+    def __upImageStateTime(self):
+        self.master.event_generate("<<UpImageStateTime>>")
+    def __downImageStateTime(self):
+        self.master.event_generate("<<DownImageStateTime>>")
+    def __addImageStateZ(self):
+        self.master.event_generate("<<AddImageStateZ>>")
+    def __upImageStateZ(self):
+        self.master.event_generate("<<UpImageStateZ>>")
+    def __downImageStateZ(self):
+        self.master.event_generate("<<DownImageStateZ>>")

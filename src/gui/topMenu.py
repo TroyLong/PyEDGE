@@ -24,5 +24,5 @@ class TopMenu(tk.Menu):
 
     def openFile(self):
         filetypes = (("tif","*.tif"),("png","*.png"),("gif","*.gif"),("All files","*.*"))
-        self.openImagePath = fd.askopenfilename(title="Open an image",initialdir="./",filetypes=filetypes)
+        self.openImagePath = fd.askopenfilenames(title="Open an image",initialdir="./",filetypes=filetypes)
         self.master.event_generate("<<OpenFile>>")

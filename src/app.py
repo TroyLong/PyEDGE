@@ -19,14 +19,22 @@ class AppCore:
         self.timeIndex = 0
         self.zIndex = 0
         self.state = self.multiState[self.timeIndex][self.zIndex]
-        print(self.state.image_opened)
         self.statusMessage = ""
 
     def __initStateUnion(self):
         self.stateUnion = iS.SingleState()
 
-    def openImage(self, imagePath):
-        self.multiState[self.timeIndex][self.zIndex].openImage(imagePath)
+    def openImage(self, imagePaths):
+        # TODO:: This should house a pattern matching algorithm
+        for imagePath in imagePaths:
+            print(f"Opening: {imagePath}")
+            if not self.state.image_opened:
+                print("Image opened to current state.")
+                self.multiState[self.timeIndex][self.zIndex].openImage(imagePath)
+            elif self.state.image_opened:
+                print("Image opened to new state.")
+                self.addImageStateTime()
+                self.multiState[self.timeIndex+1][self.zIndex].openImage(imagePath)
 
     # Time Image State Events
     def addImageStateTime(self):

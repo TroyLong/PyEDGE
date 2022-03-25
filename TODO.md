@@ -11,7 +11,7 @@
 ## Module Goals
 ### Data Types
 - [ ] Use pytest platform to find accuracy of connections
-- [ ] Make 3D datatype for states
+- [x ] Make imageState Dictionary a SingleState() object
 
 ### Analysis
 - [ ] Run speed test on the deepcopy versions of filters.
@@ -36,8 +36,8 @@
 ## Framework Goals
 ### Project Layout
 - [ ] splitting AppFrame and AppCore might have effected filters
-- [ ] Split state mechanism from AppCore
 - [ ] Protect against bad data loading to states
+- [x] I was initializing more objects than I wanted to. I removed the cause of duplicates
 
 
 ### Testing
