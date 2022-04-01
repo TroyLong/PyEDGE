@@ -49,8 +49,10 @@ class AppFrame(tk.Frame):
         self.bind("<<DownImageStateZ>>",self.__downImageStateZ)
         #This needs a more specific function than all reset analysis
         self.bind("<<SubmitFilterOptions>>",self.__updateFilterOptions)
+        self.bind("<<SubmitAllFilterOptions>>",self.__updateAllFilterOptions)
         #Simular to above
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
+        self.bind("<<SubmitAllNeighborOptions>>",self.__updateAllNeighborOptions)
         self.bind("<<StartMultiStateAnalysis>>",self.__startStateUnionAnalysis)
         self.bind("<<ExportState>>",self.__exportState)
         self.bind("<<ExportSuperState>>",self.__exportSuperState)
@@ -89,9 +91,15 @@ class AppFrame(tk.Frame):
     def __updateFilterOptions(self,event):
         self.appCore.updateFilterOptions()
         self.graphFrame.updateFilterOptions()
+    def __updateAllFilterOptions(self,event):
+        self.appCore.updateAllFilterOptions()
+        self.graphFrame.updateFilterOptions()
     # Neighbor Analysis Events
     def __updateNeighborOptions(self,event):
         self.appCore.updateNeighborOptions()
+        self.graphFrame.updateNeighborOptions()
+    def __updateAllNeighborOptions(self,event):
+        self.appCore.updateAllNeighborOptions()
         self.graphFrame.updateNeighborOptions()
    # processes multiple images against each other
     def __startStateUnionAnalysis(self,event):

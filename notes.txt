@@ -12,3 +12,5 @@ Okay, I might need to replace multiState's 2D list with a 2D dictionary to allow
 I have two open functions working, but I need to create a sort functional
 It's a small detail, but I need the app to update when sorting
 I need a way to manually view and edit the z-level and times of different states
+
+I should swap the order of the time and z-levels in multiState to make sorting more efficient

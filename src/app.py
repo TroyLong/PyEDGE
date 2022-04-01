@@ -28,9 +28,10 @@ class AppCore:
         self.stateUnion = iS.SingleState()
 
     def openImage(self, imagePath):
-        self.state = iS.SingleState()
-        self.state.openImage(imagePath)
-        self.state.zLevel, self.state.time = self.reFileNames(imagePath)
+        state = iS.SingleState()
+        state.openImage(imagePath)
+        state.zLevel, state.time = self.reFileNames(imagePath)
+        self.multiState[self.timeIndex][self.zIndex] = state
 
     # TODO:: rename as openImages, to bulk open the images then sort multiImage
     # TODO:: create openImage that replaces the current image state
@@ -47,11 +48,26 @@ class AppCore:
             self.unsortedStates.append(tempState)
             print(f"{self.unsortedStates[-1].zLevel} {self.unsortedStates[-1].time}")
         # TODO:: This is just filler for right now
-        self.multiState = [[x] for x in self.unsortedStates]
+        self.multiState = self.sortImages(self.unsortedStates)
         logging.info("Finished opening files.\n")
 
-    def sortImages(self):
-        pass
+    # TODO:: Need to have empty sets for where there are holes
+    def sortImages(self, unsortedStates):
+        unsortedStates = sorted(unsortedStates,key=lambda state:state.time)
+        # TODO:: could probably make this an faster sort
+        timeList = [[]]
+        lastTime = unsortedStates[0].time
+        for state in unsortedStates:
+            if state.time == lastTime:
+                timeList[-1].append(state)
+            else:
+                timeList[-1] = sorted(timeList[-1],key=lambda state:state.zLevel)
+                timeList.append([state])
+            lastTime = state.time
+        #exit case
+        timeList[-1] = sorted(timeList[-1],key=lambda state:state.zLevel)
+        return timeList
+
 
     # Time Image State Events
     def addImageStateTime(self):
@@ -82,10 +98,22 @@ class AppCore:
     def updateFilterOptions(self):
         self.multiState[self.timeIndex][self.zIndex].updateFilterOptions()
         logging.info(self.multiState[self.timeIndex][self.zIndex])
+    def updateAllFilterOptions(self):
+        counter = 0
+        for timeStates in self.multiState:
+            for zLevelState in timeStates:
+                print(counter)
+                zLevelState.updateFilterOptions()
+                counter += 1
     # Neighbor Analysis Events
     def updateNeighborOptions(self):
         self.multiState[self.timeIndex][self.zIndex].updateNeighborOptions()
         logging.info(self.multiState[self.timeIndex][self.zIndex])
+    def updateAllNeighborOptions(self):
+        for timeStates in self.multiState:
+            for zLevelState in timeStates:
+                zLevelState.updateNeighborOptions()
+                logging.info(zLevelState)
 
     # TODO:: This is just a proof of concept right now
     # Multi state image analysis
@@ -109,8 +137,11 @@ class AppCore:
         self.stateUnion.drawCells()
 
     def reFileNames(self,fileName):
-        fileName = fileName.split("_")
-        return int(re.findall(r'\d+',fileName[-2])[0]), int(re.findall(r'\d+',fileName[-1])[0])
+        try:
+            fileName = fileName.split("_")
+            return int(re.findall(r'\d+',fileName[-2])[0]), int(re.findall(r'\d+',fileName[-1])[0])
+        except IndexError:
+            return 0,0
 
     # Exports the state
     def exportState(self):

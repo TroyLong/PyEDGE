@@ -97,8 +97,10 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.bind("<<DownImageStateZ>>",self.__downImageStateZ)
         #Imaging Events
         self.bind("<<SubmitFilterOptions>>",self.__submitFilterOptions)
+        self.bind("<<SubmitAllFilterOptions>>",self.__submitAllFilterOptions)
         #Neighbor Analysis Events
         self.bind("<<SubmitNeighborOptions>>",self.__submitNeighborOptions)
+        self.bind("<<SubmitAllNeighborOptions>>",self.__submitAllNeighborOptions)
         #Cell Focus Panel Events
         self.bind("<<PreviousCell>>",self.__previousCell)
         self.bind("<<NextCell>>",self.__nextCell)
@@ -122,8 +124,12 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.master.event_generate("<<DownImageStateZ>>")
     def __submitFilterOptions(self,event):
         self.master.event_generate("<<SubmitFilterOptions>>")
+    def __submitAllFilterOptions(self,event):
+        self.master.event_generate("<<SubmitAllNeighborOptions>>")
     def __submitNeighborOptions(self,event):
         self.master.event_generate("<<SubmitNeighborOptions>>")
+    def __submitAllNeighborOptions(self,event):
+        self.master.event_generate("<<SubmitAllNeighborOptions>>")
     # I currently need these to redraw the neighbor image
     def __previousCell(self,event):
         self.master.event_generate("<<PreviousCell>>")

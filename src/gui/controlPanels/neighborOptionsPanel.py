@@ -21,6 +21,7 @@ class NeighborOptionsPanel(cP.ControlPanel):
         self._createMaxNeighborDistanceOption(3)
         self._createUpperCutoffDistanceOption(4)
         self._createNeighborOptionsSubmitButton(5)
+        self._createNeighborOptionsSubmitAllButton(6)
 
     # Called to load new state
     def loadState(self,state):
@@ -51,6 +52,9 @@ class NeighborOptionsPanel(cP.ControlPanel):
     def _createNeighborOptionsSubmitButton(self,row):
         optionsSubmitButton = tk.Button(self,text="Submit",command=self.__optionsSubmit)
         optionsSubmitButton.grid(row=row,column=0,columnspan=2)
+    def _createNeighborOptionsSubmitAllButton(self,row):
+        optionsSubmitAllButton = tk.Button(self,text="Submit All",command=self.__optionsSubmitAll)
+        optionsSubmitAllButton.grid(row=row,column=0,columnspan=2)
 
     # These functions are called each time a state is loaded
     def _loadDeviationOptionState(self):
@@ -67,6 +71,9 @@ class NeighborOptionsPanel(cP.ControlPanel):
     def __optionsSubmit(self):
         self.saveState()
         self.master.event_generate("<<SubmitNeighborOptions>>")
+    def __optionsSubmitAll(self):
+        self.saveState()
+        self.master.event_generate("<<SubmitAllNeighborOptions>>")
     def saveState(self):
         if super().saveState():
             self.state.deviation = self._getFloatEntry(self.state.deviation,self.deviationEntry)

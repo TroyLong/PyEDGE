@@ -268,3 +268,2099 @@ INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_
 INFO:root:Finished opening files.
 
 INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140650153715744
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140199014877216
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140555645704224
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140271792003104
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139979546954528
+
+INFO:root:Opening 2 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139908994394912
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140059736889376
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139889576507424
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140410817165344
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140166040590368
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140311556093984
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140652108027936
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 107 overlapping cells.
+
+INFO:root:Exiting pyEDGE. 
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140183566637664
+
+INFO:root:Exiting pyEDGE. 
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140586993744960
+
+INFO:root:Exiting pyEDGE. 
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139864427981984
+
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140410051128576
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139657037548752
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139703884182816
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140187372743936
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140632536849712
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Finished opening files.
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Finished opening files.
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Finished opening files.
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Starting Union Analysis of 3 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 98 overlapping cells.
+
+INFO:root:Exiting pyEDGE.
