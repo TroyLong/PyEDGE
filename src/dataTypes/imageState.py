@@ -20,8 +20,8 @@ import analysis.segmentImage as sI
 class SingleState(object):
     def __init__(self,shape = None):
         # serializes the time and location of the state for sorting
-        self.zLevel
-        self.time
+        self.zLevel = 0
+        self.time = 0
         # dimensions of the image matrix
         self.shape = shape if shape!=None else np.shape((1,1,3))
         # used for loading to gui

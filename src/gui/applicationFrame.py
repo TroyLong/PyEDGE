@@ -38,6 +38,7 @@ class AppFrame(tk.Frame):
     # This is the main event handler     
     def __bindEvents(self):
         self.bind("<<OpenFile>>",self.__openImage)
+        self.bind("<<OpenFiles>>",self.__openImages)
         #Time Image State Events
         self.bind("<<AddImageStateTime>>",self.__addImageStateTime)
         self.bind("<<UpImageStateTime>>",self.__upImageStateTime)
@@ -58,6 +59,8 @@ class AppFrame(tk.Frame):
         self.appCore.openImage(self.topMenuBar.openImagePath)
         self.__loadCurrentStateToAll()
         #TODO:: LOAD TO GRAPH PROPERLY
+    def __openImages(self,event):
+        self.appCore.openImages(self.topMenuBar.openImagePaths)
     # Time Image State Events
     def __addImageStateTime(self,event):
         self.appCore.addImageStateTime()
