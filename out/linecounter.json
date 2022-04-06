@@ -1,0 +1,1715 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "/home/troy/Repos/PyEDGE",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2022-04-06 14:36:45",
+            "filesum": 125,
+            "codesum": 7303,
+            "commentsum": 548,
+            "blanksum": 1004,
+            "statistics": {
+                ".log": {
+                    "code": 5714,
+                    "comment": 0,
+                    "blank": 754
+                },
+                ".txt": {
+                    "code": 8,
+                    "comment": 0,
+                    "blank": 4
+                },
+                ".csv": {
+                    "code": 107,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".md": {
+                    "code": 51,
+                    "comment": 0,
+                    "blank": 14
+                },
+                ".py": {
+                    "code": 1382,
+                    "comment": 548,
+                    "blank": 223
+                },
+                "": {
+                    "code": 41,
+                    "comment": 0,
+                    "blank": 9
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 9,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 0,
+                    "code": 107,
+                    "comment": 0,
+                    "filename": "cell.csv"
+                },
+                {
+                    "blank": 754,
+                    "code": 5714,
+                    "comment": 0,
+                    "filename": "debug.log"
+                },
+                {
+                    "blank": 4,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "notes.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "filename": "Result-Images/betterNeighbors.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/dirtyImageResults.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/dirtyImageResultsLowerEpsilon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/distance.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/firstFullAnalysis.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/gradientOfNeighbors.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/lowResCentAndVert.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/neighborMapping.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/oneCircleResults.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/successfulTwoAreaFilter.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/successfulTwoAreaFilterSimple.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/successfulTwoAreaFilterSimpler.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/twoCircleResults.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/twoCirclesSciKitResults.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z01_t019.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z01_t020.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z01_t021.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z02_t019.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z02_t020.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z02_t021.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z03_t019.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z03_t020.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z03_t021.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/cell.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/lowresshapes.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/onecircle.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/spidergfpapril12_11_z01_t019.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/spidergfpapril12_11_z01_t021.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/testMask.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/twocircles.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/__pycache__/app.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/__pycache__/pandasFunctions.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/analysis/__init__.py"
+                },
+                {
+                    "filename": "src/analysis/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/cleanNeighbors.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/neighborAnalysis.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/segmentImage.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/tree.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/walkTree.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 15,
+                    "filename": "src/analysis/cleanNeighbors.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/analysis/filters/__init__.py"
+                },
+                {
+                    "filename": "src/analysis/filters/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/analysis/filters/cellFilters/__init__.py"
+                },
+                {
+                    "filename": "src/analysis/filters/cellFilters/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/cellFilters/__pycache__/cellFilters.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 7,
+                    "filename": "src/analysis/filters/cellFilters/cellFilters.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/analysis/filters/neighborFilters/__init__.py"
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/distanceFilter.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/oneToOneFilter.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/passThroughMultipleAreasFilter.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/tooFewNeighborsFilter.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 5,
+                    "code": 25,
+                    "comment": 18,
+                    "filename": "src/analysis/filters/neighborFilters/distanceFilter.py"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/analysis/filters/neighborFilters/oneToOneFilter.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 49,
+                    "comment": 26,
+                    "filename": "src/analysis/filters/neighborFilters/passThroughMultipleAreasFilter.py"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 8,
+                    "filename": "src/analysis/filters/neighborFilters/tooFewNeighborsFilter.py"
+                },
+                {
+                    "blank": 12,
+                    "code": 29,
+                    "comment": 28,
+                    "filename": "src/analysis/neighborAnalysis.py"
+                },
+                {
+                    "blank": 5,
+                    "code": 71,
+                    "comment": 29,
+                    "filename": "src/analysis/segmentImage.py"
+                },
+                {
+                    "blank": 13,
+                    "code": 88,
+                    "comment": 25,
+                    "filename": "src/analysis/tree.py"
+                },
+                {
+                    "blank": 2,
+                    "code": 18,
+                    "comment": 22,
+                    "filename": "src/analysis/walkTree.py"
+                },
+                {
+                    "blank": 16,
+                    "code": 132,
+                    "comment": 25,
+                    "filename": "src/app.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/dataTypes/__init__.py"
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/cell.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/cellNeighbor.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/dataTypeTraits.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/imageState.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 17,
+                    "code": 33,
+                    "comment": 10,
+                    "filename": "src/dataTypes/cell.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 5,
+                    "comment": 7,
+                    "filename": "src/dataTypes/cellNeighbor.py"
+                },
+                {
+                    "blank": 16,
+                    "code": 25,
+                    "comment": 10,
+                    "filename": "src/dataTypes/dataTypeTraits.py"
+                },
+                {
+                    "blank": 12,
+                    "code": 85,
+                    "comment": 32,
+                    "filename": "src/dataTypes/imageState.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/gui/__init__.py"
+                },
+                {
+                    "filename": "src/gui/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/applicationFrame.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/graphFrame.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/optionsFrame.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/stateMachineFrame.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/topMenu.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 6,
+                    "code": 85,
+                    "comment": 35,
+                    "filename": "src/gui/applicationFrame.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/gui/controlPanels/__init__.py"
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/cellFocusPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/controlPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/exportPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/filterOptionsPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/multiStateControl.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/neighborOptionsPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/statusPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/timeStatePanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/zStatePanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 6,
+                    "code": 31,
+                    "comment": 17,
+                    "filename": "src/gui/controlPanels/cellFocusPanel.py"
+                },
+                {
+                    "blank": 2,
+                    "code": 32,
+                    "comment": 16,
+                    "filename": "src/gui/controlPanels/controlPanel.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 10,
+                    "filename": "src/gui/controlPanels/exportPanel.py"
+                },
+                {
+                    "blank": 5,
+                    "code": 72,
+                    "comment": 15,
+                    "filename": "src/gui/controlPanels/filterOptionsPanel.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 35,
+                    "comment": 10,
+                    "filename": "src/gui/controlPanels/multiStateControl.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 60,
+                    "comment": 15,
+                    "filename": "src/gui/controlPanels/neighborOptionsPanel.py"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 12,
+                    "filename": "src/gui/controlPanels/statusPanel.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 17,
+                    "filename": "src/gui/controlPanels/timeStatePanel.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 17,
+                    "filename": "src/gui/controlPanels/zStatePanel.py"
+                },
+                {
+                    "blank": 12,
+                    "code": 65,
+                    "comment": 18,
+                    "filename": "src/gui/graphFrame.py"
+                },
+                {
+                    "blank": 8,
+                    "code": 116,
+                    "comment": 29,
+                    "filename": "src/gui/optionsFrame.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/gui/plotPanels/__init__.py"
+                },
+                {
+                    "filename": "src/gui/plotPanels/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/plotPanels/__pycache__/histPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/plotPanels/__pycache__/imagePanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/plotPanels/__pycache__/plotPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 25,
+                    "comment": 12,
+                    "filename": "src/gui/plotPanels/histPanel.py"
+                },
+                {
+                    "blank": 4,
+                    "code": 27,
+                    "comment": 12,
+                    "filename": "src/gui/plotPanels/imagePanel.py"
+                },
+                {
+                    "blank": 5,
+                    "code": 27,
+                    "comment": 16,
+                    "filename": "src/gui/plotPanels/plotPanel.py"
+                },
+                {
+                    "blank": 1,
+                    "code": 20,
+                    "comment": 12,
+                    "filename": "src/gui/stateMachineFrame.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 7,
+                    "filename": "src/gui/topMenu.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/multiAnalysis/__init__.py"
+                },
+                {
+                    "filename": "src/multiAnalysis/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/multiAnalysis/__pycache__/functions.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 6,
+                    "filename": "src/multiAnalysis/functions.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "src/pandasFunctions.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 8,
+                    "filename": "src/pyEDGE.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/tests/__init__.py"
+                },
+                {
+                    "blank": 8,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/tests/test_dataTypes.py"
+                },
+                {
+                    "blank": 14,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "TODO.md"
+                }
+            ]
+        },
+        {
+            "version": "0.2.7",
+            "counttime": "2022-04-06 14:40:47",
+            "filesum": 123,
+            "codesum": 1482,
+            "commentsum": 548,
+            "blanksum": 250,
+            "statistics": {
+                "": {
+                    "code": 41,
+                    "comment": 0,
+                    "blank": 9
+                },
+                ".txt": {
+                    "code": 8,
+                    "comment": 0,
+                    "blank": 4
+                },
+                ".py": {
+                    "code": 1382,
+                    "comment": 548,
+                    "blank": 223
+                },
+                ".md": {
+                    "code": 51,
+                    "comment": 0,
+                    "blank": 14
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 9,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 4,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "notes.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "filename": "Result-Images/betterNeighbors.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/dirtyImageResults.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/dirtyImageResultsLowerEpsilon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/distance.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/firstFullAnalysis.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/gradientOfNeighbors.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/lowResCentAndVert.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/neighborMapping.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/oneCircleResults.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/successfulTwoAreaFilter.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/successfulTwoAreaFilterSimple.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/successfulTwoAreaFilterSimpler.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/twoCircleResults.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Result-Images/twoCirclesSciKitResults.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z01_t019.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z01_t020.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z01_t021.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z02_t019.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z02_t020.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z02_t021.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z03_t019.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z03_t020.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/3x3/spidergfpapril12_11_z03_t021.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/cell.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/lowresshapes.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/onecircle.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/spidergfpapril12_11_z01_t019.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/spidergfpapril12_11_z01_t021.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/testMask.tif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "SampleImages/twocircles.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/__pycache__/app.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/__pycache__/pandasFunctions.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/analysis/__init__.py"
+                },
+                {
+                    "filename": "src/analysis/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/cleanNeighbors.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/neighborAnalysis.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/segmentImage.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/tree.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/__pycache__/walkTree.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 5,
+                    "code": 24,
+                    "comment": 15,
+                    "filename": "src/analysis/cleanNeighbors.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/analysis/filters/__init__.py"
+                },
+                {
+                    "filename": "src/analysis/filters/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/analysis/filters/cellFilters/__init__.py"
+                },
+                {
+                    "filename": "src/analysis/filters/cellFilters/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/cellFilters/__pycache__/cellFilters.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 7,
+                    "filename": "src/analysis/filters/cellFilters/cellFilters.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/analysis/filters/neighborFilters/__init__.py"
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/distanceFilter.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/oneToOneFilter.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/passThroughMultipleAreasFilter.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/analysis/filters/neighborFilters/__pycache__/tooFewNeighborsFilter.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 5,
+                    "code": 25,
+                    "comment": 18,
+                    "filename": "src/analysis/filters/neighborFilters/distanceFilter.py"
+                },
+                {
+                    "blank": 1,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/analysis/filters/neighborFilters/oneToOneFilter.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 49,
+                    "comment": 26,
+                    "filename": "src/analysis/filters/neighborFilters/passThroughMultipleAreasFilter.py"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 8,
+                    "filename": "src/analysis/filters/neighborFilters/tooFewNeighborsFilter.py"
+                },
+                {
+                    "blank": 12,
+                    "code": 29,
+                    "comment": 28,
+                    "filename": "src/analysis/neighborAnalysis.py"
+                },
+                {
+                    "blank": 5,
+                    "code": 71,
+                    "comment": 29,
+                    "filename": "src/analysis/segmentImage.py"
+                },
+                {
+                    "blank": 13,
+                    "code": 88,
+                    "comment": 25,
+                    "filename": "src/analysis/tree.py"
+                },
+                {
+                    "blank": 2,
+                    "code": 18,
+                    "comment": 22,
+                    "filename": "src/analysis/walkTree.py"
+                },
+                {
+                    "blank": 16,
+                    "code": 132,
+                    "comment": 25,
+                    "filename": "src/app.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/dataTypes/__init__.py"
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/cell.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/cellNeighbor.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/dataTypeTraits.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/dataTypes/__pycache__/imageState.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 17,
+                    "code": 33,
+                    "comment": 10,
+                    "filename": "src/dataTypes/cell.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 5,
+                    "comment": 7,
+                    "filename": "src/dataTypes/cellNeighbor.py"
+                },
+                {
+                    "blank": 16,
+                    "code": 25,
+                    "comment": 10,
+                    "filename": "src/dataTypes/dataTypeTraits.py"
+                },
+                {
+                    "blank": 12,
+                    "code": 85,
+                    "comment": 32,
+                    "filename": "src/dataTypes/imageState.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/gui/__init__.py"
+                },
+                {
+                    "filename": "src/gui/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/applicationFrame.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/graphFrame.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/optionsFrame.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/stateMachineFrame.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/__pycache__/topMenu.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 6,
+                    "code": 85,
+                    "comment": 35,
+                    "filename": "src/gui/applicationFrame.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/gui/controlPanels/__init__.py"
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/cellFocusPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/controlPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/exportPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/filterOptionsPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/multiStateControl.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/neighborOptionsPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/statusPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/timeStatePanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/controlPanels/__pycache__/zStatePanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 6,
+                    "code": 31,
+                    "comment": 17,
+                    "filename": "src/gui/controlPanels/cellFocusPanel.py"
+                },
+                {
+                    "blank": 2,
+                    "code": 32,
+                    "comment": 16,
+                    "filename": "src/gui/controlPanels/controlPanel.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 10,
+                    "filename": "src/gui/controlPanels/exportPanel.py"
+                },
+                {
+                    "blank": 5,
+                    "code": 72,
+                    "comment": 15,
+                    "filename": "src/gui/controlPanels/filterOptionsPanel.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 35,
+                    "comment": 10,
+                    "filename": "src/gui/controlPanels/multiStateControl.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 60,
+                    "comment": 15,
+                    "filename": "src/gui/controlPanels/neighborOptionsPanel.py"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 12,
+                    "filename": "src/gui/controlPanels/statusPanel.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 17,
+                    "filename": "src/gui/controlPanels/timeStatePanel.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 30,
+                    "comment": 17,
+                    "filename": "src/gui/controlPanels/zStatePanel.py"
+                },
+                {
+                    "blank": 12,
+                    "code": 65,
+                    "comment": 18,
+                    "filename": "src/gui/graphFrame.py"
+                },
+                {
+                    "blank": 8,
+                    "code": 116,
+                    "comment": 29,
+                    "filename": "src/gui/optionsFrame.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/gui/plotPanels/__init__.py"
+                },
+                {
+                    "filename": "src/gui/plotPanels/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/plotPanels/__pycache__/histPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/plotPanels/__pycache__/imagePanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/gui/plotPanels/__pycache__/plotPanel.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 4,
+                    "code": 25,
+                    "comment": 12,
+                    "filename": "src/gui/plotPanels/histPanel.py"
+                },
+                {
+                    "blank": 4,
+                    "code": 27,
+                    "comment": 12,
+                    "filename": "src/gui/plotPanels/imagePanel.py"
+                },
+                {
+                    "blank": 5,
+                    "code": 27,
+                    "comment": 16,
+                    "filename": "src/gui/plotPanels/plotPanel.py"
+                },
+                {
+                    "blank": 1,
+                    "code": 20,
+                    "comment": 12,
+                    "filename": "src/gui/stateMachineFrame.py"
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 7,
+                    "filename": "src/gui/topMenu.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/multiAnalysis/__init__.py"
+                },
+                {
+                    "filename": "src/multiAnalysis/__pycache__/__init__.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/multiAnalysis/__pycache__/functions.cpython-38.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 6,
+                    "code": 20,
+                    "comment": 6,
+                    "filename": "src/multiAnalysis/functions.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 2,
+                    "filename": "src/pandasFunctions.py"
+                },
+                {
+                    "blank": 3,
+                    "code": 11,
+                    "comment": 8,
+                    "filename": "src/pyEDGE.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/tests/__init__.py"
+                },
+                {
+                    "blank": 8,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/tests/test_dataTypes.py"
+                },
+                {
+                    "blank": 14,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "TODO.md"
+                }
+            ]
+        }
+    ]
+}

@@ -29,12 +29,12 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self._createFilterOptionsPanel(2)
         self._createNeighborOptionsPanel(3)
         self._createMultiStateAnalysisPanel(4)
-        self._createDatabasePanel(5)
+        self._createDatabasePanel(4)
 
     # These functions are only called for creation
     def _createStatusPanel(self,column):
         self.statusPanel = StatusPanel(self,state=self.state)
-        self.statusPanel.grid(row=2,column=column,padx=5,columnspan=6)
+        self.statusPanel.grid(row=2,column=column,padx=5,columnspan=5)
     def _createTimeStatePanel(self,column):
         self.timeStateOptions = TimeStatePanel(self,state=self.state)
         self.timeStateOptions.grid(row=1,column=column,padx=5)
@@ -55,7 +55,7 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.multiStateAnalysisPanel.grid(row=1,column=column,padx=5)
     def _createDatabasePanel(self,column):
         self.databasePanel = databasePanel(self, state=None)
-        self.databasePanel.grid(row=1,column=column,padx=5)
+        self.databasePanel.grid(row=2,column=column,padx=5)
 
     #TODO:: Overwritting the old stuff, and not really running filter any more
     # Called to load new state
@@ -81,7 +81,7 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.statusPanel.update()
         self.timeStateOptions.update()
         self.zStateOptions.update()
-        self.zStateOptions.update
+        #self.zStateOptions.update
 
     # The events in this frame just pass the event up to the main frame. The events are done like this to make the sub
     # Options classes more robust. They only reference their master this way, and not their master's master.
@@ -105,11 +105,12 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.bind("<<PreviousCell>>",self.__previousCell)
         self.bind("<<NextCell>>",self.__nextCell)
         #Multi state image analysis Events
-        self.bind("<<StartMultiStateAnalysis>>",self.__startMultiStateAnalysis)
+        self.bind("<<SubmitKernelWindowOptions>>",self.__submitKernelWindowOptions)
+        self.bind("<<FindKernel>>",self.__findKernel)
         #Export Events
         self.bind("<<ExportState>>",self.__exportState)
         self.bind("<<ExportSuperState>>",self.__exportSuperState)
-
+    # State Events
     def __addImageStateTime(self,event):
         self.master.event_generate("<<AddImageStateTime>>")
     def __upImageStateTime(self,event):
@@ -122,21 +123,27 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.master.event_generate("<<UpImageStateZ>>")
     def __downImageStateZ(self,event):
         self.master.event_generate("<<DownImageStateZ>>")
+    # Filter Events
     def __submitFilterOptions(self,event):
         self.master.event_generate("<<SubmitFilterOptions>>")
     def __submitAllFilterOptions(self,event):
         self.master.event_generate("<<SubmitAllNeighborOptions>>")
+    # Neighbor Events
     def __submitNeighborOptions(self,event):
         self.master.event_generate("<<SubmitNeighborOptions>>")
     def __submitAllNeighborOptions(self,event):
         self.master.event_generate("<<SubmitAllNeighborOptions>>")
-    # I currently need these to redraw the neighbor image
+    # Cell Manipulation Events
     def __previousCell(self,event):
         self.master.event_generate("<<PreviousCell>>")
     def __nextCell(self,event):
         self.master.event_generate("<<NextCell>>")
-    def __startMultiStateAnalysis(self,event):
-        self.master.event_generate("<<StartMultiStateAnalysis>>")
+    # Kernel Events
+    def __submitKernelWindowOptions(self,event):
+        self.master.event_generate("<<SubmitKernelWindowOptions>>")
+    def __findKernel(self,event):
+        self.master.event_generate("<<FindKernel>>")
+    # Export Events
     def __exportState(self,event):
         self.master.event_generate("<<ExportState>>")
     def __exportSuperState(self):
@@ -145,3 +152,6 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
     # grabs number of total loaded states
     def getTotalStatesCount(self):
         return self.master.getTotalStatesCount()
+    # TODO:: Awkward
+    def getAnalysisOptions(self):
+        return  self.multiStateAnalysisPanel.getAnalysisOptions()

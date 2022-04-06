@@ -39,28 +39,30 @@ class AppFrame(tk.Frame):
     def __bindEvents(self):
         self.bind("<<OpenFile>>",self.__openImage)
         self.bind("<<OpenFiles>>",self.__openImages)
-        #Time Image State Events
+        # Time Image State Events
         self.bind("<<AddImageStateTime>>",self.__addImageStateTime)
         self.bind("<<UpImageStateTime>>",self.__upImageStateTime)
         self.bind("<<DownImageStateTime>>",self.__downImageStateTime)
-        #Z Image State Events
+        # Z Image State Events
         self.bind("<<AddImageStateZ>>",self.__addImageStateZ)
         self.bind("<<UpImageStateZ>>",self.__upImageStateZ)
         self.bind("<<DownImageStateZ>>",self.__downImageStateZ)
-        #This needs a more specific function than all reset analysis
+        # Filter Events
         self.bind("<<SubmitFilterOptions>>",self.__updateFilterOptions)
         self.bind("<<SubmitAllFilterOptions>>",self.__updateAllFilterOptions)
-        #Simular to above
+        # Neighbor Events
         self.bind("<<SubmitNeighborOptions>>",self.__updateNeighborOptions)
         self.bind("<<SubmitAllNeighborOptions>>",self.__updateAllNeighborOptions)
-        self.bind("<<StartMultiStateAnalysis>>",self.__startStateUnionAnalysis)
+        # Kernel Events
+        self.bind("<<SubmitKernelWindowOptions>>",self.__updateKernelWindow)
+        self.bind("<<FindKernel>>",self.__findKernel)
+        # Export Events
         self.bind("<<ExportState>>",self.__exportState)
         self.bind("<<ExportSuperState>>",self.__exportSuperState)
     # Opens image from file and loads to current state
     def __openImage(self,event):
         self.appCore.openImage(self.topMenuBar.openImagePath)
         self.__loadCurrentStateToAll()
-        #TODO:: LOAD TO GRAPH PROPERLY
     def __openImages(self,event):
         self.appCore.openImages(self.topMenuBar.openImagePaths)
     # Time Image State Events
@@ -101,10 +103,12 @@ class AppFrame(tk.Frame):
     def __updateAllNeighborOptions(self,event):
         self.appCore.updateAllNeighborOptions()
         self.graphFrame.updateNeighborOptions()
-   # processes multiple images against each other
-    def __startStateUnionAnalysis(self,event):
-        self.appCore.startStateUnionAnalysis()
-        self.graphFrame.loadStateUnion(self.appCore.stateUnion)
+    # processes multiple images against each other
+    def __updateKernelWindow(self,event):
+        self.appCore.kernelWindow = self.optionsFrame.getAnalysisOptions()
+    def __findKernel(self,event):
+        self.appCore.findKernel()
+        self.graphFrame.loadStateUnion(self.appCore.kernel)
 
     # Export Events
     def __exportState(self,event):
@@ -117,5 +121,6 @@ class AppFrame(tk.Frame):
         self.graphFrame.loadState(self.appCore.getState())
         self.optionsFrame.loadState(self.appCore.getState())
 
+    # TODO:: I think there is a "cooler" way to do this
     def getTotalStatesCount(self):
         return self.appCore.getTotalStatesCount()
