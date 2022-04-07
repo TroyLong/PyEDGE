@@ -6,16 +6,11 @@
 ## Imported Libraries ##
 ########################
 # Image Analysis Libraries
-import cv2 as cv
-import tkinter as tk
-import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
 ########################
 ## Internal Libraries ##
 ########################
-import dataTypes.imageState as iS
-from dataTypes.dataTypeTraits import cellTraits as cT
 from gui.plotPanels import plotPanel as pP
 
 
@@ -32,7 +27,7 @@ class HistPanel(pP.PlotPanel):
         # Only draw histogram if there are cells to create it with
         if len(self.state.cells):
             for cell in self.state.cells:
-                neighborNumbers.append(len(cell[cT.NEIGHBORS]))
+                neighborNumbers.append(len(cell.neighbors))
             self.plotFig.clf()
             self.histPlt = self.plotFig.add_subplot(111)        
             self.histPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))

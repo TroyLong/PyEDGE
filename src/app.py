@@ -4,7 +4,7 @@ import cv2 as cv
 import analysis
 import copy
 import analysis.filters.cellFilters.cellFilters as cF
-import dataTypes.imageState as iS
+import dataTypes.state as s
 import multiAnalysis.functions as f
 import pandasFunctions
 import logging
@@ -20,17 +20,17 @@ class AppCore:
     def __initImageState(self):
         self.timeIndex = 0
         self.zIndex = 0
-        self.multiState = [[iS.SingleState()]]
+        self.multiState = [[s.State()]]
         self.analyzedStates = []
     def __initKernels(self):
         self.kernelWindow = (0,-1)
         self.zKernels = []
-        self.kernel = iS.SingleState()
+        self.kernel = s.State()
 
     def openImage(self, imagePath):
-        state = iS.SingleState()
+        state = s.State()
         state.openImage(imagePath)
-        state.zLevel, state.time = self.reFileNames(imagePath)
+        state.z_level, state.time = self.reFileNames(imagePath)
         self.multiState[self.timeIndex][self.zIndex] = state
     # opens images to states
     def openImages(self, imagePaths):
@@ -39,12 +39,12 @@ class AppCore:
         unsortedStates = []
         for imagePath in imagePaths:
             logging.info(f"Opening: {imagePath}")
-            tempState = iS.SingleState()
+            tempState = s.State()
             # TODO:: should probably be in initializer
             tempState.openImage(imagePath)
-            tempState.zLevel, tempState.time = self.reFileNames(imagePath)
+            tempState.z_level, tempState.time = self.reFileNames(imagePath)
             unsortedStates.append(tempState)
-            print(f"{unsortedStates[-1].zLevel} {unsortedStates[-1].time}")
+            print(f"{unsortedStates[-1].z_level} {unsortedStates[-1].time}")
         # TODO:: This is just filler for right now
         self.multiState = self.sortImages(unsortedStates)
         logging.info("Finished opening files.\n")
@@ -64,16 +64,16 @@ class AppCore:
             if state.time == lastTime:
                 timeList[-1].append(state)
             else:
-                timeList[-1] = sorted(timeList[-1],key=lambda state:state.zLevel)
+                timeList[-1] = sorted(timeList[-1],key=lambda state:state.z_level)
                 timeList.append([state])
             lastTime = state.time
         #exit case
-        timeList[-1] = sorted(timeList[-1],key=lambda state:state.zLevel)
+        timeList[-1] = sorted(timeList[-1],key=lambda state:state.z_level)
         return timeList
 
     # Time Image State Events
     def addImageStateTime(self):
-        self.multiState.append([iS.SingleState()])
+        self.multiState.append([s.State()])
     def upImageStateTime(self):
         self.timeIndex += 1 if (self.timeIndex <
                                 len(self.multiState)-1) else 0
@@ -84,7 +84,7 @@ class AppCore:
     
     # Z Image State Events
     def addImageStateZ(self):
-        self.multiState[self.timeIndex].append(iS.SingleState())
+        self.multiState[self.timeIndex].append(s.State())
     def upImageStateZ(self):
         self.zIndex += 1 if (self.zIndex <
                                 len(self.multiState[self.timeIndex])-1) else 0
@@ -127,7 +127,7 @@ class AppCore:
     def findStateOverlap(self,states,index1=0,index2=-1):
         logging.info(f"Starting Union Analysis of {len(states)} states.")
         # Create new stateUnion image from state size and get to the neighbor image
-        unionState = iS.SingleState(shape = states[index1].neighbor_image.shape)
+        unionState = s.State(shape = states[index1].neighbor_image.shape)
         # Fill the stateUnion with the base case.
         # TODO:: Exception catching should occur here
         try:

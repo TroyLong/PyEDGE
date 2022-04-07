@@ -3,11 +3,6 @@
 ########################
 # This panel displays any important status from the main program
 ########################
-## Imported Libraries ##
-########################
-import tkinter as tk
-import dataTypes.imageState as iS
-########################
 ## Internal Libraries ##
 ########################
 from . import controlPanel as cP

@@ -9,8 +9,6 @@ import numpy as np
 ########################
 ## Imported Libraries ##
 ########################
-from dataTypes.dataTypeTraits import cellTraits as cT
-from dataTypes.dataTypeTraits import cellNeighborTraits as cnt
 from analysis.tree import Rectangle as rect
 
 
@@ -24,12 +22,12 @@ def passThroughMultipleAreasFilter(state):
     for cell in state.cells:
         cell = cell.copy()
         # This is the center of the cell. Simplifies math
-        point1 = cell[cT.CENTER]
+        point1 = cell.cell
         # temporary list for appending new results to. Will be converted to tuple
         finalNeighbors = list()
-        for neighbor in cell[cT.NEIGHBORS]:
+        for neighbor in cell.neighbors:
             # This is the center of the neighbor cell. Simplifies math
-            point2 = neighbor[cnt.CELL][cT.CENTER]
+            point2 = neighbor.cell.center
             #TODO:: This should restrict the algorithm to look along the line segment, but it misses near points, whose radii are in the box
             bottomPointX = point1[0] if point1[0]<point2[0] else point2[0]
             bottomPointY = point1[1] if point1[1]<point2[1] else point2[1]
@@ -40,20 +38,20 @@ def passThroughMultipleAreasFilter(state):
             intersects = False
             # This checks the neighbor list to see if there is a line through the cell, the current neighbor, and any other neighbors
             # TODO:: There should be a clever way to get the big O to behave better, but that is for another day
-            for otherNeighbor in cell[cT.NEIGHBORS]:
-                circle = otherNeighbor[cnt.CELL]
-                height = np.abs(point2[1]-point1[1])+circle[cT.RADIUS]
-                width = np.abs(point2[0]-point1[0])+circle[cT.RADIUS]
+            for otherNeighbor in cell.neighbors:
+                circle = otherNeighbor.cell
+                height = np.abs(point2[1]-point1[1])+circle.radius
+                width = np.abs(point2[0]-point1[0])+circle.radius            
                 boundingRect = rect(bottomPointX,bottomPointY,height,width)
                 if isRectangleNotBounding(circle,point2,boundingRect):
                     continue
                 distance = findPerpendicularDist(circle,point1,point2)
-                if distance <= circle[cT.RADIUS]:
+                if distance <= circle.radius:
                     intersects = True
                     break
             if not intersects:
                 finalNeighbors.append(neighbor)
-        cell[cT.NEIGHBORS] = tuple(finalNeighbors)
+        cell.neighbors = tuple(finalNeighbors)
         tempCells.append(cell)
     return tuple(tempCells)
 
@@ -62,20 +60,20 @@ def passThroughMultipleAreasFilter(state):
 #TODO:: This doesn't account for when the point goes from being to far on one side, to being to far on the other. 0|-----|0
 #TODO:: I might make two rectangles and see if the segments cross.
 def isRectangleNotBounding(circle,point2,boundingRect):
-    return ((circle[cT.CENTER] == point2) or not(boundingRect.isPositionInside(circle[cT.CENTER]) or
-            boundingRect.isPositionInside((circle[cT.CENTER][0]+circle[cT.RADIUS],circle[cT.CENTER][1])) or
-            boundingRect.isPositionInside((circle[cT.CENTER][0]-circle[cT.RADIUS],circle[cT.CENTER][1])) or
-            boundingRect.isPositionInside((circle[cT.CENTER][0],circle[cT.CENTER][1]+circle[cT.RADIUS])) or
-            boundingRect.isPositionInside((circle[cT.CENTER][0],circle[cT.CENTER][1]-circle[cT.RADIUS])) or
-            boundingRect.isPositionInside((circle[cT.CENTER][0]+circle[cT.RADIUS],circle[cT.CENTER][1]+circle[cT.RADIUS])) or
-            boundingRect.isPositionInside((circle[cT.CENTER][0]-circle[cT.RADIUS],circle[cT.CENTER][1]-circle[cT.RADIUS])) or
-            boundingRect.isPositionInside((circle[cT.CENTER][0]+circle[cT.RADIUS],circle[cT.CENTER][1]-circle[cT.RADIUS])) or
-            boundingRect.isPositionInside((circle[cT.CENTER][0]-circle[cT.RADIUS],circle[cT.CENTER][1]+circle[cT.RADIUS]))
+    return ((circle.center == point2) or not(boundingRect.isPositionInside(circle.center) or
+            boundingRect.isPositionInside((circle.center[0]+circle.radius,circle.center[1])) or
+            boundingRect.isPositionInside((circle.center[0]-circle.radius,circle.center[1])) or
+            boundingRect.isPositionInside((circle.center[0],circle.center[1]+circle.radius)) or
+            boundingRect.isPositionInside((circle.center[0],circle.center[1]-circle.radius)) or
+            boundingRect.isPositionInside((circle.center[0]+circle.radius,circle.center[1]+circle.radius)) or
+            boundingRect.isPositionInside((circle.center[0]-circle.radius,circle.center[1]-circle.radius)) or
+            boundingRect.isPositionInside((circle.center[0]+circle.radius,circle.center[1]-circle.radius)) or
+            boundingRect.isPositionInside((circle.center[0]-circle.radius,circle.center[1]+circle.radius))
             ))
 
 
 #Finds the perpendicular distance between the line of point1-2 and the circle's center
 def findPerpendicularDist(circle,point1,point2):
     return (np.abs(np.cross(np.asarray(point2)-np.asarray(point1),
-            np.asarray(point1)-np.asarray(circle[cT.CENTER])))
+            np.asarray(point1)-np.asarray(circle.center)))
             /np.linalg.norm(np.asarray(point2)-np.asarray(point1)))

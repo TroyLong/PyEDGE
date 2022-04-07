@@ -1,60 +1,52 @@
 ########################
 ## Imported Libraries ##
 ########################
-from enum import Enum, auto
 from math import dist
-from types import CellType
-from dataTypes.dataTypeTraits import cellTraits as cT
-from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
+
+class Cell(object):
+    __slots__ = ("center","verticies","area","radius","neighbors")
+    def __init__(self,center=None,verticies=None,area=0,radius=0,neighbors=None):
+        self.center = center if center!=None else (0,0)
+        self.verticies = verticies if verticies.all()!=None else ()
+        self.area = area
+        self.radius = radius
+        self.neighbors = neighbors if neighbors!=None else ()
+
+    def sortNeighbors(self):
+        self.neighbors = sorted(self.neighbors, key=lambda neigh: neigh.distance_to_border)  
+
+    def dist(self, cell):
+        return dist(self.center,cell.center)
+        
+    def cleanNeighborList(self):
+        cleaned = False
+        for neighbor in self.neighbors:
+            mutual = False
+            for neighbors_neighbor in neighbor.cell.neighbors:
+                mutual = self.cell == neighbors_neighbor.cell
+            if not mutual:
+                self.removeNeighbor(neighbor.cell)
+                cleaned = True
+        return cleaned
+
+    def isCellNeighbor(self,cellNeighbor):
+        return cellNeighbor in self.neighbors
+    def removeNeighbor(self,neighbor):
+        for neigh in self.neighbors:
+            if neigh.cell == neighbor.cell:
+                self.neighbors.remove(neighbor)
+
+    def createAverageCell(self,cell):
+        return Cell((self.center[0]+cell.center[0])/2,
+                    (self.center[1]+cell.center[1])/2.
+                    (self.area+cell.area)/2,
+                    (self.radius+cell.radius)/2)
+    def __eq__(self,cell):
+        return self.center == cell.center
 
 
-
-# A dictionary is used over a traditional object for speed
-# TODO:: I'm not sure if I should use a tuple or a list for
-# neighbors seeing as how often it will be changed
-cell = {cT.CENTER:(0,0), cT.VERTICIES:tuple(),
-        cT.AREA:0, cT.RADIUS:0, cT.NEIGHBORS:tuple()}
-
-def cellDist(cell1, cell2):
-    return dist(cell1[cT.CENTER],cell2[cT.CENTER])
-
-def cellEqual(cell1, cell2):
-    return cell1[cT.CENTER] == cell2[cT.CENTER]
-    
-
-
-def isCellNeighbor(cellNeighbors,possibleNeighbor):
-    return possibleNeighbor in cellNeighbors
-
-
-# TODO:: Not sure if this is going to be useful
-# Returns two new tuples with connection between cell1 and cell2 broken
-def removeNeighborTwoWay(cell, neighbor):
-    cell1Neighbors = removeNeighborOneWay(cell,neighbor)
-    cell2Neighbors = removeNeighborOneWay(neighbor[cNT.CELL],cell)
-    return cell1Neighbors,cell2Neighbors
-
-def removeNeighborOneWay(cell, neighbor):
-    cellNeighbors = list(cell[cT.NEIGHBORS])
-    try:
-        cellNeighbors.remove(neighbor)
-    except ValueError:
-        pass
-    return tuple(cellNeighbors)
-
-
-
-# Adapter to the sorted function
-def sortNeighbors(cell):
-    return sorted(cell[cT.NEIGHBORS], key=lambda cellN: cellN[cNT.DISTANCE_TO_BORDER])  
-
-
-
-# I don't want to use this
-def createAverageCell(cell1,cell2):
-    tempCell = cell.copy()
-    tempCell[cT.CENTER] = ((cell1[cT.CENTER][0] + cell2[cT.CENTER][0])/2,
-                            (cell1[cT.CENTER][1] + cell2[cT.CENTER][1])/2)
-    tempCell[cT.AREA] = (cell1[cT.AREA] + cell2[cT.AREA])/2
-    tempCell[cT.RADIUS] = (cell1[cT.RADIUS] + cell2[cT.RADIUS])/2
-    return tempCell
+class CellNeighbor(object):
+    __slots__ = ("cell","distance_to_border")
+    def __init__(self,cell,distance_to_border=0):
+        self.cell = cell
+        self.distance_to_border = distance_to_border

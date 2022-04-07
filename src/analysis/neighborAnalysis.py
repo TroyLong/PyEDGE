@@ -11,16 +11,11 @@ from analysis.filters.neighborFilters.oneToOneFilter import oneToOneFilter
 ########################
 ## Internal Libraries ##
 ########################
-import dataTypes.imageState as iS
-from dataTypes.dataTypeTraits import cellTraits as cT
-from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
-from dataTypes.dataTypeTraits import imageStateTraits as iST
 from analysis.filters.neighborFilters.tooFewNeighborsFilter import tooFewNeighborsFilter
 from analysis.filters.neighborFilters.distanceFilter import distanceFilter
 from analysis.filters.neighborFilters.passThroughMultipleAreasFilter import passThroughMultipleAreasFilter
 from . import walkTree as walkTree
 from . import tree as tree
-import analysis.cleanNeighbors as cN
 
 
 ## Only run through __createNeighborImage in graphFrame.py or another simular function. NEVER ON ITS OWN!!!
@@ -64,6 +59,6 @@ def runNeighborFilters(state):
 # This draws the neighbor lines and the circles on the neighbor image
 def drawNeighborAnalysis(state):
     for cell in state.cells:
-        cv.circle(state.neighbor_image, (cell[cT.CENTER][0],cell[cT.CENTER][1]), int(cell[cT.RADIUS]), (255, 255, 0), 2)
-        for neighbor in cell[cT.NEIGHBORS]:
-            cv.line(state.neighbor_image,cell[cT.CENTER],neighbor[cNT.CELL][cT.CENTER],(132,124,255), 2)
+        cv.circle(state.neighbor_image, (cell.center[0],cell.center[1]), int(cell.radius), (255, 255, 0), 2)
+        for neighbor in cell.neighbors:
+            cv.line(state.neighbor_image,cell.center,neighbor.cell.center,(132,124,255), 2)

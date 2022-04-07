@@ -10,7 +10,7 @@
 import analysis.segmentImage as sI
 import analysis.neighborAnalysis as nA
 import analysis.filters.cellFilters.cellFilters as cF
-import dataTypes.imageState as iS
+from dataTypes.state import State
 import gui.stateMachineFrame as sMF
 from dataTypes.dataTypeTraits import imageStateTraits as iST
 from gui.plotPanels.imagePanel import ImagePanel
@@ -21,8 +21,8 @@ class GraphZoneFrame(sMF.StateMachineFrame):
     def __init__(self, master=None,state=None,stateUnion=None):
         super().__init__(master)
         self.master = master
-        self.state = state if state != None else iS.SingleState()
-        self.stateUnion = stateUnion if stateUnion != None else iS.SingleState()
+        self.state = state if state != None else State()
+        self.stateUnion = stateUnion if stateUnion != None else State()
         self.__createGraphs()
 
     def loadState(self,state):

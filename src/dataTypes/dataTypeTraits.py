@@ -4,21 +4,6 @@ from enum import Enum, auto
 
 
 
-class cellTraits(Enum):
-    CENTER = auto()
-    VERTICIES = auto()
-    AREA = auto()
-    RADIUS = auto()
-    NEIGHBORS = auto()
-
-
-
-class cellNeighborTraits(Enum):
-    CELL = auto()
-    DISTANCE_TO_BORDER = auto()
-
-
-
 class imageStateTraits(Enum):
     # Locks commands that rely on an image to work until an image is loaded. Being a boolean should make it faster
     IMAGE_OPENED = auto()

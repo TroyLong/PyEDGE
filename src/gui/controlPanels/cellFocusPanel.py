@@ -6,7 +6,7 @@
 ## Imported Libraries ##
 ########################
 import tkinter as tk
-import dataTypes.imageState as iS
+import dataTypes.state as iS
 ########################
 ## Internal Libraries ##
 ########################

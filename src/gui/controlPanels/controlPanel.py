@@ -9,7 +9,6 @@
 ## Imported Libraries ##
 ########################
 import tkinter as tk
-import dataTypes.imageState as iS
 import gui.stateMachineFrame as sMF
 
 # ControlPanel parent class for inheritance. Regulates updates to the status banner

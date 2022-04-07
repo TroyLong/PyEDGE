@@ -11,41 +11,46 @@ import cv2 as cv
 ########################
 ## Internal Libraries ##
 ########################
-from dataTypes.dataTypeTraits import cellTraits as cT
 import analysis.filters.cellFilters.cellFilters as cF
 import analysis.neighborAnalysis as nA
 import analysis.segmentImage as sI
 
 # TODO:: Needs to merge with the imageState dictionary to make a slots class
-class SingleState(object):
-    def __init__(self,shape = None):
+class State(object):
+    __slots__ = ("z_level","time","shape","image_opened",
+                "image","filtered_image","neighbor_image",
+                "cells","cell_index","mean_cell_radii",
+                "filter_diameter","sigma_color","sigma_space",
+                "adaptive_blocksize","deviation","max_neighbor_dist",
+                "upper_cutoff_dist")
+
+    def __init__(self,z_level=0,time=0,shape=None,
+                    image=None,neighbor_image=None,cells=None):
         # serializes the time and location of the state for sorting
-        self.zLevel = 0
-        self.time = 0
-        # dimensions of the image matrix
-        self.shape = shape if shape!=None else np.shape((1,1,3))
+        self.z_level = z_level
+        self.time = time
         # used for loading to gui
         self.image_opened = False
+        # dimensions of the image matrix
+        self.shape = shape if shape!=None else np.shape((1,1,3))
         # images as np arrays
-        self.image = self.__createEmptyImage()
+        self.image = image if image!=None else self.__createEmptyImage()
         self.filtered_image = self.__createEmptyImage()
-        self.neighbor_image = self.__createEmptyImage()
-        # cells in image
-        self.cells = tuple()
+        self.neighbor_image = neighbor_image if neighbor_image!=None else self.__createEmptyImage()
+        # cells
+        self.cells = cells if cells!=None else tuple()
         # used to select individual cells
         self.cell_index = 0
-        # TODO:: What was this used for?
         self.mean_cell_radii = 0
-        # filters image to make cells easier to find
+        # image filters
         self.filter_diameter = 10
         self.sigma_color = 75
         self.sigma_space = 75
         self.adaptive_blocksize = 151
-        # filters cells to remove false positives
+        # neighbor filters
         self.deviation = 15.0
         self.max_neighbor_dist = 80000.0
         self.upper_cutoff_dist = 5000.0
-    
     # Provides a basic empty image for the default state
     def __createEmptyImage(self):
         return np.zeros(self.shape,dtype=np.uint8)
@@ -81,12 +86,11 @@ class SingleState(object):
 
 
     ## STATE ANALYSIS FUNCTIONS
-
     # Finds the mean radii of all the cells in a state
     def meanCellRadii(self):
         averageRadius = 0
         for cell in self.cells:
-            averageRadius += cell[cT.RADIUS]
+            averageRadius += cell.radius
         try:
             return averageRadius/(len(self.cells))
         except ZeroDivisionError:
@@ -98,18 +102,29 @@ class SingleState(object):
         deviation = 0
         meanRadius = self.meanCellRadii()
         for cell in self.cells:
-            deviation += (cell[cT.RADIUS]-meanRadius)**2
+            deviation += (cell.radius-meanRadius)**2
         try:
             return np.sqrt(deviation/(len(self.cells)))
         except ZeroDivisionError:
             return 0
 
+    # TODO:: That is grossly written
+    def cleanNeighbors(self):
+        cleaned = False
+        while not cleaned:
+            cleaned = True
+            for cell in self.cells:
+                if not cell.cleanNeighborList():
+                    cleaned = False
+
+
+
     # Not functional!!!
     def drawCells(self):
         for cell in self.cells:
             cv.circle(self.neighbor_image,
-                    (cell[cT.CENTER][0],cell[cT.CENTER][1]),
-                    int(cell[cT.RADIUS]),
+                    (cell.center[0],cell.center[1]),
+                    int(cell.radius),
                     (255, 255, 0),
                     2)
 

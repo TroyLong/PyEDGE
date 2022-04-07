@@ -9,9 +9,6 @@
 ########################
 from copy import deepcopy
 import dataTypes.cell as ce
-from dataTypes.dataTypeTraits import cellTraits as cT
-from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
-
 
 #TODO:: Deepcopy might be too slow
 #Functional Form, might require deepcopy to work properly though
@@ -24,25 +21,26 @@ def distanceFilter(state,deviation):
 # Is not functional, since it removes from cell and cell neighbor
 # If it is passed a copy, it is effectivily functional
 def cellularDistanceFilter(cell,deviation):
-    cell[cT.NEIGHBORS] = ce.sortNeighbors(cell)
+    cell.sortNeighbors()
     # this is the furthest distance to allowed neighbor. Starts at the shortest
-    maxDistance = cell[cT.NEIGHBORS][0][cNT.DISTANCE_TO_BORDER] if (len(cell[cT.NEIGHBORS]) > 0) else 0
+    maxDistance = cell.neighbors[0].distance_to_border if (len(cell.neighbors) > 0) else 0
     # Bypasses isWithinAllowedDistance() computation after it fails the first time
     pastAllowed = False
-    for possibleNeighbor in cell[cT.NEIGHBORS]:
+    for possibleNeighbor in cell.neighbors:
         # possibly faster to nest, but not as clean
         if (not pastAllowed) and (isWithinAllowedDistance(cell,possibleNeighbor,maxDistance,deviation)): 
-            maxDistance = possibleNeighbor[cNT.DISTANCE_TO_BORDER]
+            maxDistance = possibleNeighbor.distance_to_border
         else:
             pastAllowed = True
         if pastAllowed:
-            cell[cT.NEIGHBORS],possibleNeighbor[cNT.CELL][cT.NEIGHBORS] = ce.removeNeighborTwoWay(cell,possibleNeighbor)
+            cell.removeNeighbor(possibleNeighbor)
+
 
 
 #TODO:: This is messy, and both booleans are probably not neccessary
 # checks if neighbor is within the limit on distances past the current maxDistance
 def isWithinAllowedDistance(cell, possibleNeighbor, maxDistance,deviation):
-    distLimit = 1.75*(cell[cT.RADIUS] + possibleNeighbor[cNT.CELL][cT.RADIUS])
-    neighborInDistLimit = possibleNeighbor[cNT.DISTANCE_TO_BORDER] < distLimit
-    neighborInDevationLimit = possibleNeighbor[cNT.DISTANCE_TO_BORDER] < maxDistance+deviation
+    distLimit = 1.75*(cell.radius + possibleNeighbor.cell.radius)
+    neighborInDistLimit = possibleNeighbor.distance_to_border < distLimit
+    neighborInDevationLimit = possibleNeighbor.distance_to_border < maxDistance+deviation
     return neighborInDistLimit and neighborInDevationLimit

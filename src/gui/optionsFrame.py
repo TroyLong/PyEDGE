@@ -14,7 +14,6 @@ from gui.controlPanels.neighborOptionsPanel import NeighborOptionsPanel
 from gui.controlPanels.cellFocusPanel import CellFocusPanel
 from gui.controlPanels.multiStateControl import multiStateAnalysisPanel
 from gui.controlPanels.exportPanel import databasePanel
-import dataTypes.imageState as iS
 
 # This is the main Panel Window Section
 class OptionsZoneFrame(sMF.StateMachineFrame):

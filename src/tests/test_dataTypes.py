@@ -2,7 +2,7 @@ from app import AppCore
 from copy import copy
 import dataTypes.cell as ce
 import dataTypes.cellNeighbor as cN
-import dataTypes.imageState as iS
+import dataTypes.state as iS
 from dataTypes.dataTypeTraits import cellTraits as cT
 from dataTypes.dataTypeTraits import cellNeighborTraits as cNT
 from dataTypes.dataTypeTraits import imageStateTraits as iST

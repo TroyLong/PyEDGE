@@ -6,7 +6,6 @@
 ## Imported Libraries ##
 ########################
 # Image Analysis Libraries
-import cv2 as cv
 import tkinter as tk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (
@@ -14,7 +13,6 @@ from matplotlib.backends.backend_tkagg import (
 ########################
 ## Internal Libraries ##
 ########################
-import dataTypes.imageState as iS
 import gui.stateMachineFrame as sMF
 
 # PlotPanel parent class for inheritance. Creates figures

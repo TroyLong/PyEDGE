@@ -1,17 +1,16 @@
 # This will probably be moved to related cell.py
 import logging
 import pandas
-from dataTypes.dataTypeTraits import cellTraits as cT
 
 # TODO:: Can I turn this into a generating function?
 def cellToPandas(cell,cellMeta):
     return pandas.DataFrame([{
         "Time":cellMeta[0],
         "ZLevel":cellMeta[1],
-        "X":cell[cT.CENTER][0],
-        "Y":cell[cT.CENTER][1],
-        "Area":cell[cT.AREA],
-        "Radius":cell[cT.RADIUS]
+        "X":cell.center[0],
+        "Y":cell.center[1],
+        "Area":cell.area,
+        "Radius":cell.radius
         }])
 
 def cellsToPandas(cells,cellMeta):

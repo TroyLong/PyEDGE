@@ -1,9 +1,5 @@
-from dataTypes.cell import cell
-from dataTypes.cell import cellDist
 import dataTypes.cell as ce
-from dataTypes.cellNeighbor import cellNeighbor
-from dataTypes.dataTypeTraits import cellTraits as ct
-from dataTypes.dataTypeTraits import cellNeighborTraits as cnt
+
 from dataTypes.dataTypeTraits import imageStateTraits as ist
 
 from numpy import sqrt
@@ -27,6 +23,7 @@ def findCellOverlap(cells1, cells2):
                 break
     return tuple(tempCells)
 
+# TODO:: Move to cell.py
 # Returns true if two cells geometries overlap
 def cellsOverlap(cell1, cell2):
-    return cellDist(cell1,cell2) < (cell1[ct.RADIUS]+cell2[ct.RADIUS])
+    return cell1.dist(cell2) < (cell1.radius+cell2.radius)

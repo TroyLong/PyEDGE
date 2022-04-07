@@ -14,7 +14,6 @@ import tkinter as tk
 from . import topMenu as tm
 from . import graphFrame as gf
 from . import optionsFrame as of
-import dataTypes.imageState as iS
 from app import AppCore
 
 class AppFrame(tk.Frame):

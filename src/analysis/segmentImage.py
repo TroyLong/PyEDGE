@@ -10,8 +10,7 @@ import numpy as np
 ########################
 ## Internal Libraries ##
 ########################
-import dataTypes.cell as cell
-from dataTypes.dataTypeTraits import cellTraits as cT
+from dataTypes.cell import Cell
 
 # This is used get rid of contours that can appear for the black outer regions of the image
 def removeLargeContours(image,contours,thresholdHi=4):
@@ -78,8 +77,6 @@ def segmentImage(image,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=1
     #Guess the polygon, and note all vertices
     #This finds the center of mass and mark
     for contour in contours:
-        # Creates copy of cell data structure for cells to be stored in
-        cellDict = cell.cell.copy()
         #polygon
         polyEpsilon = 0.025*cv.arcLength(contour,True)
         polyApprox = cv.approxPolyDP(contour,polyEpsilon,True)
@@ -87,7 +84,6 @@ def segmentImage(image,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=1
         for vert in polyApprox:
             vert = vert[0]
             cv.circle(image, (vert[0],vert[1]), 2, (255, 0, 0), -1)
-        cellDict[cT.VERTICIES] = polyApprox
         #center of mass
         moment = cv.moments(contour)
         cX = 0
@@ -97,10 +93,8 @@ def segmentImage(image,diameter=10,bfSigmaColor=75,bfSigmaSpace=75,atBlockSize=1
             cY = int(moment["m01"] / moment["m00"])
         except ZeroDivisionError:
             pass
-        cellDict[cT.CENTER] = (cX,cY)
         cv.circle(image, (cX, cY), 1, (0, 0, 255), -1)
-        cellDict[cT.AREA] = cv.contourArea(contour)
-        cellDict[cT.RADIUS] = np.sqrt(cellDict[cT.AREA]/np.pi)
-        cells.append(cellDict)
+        cells.append(Cell(center=(cX,cY),verticies=polyApprox,area=cv.contourArea(contour),
+                    radius=np.sqrt(cv.contourArea(contour)/np.pi)))
     return tuple(cells), image
     
