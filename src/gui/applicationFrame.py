@@ -56,6 +56,7 @@ class AppFrame(tk.Frame):
         # Kernel Events
         self.bind("<<SubmitKernelWindowOptions>>",self.__updateKernelWindow)
         self.bind("<<FindKernel>>",self.__findKernel)
+        self.bind("<<ExtractCells>>",self.__extractCells)
         # Export Events
         self.bind("<<ExportState>>",self.__exportState)
         self.bind("<<ExportSuperState>>",self.__exportSuperState)
@@ -109,6 +110,9 @@ class AppFrame(tk.Frame):
     def __findKernel(self,event):
         self.appCore.findKernel()
         self.graphFrame.loadStateUnion(self.appCore.kernel)
+    def __extractCells(self,event):
+        print("did it!")
+        self.appCore.extractCells()
 
     # Export Events
     def __exportState(self,event):

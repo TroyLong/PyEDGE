@@ -2,6 +2,7 @@ import re
 from time import time
 import cv2 as cv
 import analysis
+import copy
 import analysis.filters.cellFilters.cellFilters as cF
 import dataTypes.imageState as iS
 import multiAnalysis.functions as f
@@ -19,7 +20,8 @@ class AppCore:
     def __initImageState(self):
         self.timeIndex = 0
         self.zIndex = 0
-        self.multiState = [[iS.SingleState()]]  
+        self.multiState = [[iS.SingleState()]]
+        self.analyzedStates = []
     def __initKernels(self):
         self.kernelWindow = (0,-1)
         self.zKernels = []
@@ -141,15 +143,23 @@ class AppCore:
         logging.info(f"Displaying {len(unionState.cells)} overlapping cells.\n")
         return unionState
         
-
+    def extractCells(self):
+        #creates a kernel for each z-level
+        kernel = [self.kernel]*len(self.multiState[0])
+        self.analyzedStates = []
+        for time in self.multiState:
+            self.analyzedStates.append([])
+            for z,state in enumerate(time):
+                # Should update and shift kernel for different zLevels without destroying them
+                kernel[z].cells = f.findCellOverlap(kernel[z].cells,state.cells)
+                self.analyzedStates[-1].append(copy.copy(kernel[z]))
 
     # Exports the state
     def exportState(self):
         pandasFunctions.cellsToPandas(
             self.multiState[self.timeIndex][self.zIndex].cells).to_csv("cell.csv")
     def exportSuperState(self):
-        pass
-
+        pandasFunctions.statesToPandas(self.analyzedStates).to_csv("states.csv")
     # TODO:: Not sure if this should be a getter/setter or just a direct variable access
     # Getters
     def getState(self):

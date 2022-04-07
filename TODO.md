@@ -2,7 +2,7 @@
 
 
 ## Version One Goals
-- [ ] Conduct super-state analysis of z
+- [x] Conduct super-state analysis of z
 - [x] Conduct super-state analysis of time
 - [x] Segment cells from image with openCV
 - [x] Reduce and clean cell segment data

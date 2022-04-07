@@ -107,6 +107,7 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         #Multi state image analysis Events
         self.bind("<<SubmitKernelWindowOptions>>",self.__submitKernelWindowOptions)
         self.bind("<<FindKernel>>",self.__findKernel)
+        self.bind("<<ExtractCells>>",self.__extractCells)
         #Export Events
         self.bind("<<ExportState>>",self.__exportState)
         self.bind("<<ExportSuperState>>",self.__exportSuperState)
@@ -143,10 +144,12 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.master.event_generate("<<SubmitKernelWindowOptions>>")
     def __findKernel(self,event):
         self.master.event_generate("<<FindKernel>>")
+    def __extractCells(self,event):
+        self.master.event_generate("<<ExtractCells>>")
     # Export Events
     def __exportState(self,event):
         self.master.event_generate("<<ExportState>>")
-    def __exportSuperState(self):
+    def __exportSuperState(self,event):
         self.master.event_generate("<<ExportSuperState>>")
 
     # grabs number of total loaded states
