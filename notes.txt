@@ -1,13 +1,3 @@
-I'm having a problem where my neighbor filters are removing viable cells, but not updating their
-neighbors while doing so. Also, there is not a one-to-one relationship between cells and their
-neighbors. I don't like filtering by one-to-one, but I do need to re-afferm that relationship
-between filters in order to ensure reliable data. Currently rerunning the neighbor filters a
-few times fixes this, but that is not an ideal solution.
-
-cell neighbors do not link back got actual CELLS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-GUI and AppCore are seperated. Filters not working as well as they were before.
-
-
 Okay, I might need to replace multiState's 2D list with a 2D dictionary to allow hole creation.
 I have two open functions working, but I need to create a sort functional
 It's a small detail, but I need the app to update when sorting

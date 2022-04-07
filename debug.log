@@ -5353,3 +5353,1749 @@ INFO:root:finished Union Analysis.
 INFO:root:Displaying 124 overlapping cells.
 
 INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139920017947808
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139785346210976
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140183876590752
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139961714293872
+
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140510070787184
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140134811380848
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140667365907568
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140660774919280
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140292126899312
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140631060135024
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140524640955552
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139893718522992
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140346360585328
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140241401228400
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140546119580784
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140071067794544
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140022536592496
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140654126500976
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139793615527024
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139640266214512
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139725396024432
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140606524316784
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140052843359392
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139703428816032
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140179561073824
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139740829424800
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140076795030688
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140043640827040
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140088735366304
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140673681190048
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140244091485344
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140298686692512
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140466966457504
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140504087456928
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140688602098848
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140548208807072
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140591482346656
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139630842993824
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140305133665440
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139786156674160
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139966664080544
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139747806796960
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140156488293536
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140113145588896
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140290512628896
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140061853912224
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140712840228000
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139734777625760
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139697074011296
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140409212452000
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140678457244832
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139734899109024
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140031474113648
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139929938254960
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140640463924336
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140655974620320
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140218071747792
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139738355072160
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139704979098160
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140200316140752
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140120640695504
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140625436269776
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139752292861984
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140547363934368
+
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140129870880880
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140310572478528
+
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140643852157040
+
+INFO:root:Exiting pyEDGE.
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139623229988976
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140150396018800
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140467307556048
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Starting Union Analysis of 1 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 106 overlapping cells.
+
+INFO:root:Starting Union Analysis of 1 states.
+INFO:root:finished Union Analysis.
+INFO:root:Displaying 106 overlapping cells.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140327414942928
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140659462995152
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Finished opening files.
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139922529606816
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139866529873056
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139710530485360
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 139810309377136
+
+INFO:root:Opening 9 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z01_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z02_t021.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t019.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t020.tif
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/3x3/spidergfpapril12_11_z03_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75
+Simga Space:           75
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Exiting pyEDGE.
+INFO:root:
+
+------------------------------
+
+Initializing AppCore: 140577636502688
+
+INFO:root:Opening 1 files.
+INFO:root:Opening: /home/troy/Repos/PyEDGE/SampleImages/spidergfpapril12_11_z01_t021.tif
+INFO:root:Finished opening files.
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:
+######  STATE PRINTOUT  ######
+Image Created:         True
+######  Filter Options  ######
+Filter Diameter:       10
+Sigma Color:           75.0
+Simga Space:           75.0
+Adaptive Blocksize:    151
+######  Neighbor Options #####
+Deviation:             15.0
+Max Neighbor Distance: 80000.0
+Upper Cutoff Distance: 5000.0
+
+INFO:root:Exiting pyEDGE.

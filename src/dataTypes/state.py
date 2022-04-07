@@ -84,7 +84,6 @@ class State(object):
         self.neighbor_image = self.filtered_image.copy()
         nA.processNeighborAnalysis(self)
 
-
     ## STATE ANALYSIS FUNCTIONS
     # Finds the mean radii of all the cells in a state
     def meanCellRadii(self):
@@ -110,14 +109,18 @@ class State(object):
 
     # TODO:: That is grossly written
     def cleanNeighbors(self):
-        cleaned = False
-        while not cleaned:
-            cleaned = True
+        total_mutual = False
+        while not total_mutual:
+            total_mutual = True            
             for cell in self.cells:
-                if not cell.cleanNeighborList():
-                    cleaned = False
-
-
+                for neighbor in cell.neighbors:
+                    mutual = False
+                    for neighbors_neighbor in neighbor.cell.neighbors:
+                        if cell == neighbors_neighbor.cell:
+                            mutual = True
+                    if not mutual:
+                        total_mutual = False
+                        cell.removeNeighbor(neighbor)
 
     # Not functional!!!
     def drawCells(self):

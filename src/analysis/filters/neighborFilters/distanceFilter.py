@@ -7,16 +7,17 @@
 ########################
 ## Imported Libraries ##
 ########################
-from copy import deepcopy
+import copy
 import dataTypes.cell as ce
 
 #TODO:: Deepcopy might be too slow
 #Functional Form, might require deepcopy to work properly though
 def distanceFilter(state,deviation):
-    tempCells = deepcopy(state.cells)
-    for cell in tempCells:
+    temp_cells = list(state.cells)
+    for cell in temp_cells:
         cellularDistanceFilter(cell,deviation)
-    return tuple(tempCells)
+    print(temp_cells is state.cells)
+    return tuple(temp_cells)
 
 # Is not functional, since it removes from cell and cell neighbor
 # If it is passed a copy, it is effectivily functional
@@ -26,7 +27,7 @@ def cellularDistanceFilter(cell,deviation):
     maxDistance = cell.neighbors[0].distance_to_border if (len(cell.neighbors) > 0) else 0
     # Bypasses isWithinAllowedDistance() computation after it fails the first time
     pastAllowed = False
-    for possibleNeighbor in cell.neighbors:
+    for possibleNeighbor in list(cell.neighbors):
         # possibly faster to nest, but not as clean
         if (not pastAllowed) and (isWithinAllowedDistance(cell,possibleNeighbor,maxDistance,deviation)): 
             maxDistance = possibleNeighbor.distance_to_border

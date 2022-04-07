@@ -6,6 +6,7 @@
 ## Imported Libraries ##
 ########################
 import numpy as np
+import copy
 ########################
 ## Imported Libraries ##
 ########################
@@ -20,9 +21,9 @@ def passThroughMultipleAreasFilter(state):
     tempCells = list()
     # do this for every cell in the state
     for cell in state.cells:
-        cell = cell.copy()
+        cell = copy.copy(cell)
         # This is the center of the cell. Simplifies math
-        point1 = cell.cell
+        point1 = cell.center
         # temporary list for appending new results to. Will be converted to tuple
         finalNeighbors = list()
         for neighbor in cell.neighbors:

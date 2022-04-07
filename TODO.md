@@ -1,19 +1,18 @@
 # PyEDGE TODO List
 
 ## Major House-Keeping Goals
-- [ ] Automate event passing
+- [x] Rewrite data structures to be slots objects
+- [x] Rewrite filters to work with new data structures
 - [ ] Make sibling classes fit a standard format
-- [ ] Create a metadata class to pass like state class
 
 ## Module Goals
 ### Data Types
 - [ ] Use pytest platform to find accuracy of connections
-- [ ] Make SingleState() a slots object
+- [x] Make State() a slots object
 
 ### Analysis
-- [ ] Run speed test on the deepcopy versions of filters.
 - [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data
-- [ ] Fix the intersection neighbor filter. This got worse after AppCore was created
+- [x] Fix the intersection neighbor filter. This got worse after AppCore was created
 
 ### Multi-Image Analysis
 - [ ] Replace/Swap/Delete states

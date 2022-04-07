@@ -25,35 +25,29 @@ def processNeighborAnalysis(state):
     runNeighborFilters(state)
     drawNeighborAnalysis(state)
 
-
-
 ## Only run below functions through processNeighborAnalysis()
 
 # Saves time by not considering neighbors to far away. Should run in O(nlg(n)) if set up correctly.
 # Not sure if currently set up correctly (its been a while since I've looked).
 def runTreeApprox(state):
     #This box is the default for the tree geometry
-    box = tree.Rectangle(0,0,state.neighbor_image.shape[0],state.neighbor_image.shape[1])
+    treeRoot = tree.Rectangle(0,0,state.neighbor_image.shape[0],state.neighbor_image.shape[1])
     #Puts Cutoff length in format of tree cutoffThreshold
     upperCutoff = state.neighbor_image.shape[1]/state.upper_cutoff_dist
     #Creates Tree
-    root = tree.treeNode(box,list(state.cells),upperCutoff)
+    root = tree.treeNode(treeRoot,list(state.cells),upperCutoff)
     #Finds neighbors of cells using tree structure
     state.cells = walkTree.findCloseCells(root,state.cells)
-
 
 # Knowingly breaks functional programming here
 # This reduces the list of possible neighbors by throwing out neighbors that don't pass a series of tests
 def runNeighborFilters(state):
-    # TODO:: Neighbor lines are still drawing to these?
-    # I think it is because the other cells still think it is a neighbor 
-    # It is going to need a way to check if the neighbor still exists afterwords
-    # Running recursively should get rid of chaining effects.
     state.cells = distanceFilter(state,state.deviation)
+    state.cleanNeighbors()
     state.cells = tooFewNeighborsFilter(state,2)
-    #state[iST.CELLS] = oneToOneFilter(state)
-    #state[iST.CELLS] = passThroughMultipleAreasFilter(state)
-    
+    state.cleanNeighbors()
+    state.cells = passThroughMultipleAreasFilter(state)
+    state.cleanNeighbors()
     
     
 # This draws the neighbor lines and the circles on the neighbor image

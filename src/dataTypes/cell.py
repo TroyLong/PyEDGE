@@ -13,32 +13,23 @@ class Cell(object):
         self.neighbors = neighbors if neighbors!=None else ()
 
     def sortNeighbors(self):
-        self.neighbors = sorted(self.neighbors, key=lambda neigh: neigh.distance_to_border)  
+        self.neighbors = sorted(self.neighbors, key=lambda neigh: neigh.distance_to_border)
 
     def dist(self, cell):
         return dist(self.center,cell.center)
-        
-    def cleanNeighborList(self):
-        cleaned = False
-        for neighbor in self.neighbors:
-            mutual = False
-            for neighbors_neighbor in neighbor.cell.neighbors:
-                mutual = self.cell == neighbors_neighbor.cell
-            if not mutual:
-                self.removeNeighbor(neighbor.cell)
-                cleaned = True
-        return cleaned
 
     def isCellNeighbor(self,cellNeighbor):
         return cellNeighbor in self.neighbors
     def removeNeighbor(self,neighbor):
-        for neigh in self.neighbors:
-            if neigh.cell == neighbor.cell:
-                self.neighbors.remove(neighbor)
-
+        try:
+            temp_list = list(self.neighbors)
+            temp_list.remove(neighbor)
+            self.neighbors = tuple(temp_list)
+        except ValueError:
+            pass
     def createAverageCell(self,cell):
         return Cell((self.center[0]+cell.center[0])/2,
-                    (self.center[1]+cell.center[1])/2.
+                    (self.center[1]+cell.center[1])/2,
                     (self.area+cell.area)/2,
                     (self.radius+cell.radius)/2)
     def __eq__(self,cell):
