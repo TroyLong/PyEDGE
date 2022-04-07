@@ -110,7 +110,6 @@ class AppFrame(tk.Frame):
         self.appCore.findKernel()
         self.graphFrame.loadStateUnion(self.appCore.kernel)
     def __extractCells(self,event):
-        print("did it!")
         self.appCore.extractCells()
 
     # Export Events

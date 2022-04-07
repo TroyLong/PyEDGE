@@ -127,7 +127,7 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
     def __submitFilterOptions(self,event):
         self.master.event_generate("<<SubmitFilterOptions>>")
     def __submitAllFilterOptions(self,event):
-        self.master.event_generate("<<SubmitAllNeighborOptions>>")
+        self.master.event_generate("<<SubmitAllFilterOptions>>")
     # Neighbor Events
     def __submitNeighborOptions(self,event):
         self.master.event_generate("<<SubmitNeighborOptions>>")

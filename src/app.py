@@ -28,23 +28,25 @@ class AppCore:
         self.kernel = s.State()
 
     def openImage(self, imagePath):
+        logging.info(f"Opening: {imagePath}...")
         state = s.State()
         state.openImage(imagePath)
         state.z_level, state.time = self.reFileNames(imagePath)
         self.multiState[self.timeIndex][self.zIndex] = state
+        logging.info("Finished opening file.\n")
     # opens images to states
     def openImages(self, imagePaths):
         # TODO:: This should house a pattern matching algorithm
-        logging.info(f"Opening {len(imagePaths)} files.")
+        logging.info(f"Opening {len(imagePaths)} files...")
         unsortedStates = []
         for imagePath in imagePaths:
-            logging.info(f"Opening: {imagePath}")
+            logging.info(f"Opening: {imagePath}...")
             tempState = s.State()
             # TODO:: should probably be in initializer
             tempState.openImage(imagePath)
             tempState.z_level, tempState.time = self.reFileNames(imagePath)
             unsortedStates.append(tempState)
-            print(f"{unsortedStates[-1].z_level} {unsortedStates[-1].time}")
+            #print(f"{unsortedStates[-1].z_level} {unsortedStates[-1].time}")
         # TODO:: This is just filler for right now
         self.multiState = self.sortImages(unsortedStates)
         logging.info("Finished opening files.\n")
@@ -94,24 +96,21 @@ class AppCore:
     # Imaging Events
     def updateFilterOptions(self):
         self.multiState[self.timeIndex][self.zIndex].updateFilterOptions()
-        logging.info(self.multiState[self.timeIndex][self.zIndex])
+        logging.debug(self.multiState[self.timeIndex][self.zIndex])
     def updateAllFilterOptions(self):
-        counter = 0
         for timeStates in self.multiState:
             for zLevelState in timeStates:
-                print(counter)
                 zLevelState.updateFilterOptions()
-                counter += 1
+                logging.debug(zLevelState)
     # Neighbor Analysis Events
     def updateNeighborOptions(self):
         self.multiState[self.timeIndex][self.zIndex].updateNeighborOptions()
-        logging.info(self.multiState[self.timeIndex][self.zIndex])
+        logging.debug(self.multiState[self.timeIndex][self.zIndex])
     def updateAllNeighborOptions(self):
         for timeStates in self.multiState:
             for zLevelState in timeStates:
                 zLevelState.updateNeighborOptions()
-                logging.info(zLevelState)
-
+                logging.debug(zLevelState)
 
     # TODO:: Not sure if this should be a getter/setter or just a direct variable access
     def updateAnalysisOptions(self,lowAnalysisIndex,highAnalysisIndex):
@@ -121,11 +120,11 @@ class AppCore:
         self.zKernels = []
         for zLevel in self.multiState:
             self.zKernels.append(self.findStateOverlap(zLevel))
-        print(type(self.zKernels))
         self.kernel = self.findStateOverlap(self.zKernels,self.kernelWindow[0],self.kernelWindow[1])
+        logging.info(f"Kernel formed from window of {self.kernelWindow}.\n")
         self.kernel.drawCells()
     def findStateOverlap(self,states,index1=0,index2=-1):
-        logging.info(f"Starting Union Analysis of {len(states)} states.")
+        logging.info(f"Starting Micro-kernel of {len(states)} states...")
         # Create new stateUnion image from state size and get to the neighbor image
         unionState = s.State(shape = states[index1].neighbor_image.shape)
         # Fill the stateUnion with the base case.
@@ -139,8 +138,7 @@ class AppCore:
         for state in states[index1:index2]:
             unionState.cells = f.findCellOverlap(unionState.cells, state.cells)
         unionState.image_opened = True
-        logging.info("finished Union Analysis.")
-        logging.info(f"Displaying {len(unionState.cells)} overlapping cells.\n")
+        logging.info(f"Micro-Kernel has {len(unionState.cells)} overlapping cells.")
         return unionState
         
     def extractCells(self):
@@ -153,13 +151,19 @@ class AppCore:
                 # Should update and shift kernel for different zLevels without destroying them
                 kernel[z].cells = f.findCellOverlap(kernel[z].cells,state.cells)
                 self.analyzedStates[-1].append(copy.copy(kernel[z]))
+        logging.info("Extracted cells for data.\n")
+
 
     # Exports the state
     def exportState(self):
+        logging.info("Exporting active state cells to state.csv...")
         pandasFunctions.cellsToPandas(
-            self.multiState[self.timeIndex][self.zIndex].cells).to_csv("cell.csv")
+            self.multiState[self.timeIndex][self.zIndex].cells).to_csv("state.csv")
+        logging.info("Export complete.\n")
     def exportSuperState(self):
+        logging.info("Exporting current extracted cells to states.csv...")
         pandasFunctions.statesToPandas(self.analyzedStates).to_csv("states.csv")
+        logging.info("Export complete...\n")
     # TODO:: Not sure if this should be a getter/setter or just a direct variable access
     # Getters
     def getState(self):

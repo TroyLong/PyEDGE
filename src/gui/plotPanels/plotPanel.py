@@ -35,12 +35,17 @@ class PlotPanel(sMF.StateMachineFrame):
         # Toolbar has to go in Frame to back with grid
         toolbarFrame = tk.Frame(self)
         toolbarFrame.grid(row=2,column=0)
-        imageToolbar = NavigationToolbar2Tk(self.plotCanvas,toolbarFrame)
+        imageToolbar = NavigationToolbar(self.plotCanvas,toolbarFrame)
         # Adding the canvas to the grid layout manager
         self.plotCanvas.get_tk_widget().grid(row=1,column=0)
-
 
     # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
     def loadBlankImage(self):
         self.plotFig.clf()
         self.plotCanvas.draw()
+
+# Simpler toolbar
+class NavigationToolbar(NavigationToolbar2Tk):
+    # only display the buttons we need
+    toolitems = [t for t in NavigationToolbar2Tk.toolitems if
+                 t[0] in ('Home', 'Pan', 'Zoom', 'Save')]

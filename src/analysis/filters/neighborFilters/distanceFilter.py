@@ -16,7 +16,6 @@ def distanceFilter(state,deviation):
     temp_cells = list(state.cells)
     for cell in temp_cells:
         cellularDistanceFilter(cell,deviation)
-    print(temp_cells is state.cells)
     return tuple(temp_cells)
 
 # Is not functional, since it removes from cell and cell neighbor

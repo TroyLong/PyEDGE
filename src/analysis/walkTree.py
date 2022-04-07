@@ -31,8 +31,6 @@ def findCloseCells(root,cells):
         cell.neighbors = tuple(neighbors)
         # This adds this cell and its neighbors to the total cells collection
         temp_cells.append(cell)
-        if neighbors == None:
-            print("Woops")
     # Returns new data structure
     return tuple(temp_cells)
         

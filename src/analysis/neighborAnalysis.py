@@ -47,8 +47,7 @@ def runNeighborFilters(state):
     state.cleanNeighbors()
     state.cells = passThroughMultipleAreasFilter(state)
     state.cleanNeighbors()
-    
-    
+     
 # This draws the neighbor lines and the circles on the neighbor image
 def drawNeighborAnalysis(state):
     for cell in state.cells:
