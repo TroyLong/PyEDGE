@@ -20,29 +20,29 @@ class PlotPanel(sMF.StateMachineFrame):
     def __init__(self, master=None,state=None,title = ""):
         super().__init__(master,state)
         self.title = title
-        self.__createPlotTitle()
-        self.__createPlotFigure()
+        self.__create_title()
+        self.__create_figure()
     
-    def __createPlotTitle(self):
-        self.plotTitle = tk.Label(self,text=self.title)
-        self.plotTitle.grid(row=0,column=0)
+    def __create_title(self):
+        self.title = tk.Label(self,text=self.title)
+        self.title.grid(row=0,column=0)
     
-    def __createPlotFigure(self):
-        self.plotFig = plt.Figure(figsize=(3.75,4), dpi=100, tight_layout=True)
-        self.plotFig.format_coord = lambda x, y: ""
+    def __create_figure(self):
+        self.figure = plt.Figure(figsize=(3.75,4), dpi=100, tight_layout=True)
+        self.figure.format_coord = lambda x, y: ""
         # Canvas for the image or graph to display to
-        self.plotCanvas = FigureCanvasTkAgg(self.plotFig,self)
+        self.canvas = FigureCanvasTkAgg(self.figure,self)
         # Toolbar has to go in Frame to back with grid
-        toolbarFrame = tk.Frame(self)
-        toolbarFrame.grid(row=2,column=0)
-        imageToolbar = NavigationToolbar(self.plotCanvas,toolbarFrame)
+        toolbar_frame = tk.Frame(self)
+        toolbar_frame.grid(row=2,column=0)
+        image_toolbar = NavigationToolbar(self.canvas,toolbar_frame)
         # Adding the canvas to the grid layout manager
-        self.plotCanvas.get_tk_widget().grid(row=1,column=0)
+        self.canvas.get_tk_widget().grid(row=1,column=0)
 
     # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
-    def loadBlankImage(self):
-        self.plotFig.clf()
-        self.plotCanvas.draw()
+    def load_blank_image(self):
+        self.figure.clf()
+        self.canvas.draw()
 
 # Simpler toolbar
 class NavigationToolbar(NavigationToolbar2Tk):

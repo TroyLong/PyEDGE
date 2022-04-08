@@ -18,25 +18,25 @@ from gui.plotPanels import plotPanel as pP
 
 
 class ImagePanel(pP.PlotPanel):
-    def __init__(self, master=None,state=None,title = "",imageType=None):
+    def __init__(self, master=None,state=None,title = "",image_type=None):
         super().__init__(master,state,title)
-        self.imageType = imageType
+        self.image_type = image_type
     
-    def loadState(self,state):
-        if super().loadState(state):
-            self.__loadImageState()
+    def load(self,state):
+        if super().load(state):
+            self.__load_image()
     
-    def __loadImageState(self):
-        self.plotFig.clf()
-        self.imagePlt = self.plotFig.add_subplot(111)
+    def __load_image(self):
+        self.figure.clf()
+        self.image_plot = self.figure.add_subplot(111)
         # TODO:: replace with match statement after april
-        if self.imageType == iST.IMAGE:
+        if self.image_type == iST.IMAGE:
             self.image = cv.cvtColor(self.state.image,cv.COLOR_BGR2RGB)
-        elif self.imageType == iST.FILTERED_IMAGE:
+        elif self.image_type == iST.FILTERED_IMAGE:
             self.image = cv.cvtColor(self.state.filtered_image,cv.COLOR_BGR2RGB)
-        elif self.imageType == iST.NEIGHBOR_IMAGE:
+        elif self.image_type == iST.NEIGHBOR_IMAGE:
             self.image = cv.cvtColor(self.state.neighbor_image,cv.COLOR_BGR2RGB)
-        self.imagePlt.imshow(cv.cvtColor(self.image,cv.COLOR_BGR2RGB))
-        axes = self.plotFig.gca()
+        self.image_plot.imshow(cv.cvtColor(self.image,cv.COLOR_BGR2RGB))
+        axes = self.figure.gca()
         axes.format_coord = lambda x, y: ''
-        self.plotCanvas.draw()
+        self.canvas.draw()

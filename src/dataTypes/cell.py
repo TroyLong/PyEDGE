@@ -12,22 +12,22 @@ class Cell(object):
         self.radius = radius
         self.neighbors = neighbors if neighbors!=None else ()
 
-    def sortNeighbors(self):
+    def sort_neighbors(self):
         self.neighbors = sorted(self.neighbors, key=lambda neigh: neigh.distance_to_border)
 
     def dist(self, cell):
         return dist(self.center,cell.center)
 
-    def isCellNeighbor(self,cellNeighbor):
-        return cellNeighbor in self.neighbors
-    def removeNeighbor(self,neighbor):
+    def is_cell_neighbor(self,cell_neighbor):
+        return cell_neighbor in self.neighbors
+    def remove_neighbor(self,neighbor):
         try:
             temp_list = list(self.neighbors)
             temp_list.remove(neighbor)
             self.neighbors = tuple(temp_list)
         except ValueError:
             pass
-    def createAverageCell(self,cell):
+    def create_average_cell(self,cell):
         return Cell((self.center[0]+cell.center[0])/2,
                     (self.center[1]+cell.center[1])/2,
                     (self.area+cell.area)/2,

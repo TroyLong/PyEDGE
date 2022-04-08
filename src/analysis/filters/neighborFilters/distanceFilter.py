@@ -12,35 +12,35 @@ import dataTypes.cell as ce
 
 #TODO:: Deepcopy might be too slow
 #Functional Form, might require deepcopy to work properly though
-def distanceFilter(state,deviation):
+def distance_filter(state,deviation):
     temp_cells = list(state.cells)
     for cell in temp_cells:
-        cellularDistanceFilter(cell,deviation)
+        cellular_distance_filter(cell,deviation)
     return tuple(temp_cells)
 
 # Is not functional, since it removes from cell and cell neighbor
 # If it is passed a copy, it is effectivily functional
-def cellularDistanceFilter(cell,deviation):
-    cell.sortNeighbors()
+def cellular_distance_filter(cell,deviation):
+    cell.sort_neighbors()
     # this is the furthest distance to allowed neighbor. Starts at the shortest
-    maxDistance = cell.neighbors[0].distance_to_border if (len(cell.neighbors) > 0) else 0
+    max_distance = cell.neighbors[0].distance_to_border if (len(cell.neighbors) > 0) else 0
     # Bypasses isWithinAllowedDistance() computation after it fails the first time
-    pastAllowed = False
-    for possibleNeighbor in list(cell.neighbors):
+    past_allowed = False
+    for possible_neighbor in list(cell.neighbors):
         # possibly faster to nest, but not as clean
-        if (not pastAllowed) and (isWithinAllowedDistance(cell,possibleNeighbor,maxDistance,deviation)): 
-            maxDistance = possibleNeighbor.distance_to_border
+        if (not past_allowed) and (is_within_allowed_distance(cell,possible_neighbor,max_distance,deviation)): 
+            max_distance = possible_neighbor.distance_to_border
         else:
-            pastAllowed = True
-        if pastAllowed:
-            cell.removeNeighbor(possibleNeighbor)
+            past_allowed = True
+        if past_allowed:
+            cell.remove_neighbor(possible_neighbor)
 
 
 
 #TODO:: This is messy, and both booleans are probably not neccessary
-# checks if neighbor is within the limit on distances past the current maxDistance
-def isWithinAllowedDistance(cell, possibleNeighbor, maxDistance,deviation):
-    distLimit = 1.75*(cell.radius + possibleNeighbor.cell.radius)
-    neighborInDistLimit = possibleNeighbor.distance_to_border < distLimit
-    neighborInDevationLimit = possibleNeighbor.distance_to_border < maxDistance+deviation
-    return neighborInDistLimit and neighborInDevationLimit
+# checks if neighbor is within the limit on distances past the current max_distance
+def is_within_allowed_distance(cell, possible_neighbor, max_distance,deviation):
+    distLimit = 1.75*(cell.radius + possible_neighbor.cell.radius)
+    neighbor_in_dist_limit = possible_neighbor.distance_to_border < distLimit
+    neighbor_in_deviation_limit = possible_neighbor.distance_to_border < max_distance+deviation
+    return neighbor_in_dist_limit and neighbor_in_deviation_limit

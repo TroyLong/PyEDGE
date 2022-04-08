@@ -19,4 +19,4 @@ app = applicationFrame.AppFrame(appCore=AppCore())
 app.master.title("PyEDGE")
 app.mainloop()
 
-logging.info("Exiting pyEDGE.")
+logging.info("Exiting PyEDGE.")

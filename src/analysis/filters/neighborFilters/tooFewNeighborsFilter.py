@@ -10,11 +10,11 @@ import dataTypes.cell as ce
 
 
 # Functional Form
-def tooFewNeighborsFilter(state,cutoff):
-    tempCells = list(state.cells)
-    for cell in tempCells:
+def too_few_neighbors_filter(state,cutoff):
+    temp_cells = list(state.cells)
+    for cell in temp_cells:
         if len(cell.neighbors) <= cutoff:
             for neighbor in cell.neighbors:
-                cell.removeNeighbor(neighbor)
-            tempCells.remove(cell)
-    return tuple(tempCells)
+                cell.remove_neighbor(neighbor)
+            temp_cells.remove(cell)
+    return tuple(temp_cells)

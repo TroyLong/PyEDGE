@@ -18,78 +18,77 @@ from gui.plotPanels.histPanel import HistPanel
 
 
 class GraphZoneFrame(sMF.StateMachineFrame):
-    def __init__(self, master=None,state=None,stateUnion=None):
+    def __init__(self, master=None,state=None,kernel_state=None):
         super().__init__(master)
         self.master = master
         self.state = state if state != None else State()
-        self.stateUnion = stateUnion if stateUnion != None else State()
-        self.__createGraphs()
+        self.kernel_state = kernel_state if kernel_state != None else State()
+        self.__create_graphs()
 
-    def loadState(self,state):
-        if super().loadState(state):
-            self.__loadImages()
+    def load(self,state):
+        if super().load(state):
+            self.__load_images()
         else:
-            self.__loadBlankImages()
+            self.__load_blank_images()
 
-    # TODO:: Bad Form
-    def loadStateUnion(self,stateUnion):
-        self.stateUnion=stateUnion
-        self.__loadImages()
+    def load_kernel_state(self,kernel_state):
+        self.kernel_state=kernel_state
+        self.__load_images()
 
-    def openFile(self,imagePath):
-        self.__loadImages()
+    def open_file(self,imagePath):
+        self.__load_images()
 
     # These functions can be called to have images re-created
-    def updateFilterOptions(self):
+    def update_filter(self):
         if self.state.image_opened:
             #self.__createFilteredImageAndCells()
-            self.updateNeighborOptions()
-    def updateNeighborOptions(self):
+            self.update_neighbor_filter()
+    def update_neighbor_filter(self):
         if self.state.image_opened:
             #self.__createNeighborImage()
             # TODO:: Do I still use these functions?
             # Yes, but why?
-            self.__loadImages()
+            self.__load_images()
 
 
     # These functions create the spaces where the images can be placed
-    def __createGraphs(self):
+    def __create_graphs(self):
         self.grid()
-        self.__createOriginalGraph(0)
-        self.__createFilteredGraph(1)
-        self.__createNeighborGraph(2)
-        self.__createNeighborHistogramGraph(3)
-        self.__createStateUnionAnalysisGraph(4)
+        self.__create_original(0)
+        self.__create_filtered(1)
+        self.__create_neighbor(2)
+        self.__create_neighbor_histogram(3)
+        self.__create_kernel(4)
 
-    def __createOriginalGraph(self,column):
-        self.originalImageFrame = ImagePanel(self,state=self.state,title="Original",imageType=iST.IMAGE)
-        self.originalImageFrame.grid(row=1,column=column)
-    def __createFilteredGraph(self,column):
-        self.filteredImageFrame = ImagePanel(self,state=self.state,title="Filtered",imageType=iST.FILTERED_IMAGE)
-        self.filteredImageFrame.grid(row=1,column=column)
-    def __createNeighborGraph(self,column):
-        self.neighborImageFrame = ImagePanel(self,state=self.state,title="Neighbor Mapping",imageType=iST.NEIGHBOR_IMAGE)
-        self.neighborImageFrame.grid(row=1,column=column)
-    def __createNeighborHistogramGraph(self,column):
-        self.neighborHistFrame = HistPanel(self,state=self.state,title="Neighbor Histogram")
-        self.neighborHistFrame.grid(row=1,column=column)
-    def __createStateUnionAnalysisGraph(self,column):
-        self.stateUnionFrame = ImagePanel(self,state=self.stateUnion,title="Multi-State Analysis",imageType=iST.NEIGHBOR_IMAGE)
-        self.stateUnionFrame.grid(row=1,column=column)
+    def __create_original(self,column):
+        self.original = ImagePanel(self,state=self.state,title="Original",image_type=iST.IMAGE)
+        self.original.grid(row=1,column=column)
+    def __create_filtered(self,column):
+        self.filtered = ImagePanel(self,state=self.state,title="Filtered",image_type=iST.FILTERED_IMAGE)
+        self.filtered.grid(row=1,column=column)
+    def __create_neighbor(self,column):
+        self.neighbor = ImagePanel(self,state=self.state,title="Neighbor Mapping",image_type=iST.NEIGHBOR_IMAGE)
+        self.neighbor.grid(row=1,column=column)
+    def __create_neighbor_histogram(self,column):
+        self.neighbor_hist = HistPanel(self,state=self.state,title="Neighbor Histogram")
+        self.neighbor_hist.grid(row=1,column=column)
+    def __create_kernel(self,column):
+        self.kernel = ImagePanel(self,state=self.kernel_state,title="Multi-State Analysis",image_type=iST.NEIGHBOR_IMAGE)
+        self.kernel.grid(row=1,column=column)
 
 
     # These functions load pre-created images to the graphs
-    def __loadImages(self):
-        self.originalImageFrame.loadState(self.state)
-        self.filteredImageFrame.loadState(self.state)
-        self.neighborImageFrame.loadState(self.state)
-        self.neighborHistFrame.loadState(self.state)
-        self.stateUnionFrame.loadState(self.stateUnion)
+    def __load_images(self):
+        self.original.load(self.state)
+        self.filtered.load(self.state)
+        self.neighbor.load(self.state)
+        self.neighbor_hist.load(self.state)
+        self.kernel.load(self.kernel_state)
 
     # This is used to make the graph go blank when an empty state is loaded. Otherwise it retains the last graph
-    def __loadBlankImages(self):
-        self.originalImageFrame.loadBlankImage()
-        self.filteredImageFrame.loadBlankImage()
-        self.neighborImageFrame.loadBlankImage()
-        self.neighborHistFrame.loadBlankImage()
-        self.stateUnionFrame.loadBlankImage()
+    def __load_blank_images(self):
+        self.original.load_blank_image()
+        self.filtered.load_blank_image()
+        self.neighbor.load_blank_image()
+        self.neighbor_hist.load_blank_image()
+        self.kernel.load_blank_image()

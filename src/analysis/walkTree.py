@@ -12,7 +12,7 @@ import copy
 
 # Functional Form
 # This correctly navigates the tree structure. Uses nodes that need to be used, and ignores descendants of those that don't
-def findCloseCells(root,cells):
+def find_close_cells(root,cells):
     temp_cells = list()
     for cell in cells:
         neighbors = list()
@@ -20,11 +20,11 @@ def findCloseCells(root,cells):
         # Skip child nodes is parent node is past the cutoff
         for node in node_iterator:
             # Is the node within the cutoff, not itself, and a cell? Then do action relevant action on node
-            if (node.isNodeSingleOccupied and (not node.cells[0].center == cell.center) and (node.isInternalNodeWithinCutoff(cell))):
+            if (node.is_node_single_occupied and (not node.cells[0].center == cell.center) and (node.is_internal_node_within_cutoff(cell))):
                 # If plausable neighbors, then append to neighbor list
-                neighbors.append(node.buildNeighborCell(cell))
+                neighbors.append(node.build_neighbor_cell(cell))
             # If the center of mass is out of the cutoff, then skip the nodes that are deeper
-            elif not node.isInternalNodeWithinCutoff(cell):
+            elif not node.is_internal_node_within_cutoff(cell):
                 for i in range(len(node.descendants)):
                     next(node_iterator, None)
         # Remember this is just a copy of the original cell

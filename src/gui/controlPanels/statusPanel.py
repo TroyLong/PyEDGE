@@ -12,9 +12,9 @@ from . import controlPanel as cP
 class StatusPanel(cP.ControlPanel):
     def __init__(self, master=None, state=None):
         super().__init__(master,state,"Program Status")
-    def loadState(self, state):
-        super().loadState(state)
-        self._updateStatusBanner()
-    def _generateStatusText(self):
+    def load(self, state):
+        super().load(state)
+        self._update_status()
+    def _generate_status(self):
         #self.statusText += self.master.getStatusMessage()
-        return self.statusText
+        return self.status_text

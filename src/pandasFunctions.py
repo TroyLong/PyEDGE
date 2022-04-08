@@ -3,25 +3,26 @@ import logging
 import pandas
 
 # TODO:: Can I turn this into a generating function?
-def cellToPandas(cell,cellMeta):
+def cell_to_pandas(cell,cell_meta):
     return pandas.DataFrame([{
-        "Time":cellMeta[0],
-        "ZLevel":cellMeta[1],
+        "Time":cell_meta[0],
+        "ZLevel":cell_meta[1],
         "X":cell.center[0],
         "Y":cell.center[1],
         "Area":cell.area,
         "Radius":cell.radius
         }])
 
-def cellsToPandas(cells,cellMeta):
-    dataFrame = pandas.DataFrame()
+def cells_to_pandas(cells,cell_meta=None):
+    cell_meta = cell_meta if cell_meta!=None else (0,0)
+    df = pandas.DataFrame()
     for cell in cells:
-        dataFrame = pandas.concat([dataFrame,cellToPandas(cell,cellMeta)],ignore_index=True)
-    return dataFrame
+        df = pandas.concat([df,cell_to_pandas(cell,cell_meta)],ignore_index=True)
+    return df
 
-def statesToPandas(states):
-    outputList = list()
-    for z,zLevel in enumerate(states):
-        for t,state in enumerate(zLevel):
-            outputList.append(cellsToPandas(state.cells,(t,z)))
-    return pandas.concat(outputList)
+def states_to_pandas(states):
+    output = list()
+    for z,z_level in enumerate(states):
+        for t,state in enumerate(z_level):
+            output.append(cells_to_pandas(state.cells,(t,z)))
+    return pandas.concat(output)

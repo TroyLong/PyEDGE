@@ -14,11 +14,11 @@ class StateMachineFrame(tk.Frame):
         self.master = master
         self.state = state if state != None else State()
     # Only loads image if the image is already opened, otherwise it returns a false flag for downstream to deal with
-    def loadState(self,state):
+    def load(self,state):
         self.state = state
         return self.state.image_opened
     # Only saves config if the image is already opened, otherwise it returns a false flag for downstream to deal with
-    def saveState(self):
+    def save(self):
         return self.state.image_opened
     # Allows frame to update without loading a new state
     def update(self):
@@ -27,7 +27,7 @@ class StateMachineFrame(tk.Frame):
     def reset(self):
         self.state=State()
     # This creates the title for the machine panel
-    def _createTitleBanner(self,text="",fontSize=10,row=1,column=0,columnspan=2):
-        bannerLabel = tk.Label(self,text=text)
-        bannerLabel.config(font=("Ubuntu",fontSize))
-        bannerLabel.grid(row=row,column=column,columnspan=columnspan)
+    def _create_title(self,text="",fontSize=10,row=1,column=0,columnspan=2):
+        title = tk.Label(self,text=text)
+        title.config(font=("Ubuntu",fontSize))
+        title.grid(row=row,column=column,columnspan=columnspan)

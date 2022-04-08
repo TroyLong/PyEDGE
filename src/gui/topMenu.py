@@ -14,20 +14,20 @@ class TopMenu(tk.Menu):
         super().__init__(master)
         self.master = master
 
-        fileMenu = tk.Menu(self)
-        fileMenu.add_command(label="Open Single on State",command=self.openFile)
-        fileMenu.add_command(label="Open Multiple Unsorted",command=self.openFiles)
-        self.add_cascade(label="File",menu=fileMenu)
+        file_menu = tk.Menu(self)
+        file_menu.add_command(label="Open Single on State",command=self.open_file)
+        file_menu.add_command(label="Open Multiple Unsorted",command=self.open_files)
+        self.add_cascade(label="File",menu=file_menu)
 
-        editMenu = tk.Menu(self)
-        self.add_cascade(label="Edit",menu=editMenu)
+        edit_menu = tk.Menu(self)
+        self.add_cascade(label="Edit",menu=edit_menu)
 
-    def openFile(self):
+    def open_file(self):
         filetypes = (("tif","*.tif"),("png","*.png"),("gif","*.gif"),("All files","*.*"))
-        self.openImagePath = fd.askopenfilename(title="Open an image",initialdir="./",filetypes=filetypes)
+        self.open_image_path = fd.askopenfilename(title="Open an image",initialdir="./",filetypes=filetypes)
         self.master.event_generate("<<OpenFile>>")
 
-    def openFiles(self):
+    def open_files(self):
         filetypes = (("tif","*.tif"),("png","*.png"),("gif","*.gif"),("All files","*.*"))
-        self.openImagePaths = fd.askopenfilenames(title="Open images",initialdir="./",filetypes=filetypes)
+        self.open_image_paths = fd.askopenfilenames(title="Open images",initialdir="./",filetypes=filetypes)
         self.master.event_generate("<<OpenFiles>>")

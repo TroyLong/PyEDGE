@@ -34,9 +34,9 @@ class State(object):
         # dimensions of the image matrix
         self.shape = shape if shape!=None else np.shape((1,1,3))
         # images as np arrays
-        self.image = image if image!=None else self.__createEmptyImage()
-        self.filtered_image = self.__createEmptyImage()
-        self.neighbor_image = neighbor_image if neighbor_image!=None else self.__createEmptyImage()
+        self.image = image if image!=None else self.__create_empty_image()
+        self.filtered_image = self.__create_empty_image()
+        self.neighbor_image = neighbor_image if neighbor_image!=None else self.__create_empty_image()
         # cells
         self.cells = cells if cells!=None else tuple()
         # used to select individual cells
@@ -52,26 +52,26 @@ class State(object):
         self.max_neighbor_dist = 80000.0
         self.upper_cutoff_dist = 5000.0
     # Provides a basic empty image for the default state
-    def __createEmptyImage(self):
+    def __create_empty_image(self):
         return np.zeros(self.shape,dtype=np.uint8)
 
     # Opens and creates images from file
-    def openImage(self,imagePath):
+    def open_image(self,imagepath):
         self.image_opened = True
-        self.__createOriginalImage(imagePath)
-        self.__createFilteredImageAndCells()
-        self.__createNeighborImage()
+        self.__create_original_image(imagepath)
+        self.__create_filtered_image_and_cells()
+        self.__create_neighbor_image()
 
     # Updates state to reflect changes made
-    def updateFilterOptions(self):
-        self.__createFilteredImageAndCells()
-    def updateNeighborOptions(self):
-        self.__createNeighborImage()
+    def update_filter(self):
+        self.__create_filtered_image_and_cells()
+    def update_neighbor_filter(self):
+        self.__create_neighbor_image()
 
     # Creates images from file
-    def __createOriginalImage(self,imagePath):
-        self.image = cv.imread(imagePath)
-    def __createFilteredImageAndCells(self):
+    def __create_original_image(self,imagepath):
+        self.image = cv.imread(imagepath)
+    def __create_filtered_image_and_cells(self):
         # If Adaptive Blocksize is > 2 or %2 = 1 this works. Otherwise I get an error
         self.cells,self.filtered_image = sI.segmentImage(image=self.image,
                                                         diameter=self.filter_diameter,
@@ -79,36 +79,36 @@ class State(object):
                                                         bfSigmaSpace=self.sigma_space,
                                                         atBlockSize=self.adaptive_blocksize)
         #TODO:: I think I should have a more general function call eventually
-        self.cells = cF.removeOutlierSmallRadii(self,1)
-    def __createNeighborImage(self):
+        self.cells = cF.remove_outlier_small_radii(self,1)
+    def __create_neighbor_image(self):
         self.neighbor_image = self.filtered_image.copy()
-        nA.processNeighborAnalysis(self)
+        nA.process_neighbor_analysis(self)
 
     ## STATE ANALYSIS FUNCTIONS
     # Finds the mean radii of all the cells in a state
-    def meanCellRadii(self):
-        averageRadius = 0
+    def find_mean_cell_radii(self):
+        average_radius = 0
         for cell in self.cells:
-            averageRadius += cell.radius
+            average_radius += cell.radius
         try:
-            return averageRadius/(len(self.cells))
+            return average_radius/(len(self.cells))
         except ZeroDivisionError:
             return 0
 
     # Caluclates the deviation in cell radii
     # There is probably also a library for this
-    def cellRadiusDeviation(self):
+    def cell_radius_deviation(self):
         deviation = 0
-        meanRadius = self.meanCellRadii()
+        mean_radius = self.find_mean_cell_radii()
         for cell in self.cells:
-            deviation += (cell.radius-meanRadius)**2
+            deviation += (cell.radius-mean_radius)**2
         try:
             return np.sqrt(deviation/(len(self.cells)))
         except ZeroDivisionError:
             return 0
 
     # TODO:: That is grossly written
-    def cleanNeighbors(self):
+    def clean_neighbors(self):
         total_mutual = False
         while not total_mutual:
             total_mutual = True            
@@ -120,10 +120,10 @@ class State(object):
                             mutual = True
                     if not mutual:
                         total_mutual = False
-                        cell.removeNeighbor(neighbor)
+                        cell.remove_neighbor(neighbor)
 
     # Not functional!!!
-    def drawCells(self):
+    def draw_cells(self):
         for cell in self.cells:
             cv.circle(self.neighbor_image,
                     (cell.center[0],cell.center[1]),

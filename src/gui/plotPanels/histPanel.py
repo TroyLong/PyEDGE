@@ -18,19 +18,19 @@ class HistPanel(pP.PlotPanel):
     def __init__(self, master=None,state=None,title = ""):
         super().__init__(master,state,title)
     
-    def loadState(self,state):
-        if super().loadState(state):
-            self.__loadHistState()
+    def load(self,state):
+        if super().load(state):
+            self.__load_hist()
 
-    def __loadHistState(self):
-        neighborNumbers = list()
+    def __load_hist(self):
+        neighbor_numbers = list()
         # Only draw histogram if there are cells to create it with
         if len(self.state.cells):
             for cell in self.state.cells:
-                neighborNumbers.append(len(cell.neighbors))
-            self.plotFig.clf()
-            self.histPlt = self.plotFig.add_subplot(111)        
-            self.histPlt.hist(neighborNumbers, bins=range(min(neighborNumbers), max(neighborNumbers) + 1, 1))
-            axes = self.plotFig.gca()
+                neighbor_numbers.append(len(cell.neighbors))
+            self.figure.clf()
+            self.hist_plot = self.figure.add_subplot(111)        
+            self.hist_plot.hist(neighbor_numbers, bins=range(min(neighbor_numbers), max(neighbor_numbers) + 1, 1))
+            axes = self.figure.gca()
             axes.format_coord = lambda x, y: ''
-            self.plotCanvas.draw()
+            self.canvas.draw()

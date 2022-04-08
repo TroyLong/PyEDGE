@@ -13,161 +13,161 @@ class AppCore:
     def __init__(self):
         logging.info(f"\n\n------------------------------\n\n" +
                     f"Initializing AppCore: {id(self)}\n")
-        self.__initImageState()
-        self.__initKernels()
+        self.__init_image_state()
+        self.__init_kernels()
 
     # There is a list of states, each of which can be loaded and passed to the whole program
-    def __initImageState(self):
-        self.timeIndex = 0
-        self.zIndex = 0
-        self.multiState = [[s.State()]]
-        self.analyzedStates = []
-    def __initKernels(self):
-        self.kernelWindow = (0,-1)
-        self.zKernels = []
+    def __init_image_state(self):
+        self.time_index = 0
+        self.z_index = 0
+        self.multi_state = [[s.State()]]
+        self.analyzed_states = []
+    def __init_kernels(self):
+        self.kernel_window = (0,-1)
+        self.z_kernel = []
         self.kernel = s.State()
 
-    def openImage(self, imagePath):
-        logging.info(f"Opening: {imagePath}...")
+    def open_image(self, image_path):
+        logging.info(f"Opening: {image_path}...")
         state = s.State()
-        state.openImage(imagePath)
-        state.z_level, state.time = self.reFileNames(imagePath)
-        self.multiState[self.timeIndex][self.zIndex] = state
+        state.open_image(image_path)
+        state.z_level, state.time = self.re_file_names(image_path)
+        self.multi_state[self.time_index][self.z_index] = state
         logging.info("Finished opening file.\n")
     # opens images to states
-    def openImages(self, imagePaths):
+    def open_images(self, image_paths):
         # TODO:: This should house a pattern matching algorithm
-        logging.info(f"Opening {len(imagePaths)} files...")
-        unsortedStates = []
-        for imagePath in imagePaths:
-            logging.info(f"Opening: {imagePath}...")
-            tempState = s.State()
+        logging.info(f"Opening {len(image_paths)} files...")
+        unsorted_states = []
+        for image_path in image_paths:
+            logging.info(f"Opening: {image_path}...")
+            temp_state = s.State()
             # TODO:: should probably be in initializer
-            tempState.openImage(imagePath)
-            tempState.z_level, tempState.time = self.reFileNames(imagePath)
-            unsortedStates.append(tempState)
-            #print(f"{unsortedStates[-1].z_level} {unsortedStates[-1].time}")
+            temp_state.open_image(image_path)
+            temp_state.z_level, temp_state.time = self.re_file_names(image_path)
+            unsorted_states.append(temp_state)
+            #print(f"{unsorted_states[-1].z_level} {unsorted_states[-1].time}")
         # TODO:: This is just filler for right now
-        self.multiState = self.sortImages(unsortedStates)
+        self.multi_state = self.sort_images(unsorted_states)
         logging.info("Finished opening files.\n")
-    def reFileNames(self,fileName):
+    def re_file_names(self,filename):
         try:
-            fileName = fileName.split("_")
-            return int(re.findall(r'\d+',fileName[-2])[0]), int(re.findall(r'\d+',fileName[-1])[0])
+            filename = filename.split("_")
+            return int(re.findall(r'\d+',filename[-2])[0]), int(re.findall(r'\d+',filename[-1])[0])
         except IndexError:
             return 0,0
     # TODO:: Need to have empty sets for where there are holes
-    def sortImages(self, unsortedStates):
-        unsortedStates = sorted(unsortedStates,key=lambda state:state.time)
+    def sort_images(self, unsorted_states):
+        unsorted_states = sorted(unsorted_states,key=lambda state:state.time)
         # TODO:: could probably make this an faster sort
-        timeList = [[]]
-        lastTime = unsortedStates[0].time
-        for state in unsortedStates:
+        time_list = [[]]
+        lastTime = unsorted_states[0].time
+        for state in unsorted_states:
             if state.time == lastTime:
-                timeList[-1].append(state)
+                time_list[-1].append(state)
             else:
-                timeList[-1] = sorted(timeList[-1],key=lambda state:state.z_level)
-                timeList.append([state])
+                time_list[-1] = sorted(time_list[-1],key=lambda state:state.z_level)
+                time_list.append([state])
             lastTime = state.time
         #exit case
-        timeList[-1] = sorted(timeList[-1],key=lambda state:state.z_level)
-        return timeList
+        time_list[-1] = sorted(time_list[-1],key=lambda state:state.z_level)
+        return time_list
 
     # Time Image State Events
-    def addImageStateTime(self):
-        self.multiState.append([s.State()])
-    def upImageStateTime(self):
-        self.timeIndex += 1 if (self.timeIndex <
-                                len(self.multiState)-1) else 0
-        self.zIndex = 0
-    def downImageStateTime(self):
-        self.timeIndex -= 1 if (self.timeIndex>0) else 0
-        self.zIndex = 0
+    def add_time_state(self):
+        self.multi_state.append([s.State()])
+    def up_time_state(self):
+        self.time_index += 1 if (self.time_index <
+                                len(self.multi_state)-1) else 0
+        self.z_index = 0
+    def down_time_state(self):
+        self.time_index -= 1 if (self.time_index>0) else 0
+        self.z_index = 0
     
     # Z Image State Events
-    def addImageStateZ(self):
-        self.multiState[self.timeIndex].append(s.State())
-    def upImageStateZ(self):
-        self.zIndex += 1 if (self.zIndex <
-                                len(self.multiState[self.timeIndex])-1) else 0
-    def downImageStateZ(self):
-        self.zIndex -= 1 if (self.zIndex>0) else 0
+    def add_z_state(self):
+        self.multi_state[self.time_index].append(s.State())
+    def up_z_state(self):
+        self.z_index += 1 if (self.z_index <
+                                len(self.multi_state[self.time_index])-1) else 0
+    def down_z_state(self):
+        self.z_index -= 1 if (self.z_index>0) else 0
 
     # Imaging Events
-    def updateFilterOptions(self):
-        self.multiState[self.timeIndex][self.zIndex].updateFilterOptions()
-        logging.debug(self.multiState[self.timeIndex][self.zIndex])
-    def updateAllFilterOptions(self):
-        for timeStates in self.multiState:
-            for zLevelState in timeStates:
-                zLevelState.updateFilterOptions()
-                logging.debug(zLevelState)
+    def update_filter(self):
+        self.multi_state[self.time_index][self.z_index].update_filter()
+        logging.debug(self.multi_state[self.time_index][self.z_index])
+    def update_all_filters(self):
+        for time_states in self.multi_state:
+            for z_level_state in time_states:
+                z_level_state.update_filter()
+                logging.debug(z_level_state)
     # Neighbor Analysis Events
-    def updateNeighborOptions(self):
-        self.multiState[self.timeIndex][self.zIndex].updateNeighborOptions()
-        logging.debug(self.multiState[self.timeIndex][self.zIndex])
-    def updateAllNeighborOptions(self):
-        for timeStates in self.multiState:
-            for zLevelState in timeStates:
-                zLevelState.updateNeighborOptions()
-                logging.debug(zLevelState)
+    def update_neighbor_filter(self):
+        self.multi_state[self.time_index][self.z_index].update_neighbor_filter()
+        logging.debug(self.multi_state[self.time_index][self.z_index])
+    def update_all_neighbor_filters(self):
+        for time_states in self.multi_state:
+            for z_level_state in time_states:
+                z_level_state.update_neighbor_filter()
+                logging.debug(z_level_state)
 
     # TODO:: Not sure if this should be a getter/setter or just a direct variable access
-    def updateAnalysisOptions(self,lowAnalysisIndex,highAnalysisIndex):
-        self.kernelWindow = lowAnalysisIndex,highAnalysisIndex
+    def update_kernel_window(self,lowAnalysisIndex,highAnalysisIndex):
+        self.kernel_window = lowAnalysisIndex,highAnalysisIndex
 
-    def findKernel(self):
-        self.zKernels = []
-        for zLevel in self.multiState:
-            self.zKernels.append(self.findStateOverlap(zLevel))
-        self.kernel = self.findStateOverlap(self.zKernels,self.kernelWindow[0],self.kernelWindow[1])
-        logging.info(f"Kernel formed from window of {self.kernelWindow}.\n")
-        self.kernel.drawCells()
-    def findStateOverlap(self,states,index1=0,index2=-1):
+    def find_kernel(self):
+        self.z_kernel = []
+        for z_level in self.multi_state:
+            self.z_kernel.append(self.find_state_overlap(z_level))
+        self.kernel = self.find_state_overlap(self.z_kernel,self.kernel_window[0],self.kernel_window[1])
+        logging.info(f"Kernel formed from window of {self.kernel_window}.\n")
+        self.kernel.draw_cells()
+    def find_state_overlap(self,states,index1=0,index2=-1):
         logging.info(f"Starting Micro-kernel of {len(states)} states...")
         # Create new stateUnion image from state size and get to the neighbor image
-        unionState = s.State(shape = states[index1].neighbor_image.shape)
+        union_state = s.State(shape = states[index1].neighbor_image.shape)
         # Fill the stateUnion with the base case.
         # TODO:: Exception catching should occur here
         try:
-            unionState.cells = f.findCellOverlap(states[index1].cells, states[index1].cells)
+            union_state.cells = f.find_cell_overlap(states[index1].cells, states[index1].cells)
         except IndexError:
             logging.warning("There is a non-proper state invovled in the analysis.")
         # Loop through all image states
         # TODO:: Only loop through a window of indexies to give more user control
         for state in states[index1:index2]:
-            unionState.cells = f.findCellOverlap(unionState.cells, state.cells)
-        unionState.image_opened = True
-        logging.info(f"Micro-Kernel has {len(unionState.cells)} overlapping cells.")
-        return unionState
+            union_state.cells = f.find_cell_overlap(union_state.cells, state.cells)
+        union_state.image_opened = True
+        logging.info(f"Micro-Kernel has {len(union_state.cells)} overlapping cells.")
+        return union_state
         
-    def extractCells(self):
+    def extract_cells(self):
         #creates a kernel for each z-level
-        kernel = [self.kernel]*len(self.multiState[0])
-        self.analyzedStates = []
-        for time in self.multiState:
-            self.analyzedStates.append([])
+        kernel = [self.kernel]*len(self.multi_state[0])
+        self.analyzed_states = []
+        for time in self.multi_state:
+            self.analyzed_states.append([])
             for z,state in enumerate(time):
-                # Should update and shift kernel for different zLevels without destroying them
-                kernel[z].cells = f.findCellOverlap(kernel[z].cells,state.cells)
-                self.analyzedStates[-1].append(copy.copy(kernel[z]))
+                # Should update and shift kernel for different z_levels without destroying them
+                kernel[z].cells = f.find_cell_overlap(kernel[z].cells,state.cells)
+                self.analyzed_states[-1].append(copy.copy(kernel[z]))
         logging.info("Extracted cells for data.\n")
 
 
     # Exports the state
-    def exportState(self):
+    def export_state(self):
         logging.info("Exporting active state cells to state.csv...")
-        pandasFunctions.cellsToPandas(
-            self.multiState[self.timeIndex][self.zIndex].cells).to_csv("state.csv")
+        pandasFunctions.cells_to_pandas(
+            self.multi_state[self.time_index][self.z_index].cells).to_csv("state.csv")
         logging.info("Export complete.\n")
-    def exportSuperState(self):
+    def export_super_state(self):
         logging.info("Exporting current extracted cells to states.csv...")
-        pandasFunctions.statesToPandas(self.analyzedStates).to_csv("states.csv")
+        pandasFunctions.states_to_pandas(self.analyzed_states).to_csv("states.csv")
         logging.info("Export complete...\n")
     # TODO:: Not sure if this should be a getter/setter or just a direct variable access
     # Getters
-    def getState(self):
-        return self.multiState[self.timeIndex][self.zIndex]
+    def get_state(self):
+        return self.multi_state[self.time_index][self.z_index]
     # This passes information about the number of states, and which is active now
-    def getTotalStatesCount(self):
-        return (self.timeIndex, len(self.multiState),self.zIndex,len(self.multiState[self.timeIndex]))
+    def get_states_count(self):
+        return (self.time_index, len(self.multi_state),self.z_index,len(self.multi_state[self.time_index]))
