@@ -3,16 +3,14 @@
 ## Major House-Keeping Goals
 - [x] Rewrite data structures to be slots objects
 - [x] Rewrite filters to work with new data structures
-- [ ] Make sibling classes fit a standard format
+- [x] Make sibling classes fit a standard format
+- [x] Rewrote entire codebase to better follow PEP 8 standards
 
 ## Module Goals
 ### Data Types
 - [ ] Use pytest platform to find accuracy of connections
-- [x] Make State() a slots object
 
 ### Analysis
-- [ ] Currently neighborhood analysis has to be run a few times before removing noise in the data
-- [x] Fix the intersection neighbor filter. This got worse after AppCore was created
 
 ### Multi-Image Analysis
 - [ ] Replace/Swap/Delete states
@@ -27,12 +25,10 @@
 
 ## Framework Goals
 ### Project Layout
-- [ ] splitting AppFrame and AppCore might have effected filters
 - [ ] Protect against bad data loading to states
 
 ### Testing
 - [ ] Build interface to AppCore
-- [ ] Test Immutability/copy/deepcopy for dataTypes, and the results of deleting from other objects.
 
 - - -
 
