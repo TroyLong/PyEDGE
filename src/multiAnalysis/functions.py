@@ -22,4 +22,4 @@ def find_cell_overlap(cells1, cells2):
 # TODO:: Move to cell.py
 # Returns true if two cells geometries overlap
 def cells_overlap(cell1, cell2):
-    return cell1.dist(cell2) <= ((cell1.radius+cell2.radius)*.75)
+    return cell1.dist(cell2) <= ((cell1.radius+cell2.radius)*.5)

@@ -22,7 +22,7 @@ def cells_to_pandas(cells,cell_meta=None):
 
 def states_to_pandas(states):
     output = list()
-    for z,z_level in enumerate(states):
-        for t,state in enumerate(z_level):
+    for t,time in enumerate(states):
+        for z,state in enumerate(time):
             output.append(cells_to_pandas(state.cells,(t,z)))
     return pandas.concat(output)

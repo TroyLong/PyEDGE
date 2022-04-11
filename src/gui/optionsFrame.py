@@ -19,16 +19,9 @@ from gui.controlPanels.exportPanel import ExportPanel
 class OptionsZoneFrame(sMF.StateMachineFrame):
     def __init__(self, master=None, state=None):
         super().__init__(master,state)
-        self.__bindEvents()
+        self.bindEvents()
         self.grid()
         self._create_title("Options",fontSize=14,row=0,columnspan=6)
-        self._create_status(0)
-        self._create_time_state(0)
-        self._create_z_state(1)
-        self._create_filter(2)
-        self._create_neighbor(3)
-        self._create_kernel(4)
-        self._create_export(4)
 
     # These functions are only called for creation
     def _create_status(self,column):
@@ -56,99 +49,84 @@ class OptionsZoneFrame(sMF.StateMachineFrame):
         self.export = ExportPanel(self, state=None)
         self.export.grid(row=2,column=column,padx=5)
 
-    #TODO:: Overwritting the old stuff, and not really running filter any more
     # Called to load new state
     def load(self,state):
         self.save()
         # I don't want stateOptions locking up, so I can't lock this up too.
-        super().load(state)
-        self.status.load(state)
-        self.time_state.load(state)
-        self.z_state.load(state)
-        self.filter.load(state)
-        self.neighbor.load(state)
-
+        super().load(state)        
     def save(self):
-        # This insures default settings are saved to previous State if state is changed
-        # This does NOT submit the changes for view
-        if super().save():
-            self.filter.save()
-            self.neighbor.save()
-
+        pass
     # This allows the panels to refresh with new info without loading a new state
     def update(self):
-        self.status.update()
-        self.time_state.update()
-        self.z_state.update()
-        #self.z_state.update
+        pass
 
     # The events in this frame just pass the event up to the main frame. The events are done like this to make the sub
     # Options classes more robust. They only reference their master this way, and not their master's master.
-    def __bindEvents(self):
+    def bindEvents(self):
         # This binding passes the event up to the next master
         # Time Image State Events
-        self.bind("<<AddImageStateTime>>",self.__add_time_state)
-        self.bind("<<UpImageStateTime>>",self.__up_time_state)
-        self.bind("<<DownImageStateTime>>",self.__down_time_state)
+        self.bind("<<AddImageStateTime>>",self._add_time_state)
+        self.bind("<<UpImageStateTime>>",self._up_time_state)
+        self.bind("<<DownImageStateTime>>",self._down_time_state)
         # Z Image State Events
-        self.bind("<<AddImageStateZ>>",self.__add_z_state)
-        self.bind("<<UpImageStateZ>>",self.__up_z_state)
-        self.bind("<<DownImageStateZ>>",self.__down_z_state)
+        self.bind("<<AddImageStateZ>>",self._add_z_state)
+        self.bind("<<UpImageStateZ>>",self._up_z_state)
+        self.bind("<<DownImageStateZ>>",self._down_z_state)
         #Imaging Events
-        self.bind("<<SubmitFilterOptions>>",self.__update_filter)
-        self.bind("<<SubmitAllFilterOptions>>",self.__update_all_filters)
+        self.bind("<<SubmitFilterOptions>>",self._update_filter)
+        self.bind("<<SubmitAllFilterOptions>>",self._update_all_filters)
         #Neighbor Analysis Events
-        self.bind("<<SubmitNeighborOptions>>",self.__update_neighbor_filter)
-        self.bind("<<SubmitAllNeighborOptions>>",self.__update_all_neighbor_filters)
+        self.bind("<<SubmitNeighborOptions>>",self._update_neighbor_filter)
+        self.bind("<<SubmitAllNeighborOptions>>",self._update_all_neighbor_filters)
         #Cell Focus Panel Events
-        self.bind("<<PreviousCell>>",self.__previous_cell)
-        self.bind("<<NextCell>>",self.__next_cell)
+        self.bind("<<PreviousCell>>",self._previous_cell)
+        self.bind("<<NextCell>>",self._next_cell)
         #Multi state image analysis Events
-        self.bind("<<SubmitKernelWindowOptions>>",self.__update_kernel_window)
-        self.bind("<<FindKernel>>",self.__find_kernel)
-        self.bind("<<ExtractCells>>",self.__extract_cells)
+        self.bind("<<SubmitKernelWindowOptions>>",self._update_kernel_window)
+        self.bind("<<FindKernel>>",self._find_kernel)
+        self.bind("<<ExtractCells>>",self._extract_cells)
         #Export Events
-        self.bind("<<ExportState>>",self.__export_state)
-        self.bind("<<ExportSuperState>>",self.__export_super_state)
+        self.bind("<<ExportState>>",self._export_state)
+        self.bind("<<ExportSuperState>>",self._export_super_state)
     # State Events
-    def __add_time_state(self,event):
+    def _add_time_state(self,event):
         self.master.event_generate("<<AddImageStateTime>>")
-    def __up_time_state(self,event):
+    def _up_time_state(self,event):
         self.master.event_generate("<<UpImageStateTime>>")
-    def __down_time_state(self,event):
+    def _down_time_state(self,event):
         self.master.event_generate("<<DownImageStateTime>>")
-    def __add_z_state(self,event):
+    def _add_z_state(self,event):
         self.master.event_generate("<<AddImageStateZ>>")
-    def __up_z_state(self,event):
+    def _up_z_state(self,event):
         self.master.event_generate("<<UpImageStateZ>>")
-    def __down_z_state(self,event):
+    def _down_z_state(self,event):
         self.master.event_generate("<<DownImageStateZ>>")
     # Filter Events
-    def __update_filter(self,event):
+    def _update_filter(self,event):
         self.master.event_generate("<<SubmitFilterOptions>>")
-    def __update_all_filters(self,event):
+    def _update_all_filters(self,event):
         self.master.event_generate("<<SubmitAllFilterOptions>>")
     # Neighbor Events
-    def __update_neighbor_filter(self,event):
+    def _update_neighbor_filter(self,event):
         self.master.event_generate("<<SubmitNeighborOptions>>")
-    def __update_all_neighbor_filters(self,event):
+    def _update_all_neighbor_filters(self,event):
         self.master.event_generate("<<SubmitAllNeighborOptions>>")
     # Cell Manipulation Events
-    def __previous_cell(self,event):
+    def _previous_cell(self,event):
         self.master.event_generate("<<PreviousCell>>")
-    def __next_cell(self,event):
+    def _next_cell(self,event):
         self.master.event_generate("<<NextCell>>")
     # Kernel Events
-    def __update_kernel_window(self,event):
+    def _update_kernel_window(self,event):
         self.master.event_generate("<<SubmitKernelWindowOptions>>")
-    def __find_kernel(self,event):
+    def _find_kernel(self,event):
         self.master.event_generate("<<FindKernel>>")
-    def __extract_cells(self,event):
+    def _extract_cells(self,event):
         self.master.event_generate("<<ExtractCells>>")
     # Export Events
-    def __export_state(self,event):
+    def _export_state(self,event):
         self.master.event_generate("<<ExportState>>")
-    def __export_super_state(self,event):
+    def _export_super_state(self,event):
         self.master.event_generate("<<ExportSuperState>>")
 
     # grabs number of total loaded states
